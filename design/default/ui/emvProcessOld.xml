@@ -1,0 +1,194 @@
+<window v-model="emvProcess" name="emvProcess" anim_hint="htranslate"
+  style:normal:bg_color="#FFFFFF" v-on:key_down:0="{onKeyDown, Args=0}"
+  v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}"
+  v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}"
+  v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}"
+  v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}"
+  v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}"
+  v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}"
+  v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <label name="title" x="0" y="0" w="320" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF"  v-data:text="{title}"/>
+  <label name="title" x="270" y="0" w="50" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" v-data:text="{timeOutShow}"/>
+
+
+
+  <view v-if="{isShowModal}" text="view" x="0" y="0" w="100%" h="100%" disg:custom="container">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="150" x="40" y="30">
+        <label x="0" y="0" w="240" h="40" style:normal:font_size="24" v-data:text="{modalTitle}" />
+        <label name="label" x="0" y="40" w="240" h="70" style:normal:font_size="24"
+          style:normal:text_color="#00B050" v-data:text="{modalText}" />
+        <button name="next" v-on:click="{hideModal}" x="0" y="110" w="120" h="40"
+          style:normal:round_radius="10" style:normal:border="none"
+          style:normal:border_color="#00B050" style:normal:border_width="0"
+          style:normal:bg_color="#FFC000" style:normal:text_color="#FFFFFF"
+          style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0"
+          style:normal:round_radius_bottom_right="0"
+          style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0"
+          style:pressed:round_radius_bottom_right="0"
+          style:pressed:bg_color="#FFB000" text="Cancel" />
+        <button name="next" v-on:click="{handleConfirmCard}" x="120" y="110" w="120" h="40"
+          style:normal:round_radius="10" style:normal:border="none"
+          style:normal:border_color="#00B050" style:normal:border_width="0"
+          style:normal:bg_color="#00B050" style:normal:text_color="#FFFFFF"
+          style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0"
+          style:normal:round_radius_bottom_left="0" style:pressed:bg_color="#00B040"
+          style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0"
+          style:pressed:round_radius_bottom_left="0" text="Ok" />
+      </view>
+    </view>
+  </view>
+  <view v-if="{showProcess}" x="c" y="m" w="100%" h="100%" disg:custom="container" >
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF"
+        style:normal:round_radius="20" style:normal:border_width="0">
+        <view w="120" h="60" x="42" y="24">
+          <view name="view1" x="0" y="20" w="20" h="20"
+            animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)"
+            style:normal:bg_color="#00B050" style:normal:round_radius="10"
+            style:normal:border_width="0" />
+          <view name="view1" x="25" y="20" w="20" h="20"
+            animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)"
+            style:normal:bg_color="#00B050" style:normal:round_radius="10"
+            style:normal:border_width="0" />
+          <view name="view1" x="50" y="20" w="20" h="20"
+            animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)"
+            style:normal:bg_color="#00B050" style:normal:round_radius="10"
+            style:normal:border_width="0" />
+          <view name="view1" x="75" y="20" w="20" h="20"
+            animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)"
+            style:normal:bg_color="#00B050" style:normal:round_radius="10"
+            style:normal:border_width="0" />
+          <view name="view1" x="100" y="20" w="20" h="20"
+            animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)"
+            style:normal:bg_color="#00B050" style:normal:round_radius="10"
+            style:normal:border_width="0" />
+        </view>
+      </view>
+      <label name="label" x="80" y="110" w="160" h="28" style:normal:text_color="#00B050"
+       v-data:text="{noticeText}"/>
+      <label name="label" x="200" y="110" w="50" h="28" style:normal:text_color="#00B050"
+             v-data:text="{noticeTimeOut}"/>
+    </view>
+  </view>
+  <view v-if="{showPin}" x="0" y="0" w="100%" h="100%" disg:custom="container"
+    style:normal:bg_color="#FFFFFF">
+    <label name="title" x="0" y="0" w="320" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:round_radius="0" style:normal:border_color="#BFBFBF" v-data:text="{title}"/>
+    <label name="tips_text1" x="0" y="40" w="320" h="33" style:normal:text_color="#000000" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:font_size="32" v-data:text="{amount}"/>
+    <view w="280" h="52" y="94" style:normal:bg_color="#D8D8D8" x="20" style:normal:round_radius="6">
+      <view v-if="{valueLen >= 1}" name="dot" x="10" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 2}" name="dot1" x="32" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 3}" name="dot2" x="54" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 4}" name="dot3" x="76" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 5}" name="dot4" x="98" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 6}" name="dot5" x="120" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 7}" name="dot6" x="142" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 8}" name="dot7" x="164" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 9}" name="dot8" x="186" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 10}" name="dot9" x="208" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 11}" name="dot10" x="230" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 12}" name="dot11" x="252" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view name="line" v-if="{valueLen < 12}" v-data:x="{lineX}" y="11" w="3" h="30" style:normal:bg_color="#00B0F0" animation="opacity(from=255, to=0, yoyo_times=0, duration=500)" />
+    </view>
+    <!-- <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#FFFFFF">
+      <label name="title" x="0" y="0" style:normal:bg_color="#D8D8D8" w="320" h="50"
+        style:normal:text_color="#00B050"
+        style:normal:border_width="0" style:normal:font_size="32" text="Password" />
+      <image name="tips_img" x="24" y="170" w="16" h="16" draw_type="default" image="tips" />
+      <label name="tips_text" x="42" y="164" w="270" h="28" style:normal:text_color="#848484"
+        style:normal:text_align_h="left" style:normal:spacer="0"
+        text="Please enter the password" />
+      <view w="100%" h="100" y="48" style:normal:bg_color="#D8D8D8">
+        <view v-if="{valueLen >= 1}" name="dot" x="22" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 2}" name="dot" x="44" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 3}" name="dot" x="66" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 4}" name="dot" x="88" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 5}" name="dot" x="110" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 6}" name="dot" x="132" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 7}" name="dot" x="154" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 8}" name="dot" x="176" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 9}" name="dot" x="198" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 10}" name="dot" x="220" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 11}" name="dot" x="242" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view v-if="{valueLen >= 12}" name="dot" x="264" y="40" w="20" h="20"
+          style:normal:bg_color="#00B050" style:normal:round_radius="10" />
+        <view name="line" v-data:x="{lineX}" y="62" w="20" h="4"
+          style:normal:bg_color="#00B050"
+          animation="opacity(from=255, to=0, yoyo_times=0, duration=500)" />
+      </view>
+    </view> -->
+  </view>
+  <view x="c" y="m" w="100%" h="100%" name="view" v-if="{isMultiAppSelectModal}">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#96969696">
+      <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="150" x="40" y="30">
+        <label x="0" y="0" w="240" h="40" style:normal:border="bottom"
+          style:normal:border_color="#BFBFBF" style:normal:round_radius="0"
+          style:normal:font_size="24"
+          style:normal:round_radius_top_left="10" style:normal:round_radius_top_right="10"
+          text="Please select App" />
+        <list_view name="list_view" x="0" y="40" w="240" h="107" default_item_height="60"
+          style:normal:border="none"
+          style:normal:round_radius_bottom_left="10" style:normal:round_radius_bottom_right="10"
+          style:normal:bg_color="#FFFFFF">
+          <scroll_view name="scroll_view" yslidable="true" x="0" y="0" w="230" h="100%"
+            style:normal:border="none" style:normal:border_width="0">
+            <list_item v-for="{multiAppList}" name="list_item" style:normal:border_width="0"
+              style:normal:border="none" h="36"
+              v-on:click="{onSelectMultiApp, Args=fscript?index=index}" style:pressed:border="none"
+              style:pressed:border_color="#00000000" style:pressed:bg_color="#00000000"
+              style:pressed:font_size="20" style:normal:text_color="#000000"
+              style:pressed:text_color="#000000" style:normal:font_size="20"
+              style:over:border="none"
+              style:over:border_color="#00000000" style:over:font_size="20"
+              style:focused:border="none" style:focused:border_color="#00000000"
+              style:focused:text_color="#000000" style:focused:font_size="20">
+              <radio_button name="radio_button" h="30" x="4" y="3" w="220"
+                style:normal:icon="radio"
+                style:pressed:icon="radio_check"
+                style:over:icon="radio_check"
+                style:normal:border="none" style:normal:font_size="20"
+                style:normal:text_color="#000000" style:normal:bg_color="#FFFFFF"
+                style:pressed:text_color="#000000" style:pressed:bg_color="#FFFFFF"
+                style:pressed:font_size="20"
+                v-data:text="{item.aucDisplayName}" />
+            </list_item>
+          </scroll_view>
+          <scroll_bar_m name="scroll_bar" x="r" y="0" w="10" h="100%" style:normal:round_radius="5"
+            style:normal:border_width="0" style:normal:bg_color="#F4F5F8" />
+        </list_view>
+      </view>
+    </view>
+  </view>
+  <view v-if="{isPINRetryTimesModal}" text="view" x="0" y="0" w="100%" h="100%"
+    disg:custom="container">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="160" x="40" y="25">
+        <label name="label" x="0" y="0" w="240" h="40" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" text="PIN ERROR TRY AGAIN?"/>
+        <label name="label" x="0" y="40" w="240" h="80" style:normal:font_size="24" style:normal:text_color="#FF0000" style:normal:border="none" v-data:text="{pinRetryTimesText}" text="{pinRetryTimesText} "/>
+        <button name="next" v-on:click="{cancelRetryPIN}" x="0" y="120" w="120" h="40" style:normal:round_radius="0" style:normal:border="none" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#BFBFBF" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:pressed:border="none" style:pressed:border_color="#00000000" style:pressed:bg_color="#D8D8D8" style:normal:round_radius_bottom_left="10" style:pressed:border_width="0" style:pressed:round_radius="0" style:pressed:round_radius_bottom_left="10" text="Cancel"/>
+        <button name="next" v-on:click="{retryPIN}" x="120" y="120" w="120" h="40" style:normal:round_radius="0" style:normal:border="none" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#00B0F0" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_left="0" style:pressed:border="none" style:pressed:border_color="#00000000" style:pressed:border_width="0" style:pressed:round_radius="0" style:pressed:round_radius_bottom_right="10" style:normal:round_radius_bottom_right="10" style:pressed:bg_color="#00BCF0" text="Confirm"/>
+      </view>
+    </view>
+  </view>
+  <view v-if="{isPlaintextPINModal}" text="view" x="0" y="0" w="100%" h="100%" disg:custom="container">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="160" x="40" y="25" enable="true">
+        <label x="0" y="0" w="240" h="40" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" style:normal:text_color="#000000" text="Plaintext PIN "/>
+        <edit max="12" v-data:text="{plaintextPIN}" w="220" h="40" x="10" y="58" style:empty:round_radius="6" style:empty:text_color="#BFBFBF" style:empty:selected_text_color="#00B0F0" style:normal:text_color="#000000" style:normal:font_size="32" input_type="text" style:normal:round_radius="6" style:normal:border_color="#00B0F0" tips="please enter plaintext PIN" floating="true" style:normal:margin_left="10" text_align_h="center"/>
+        <button name="next" v-on:click="{handlePlaintextPINConfirm}" x="120" y="120" w="120" h="40" style:normal:round_radius="0" style:normal:border="none" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#00B0F0" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_left="0" style:pressed:border="none" style:pressed:border_color="#00000000" style:pressed:border_width="0" style:pressed:round_radius="0" style:pressed:round_radius_bottom_right="10" style:normal:round_radius_bottom_right="10" style:pressed:bg_color="#00BCF0" text="Confirm"/>
+        <button name="next" v-on:click="{hidePlaintextPIN}" x="0" y="120" w="120" h="40" style:normal:round_radius="0" style:normal:border="none" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#BFBFBF" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:pressed:border="none" style:pressed:border_color="#00000000" style:pressed:bg_color="#D8D8D8" style:normal:round_radius_bottom_left="10" style:pressed:border_width="0" style:pressed:round_radius="0" style:pressed:round_radius_bottom_left="10" text="Cancel"/>
+      </view>
+    </view>
+  </view>
+</window>

@@ -1,0 +1,40 @@
+<window v-model="inputConfig"
+    v-on:key_down:0="{onKeyDown, Args=0}"
+    v-on:key_down:1="{onKeyDown, Args=1}"
+    v-on:key_down:2="{onKeyDown, Args=2}"
+    v-on:key_down:3="{onKeyDown, Args=3}"
+    v-on:key_down:4="{onKeyDown, Args=4}"
+    v-on:key_down:5="{onKeyDown, Args=5}"
+    v-on:key_down:6="{onKeyDown, Args=6}"
+    v-on:key_down:7="{onKeyDown, Args=7}"
+    v-on:key_down:8="{onKeyDown, Args=8}"
+    v-on:key_down:9="{onKeyDown, Args=9}"
+    v-on:key_down:backspace="{reduceNum, Args=backspace}"
+    v-on:key_down:return="{clickEnter, Args=return}"
+    v-on:key_down:escape="{onKeyDown, Args=escape}"
+    v-on:key_down:delete="{onKeyDown, Args=delete}"
+    v-on:key_down:cancel="{clickCancel, Args=cancel}"
+>
+  <view x="0" y="0" w="320" h="30" style:normal:border_color="#A5A5A5" style:normal:border="bottom" style:normal:border_width="1">
+    <label name="title" x="0" y="0" w="320" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF"  v-data:text="{title}"/>
+    <label name="title" x="270" y="0" w="50" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" v-data:text="{timeOutShow}"/>
+  </view>
+  <view v-if="{type}" w="100%" h="100%">
+    <label name="pay_num" x="0" y="70" w="320" h="60" tips="" style:normal:font_size="32" style:normal:border="none" style:normal:bg_color="#00000000" v-data:text="{valueStr}" style:normal:border_width="2"/>
+    <label name="tips_text" x="0" y="125" w="320" h="30" style:normal:text_color="#595959" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" v-data:text="{tip_text}"/>
+  </view>
+  <view v-if="{!type}" w="100%" h="100%">
+    <edit min="0" max="1024" step="1" name="edit" x="60" y="60" w="200" h="40" x="60" y="90" w="200" h="40" tips="Please enter your text" auto_fix="true" style:empty:round_radius="5" tips="Please enter config" auto_fix="true" v-data:text="{valueStr}"/>
+    <label name="tips_text" x="0" y="130" w="320" h="30" style:normal:text_color="#595959" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" v-data:text="{tip_text}"/>
+  </view>
+<!--  <label name="pay_num" x="0" y="70" w="320" h="60" tips="" style:normal:font_size="32" style:normal:border="none" style:normal:bg_color="#00000000" v-data:text="{valueStr}" style:normal:border_width="2"/>-->
+<!--  <label v-if="" name="tips_text" x="0" y="125" w="320" h="30" style:normal:text_color="#595959" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" text="Please enter the amount"/>-->
+<!--  <edit v-if="{type == 0}" min="0" max="1024" step="1" name="edit" x="60" y="110" w="200" h="40" x="60" y="110" w="200" h="40" tips="Please enter your text" auto_fix="true" style:empty:round_radius="5" tips="Please enter password" auto_fix="true" v-data:text="{password}"/>-->
+
+<!--  <overlay v-if="{showConnectingModal}" x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000064" disg:custom="container">-->
+<!--  <view name="view" x="25%" y="25%" w="50%" h="50%" style:normal:bg_color="#FFFFFF" style:normal:round_radius="10">-->
+<!--    <label name="label" x="0" y="65" w="100%" h="40" v-data:text="{modalMsg}"/>-->
+<!--    <image name="image" x="60" y="20" w="40" h="40" draw_type="default" v-data:image="{modalIcon}"/>-->
+<!--  </view>-->
+<!--</overlay>-->
+</window>

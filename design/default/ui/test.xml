@@ -1,0 +1,24 @@
+<window name="test">
+  <view name="view4" x="0" y="0" w="320" h="210">
+    <scroll_view name="scroll_view" x="0" y="0" w="320" h="210">
+      <view w="320" h="29">
+        <button name="button2" x="20" y="0" w="40" h="40" style:normal:icon="icon_back" style:normal:border="none" style:normal:bg_color="#00000000" style:pressed:border="none" style:pressed:icon="icon_back" style:pressed:bg_color="#00000000" style:normal:text_color="#000000" style:pressed:text_color="#000000" style:over:border="none" style:over:bg_color="#00000000" style:over:text_color="#000000" style:over:icon="icon_back" v-on:click="{onKeyDown, Args=cancel}"/>
+        <label name="Balance" x="0" y="0" w="320" h="34" style:normal:border="bottom" style:normal:border_color="#000000" text="Balance Enquiry"/>
+      </view>
+      <view v-if="{loading}" x="0" y="0" w="320" h="210" disg:custom="container">
+        <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+          <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
+            <view w="120" h="60" x="42" y="24">
+              <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+              <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+              <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+              <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+              <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+            </view>
+          </view>
+          <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
+        </view>
+      </view>
+    </scroll_view>
+  </view>
+</window>

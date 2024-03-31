@@ -1,0 +1,12 @@
+<window v-model="transferSuccess" name="transferSuccess" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <view name="view" x="0" y="0" w="320" h="210">
+    <image name="image" x="112" y="0" w="96" h="79" draw_type="default" style:normal:icon="Succeed" style:normal:bg_image_draw_type="center"/>
+    <label name="label" x="170" y="80" w="80" h="28" v-data:text="{amount}" style:normal:text_align_h="left"/>
+    <label name="label" x="40" y="119" w="167" h="28" v-data:text="{name}"/>
+    <label name="label" x="10" y="122" w="20" h="22" text="to"/>
+    <label name="label" x="86" y="80" w="84" h="28" text="Transfer of"/>
+    <label name="label" x="207" y="119" w="84" h="28" text="is successful"/>
+    <button name="button" x="18" y="164" w="141" h="36" v-on:click="{onPrint}" style:normal:round_radius="5" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Print Merchant Copy"/>
+    <button name="button" x="169" y="164" w="133" h="36" v-on:click="{handleConfirm}" style:normal:round_radius="5" style:normal:bg_color="#00000000" style:normal:border_color="#596B6D" text="Back to home"/>
+  </view>
+</window>

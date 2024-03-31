@@ -1,0 +1,32 @@
+<window v-model="account" name="account"
+        v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}"
+        v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}"
+        v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}"
+        v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}"
+        v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}"
+        v-on:key_down:up="{onKeyDown, Args=up}" v-on:key_down:down="{onKeyDown, Args=down}"
+        anim_hint="htranslate" style:normal:bg_color="#FFFFFF">
+    <view w="100%" h="100%">
+        <label name="title" x="0" y="0" w="320" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF"  v-data:text="{title}"/>
+        <label name="label" x="20" y="30" w="80" h="36" style:normal:text_align_h="left" style:normal:font_size="24" text="Voucher No."/>
+
+        <label name="label" x="20" y="66" w="80" h="36" style:normal:text_align_h="left" style:normal:font_size="24" text="Transaction Type"/>
+        <label name="label" x="20" y="102" w="80" h="36" style:normal:text_align_h="left" style:normal:font_size="24" text="Pan"/>
+        <label name="label" x="20" y="138" w="80" h="36" style:normal:text_align_h="left" style:normal:font_size="24" text="Amount"/>
+        <label name="label" x="20" y="174" w="80" h="36" style:normal:text_align_h="left" style:normal:font_size="24" text="DateTime"/>
+        <label name="label1" x="100" y="30" w="200" h="36" style:normal:text_align_h="right" style:normal:font_size="24" v-data:text="{voucherNo}"/>
+        <label name="label1" x="100" y="66" w="200" h="36" style:normal:text_align_h="right" style:normal:font_size="24" v-data:text="{transType}"/>
+        <label name="label1" x="100" y="102" w="200" h="36" style:normal:text_align_h="right" style:normal:font_size="24" v-data:text="{cardNo}"/>
+        <label name="label1" x="100" y="138" w="200" h="36" style:normal:text_align_h="right" style:normal:font_size="24" v-data:text="{amount}"/>
+        <label name="label1" x="100" y="174" w="200" h="36" style:normal:text_align_h="right" style:normal:font_size="24" v-data:text="{dateTime}"/>
+    </view>
+    <view v-if="{isShowToast}" text="view" x="0" y="0" w="320" h="210" disg:custom="container" style:normal:bg_color="#ffffff00">
+        <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#96969696">
+            <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="220" h="120" x="50" y="46">
+                <label x="0" y="80" w="220" h="36" style:normal:font_size="24" v-data:text="{toastTip}"/>
+                <image name="image2" x="85" y="20" w="50" h="50" draw_type="scale" image="Timeout"/>
+            </view>
+        </view>
+    </view>
+
+</window>

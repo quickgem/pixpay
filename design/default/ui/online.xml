@@ -1,0 +1,18 @@
+<window v-model="online" name="online" style:normal:bg_color="#FFFFFF" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <label name="title" x="0" y="0" w="320" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:round_radius="0" style:normal:border_color="#BFBFBF" v-data:text="{title}"/>
+  <label name="title" x="270" y="0" w="50" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" v-data:text="{timeOutShow}"/>
+  <view v-if="{isLoading}" x="0" y="0" w="100%" h="100%" disg:custom="container">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
+        <view w="120" h="60" x="42" y="24">
+          <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+        </view>
+      </view>
+      <label name="label" x="80" y="110" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
+    </view>
+  </view>
+</window>

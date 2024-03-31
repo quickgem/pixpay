@@ -1,0 +1,4 @@
+<window v-model="calc" name="calc" v-on:key_down:F10="{initHTTPCB}" style:normal:bg_color="#F4F5F8" v-on:key_down:cancel="{onKeyDown, Args=cancel}" v-on:key_down:up="{onKeyDown, Args=up}">
+  <label name="label12" x="0" y="0" w="310" h="81" style:normal:text_align_h="right" style:normal:font_size="24" text="HTTPS TEST" />
+ 
+</window>

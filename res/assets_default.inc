@@ -1,0 +1,476 @@
+#include "awtk.h"
+#include "base/assets_manager.h"
+#if !defined(WITH_FS_RES) || defined(AWTK_WEB)
+#include "assets/default/inc/styles/default.data"
+#include "assets/default/inc/styles/keyboard.data"
+#include "assets/default/inc/ui/account.data"
+#include "assets/default/inc/ui/app_store.data"
+#include "assets/default/inc/ui/authMenu.data"
+#include "assets/default/inc/ui/balance.data"
+#include "assets/default/inc/ui/calc.data"
+#include "assets/default/inc/ui/emvProcess.data"
+#include "assets/default/inc/ui/emvProcessOld.data"
+#include "assets/default/inc/ui/error.data"
+#include "assets/default/inc/ui/error_dialog.data"
+#include "assets/default/inc/ui/eSign.data"
+#include "assets/default/inc/ui/home_page.data"
+#include "assets/default/inc/ui/inputAmt.data"
+#include "assets/default/inc/ui/inputAuthCode.data"
+#include "assets/default/inc/ui/inputConfig.data"
+#include "assets/default/inc/ui/inputPinblock.data"
+#include "assets/default/inc/ui/inputPwd.data"
+#include "assets/default/inc/ui/inputRefNo.data"
+#include "assets/default/inc/ui/inputTraceNo.data"
+#include "assets/default/inc/ui/inputTransDate.data"
+#include "assets/default/inc/ui/login.data"
+#include "assets/default/inc/ui/makeTransfer.data"
+#include "assets/default/inc/ui/more.data"
+#include "assets/default/inc/ui/online.data"
+#include "assets/default/inc/ui/pay.data"
+#include "assets/default/inc/ui/profile.data"
+#include "assets/default/inc/ui/result.data"
+#include "assets/default/inc/ui/searchCard.data"
+#include "assets/default/inc/ui/subSettings.data"
+#include "assets/default/inc/ui/test.data"
+#include "assets/default/inc/ui/transactionPage.data"
+#include "assets/default/inc/ui/transDetail.data"
+#include "assets/default/inc/ui/transferLoading.data"
+#include "assets/default/inc/ui/transferSuccess.data"
+#include "assets/default/inc/data/a_b_c_any.data"
+#include "assets/default/inc/data/com_zlg_app_json.data"
+#include "assets/default/inc/data/file_info_txt.data"
+#include "assets/default/inc/data/test_dat.data"
+#include "assets/default/inc/data/test_json.data"
+#ifndef AWTK_WEB
+#ifdef WITH_STB_IMAGE
+#include "assets/default/inc/images/app.res"
+#include "assets/default/inc/images/appstore.res"
+#include "assets/default/inc/images/arror_r.res"
+#include "assets/default/inc/images/arrow_down_d.res"
+#include "assets/default/inc/images/arrow_down_f.res"
+#include "assets/default/inc/images/arrow_down_n.res"
+#include "assets/default/inc/images/arrow_down_o.res"
+#include "assets/default/inc/images/arrow_down_p.res"
+#include "assets/default/inc/images/arrow_left_d.res"
+#include "assets/default/inc/images/arrow_left_f.res"
+#include "assets/default/inc/images/arrow_left_n.res"
+#include "assets/default/inc/images/arrow_left_o.res"
+#include "assets/default/inc/images/arrow_left_p.res"
+#include "assets/default/inc/images/arrow_right_d.res"
+#include "assets/default/inc/images/arrow_right_f.res"
+#include "assets/default/inc/images/arrow_right_n.res"
+#include "assets/default/inc/images/arrow_right_o.res"
+#include "assets/default/inc/images/arrow_right_p.res"
+#include "assets/default/inc/images/arrow_up_d.res"
+#include "assets/default/inc/images/arrow_up_f.res"
+#include "assets/default/inc/images/arrow_up_n.res"
+#include "assets/default/inc/images/arrow_up_o.res"
+#include "assets/default/inc/images/arrow_up_p.res"
+#include "assets/default/inc/images/auth_com.res"
+#include "assets/default/inc/images/auth_com_void.res"
+#include "assets/default/inc/images/auth_void.res"
+#include "assets/default/inc/images/backspace.res"
+#include "assets/default/inc/images/balance.res"
+#include "assets/default/inc/images/bg_circles.res"
+#include "assets/default/inc/images/check_checked_d.res"
+#include "assets/default/inc/images/check_checked_f.res"
+#include "assets/default/inc/images/check_checked_n.res"
+#include "assets/default/inc/images/check_checked_o.res"
+#include "assets/default/inc/images/check_checked_p.res"
+#include "assets/default/inc/images/check_d.res"
+#include "assets/default/inc/images/check_f.res"
+#include "assets/default/inc/images/check_n.res"
+#include "assets/default/inc/images/check_o.res"
+#include "assets/default/inc/images/check_p.res"
+#include "assets/default/inc/images/clock_bg.res"
+#include "assets/default/inc/images/clock_hour.res"
+#include "assets/default/inc/images/clock_minute.res"
+#include "assets/default/inc/images/clock_second.res"
+#include "assets/default/inc/images/close_business.res"
+#include "assets/default/inc/images/connect.res"
+#include "assets/default/inc/images/contactless.res"
+#include "assets/default/inc/images/corebank2.res"
+#include "assets/default/inc/images/corebank3.res"
+#include "assets/default/inc/images/cross.res"
+#include "assets/default/inc/images/en.res"
+#include "assets/default/inc/images/end_.res"
+#include "assets/default/inc/images/error.res"
+#include "assets/default/inc/images/Faile.res"
+#include "assets/default/inc/images/Failed.res"
+#include "assets/default/inc/images/guage_bg.res"
+#include "assets/default/inc/images/guage_pointer.res"
+#include "assets/default/inc/images/icon_Account.res"
+#include "assets/default/inc/images/icon_back.res"
+#include "assets/default/inc/images/icon_Balance.res"
+#include "assets/default/inc/images/icon_Cashier.res"
+#include "assets/default/inc/images/icon_communication.res"
+#include "assets/default/inc/images/icon_connection.res"
+#include "assets/default/inc/images/icon_Consume.res"
+#include "assets/default/inc/images/icon_financial.res"
+#include "assets/default/inc/images/icon_keyboard_on.res"
+#include "assets/default/inc/images/icon_next.res"
+#include "assets/default/inc/images/icon_Print.res"
+#include "assets/default/inc/images/icon_Refund.res"
+#include "assets/default/inc/images/icon_Revocation.res"
+#include "assets/default/inc/images/icon_trad_statistic.res"
+#include "assets/default/inc/images/ic_card.res"
+#include "assets/default/inc/images/ic_mag.res"
+#include "assets/default/inc/images/ic_nfc.res"
+#include "assets/default/inc/images/ic_sett.res"
+#include "assets/default/inc/images/log_out.res"
+#include "assets/default/inc/images/maketransfer.res"
+#include "assets/default/inc/images/more.res"
+#include "assets/default/inc/images/more_background.res"
+#include "assets/default/inc/images/nodata.res"
+#include "assets/default/inc/images/no_transactions.res"
+#include "assets/default/inc/images/num0.res"
+#include "assets/default/inc/images/num1.res"
+#include "assets/default/inc/images/num2.res"
+#include "assets/default/inc/images/num3.res"
+#include "assets/default/inc/images/num4.res"
+#include "assets/default/inc/images/num5.res"
+#include "assets/default/inc/images/num6.res"
+#include "assets/default/inc/images/num7.res"
+#include "assets/default/inc/images/num8.res"
+#include "assets/default/inc/images/num9.res"
+#include "assets/default/inc/images/numdot.res"
+#include "assets/default/inc/images/paywithcard.res"
+#include "assets/default/inc/images/pre_auth.res"
+#include "assets/default/inc/images/Pre_authorization.res"
+#include "assets/default/inc/images/profile.res"
+#include "assets/default/inc/images/radio.res"
+#include "assets/default/inc/images/radio_check.res"
+#include "assets/default/inc/images/radio_checked_d.res"
+#include "assets/default/inc/images/radio_checked_f.res"
+#include "assets/default/inc/images/radio_checked_n.res"
+#include "assets/default/inc/images/radio_checked_o.res"
+#include "assets/default/inc/images/radio_checked_p.res"
+#include "assets/default/inc/images/radio_d.res"
+#include "assets/default/inc/images/radio_f.res"
+#include "assets/default/inc/images/radio_n.res"
+#include "assets/default/inc/images/radio_o.res"
+#include "assets/default/inc/images/radio_p.res"
+#include "assets/default/inc/images/rounded_n.res"
+#include "assets/default/inc/images/rounded_o.res"
+#include "assets/default/inc/images/rounded_p.res"
+#include "assets/default/inc/images/Scan.res"
+#include "assets/default/inc/images/Setting.res"
+#include "assets/default/inc/images/Settle_Accounts.res"
+#include "assets/default/inc/images/shift.res"
+#include "assets/default/inc/images/shifton.res"
+#include "assets/default/inc/images/Sign_In.res"
+#include "assets/default/inc/images/slider_bg.res"
+#include "assets/default/inc/images/slider_fg.res"
+#include "assets/default/inc/images/Succeed.res"
+#include "assets/default/inc/images/success.res"
+#include "assets/default/inc/images/success_msg.res"
+#include "assets/default/inc/images/Timeout.res"
+#include "assets/default/inc/images/tips.res"
+#include "assets/default/inc/images/tips32.res"
+#include "assets/default/inc/images/toppay_icon.res"
+#include "assets/default/inc/images/trade.res"
+#include "assets/default/inc/images/transactionhistory.res"
+#include "assets/default/inc/images/trans_credit.res"
+#include "assets/default/inc/images/trans_debit.res"
+#include "assets/default/inc/images/version.res"
+#include "assets/default/inc/images/warn.res"
+#include "assets/default/inc/images/warnTip24.res"
+#include "assets/default/inc/images/warn_40.res"
+#include "assets/default/inc/images/yes.res"
+#include "assets/default/inc/images/zh.res"
+#else /*WITH_STB_IMAGE*/
+#endif /*WITH_STB_IMAGE*/
+#ifdef WITH_TRUETYPE_FONT
+#include "assets/default/inc/fonts/ap.res"
+#include "assets/default/inc/fonts/default.res"
+#else /*WITH_TRUETYPE_FONT*/
+#endif /*WITH_TRUETYPE_FONT*/
+#include "assets/default/inc/scripts/account.res"
+#include "assets/default/inc/scripts/app_store.res"
+#include "assets/default/inc/scripts/authMenu.res"
+#include "assets/default/inc/scripts/balance.res"
+#include "assets/default/inc/scripts/calc.res"
+#include "assets/default/inc/scripts/customPrintFunc.res"
+#include "assets/default/inc/scripts/emvProcess.res"
+#include "assets/default/inc/scripts/emvProcessOld.res"
+#include "assets/default/inc/scripts/eSign.res"
+#include "assets/default/inc/scripts/inputAmt.res"
+#include "assets/default/inc/scripts/inputAuthCode.res"
+#include "assets/default/inc/scripts/inputConfig.res"
+#include "assets/default/inc/scripts/inputPinblock.res"
+#include "assets/default/inc/scripts/inputPwd.res"
+#include "assets/default/inc/scripts/inputRefNo.res"
+#include "assets/default/inc/scripts/inputTraceNo.res"
+#include "assets/default/inc/scripts/inputTransDate.res"
+#include "assets/default/inc/scripts/login.res"
+#include "assets/default/inc/scripts/makeTransfer.res"
+#include "assets/default/inc/scripts/mod_global_app_manage.res"
+#include "assets/default/inc/scripts/mod_global_bank_list.res"
+#include "assets/default/inc/scripts/mod_global_config.res"
+#include "assets/default/inc/scripts/mod_global_constant.res"
+#include "assets/default/inc/scripts/mod_global_funcs.res"
+#include "assets/default/inc/scripts/mod_global_iso8583.res"
+#include "assets/default/inc/scripts/mod_global_network.res"
+#include "assets/default/inc/scripts/mod_global_print.res"
+#include "assets/default/inc/scripts/mod_global_props.res"
+#include "assets/default/inc/scripts/mod_global_report.res"
+#include "assets/default/inc/scripts/mod_global_reversal.res"
+#include "assets/default/inc/scripts/mod_global_trans.res"
+#include "assets/default/inc/scripts/mod_tool_tlv.res"
+#include "assets/default/inc/scripts/online.res"
+#include "assets/default/inc/scripts/pay.res"
+#include "assets/default/inc/scripts/profile.res"
+#include "assets/default/inc/scripts/result.res"
+#include "assets/default/inc/scripts/searchCard.res"
+#include "assets/default/inc/scripts/subSettings.res"
+#include "assets/default/inc/scripts/transactionPage.res"
+#include "assets/default/inc/scripts/transDetail.res"
+#include "assets/default/inc/scripts/transferLoading.res"
+#include "assets/default/inc/scripts/transferSuccess.res"
+#include "assets/default/inc/scripts/transferType.res"
+#endif /*AWTK_WEB*/
+#ifdef WITH_VGCANVAS
+#include "assets/default/inc/images/bizlogo.bsvg"
+#endif /*WITH_VGCANVAS*/
+#endif /*!defined(WITH_FS_RES) || defined(AWTK_WEB)*/
+
+ret_t assets_init(void) {
+  assets_manager_t* am = assets_manager();
+  assets_manager_set_theme(am, "default");
+
+#if defined(WITH_FS_RES) && !defined(AWTK_WEB)
+  assets_manager_preload(am, ASSET_TYPE_STYLE, "default");
+#else /*defined(WITH_FS_RES) && !defined(AWTK_WEB)*/
+  assets_manager_add(am, style_default);
+  assets_manager_add(am, style_keyboard);
+  assets_manager_add(am, ui_account);
+  assets_manager_add(am, ui_app_store);
+  assets_manager_add(am, ui_authMenu);
+  assets_manager_add(am, ui_balance);
+  assets_manager_add(am, ui_calc);
+  assets_manager_add(am, ui_emvProcess);
+  assets_manager_add(am, ui_emvProcessOld);
+  assets_manager_add(am, ui_error);
+  assets_manager_add(am, ui_error_dialog);
+  assets_manager_add(am, ui_eSign);
+  assets_manager_add(am, ui_home_page);
+  assets_manager_add(am, ui_inputAmt);
+  assets_manager_add(am, ui_inputAuthCode);
+  assets_manager_add(am, ui_inputConfig);
+  assets_manager_add(am, ui_inputPinblock);
+  assets_manager_add(am, ui_inputPwd);
+  assets_manager_add(am, ui_inputRefNo);
+  assets_manager_add(am, ui_inputTraceNo);
+  assets_manager_add(am, ui_inputTransDate);
+  assets_manager_add(am, ui_login);
+  assets_manager_add(am, ui_makeTransfer);
+  assets_manager_add(am, ui_more);
+  assets_manager_add(am, ui_online);
+  assets_manager_add(am, ui_pay);
+  assets_manager_add(am, ui_profile);
+  assets_manager_add(am, ui_result);
+  assets_manager_add(am, ui_searchCard);
+  assets_manager_add(am, ui_subSettings);
+  assets_manager_add(am, ui_test);
+  assets_manager_add(am, ui_transactionPage);
+  assets_manager_add(am, ui_transDetail);
+  assets_manager_add(am, ui_transferLoading);
+  assets_manager_add(am, ui_transferSuccess);
+  assets_manager_add(am, data_a_b_c_any);
+  assets_manager_add(am, data_com_zlg_app_json);
+  assets_manager_add(am, data_file_info_txt);
+  assets_manager_add(am, data_test_dat);
+  assets_manager_add(am, data_test_json);
+#ifndef AWTK_WEB
+  assets_manager_add(am, image_app);
+  assets_manager_add(am, image_appstore);
+  assets_manager_add(am, image_arror_r);
+  assets_manager_add(am, image_arrow_down_d);
+  assets_manager_add(am, image_arrow_down_f);
+  assets_manager_add(am, image_arrow_down_n);
+  assets_manager_add(am, image_arrow_down_o);
+  assets_manager_add(am, image_arrow_down_p);
+  assets_manager_add(am, image_arrow_left_d);
+  assets_manager_add(am, image_arrow_left_f);
+  assets_manager_add(am, image_arrow_left_n);
+  assets_manager_add(am, image_arrow_left_o);
+  assets_manager_add(am, image_arrow_left_p);
+  assets_manager_add(am, image_arrow_right_d);
+  assets_manager_add(am, image_arrow_right_f);
+  assets_manager_add(am, image_arrow_right_n);
+  assets_manager_add(am, image_arrow_right_o);
+  assets_manager_add(am, image_arrow_right_p);
+  assets_manager_add(am, image_arrow_up_d);
+  assets_manager_add(am, image_arrow_up_f);
+  assets_manager_add(am, image_arrow_up_n);
+  assets_manager_add(am, image_arrow_up_o);
+  assets_manager_add(am, image_arrow_up_p);
+  assets_manager_add(am, image_auth_com);
+  assets_manager_add(am, image_auth_com_void);
+  assets_manager_add(am, image_auth_void);
+  assets_manager_add(am, image_backspace);
+  assets_manager_add(am, image_balance);
+  assets_manager_add(am, image_bg_circles);
+  assets_manager_add(am, image_check_checked_d);
+  assets_manager_add(am, image_check_checked_f);
+  assets_manager_add(am, image_check_checked_n);
+  assets_manager_add(am, image_check_checked_o);
+  assets_manager_add(am, image_check_checked_p);
+  assets_manager_add(am, image_check_d);
+  assets_manager_add(am, image_check_f);
+  assets_manager_add(am, image_check_n);
+  assets_manager_add(am, image_check_o);
+  assets_manager_add(am, image_check_p);
+  assets_manager_add(am, image_clock_bg);
+  assets_manager_add(am, image_clock_hour);
+  assets_manager_add(am, image_clock_minute);
+  assets_manager_add(am, image_clock_second);
+  assets_manager_add(am, image_close_business);
+  assets_manager_add(am, image_connect);
+  assets_manager_add(am, image_contactless);
+  assets_manager_add(am, image_corebank2);
+  assets_manager_add(am, image_corebank3);
+  assets_manager_add(am, image_cross);
+  assets_manager_add(am, image_en);
+  assets_manager_add(am, image_end_);
+  assets_manager_add(am, image_error);
+  assets_manager_add(am, image_Faile);
+  assets_manager_add(am, image_Failed);
+  assets_manager_add(am, image_guage_bg);
+  assets_manager_add(am, image_guage_pointer);
+  assets_manager_add(am, image_icon_Account);
+  assets_manager_add(am, image_icon_back);
+  assets_manager_add(am, image_icon_Balance);
+  assets_manager_add(am, image_icon_Cashier);
+  assets_manager_add(am, image_icon_communication);
+  assets_manager_add(am, image_icon_connection);
+  assets_manager_add(am, image_icon_Consume);
+  assets_manager_add(am, image_icon_financial);
+  assets_manager_add(am, image_icon_keyboard_on);
+  assets_manager_add(am, image_icon_next);
+  assets_manager_add(am, image_icon_Print);
+  assets_manager_add(am, image_icon_Refund);
+  assets_manager_add(am, image_icon_Revocation);
+  assets_manager_add(am, image_icon_trad_statistic);
+  assets_manager_add(am, image_ic_card);
+  assets_manager_add(am, image_ic_mag);
+  assets_manager_add(am, image_ic_nfc);
+  assets_manager_add(am, image_ic_sett);
+  assets_manager_add(am, image_log_out);
+  assets_manager_add(am, image_maketransfer);
+  assets_manager_add(am, image_more);
+  assets_manager_add(am, image_more_background);
+  assets_manager_add(am, image_nodata);
+  assets_manager_add(am, image_no_transactions);
+  assets_manager_add(am, image_num0);
+  assets_manager_add(am, image_num1);
+  assets_manager_add(am, image_num2);
+  assets_manager_add(am, image_num3);
+  assets_manager_add(am, image_num4);
+  assets_manager_add(am, image_num5);
+  assets_manager_add(am, image_num6);
+  assets_manager_add(am, image_num7);
+  assets_manager_add(am, image_num8);
+  assets_manager_add(am, image_num9);
+  assets_manager_add(am, image_numdot);
+  assets_manager_add(am, image_paywithcard);
+  assets_manager_add(am, image_pre_auth);
+  assets_manager_add(am, image_Pre_authorization);
+  assets_manager_add(am, image_profile);
+  assets_manager_add(am, image_radio);
+  assets_manager_add(am, image_radio_check);
+  assets_manager_add(am, image_radio_checked_d);
+  assets_manager_add(am, image_radio_checked_f);
+  assets_manager_add(am, image_radio_checked_n);
+  assets_manager_add(am, image_radio_checked_o);
+  assets_manager_add(am, image_radio_checked_p);
+  assets_manager_add(am, image_radio_d);
+  assets_manager_add(am, image_radio_f);
+  assets_manager_add(am, image_radio_n);
+  assets_manager_add(am, image_radio_o);
+  assets_manager_add(am, image_radio_p);
+  assets_manager_add(am, image_rounded_n);
+  assets_manager_add(am, image_rounded_o);
+  assets_manager_add(am, image_rounded_p);
+  assets_manager_add(am, image_Scan);
+  assets_manager_add(am, image_Setting);
+  assets_manager_add(am, image_Settle_Accounts);
+  assets_manager_add(am, image_shift);
+  assets_manager_add(am, image_shifton);
+  assets_manager_add(am, image_Sign_In);
+  assets_manager_add(am, image_slider_bg);
+  assets_manager_add(am, image_slider_fg);
+  assets_manager_add(am, image_Succeed);
+  assets_manager_add(am, image_success);
+  assets_manager_add(am, image_success_msg);
+  assets_manager_add(am, image_Timeout);
+  assets_manager_add(am, image_tips);
+  assets_manager_add(am, image_tips32);
+  assets_manager_add(am, image_toppay_icon);
+  assets_manager_add(am, image_trade);
+  assets_manager_add(am, image_transactionhistory);
+  assets_manager_add(am, image_trans_credit);
+  assets_manager_add(am, image_trans_debit);
+  assets_manager_add(am, image_version);
+  assets_manager_add(am, image_warn);
+  assets_manager_add(am, image_warnTip24);
+  assets_manager_add(am, image_warn_40);
+  assets_manager_add(am, image_yes);
+  assets_manager_add(am, image_zh);
+#ifdef WITH_TRUETYPE_FONT
+  assets_manager_add(am, font_ap);
+  assets_manager_add(am, font_default);
+#else /*WITH_TRUETYPE_FONT*/
+#endif /*WITH_TRUETYPE_FONT*/
+  assets_manager_add(am, script_account);
+  assets_manager_add(am, script_app_store);
+  assets_manager_add(am, script_authMenu);
+  assets_manager_add(am, script_balance);
+  assets_manager_add(am, script_calc);
+  assets_manager_add(am, script_customPrintFunc);
+  assets_manager_add(am, script_emvProcess);
+  assets_manager_add(am, script_emvProcessOld);
+  assets_manager_add(am, script_eSign);
+  assets_manager_add(am, script_inputAmt);
+  assets_manager_add(am, script_inputAuthCode);
+  assets_manager_add(am, script_inputConfig);
+  assets_manager_add(am, script_inputPinblock);
+  assets_manager_add(am, script_inputPwd);
+  assets_manager_add(am, script_inputRefNo);
+  assets_manager_add(am, script_inputTraceNo);
+  assets_manager_add(am, script_inputTransDate);
+  assets_manager_add(am, script_login);
+  assets_manager_add(am, script_makeTransfer);
+  assets_manager_add(am, script_mod_global_app_manage);
+  assets_manager_add(am, script_mod_global_bank_list);
+  assets_manager_add(am, script_mod_global_config);
+  assets_manager_add(am, script_mod_global_constant);
+  assets_manager_add(am, script_mod_global_funcs);
+  assets_manager_add(am, script_mod_global_iso8583);
+  assets_manager_add(am, script_mod_global_network);
+  assets_manager_add(am, script_mod_global_print);
+  assets_manager_add(am, script_mod_global_props);
+  assets_manager_add(am, script_mod_global_report);
+  assets_manager_add(am, script_mod_global_reversal);
+  assets_manager_add(am, script_mod_global_trans);
+  assets_manager_add(am, script_mod_tool_tlv);
+  assets_manager_add(am, script_online);
+  assets_manager_add(am, script_pay);
+  assets_manager_add(am, script_profile);
+  assets_manager_add(am, script_result);
+  assets_manager_add(am, script_searchCard);
+  assets_manager_add(am, script_subSettings);
+  assets_manager_add(am, script_transactionPage);
+  assets_manager_add(am, script_transDetail);
+  assets_manager_add(am, script_transferLoading);
+  assets_manager_add(am, script_transferSuccess);
+  assets_manager_add(am, script_transferType);
+#endif /*AWTK_WEB*/
+#ifdef WITH_VGCANVAS
+  assets_manager_add(am, image_bizlogo);
+#endif /*WITH_VGCANVAS*/
+#endif /*defined(WITH_FS_RES) && !defined(AWTK_WEB)*/
+
+  tk_init_assets();
+  return RET_OK;
+}

@@ -1,0 +1,27 @@
+<window v-model="inputAuthCode"
+    v-on:key_down:0="{onKeyDown, Args=0}"
+    v-on:key_down:1="{onKeyDown, Args=1}"
+    v-on:key_down:2="{onKeyDown, Args=2}"
+    v-on:key_down:3="{onKeyDown, Args=3}"
+    v-on:key_down:4="{onKeyDown, Args=4}"
+    v-on:key_down:5="{onKeyDown, Args=5}"
+    v-on:key_down:6="{onKeyDown, Args=6}"
+    v-on:key_down:7="{onKeyDown, Args=7}"
+    v-on:key_down:8="{onKeyDown, Args=8}"
+    v-on:key_down:9="{onKeyDown, Args=9}"
+    v-on:key_down:backspace="{reduceNum, Args=backspace}"
+    v-on:key_down:return="{clickEnter, Args=return}"
+    v-on:key_down:escape="{onKeyDown, Args=escape}"
+    v-on:key_down:delete="{onKeyDown, Args=delete}"
+    v-on:key_down:cancel="{clickCancel, Args=cancel}"
+>
+  <view x="0" y="0" w="320" h="30" style:normal:border_color="#A5A5A5" style:normal:border="bottom" style:normal:border_width="1">
+    <label name="title" x="0" y="0" w="320" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF"  v-data:text="{title}"/>
+    <label name="title" x="270" y="0" w="50" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" v-data:text="{timeOutShow}"/>
+  </view>
+  <view  w="100%" h="100%">
+    <edit min="0" max="1024" step="1" name="edit" x="60" y="60" w="200" h="40" x="60" y="90" w="200" h="40" tips="Please input auth code" auto_fix="true" style:empty:round_radius="5" tips="Please enter config" auto_fix="true" v-data:text="{valueStr}"/>
+    <label name="tips_text" x="0" y="130" w="320" h="30" style:normal:text_color="#595959" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" v-data:text="{tip_text}"/>
+  </view>
+
+</window>

@@ -1,0 +1,28 @@
+
+<window v-on:key_down:F10="{initHTTPCB}" v-model="app_store" name="app_store" move_focus_prev_key="up" move_focus_next_key="down" style:normal:border_width="0" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <label name="label" x="0" y="0" w="320" h="40" enable="true" style:normal:border_width="0" style:normal:text_color="#00B050" style:normal:font_size="32" style:normal:bg_color="#FFFFFF" text="App Store"/>
+  <button name="button" x="0" y="0" w="40" h="40" style:normal:icon="icon_back" style:normal:border="none" style:normal:bg_color="#00000000" style:pressed:border="none" style:pressed:icon="icon_back" style:pressed:bg_color="#00000000" style:normal:text_color="#000000" style:pressed:text_color="#000000" style:over:border="none" style:over:bg_color="#00000000" style:over:text_color="#000000" style:over:icon="icon_back" v-on:click="{onKeyDown, Args=cancel}"/>
+  <view v-if="{isEmpty}" name="empty" x="0" y="40" w="320" h="170" style:normal:bg_color="#FFFFFF">
+    <image name="image" x="122" y="40" w="76" h="50" draw_type="default" image="nodata" style:normal:border_width="0"/>
+    <button name="button1" x="110" y="91" w="100" h="36" style:normal:text_color="#7E7E7E" style:normal:font_size="18" style:normal:bg_color="#00000000" style:normal:border_width="0" style:normal:round_radius="0" style:pressed:text_color="#7E7E7E" style:pressed:font_size="18" style:pressed:bg_color="#00000000" style:pressed:border_width="0" style:pressed:round_radius="0" v-data:text="{TipsText}" v-on:click="{getAppList}"/>
+  </view>
+  <list_view v-if="{isEmpty == false}" name="list_view" x="0" y="41" w="320" h="170" default_item_height="60">
+    <scroll_view name="scroll_view" x="0" y="1" w="-10" h="100%" yslidable="true" with_focus_state="true" move_to_page="true">
+      <list_item v-for="{appList}" name="list_item" h="80" w="320" focusable="true" with_focus_state="true" style:normal:bg_color="#FFFFFF" style:normal:border="none" style:pressed:border="none" style:over:border="none" style:focused:border="none" style:over:bg_color="#8EAAD778" style:pressed:bg_color="#8EAAD778" style:focused:bg_color="#8EAAD778" v-on:key_down:return="{appOperate, Args=fscript?index=index}">
+        <view name="view" x="0" y="0" w="320" h="80" style:normal:border="bottom" style:normal:border_color="#D8D8D8" style:normal:bg_color="#00000000">
+          <image name="image1" h="40" draw_type="scale" image="app" x="10" y="20" w="40"/>
+          <view x="60" y="0" w="180" h="36">
+            <label name="appname" x="0" y="0" w="100%" h="100%" style:normal:text_color="#00B0F0" style:normal:font_size="32" style:normal:text_align_h="left" v-data:text="{item.appName}" length="14"/>
+          </view>
+          <image name="image2" h="20" draw_type="default" image="version" x="60" y="52" w="20" style:normal:border_width="0"/>
+          <label name="label1" h="24" x="86" y="50" w="160" style:normal:text_align_h="left" style:normal:font_size="20" style:normal:border_width="0" style:normal:text_color="#7E7E7E" v-data:text="{item.versionName}"/>
+          <button v-if="{item.is_install == 1}" name="detail" x="240" y="26" w="70" h="28" style:normal:border_width="0" v-on:click="{appOperate, Args=fscript?index=index}" style:normal:round_radius="15" style:normal:round_radius_top_right="15" style:normal:round_radius_bottom_right="15" style:normal:text_color="#FFFFFF" style:normal:bg_color="#00B050" style:normal:font_size="18" style:pressed:border="none" style:pressed:bg_color="#00b04fc8" style:pressed:round_radius="15" text="Detail"/>
+          <button v-else="" name="install" x="240" y="26" w="70" h="28" style:normal:border_width="0" v-on:click="{appOperate, Args=fscript?index=index}" style:normal:round_radius="15" style:normal:round_radius_top_right="15" style:normal:round_radius_bottom_right="15" style:normal:text_color="#FFFFFF" style:normal:bg_color="#00B050" style:normal:font_size="18" style:pressed:border="none" style:pressed:border_width="0" style:pressed:bg_color="#00b04fc8" style:pressed:round_radius="15" text="Install"/>
+          <label name="label1" h="24" style:normal:text_align_h="left" style:normal:font_size="20" style:normal:border_width="0" style:normal:text_color="#7E7E7E" v-data:text="{item.fileSize}" x="86" y="28" w="152"/>
+          <image name="image2" h="20" draw_type="default" image="size" x="60" y="32" w="20" style:normal:border_width="0"/>
+        </view>
+      </list_item>
+    </scroll_view>
+    <scroll_bar_m name="scroll_bar" x="r" y="0" w="10" h="100%" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
+  </list_view>
+</window>
