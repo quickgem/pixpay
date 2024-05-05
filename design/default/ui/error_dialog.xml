@@ -1,0 +1,3 @@
+<popup x="c" y="m" w="50%" h="50%" name="error_dialog">
+  <image name="image" x="28" y="5" w="100" h="100" draw_type="default" image="num0"/>
+</popup>

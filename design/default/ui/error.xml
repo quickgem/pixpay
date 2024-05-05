@@ -1,0 +1,10 @@
+<window name="error">
+  <view v-if="{loading}" x="0" y="0" w="320" h="210" disg:custom="container">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view name="view" x="68" y="41" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0" style:normal:bg_image="">
+        <view name="view1" x="60" y="10" w="80" h="81" style:normal:bg_image="Failed"/>
+        <label name="label" x="20" y="91" w="160" h="28" style:normal:text_color="#C00000" v-data:text="{showTip}"/>
+      </view>
+    </view>
+  </view>
+</window>

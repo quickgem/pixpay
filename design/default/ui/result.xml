@@ -1,0 +1,18 @@
+<window v-model="result" name="result" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <label name="title" x="0" y="0" w="320" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" v-data:text="{title}"/>
+  <view v-if="{resultCode == 1}" w="100%" h="100%" disg:hide="true">
+    <image name="image" x="124" y="48" w="72" h="72" image="Succeed"/>
+    <label name="tips_text" x="0" y="131" w="320" h="30" style:normal:text_color="#000000" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" v-data:text="{btnText}"/>
+    <button name="next" v-on:click="{onConfirm}" x="6" y="169" w="308" h="36" style:normal:round_radius="6" style:normal:border="none" style:pressed:round_radius="6" style:pressed:bg_color="#009FF4" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#008FF4" style:normal:font_size="24" style:pressed:text_color="#FFFFFF" style:normal:text_color="#FFFFFF" text="Confirm"/>
+  </view>
+  <view v-if="{resultCode == 0}" w="100%" h="100%" disg:hide="true">
+    <image name="image" x="124" y="48" w="72" h="72" image="Faile"/>
+    <label name="tips_text" x="0" y="131" w="320" h="30" style:normal:text_color="#000000" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" v-data:text="{btnText}"/>
+    <button name="next" v-on:click="{onConfirm}" x="6" y="169" w="308" h="36" style:normal:round_radius="6" style:normal:border="none" style:pressed:round_radius="6" style:pressed:bg_color="#009FF4" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#008FF4" style:normal:font_size="24" style:pressed:text_color="#FFFFFF" style:normal:text_color="#FFFFFF" text="Confirm"/>
+  </view>
+  <view v-if="{resultCode != 1 &amp;&amp; resultCode != 0}" w="100%" h="100%">
+    <image name="image" x="124" y="48" w="72" h="72" image="Timeout"/>
+    <label name="tips_text" x="0" y="131" w="320" h="30" style:normal:text_color="#000000" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" v-data:text="{btnText}"/>
+    <button name="next" v-on:click="{onConfirm}" x="6" y="169" w="308" h="36" style:normal:round_radius="6" style:normal:border="none" style:pressed:round_radius="6" style:pressed:bg_color="#009FF4" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#008FF4" style:normal:font_size="24" style:pressed:text_color="#FFFFFF" style:normal:text_color="#FFFFFF" text="Confirm"/>
+  </view>
+</window>

@@ -1,0 +1,37 @@
+<window v-model="authMenu" name="authMenu" move_focus_prev_key="up" move_focus_next_key="down"  style:border_width="0" style:normal:bg_color="#FFFFFF"
+        v-on:key_down:0="{onKeyDown, Args=0}"
+        v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}"
+        v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}"
+        v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}"
+        v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}"
+        v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}"
+        v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}"
+        v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <list_view name="list_view" x="0" y="0" w="320" h="210" default_item_height="104">
+    <scroll_view name="scroll_view" x="0" y="0" w="-10" h="100%" yslidable="true" with_focus_state="true"
+      children_layout="list_view(c=3,xm=10,ym=10,s=10)">
+      <list_item v-for="{appList}"   focusable="true" with_focus_state="true"  name="list_item" h="94"
+                 style:normal:bg_color="#CCCCCC" style:normal:round_radius="6"
+                 style:focused:round_radius="6" style:over:round_radius="6" style:pressed:round_radius="6"
+                 style:over:bg_color="#8EAAD7" style:pressed:bg_color="#8EAAD7"
+                 style:focused:bg_color="#8EAAD7" style:normal:border="#none" style:over:border="#none"
+                 style:pressed:border="#none" style:focused:border="#none"
+        v-on:key_down:return="{appClick, Args=fscript?name=item.appName&amp;entry=item.entry&amp;transParam=item.transParam">
+        <button name="view_child" w="93" h="94" x="0" y="0"
+                style:normal:bg_color="#00000000"
+                style:over:bg_color="#00000000" style:pressed:bg_color="#00000000"
+                style:focused:bg_color="#00000000" style:normal:border="#none" style:over:border="#none"
+                style:pressed:border="#none" style:focused:border="#none"
+          v-on:click="{appClick, Args=fscript?name=item.appName&amp;entry=item.entry&amp;transParam=item.transParam}"
+
+        >
+          <column w="93" h="100%">
+            <image name="image" v-data:image="{item.icon}" w="48" h="48" floating="true" x="22" y="10" />
+            <label w="100%" h="30" floating="true" x="0" y="58" style:normal:text_color="#000000" line_wrap="true" style:normal:font_size="20" v-data:text="{item.appName}" />
+          </column>
+        </button>
+      </list_item>
+    </scroll_view>
+  </list_view>
+
+</window>

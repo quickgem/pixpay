@@ -1,0 +1,19 @@
+<window v-model="inputAmt" name="inputAmt" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" anim_hint="htranslate" style:normal:bg_color="#FFFFFF">
+  <!-- tips : button label 最外层需要用view包裹，不然加上view最造成 awtk designer闪退-->
+  <view w="100%" h="100%">
+    <label name="title" x="0" y="0" w="320" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" v-data:text="{title}"/>
+    <label name="title" x="270" y="0" w="50" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" v-data:text="{timeOutShow}"/>
+    <label name="pay_num" x="85" y="81" w="151" h="60" tips="" style:normal:font_size="32" style:normal:border="none" style:normal:bg_color="#00000000" v-data:text="{valueStr}" style:normal:border_width="2"/>
+    <label name="tips_text" x="0" y="41" w="320" h="30" style:normal:text_color="#595959" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" text="Please enter the amount"/>
+    <button name="next" v-on:click="{navigateTo}" x="24" y="164" w="273" h="36" style:normal:round_radius="6" style:normal:border="none" style:pressed:round_radius="6" style:pressed:bg_color="#00000000" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#596B6D" style:pressed:text_color="#FFFFFF" style:normal:text_color="#FFFFFF" style:over:bg_color="#00000000" text="Proceed"/>
+    <label name="label2" x="146" y="70" w="29" h="23" style:normal:font_size="16" style:normal:text_color="#00B050" text="(NGN)"/>
+  </view>
+  <view v-if="{showModel}" text="view" x="0" y="0" w="320" h="210" disg:custom="container" style:normal:bg_color="#ffffff00" disg:hide="true">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#96969696">
+      <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="220" h="120" x="50" y="46">
+        <label x="0" y="80" w="220" h="36" style:normal:font_size="24" text="Invalid amount"/>
+        <image name="image2" x="85" y="20" w="50" h="50" draw_type="scale" image="Timeout"/>
+      </view>
+    </view>
+  </view>
+</window>

@@ -1,0 +1,39 @@
+<window v-model="transactionPage" name="transactionPage" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <view name="view1" x="0" y="0" w="320" h="25">
+    <label name="label" x="79" y="0" w="160" h="28" style:normal:font_size="24" text="Transaction History"/>
+  </view>
+  <view name="view3" x="0" y="25" w="320" h="185">
+    <view name="view2" x="0" y="0" w="320" h="24">
+      <label name="label1" x="10" y="0" w="160" h="24" style:normal:text_align_h="left" style:normal:text_color="#0D0D0D" text="Recent Transaction"/>
+    </view>
+    <list_view name="list_view" x="0" y="59" w="320" h="148" default_item_height="60">
+      <scroll_view name="scroll_view" x="0" y="-34" w="-10" h="210" style:normal:border_color="#000000">
+        <list_item name="list_item" h="61">
+          <view name="view" h="67" x="0" y="0" w="320">
+            <image name="image" v-data:image="{item.icon}" w="31" h="31" floating="false" x="21" y="10" style:normal:font_size="16" style:normal:border_color="#00000000" style:normal:border="none" style:normal:icon="trans-credit" style:normal:bg_image="trans-credit"/>
+            <label name="trans_narration" h="28" x="70" y="1" w="119" style:normal:text_align_h="left" text="Airtime Top Up"/>
+            <label name="trans_narration" h="28" x="70" y="29" w="131" style:normal:text_align_h="left" text="Airtime Top Up"/>
+            <label name="trans_narration" h="28" x="258" y="1" w="52" text="10000"/>
+            <label name="trans_narration" h="28" x="211" y="1" w="25" text="+"/>
+            <label name="trans_narration" h="19" x="233" y="6" w="25" text="NGN"/>
+          </view>
+        </list_item>
+      </scroll_view>
+    </list_view>
+  </view>
+  <view v-if="{is_notTransactions}" name="no_transaction" x="0" y="25" w="320" h="185" style:normal:bg_image="no_transactions" style:normal:bg_color="#FFFFFF" disg:hide="true"/>
+  <view v-if="{loading}" x="0" y="0" w="320" h="210" disg:custom="container" disg:hide="true">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
+        <view w="120" h="60" x="42" y="24">
+          <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+        </view>
+      </view>
+      <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
+    </view>
+  </view>
+</window>
