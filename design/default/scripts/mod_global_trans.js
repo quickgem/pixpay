@@ -105,7 +105,7 @@ function GLOBAL_PREENTRY(){
                 transParam:{appName:"Pay with Card",transType: TRANS_TYPE.SALE, msgType:"0200",procCode:"000000",serviceCode:"00",needSave:true,nReversal:true},
                 // entry: ["inputAmt", "searchCard",[["inputPinblock","online","eSign","result"],["emvProcess",'eSign', "result"]]], // checking if this is the entry flow
                 // entry: ["inputAmt", "searchCard",[["inputPinblock","online","eSign","result"],["inputPinblock","online","eSign","result"],["inputPinblock","online","eSign","result"]]], // checking if this is the entry flow
-                entry: ["inputAmt", "searchCard",[["inputPinblock","result"],["inputPinblock","eSign","result"],["inputPinblock","result"]]], // checking if this is the entry flow
+                entry: ["inputAmt", "searchCard",[["inputPinblock","result"],["inputPinblock","result"],["inputPinblock","result"]]], // checking if this is the entry flow
                 // entry: ["inputAmt", "searchCard","inputPinblock","result"], // checking if this is the entry flow
             },
             // FILE INDEX 1
