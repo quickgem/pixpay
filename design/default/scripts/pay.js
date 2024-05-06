@@ -256,11 +256,17 @@ ViewModel("pay", {
       that.createDir();
       console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
       new GLOBAL_CONFIG().init();
-      if(Tos.GLOBAL_CONFIG){
-        Tos.GLOBAL_CONFIG.merchantName = this.user.customerFirstName + '' + this.user.customerLastName
-      }else{
-        console.log("config ====>", Tos.GLOBAL_CONFIG)
+      if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
+        navigateTo({
+          target: "login",
+          close_current: true,
+        });
       }
+      // if(Tos.GLOBAL_CONFIG){
+      //   Tos.GLOBAL_CONFIG.merchantName = this.user.customerFirstName + '' + this.user.customerLastName
+      // }else{
+      //   console.log("config ====>", Tos.GLOBAL_CONFIG)
+      // }
 
 
       console.log("GLOBAL_CONFIG  init end  ==========>");
