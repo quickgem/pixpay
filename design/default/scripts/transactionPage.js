@@ -123,7 +123,7 @@ ViewModel("transactionPage", {
 
     onWillMount: function (req) {
         if(req){
-            this.user = req.data
+            this.user = Tos.GLOBAL_CONFIG.userInfo
         }
     },
 

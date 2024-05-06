@@ -191,7 +191,7 @@ ViewModel("transferSuccess",{
 
     onWillMount(req){
         if(req) {
-            this.user = req.data.user
+            this.user = Tos.GLOBAL_CONFIG.userInfo
             this.fundTransferResponse = req.data.fundsResponse
 
             // if (req.type === "success") {

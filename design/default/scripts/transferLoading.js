@@ -208,7 +208,7 @@ ViewModel("transferLoading",{
 
 
         if(req) {
-            this.user = req.data.user
+            this.user = Tos.GLOBAL_CONFIG.userInfo
             this.fundsRequest = req.data.fundRequest
             this.notifyPropsChanged()
         }

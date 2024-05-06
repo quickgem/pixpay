@@ -124,7 +124,7 @@ ViewModel("profile", {
 
     onWillMount: function (req) {
         if(req){
-            this.user = req.data
+            this.user = Tos.GLOBAL_CONFIG.userInfo
             this.nameSummary = req.data.customerFirstName[0] + req.data.customerLastName[0]
             this.fullName = req.data.customerFirstName + req.data.customerLastName
         }

@@ -269,7 +269,7 @@ ViewModel("inputAmt", {
 
     console.log("title ----->>>>:", this.title);
     if(req){
-      this.user = req.data
+      this.user = Tos.GLOBAL_CONFIG.userInfo
     }
 
     this.notifyPropsChanged()

@@ -438,7 +438,7 @@ ViewModel("searchCard", {
     console.log("onWillMount0000=======>>>: start");
     GLOBAL_FUNCS.setLEDStatus(0b1000, 0);
     if(req){
-      this.user = req.data
+      this.user = Tos.GLOBAL_CONFIG.userInfo
     }
     console.log('searchCard ===> ', JSON.stringify(this.user))
   },

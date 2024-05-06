@@ -1,6 +1,8 @@
+const {GLOBAL_CONSTANT} = require("./mod_global_constant");
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 let APP_LOGIN_URL = "https://biz.corestepbank.com/authentication/login";
-var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG
+var saveUserInfo = require("mod_global_config").saveUserInfo
+var GLOBAL_API = require("mod_global_api").GLOBAL_API
 
 ViewModel("login", {
     data:{
@@ -145,94 +147,24 @@ ViewModel("login", {
             }, 1000);
         },
 
-
-        GLOBAL_CHOOSE_NETWORKs: function () {
-            let type = 1; // WIFI : 1 ,GPRS : 0
-            let ret = Tos.WifiCheck();
-            console.log("WifiCheck =========>", ret.code);
-            if (ret.code < 0) {
-                ret = Tos.MobileDataAvailable();
-                console.log("MobileDataAvailable =========>", ret.code);
-                if (ret.code <= 0) {
-                    return false;
-                } else {
-                    type = 0;
-                }
-            } else {
-                type = 1;
-            }
-            ret = Tos.SocSetProperty(type);
-            console.log("selecNetwork =========>", ret.code);
-            ret = Tos.SocGetProperty(0);
-            console.log("selecNetwork get =========>", ret.code, ret.data);
-            return true;
-        },
-
         loginAction: function () {
-            this.GLOBAL_CHOOSE_NETWORKs();
-            let that = this;
-            that.loading = true
-            that.notifyPropsChanged();
-            let head = {
-                // params: send parameters by request header
-                // "headerTest1:aaa\r\nheaderTest2:bbb\r\nemail:ndubisijnr@gmail.com" + "\r\npassword:123456\r\nsource:POS_TERMINAL" +
-                //username:${this.loginRequest.username}" + "\r\npassword:${this.loginRequest.password}\r\nsource:POS_TERMINAL` +"\r\n
-                params:`Accept: */*\r\n`,
-                //method: 0 get ,1 post
-                method: 1,
-                //  ContentType is important,post method send parameters need to set ContentType correct, otherwise the body will be empty
-                ContentType: "application/json"
-            };
-            let body = this.loginRequest;
-            body = JSON.stringify(body) + "\r\n";
-            this.httpCB = function (ret) {
-                console.log("httpCB 0000 =====>", JSON.stringify(ret));
-                let data = ret.data&& ret.data.response_buf || [];
-                JSON.stringify(that.parseData(data));
-            };
-            // head -- url -- body -- cert -- port  -- timeout -- cb
-            // let httpret = Tos.HttpclientCommon(head, APP_LOGIN_URL, body, "", 5173, 30, 1, that.httpCB);
-            let httpret = Tos.HttpclientCommon(head, APP_LOGIN_URL, body, "","", 30, 1, that.httpCB);
-
-            console.log("666666666:====>", JSON.stringify(httpret));
-        },
-
-
-        parseData: function (data) {
-            let u8arr = new Uint8Array(data);
-            let decodeStr = String.fromCharCode.apply(null, u8arr);
-            console.log("parseData =========》 111:", decodeStr, "\n u8arr:", u8arr);
-            if (decodeStr) {
+            function onSuccess(data){
+                saveUserInfo(data)
                 this.loading = false
                 this.notifyPropsChanged();
-                let data = JSON.parse(decodeStr);
-                if (data) {
-                    if(data.responseCode === "00"){
-                        navigateTo({
-                            target: "pay",
-                            close_current: true,
-                            data: data,
-                        });
-                    }else {
-                        this.isError = true
-                        this.error = data.responseMessage
-                        this.notifyPropsChanged();
-                    }
-                } else {
-                    this.isError = true
-                    this.error = data
-                    this.notifyPropsChanged();
-                    // this.isLoading = false;
-                    // this.TipsText = "Nothing here";
-                    // this.notifyPropsChanged();
-                }
+                navigateTo({
+                    target: "pay",
+                    close_current: true,
+                    ///data: data,
+                });
             }
-            else {
+            function onError(data){
                 this.loading = false
                 this.isError = true
                 this.error = data
                 this.notifyPropsChanged();
             }
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.LOGIN,this.loginRequest,onSuccess,onError)
         },
 
         showExit: function () {
@@ -573,7 +505,14 @@ ViewModel("login", {
 
 
     onWillMount:function (){
-
+        new GLOBAL_API().init();
+        if (Tos.GLOBAL_CONFIG.userInfo.responseCode === "00"){
+            navigateTo({
+                target: "pay",
+                close_current: true,
+                ///data: data,
+            });
+        }
     },
 
     onMount:function (){

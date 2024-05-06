@@ -10,6 +10,7 @@ var GLOBAL_HEXARR2STRING = require("mod_global_funcs").GLOBAL_HEXARR2STRING;
 
 ViewModel("emvProcess", {
   data: {
+    user:null,
     title:"",
     showProcess:true,
     noticeText:"",
@@ -55,6 +56,9 @@ ViewModel("emvProcess", {
     plaintextPIN: "",
     passwordStar:"",
     trans:{},
+    purchaseRequest:{
+
+    },
     flow:{},
   },
   methods: {
@@ -156,7 +160,16 @@ ViewModel("emvProcess", {
         error:this.netError,
         showPrompt: this.netshowPrompt,
         timeTick: this.netTimeTick
-      };
+      }
+      //TODO RF MODE
+      if(this.trans.enterMode === Tos.CONSTANT.ENTRY_MODE.RF){
+        this.startPinBlock();
+        while (this.pinBlockState === 0) {
+          tkRefreshUi();
+        }
+        this.handlePinModal(false) ;
+        this.notifyPropsChanged();
+      }
       this.handleProcess(true,"online ....");
       transOnline(Tos.GLOBAL_CONFIG.networkParam,callback,this.trans);
 
@@ -726,6 +739,7 @@ ViewModel("emvProcess", {
     },
   },
   onWillMount: function (req) {
+    this.user = Tos.GLOBAL_CONFIG.userInfo;
     this.flow = Tos.GLOBAL_TRANSACTION.flow;
     this.trans = Tos.GLOBAL_TRANSACTION.trans;
     if (this.trans.amount) {

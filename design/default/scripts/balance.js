@@ -143,14 +143,14 @@ ViewModel("balance", {
         handleNext: function () {
             if(this.transferType && this.transferTypeValue === 'Transfer to Other Banks'){
                 if(this.searchBank){
-                    this.navigateTo(this.user)
+                    this.navigateTo()
                 }
                 this.searchBank = true;
                 this.otherBanks = true;
                 this.notifyPropsChanged()
 
             }else{
-                this.navigateTo(this.user)
+                this.navigateTo()
             }
 
         },
@@ -170,7 +170,7 @@ ViewModel("balance", {
 
     onWillMount: function (req) {
         if(req){
-            this.user = req.data
+            this.user = Tos.GLOBAL_CONFIG.userInfo
             this. loading = true;
             this.notifyPropsChanged();
         }

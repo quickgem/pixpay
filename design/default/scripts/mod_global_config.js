@@ -32,8 +32,25 @@ function GLOBAL_CONFIG() {
            // addr: [192, 168, 214, 149],
             //   port: 777,
             soc_type: 0
-      },
-
+        },
+      userInfo:{
+          responseCode:"",
+          responseMessage:"",
+          token:"",
+          session:"",
+          customerFirstName:"",
+          customerLastName:"",
+          customerEmail:"",
+          customerPhone:"",
+          customerCountry:"",
+          customerOrganisationTerminalId:"",
+          customerOrganisationWallet:"",
+          customerCountryCode:"",
+          mid:"",
+          organisations:"",
+          customerOrganisationName:"",
+          customerOrganisationAddress:""
+      }
   };
 
   this.init = function (){
@@ -80,7 +97,19 @@ function incVouchNo(){
     SAVE_CONFIG();
 }
 
+function saveUserInfo(data){
+    Tos.GLOBAL_CONFIG.userInfo = data
+    SAVE_CONFIG();
+}
+
+function clearUserInfo(){
+    Tos.GLOBAL_CONFIG.userInfo = {}
+    SAVE_CONFIG();
+}
+
 
 exports.GLOBAL_CONFIG = GLOBAL_CONFIG;
 exports.SAVE_CONFIG = SAVE_CONFIG;
 exports.incVouchNo = incVouchNo;
+exports.saveUserInfo = saveUserInfo;
+exports.clearUserInfo = clearUserInfo;

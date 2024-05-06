@@ -387,7 +387,7 @@ ViewModel("makeTransfer", {
             console.log('accountNumber ===> ', this.accountNumberStr)
             if(this.transferType && this.transferTypeValue === 'Transfer to Other Banks'){
                 if(this.isSelectedBank){
-                    this.navigateTo({user:this.user, fundRequest:this.fundTransferRequest})
+                    this.navigateTo({fundRequest:this.fundTransferRequest})
                 }else{
                     this.searchBank = true;
                     this.isSelectedBank =true
@@ -396,7 +396,7 @@ ViewModel("makeTransfer", {
                 }
 
             }else{
-                this.navigateTo({user:this.user, fundRequest:this.fundTransferRequest})
+                this.navigateTo({fundRequest:this.fundTransferRequest})
             }
         },
 
@@ -485,7 +485,7 @@ ViewModel("makeTransfer", {
         this.banks = GET_BANK_LIST
 
         if(req){
-            this.user = req.data
+            this.user = Tos.GLOBAL_CONFIG.userInfo
         }
 
         this.notifyPropsChanged()

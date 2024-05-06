@@ -36,7 +36,7 @@ ViewModel("eSign", {
         this.getSign();
 
         if(req){
-            this.user = req.data
+            this.user = Tos.GLOBAL_CONFIG.userInfo
         }
         console.log('esign user ====>', JSON.stringify(req))
         navigateReplace({

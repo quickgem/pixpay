@@ -332,7 +332,7 @@ ViewModel("result", {
     console.log("result type =============>", JSON.stringify(req));
     if (req) {
       this.req = req;
-      this.user = req.data
+      this.user = Tos.GLOBAL_CONFIG.userInfo
       if (req.type === "success") {
         this.resultCode = 1
         this.btnText = "Success (10s)";

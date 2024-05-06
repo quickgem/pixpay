@@ -47,7 +47,7 @@ ViewModel("pay", {
             this.handleConfirm();
             return;
           }
-          this.navigateTo(this.user);
+          this.navigateTo();
           break;
         default:
           break;
@@ -226,7 +226,7 @@ ViewModel("pay", {
     this.appList = new GLOBAL_PREENTRY().getEntryList();
     console.log("onWillMount end  ============>");
     if(req.data){
-        this.user = req.data
+        this.user = Tos.GLOBAL_CONFIG.userInfo
     }
     this.notifyPropsChanged();
   },
