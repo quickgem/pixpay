@@ -1,5 +1,3 @@
-const transactionUrl = 'https://biz.corestepbank.com/wallet/read-mini-by-account-number'
-
 ViewModel("transactionPage", {
     data: {
         user:null,
@@ -58,78 +56,27 @@ ViewModel("transactionPage", {
             Tos.HttpclientCbEvent();
         },
 
-        readTransactions(){
-            this.GLOBAL_CHOOSE_NETWORKs();
-            let that = this;
-            that.readTransactionRequest.accountNumber = that.user.customerOrganisationWallet
-            that.notifyPropsChanged();
-            let head = {
-                // params: send parameters by request header
-                params:`Authorization:${that.user.session}\r\nmid:${that.user.mid}\r\nAccept:*/*\r\n`,
-                //method: 0 get ,1 post
-                method: 1,
-                //  ContentType is important,post method send parameters need to set ContentType correct, otherwise the body will be empty
-                ContentType: "application/json"
-            };
-            console.log('head ====>', JSON.stringify(head))
-            let body = that.readTransactionRequest;
-            body = JSON.stringify(body) + "\r\n";
-            console.log("body ====> ", JSON.stringify(body))
-            this.httpCB = function (ret) {
-                console.log("httpCB 0000 =====>", JSON.stringify(ret));
-                let data = ret.data&& ret.data.response_buf || [];
-                JSON.stringify(that.parseData(data));
-            };
-            // head -- url -- body -- cert -- port  -- timeout -- cb
-            // let httpret = Tos.HttpclientCommon(head, APP_LOGIN_URL, body, "", 5173, 30, 1, that.httpCB);
-            let httpret = Tos.HttpclientCommon(head, transactionUrl, body, "","", 30, 1, that.httpCB);
-
-            console.log("666666666:====>", JSON.stringify(httpret));
-
-        },
-
-        parseData: function (data) {
-            let u8arr = new Uint8Array(data);
-            let decodeStr = String.fromCharCode.apply(null, u8arr);
-            console.log("parseData =========》 111:", decodeStr, "\n u8arr:", u8arr);
-            if (decodeStr) {
+        readTransactions() {
+            this.loading = true
+            this.notifyPropsChanged()
+            function onSuccess(data){
                 this.loading = false
                 this.notifyPropsChanged();
-                let data = JSON.parse(decodeStr);
-                console.log("data from transaction ====> ", data)
-
-                if (data.responseCode === "00") {
-                    this.loading = false
-                    this.is_notTransactions = false
-                    this.transactions = data
-                    this.notifyPropsChanged()
-                    console.log("response from transactions ====> ", JSON.stringify(this.transactions))
-                }
-                else {
-                    this.loading = false
-                    this.error = data
-                    this.notifyPropsChanged()
-                    console.log('---------> first else:', JSON.stringify(data))
-                }
             }
-            else {
+            function onError(data){
                 this.loading = false
                 this.error = data
                 this.notifyPropsChanged();
-                console.log('---------> seconds else:', JSON.stringify(data))
             }
-        },
-    },
-
-    onWillMount: function (req) {
-        if(req){
-            this.user = Tos.GLOBAL_CONFIG.userInfo
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TRANSACTION_HISTORY,this.readTransactionRequest,onSuccess,onError)
         }
     },
 
+    onWillMount: function (req) {
+        this.user = Tos.GLOBAL_CONFIG.userInfo
+    },
+
     onMount: function () {
-        this.loading = true;
-        this.notifyPropsChanged();
         this.readTransactions()
     },
 

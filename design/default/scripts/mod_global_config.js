@@ -33,7 +33,7 @@ function GLOBAL_CONFIG() {
             //   port: 777,
             soc_type: 0
         },
-      userInfo:{
+        userInfo: {
           responseCode:"",
           responseMessage:"",
           token:"",
@@ -58,26 +58,32 @@ function GLOBAL_CONFIG() {
       Tos.GLOBAL_CONFIG = {};
     }
 
+    let config =  this.config;
+    let configArr = JSON.stringify(this.config).split("");
+    let arr = configArr.map(function (v){
+      return v.charCodeAt();
+    })
+    GLOBAL_FILE_SAVE_COVER(arr,Tos.CONSTANT.filePath.config)
 
-    let config  =  GLOBAL_GET_FILE(Tos.CONSTANT.filePath.config);
-
-    if(!config){
-        console.log("GLOBAL_CONFIG  ) ==========>: config file no exist,  creat it ",);
-        config =  this.config;
-        let configArr = JSON.stringify(this.config).split("");
-        let arr = configArr.map(function (v){
-            return v.charCodeAt();
-        })
-        GLOBAL_FILE_SAVE_COVER(arr,Tos.CONSTANT.filePath.config) ;
-    }else{
-        let decodeStr = String.fromCharCode.apply(null, config);
-        if (decodeStr) {
-            config = JSON.parse(decodeStr);
-        }
-    }
+        // let config  =  GLOBAL_GET_FILE(Tos.CONSTANT.filePath.config);
+        //
+        // if(!config){
+        //     console.log("GLOBAL_CONFIG  ) ==========>: config file no exist,  creat it ",);
+        //     config =  this.config;
+        //     let configArr = JSON.stringify(this.config).split("");
+        //     let arr = configArr.map(function (v){
+        //         return v.charCodeAt();
+        //     })
+        //     GLOBAL_FILE_SAVE_COVER(arr,Tos.CONSTANT.filePath.config) ;
+        // }
+    // else{
+    //     let decodeStr = String.fromCharCode.apply(null, config);
+    //     if (decodeStr) {
+    //         config = JSON.parse(decodeStr);
+    //     }
+    // }
     Tos.GLOBAL_CONFIG = config;
   };
-
 
 }
 function SAVE_CONFIG(){
@@ -98,8 +104,11 @@ function incVouchNo(){
 }
 
 function saveUserInfo(data){
+    console.log('userInfo before ==>',Tos.GLOBAL_CONFIG.userInfo)
     Tos.GLOBAL_CONFIG.userInfo = data
+    console.log('_______________________')
     SAVE_CONFIG();
+    console.log('userInfo after ==>',Tos.GLOBAL_CONFIG.userInfo)
 }
 
 function clearUserInfo(){

@@ -225,9 +225,9 @@ ViewModel("pay", {
     new GLOBAL_CONSTANT().init();
     this.appList = new GLOBAL_PREENTRY().getEntryList();
     console.log("onWillMount end  ============>");
-    if(req.data){
-        this.user = Tos.GLOBAL_CONFIG.userInfo
-    }
+    // if(req.data){
+    //     this.user = Tos.GLOBAL_CONFIG.userInfo
+    // }
     this.notifyPropsChanged();
   },
 
@@ -256,11 +256,21 @@ ViewModel("pay", {
       that.createDir();
       console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
       new GLOBAL_CONFIG().init();
-      if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
-        navigateTo({
-          target: "login",
-          close_current: true,
-        });
+      if(Tos.GLOBAL_CONFIG){
+        console.log("GLOBAL_CONFIG   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
+        if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
+          navigateTo({
+            target: "login",
+            close_current: true,
+          });
+        }
+        else{
+          console.log("GLOBAL_CONFIG ppp   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
+          navigateTo({
+            target: "login",
+            close_current: true,
+          });
+        }
       }
       // if(Tos.GLOBAL_CONFIG){
       //   Tos.GLOBAL_CONFIG.merchantName = this.user.customerFirstName + '' + this.user.customerLastName

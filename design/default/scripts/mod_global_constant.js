@@ -21,6 +21,7 @@ function GLOBAL_CONSTANT() {
      RF:6,
      QR:9
   };
+
     this.filePath ={
         payRoot:"payRoot",
         recorDir:"payRoot"+"/"+"recorDir",
