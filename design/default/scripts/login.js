@@ -151,14 +151,16 @@ ViewModel("login", {
             that.loading = true
             that.notifyPropsChanged()
             function onSuccess(data){
+                console.log('callback =========')
                 that.loading = false
-                this.notifyPropsChanged();
+                that.notifyPropsChanged();
                 saveUserInfo(data)
                 navigateTo({
                     target: "pay",
                     close_current: true,
                     ///data: data,
                 });
+
             }
             function onError(data){
                 this.loading = false

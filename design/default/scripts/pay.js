@@ -267,7 +267,7 @@ ViewModel("pay", {
         else{
           console.log("GLOBAL_CONFIG ppp   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
           navigateTo({
-            target: "login",
+            target: "pay",
             close_current: true,
           });
         }

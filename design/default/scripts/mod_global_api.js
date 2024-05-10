@@ -57,7 +57,7 @@ function GLOBAL_API() {
         if (decodeStr) {
             let parsedData = JSON.parse(decodeStr);
             if(parsedData.responseCode === "00"){
-                console.log('returned responseCode =========>', JSON.stringify(this.response));
+                console.log('returned responseCode =========>', JSON.stringify(parsedData.responseCode))
                 onSuccess(parsedData)
             }else if (data.responseCode === "115"){
                 Tos.GLOBAL_CONFIG.userInfo = {}
