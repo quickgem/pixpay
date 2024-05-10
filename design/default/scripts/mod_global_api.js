@@ -23,7 +23,6 @@ function GLOBAL_API() {
         this.httpCB = function (ret) {
             console.log("RESPONSE RT:====>", JSON.stringify(ret));
             let data = ret.data && ret.data.response_buf || [];
-            console.log("onsuccess: ",onSuccess)
             that.parseData(data,onSuccess,onError);
         };
         let httpret = Tos.HttpclientCommon(head, url, requestString, "","", 30, 1, that.httpCB);
@@ -58,7 +57,7 @@ function GLOBAL_API() {
         if (decodeStr) {
             let parsedData = JSON.parse(decodeStr);
             if(parsedData.responseCode === "00"){
-                console.log('responseCode =========>', JSON.stringify(parsedData.responseCode));
+                console.log('returned responseCode =========>', JSON.stringify(this.response));
                 onSuccess(parsedData)
             }else if (data.responseCode === "115"){
                 Tos.GLOBAL_CONFIG.userInfo = {}
@@ -74,6 +73,7 @@ function GLOBAL_API() {
             onError({})
         }
     }
+
     this.init = function ()
     {
         if(!Tos.GLOBAL_API) {
@@ -81,6 +81,8 @@ function GLOBAL_API() {
         }
         Tos.GLOBAL_API = this;
     };
+
+
 
 
 }

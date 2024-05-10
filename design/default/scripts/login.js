@@ -147,10 +147,11 @@ ViewModel("login", {
         },
 
         loginAction: function () {
-            this.loading = true
-            this.notifyPropsChanged()
+            const that =this
+            that.loading = true
+            that.notifyPropsChanged()
             function onSuccess(data){
-                this.loading = false
+                that.loading = false
                 this.notifyPropsChanged();
                 saveUserInfo(data)
                 navigateTo({
