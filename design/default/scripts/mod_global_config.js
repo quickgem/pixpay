@@ -104,11 +104,11 @@ function incVouchNo(){
 }
 
 function saveUserInfo(data){
-    console.log('userInfo before ==>',Tos.GLOBAL_CONFIG.userInfo)
+    console.log('userInfo before ==>',JSON.stringify(Tos.GLOBAL_CONFIG.userInfo))
     Tos.GLOBAL_CONFIG.userInfo = data
     console.log('_______________________')
     SAVE_CONFIG();
-    console.log('userInfo after ==>',Tos.GLOBAL_CONFIG.userInfo)
+    console.log('userInfo after ==>',JSON.stringify(Tos.GLOBAL_CONFIG.userInfo))
 }
 
 function clearUserInfo(){
