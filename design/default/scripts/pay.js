@@ -6,6 +6,7 @@ var GLOBAL_CONSTANT = require("mod_global_constant").GLOBAL_CONSTANT;
 var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
 var saveUserInfo = require("mod_global_config").saveUserInfo;
 var GLOBAL_CHOOSE_NETWORK = require("mod_global_network").GLOBAL_CHOOSE_NETWORK;
+var GLOBAL_API = require("mod_global_api").GLOBAL_API;
 
 ViewModel("pay", {
   data: {
@@ -222,7 +223,7 @@ ViewModel("pay", {
 
   onWillMount: function (req) {
     console.log("onWillMount  begin  ============>");
-
+    new GLOBAL_API().init();
     new GLOBAL_CONSTANT().init();
     this.appList = new GLOBAL_PREENTRY().getEntryList();
     console.log("onWillMount end  ============> this.user ==>",JSON.stringify(req.data));
