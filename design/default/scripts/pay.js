@@ -255,7 +255,7 @@ ViewModel("pay", {
       that.createDir();
       console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
       new GLOBAL_CONFIG().init();
-      console.log("this.user   =======> ", that.user)
+      console.log("this.user   =======> ", JSON.stringify(that.user))
       if (that.user != null) saveUserInfo(that.user)
       if(Tos.GLOBAL_CONFIG){
         console.log("GLOBAL_CONFIG   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
@@ -265,13 +265,13 @@ ViewModel("pay", {
             close_current: true,
           });
         }
-        else{
-          console.log("GLOBAL_CONFIG ppp   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
-          navigateTo({
-            target: "pay",
-            close_current: true,
-          });
-        }
+        // else{
+        //   console.log("GLOBAL_CONFIG ppp   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
+        //   navigateTo({
+        //     target: "pay",
+        //     close_current: true,
+        //   });
+        // }
       }
       // if(Tos.GLOBAL_CONFIG){
       //   Tos.GLOBAL_CONFIG.merchantName = this.user.customerFirstName + '' + this.user.customerLastName
