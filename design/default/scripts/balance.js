@@ -24,12 +24,13 @@ ViewModel("balance", {
         },
 
         readBalance(){
-            console.log('reading balance ===> ')
-            this.loading = true
-            this.notifyPropsChanged();
-            this.balanceEnquiryRequest.accountNumber = this.user.customerOrganisationWallet
-            this.notifyPropsChanged();
             let that = this
+            console.log('reading balance ===> ')
+            that.loading = true
+            that.notifyPropsChanged();
+            that.balanceEnquiryRequest.accountNumber = this.user.customerOrganisationWallet
+            that.notifyPropsChanged();
+            console.log('reading balance ===> this.loading =====> ',this.loading)
             function onSuccess(data){
                 console.log('balance response =====> ',JSON.stringify(data))
                 that.loading = false
