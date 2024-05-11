@@ -507,7 +507,7 @@ ViewModel("login", {
 
 
     onWillMount:function (){
-        new GLOBAL_API().init();
+        //new GLOBAL_API().init();
         if (Tos.GLOBAL_CONFIG.userInfo != null)
             if (Tos.GLOBAL_CONFIG.userInfo.responseCode === "00"){
                 navigateTo({

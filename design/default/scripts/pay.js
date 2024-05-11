@@ -222,13 +222,15 @@ ViewModel("pay", {
 
   onWillMount: function (req) {
     console.log("onWillMount  begin  ============>");
-
-    new GLOBAL_CONSTANT().init();
+    if (Tos.GLOBAL_CONFIG.userInfo.responseCode === "00"){
+      new GLOBAL_CONSTANT().init();
+    }else{
+      if(req.data != null){
+        this.user = req.data
+      }
+    }
     this.appList = new GLOBAL_PREENTRY().getEntryList();
     console.log("onWillMount end  ============> this.user ==>",JSON.stringify(req.data));
-    if(req.data != null){
-        this.user = req.data
-    }
     this.notifyPropsChanged();
   },
 
