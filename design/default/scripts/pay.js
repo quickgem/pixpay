@@ -1,10 +1,10 @@
-const saveUserInfo = require("./mod_global_config").saveUserInfo;
 var GLOBAL_PROPS = require("mod_global_props").GLOBAL_PROPS;
 var GLOBAL_TRANSACTION = require("mod_global_trans").GLOBAL_TRANSACTION;
 var GLOBAL_PREENTRY = require("mod_global_trans").GLOBAL_PREENTRY;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 var GLOBAL_CONSTANT = require("mod_global_constant").GLOBAL_CONSTANT;
 var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
+var saveUserInfo = require("mod_global_config").saveUserInfo;
 var GLOBAL_CHOOSE_NETWORK = require("mod_global_network").GLOBAL_CHOOSE_NETWORK;
 
 ViewModel("pay", {
