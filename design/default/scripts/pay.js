@@ -225,8 +225,8 @@ ViewModel("pay", {
 
     new GLOBAL_CONSTANT().init();
     this.appList = new GLOBAL_PREENTRY().getEntryList();
-    console.log("onWillMount end  ============>");
-    if(req.data){
+    console.log("onWillMount end  ============> this.user ==>",this.user);
+    if(req.data != null){
         this.user = req.data
     }
     this.notifyPropsChanged();
