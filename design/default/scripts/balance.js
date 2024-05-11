@@ -24,10 +24,9 @@ ViewModel("balance", {
         },
 
         readBalance(){
-            let that = this
+            const that = this
             console.log('reading balance ===> ')
             that.loading = true
-            that.notifyPropsChanged();
             that.balanceEnquiryRequest.accountNumber = this.user.customerOrganisationWallet
             that.notifyPropsChanged();
             console.log('reading balance =====> this.loading =====>',this.loading)
@@ -107,6 +106,7 @@ ViewModel("balance", {
     },
 
     onMount: function () {
+        this.loading = true
         this.readBalance()
 
     },
