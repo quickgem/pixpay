@@ -49,15 +49,11 @@ ViewModel("balance", {
                 this.hideModel();
                 return;
             }
-            navigateTo({
+            navigateReplace({
                 target: "pay",
-                close_current: true,
+                type: "cancel",
+                //data:this.user
             });
-            // navigateReplace({
-            //     target: "pay",
-            //     type: "cancel",
-            //     //data:this.user
-            // });
         },
 
         hideModel: function () {
