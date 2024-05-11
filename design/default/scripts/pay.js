@@ -229,6 +229,10 @@ ViewModel("pay", {
     console.log("onWillMount end  ============> this.user ==>",JSON.stringify(req.data));
     if(req.data != null){
         this.user = req.data
+    }else{
+      if (Tos.GLOBAL_CONFIG != null && Tos.GLOBAL_CONFIG.userInfo != null){
+        this.user = Tos.GLOBAL_CONFIG.userInfo
+      }
     }
     this.notifyPropsChanged();
   },
