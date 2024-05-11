@@ -1,3 +1,4 @@
+const saveUserInfo = require("./mod_global_config").saveUserInfo;
 var GLOBAL_PROPS = require("mod_global_props").GLOBAL_PROPS;
 var GLOBAL_TRANSACTION = require("mod_global_trans").GLOBAL_TRANSACTION;
 var GLOBAL_PREENTRY = require("mod_global_trans").GLOBAL_PREENTRY;
@@ -225,9 +226,9 @@ ViewModel("pay", {
     new GLOBAL_CONSTANT().init();
     this.appList = new GLOBAL_PREENTRY().getEntryList();
     console.log("onWillMount end  ============>");
-    // if(req.data){
-    //     this.user = Tos.GLOBAL_CONFIG.userInfo
-    // }
+    if(req.data){
+        this.user = req.data
+    }
     this.notifyPropsChanged();
   },
 
@@ -256,6 +257,7 @@ ViewModel("pay", {
       that.createDir();
       console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
       new GLOBAL_CONFIG().init();
+      saveUserInfo(this.user)
       if(Tos.GLOBAL_CONFIG){
         console.log("GLOBAL_CONFIG   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
         if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
