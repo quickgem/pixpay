@@ -151,7 +151,7 @@ ViewModel("login", {
             that.loading = true
             that.notifyPropsChanged()
             function onSuccess(data){
-                console.log('callback =========')
+                console.log('callback =========>>>>>',JSON.stringify(data))
                 that.loading = false
                 that.notifyPropsChanged();
                 navigateTo({
