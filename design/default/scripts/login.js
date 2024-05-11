@@ -245,10 +245,10 @@ ViewModel("login", {
             console.log("onReceiveData ==============>", ret.code);
             console.log("http_ret.data ==============>", JSON.stringify(ret.data));
             console.log("http_ret.data.code ==============>", ret.data.response_code);
-            navigateTo({
-                target: "pay",
-                close_current: true,
-            });
+            // navigateTo({
+            //     target: "pay",
+            //     close_current: true,
+            // });
 
             console.log("-----------------------------------------------------------------")
             if (ret.code >= 0) {
@@ -508,13 +508,14 @@ ViewModel("login", {
 
     onWillMount:function (){
         new GLOBAL_API().init();
-        // if (Tos.GLOBAL_CONFIG.userInfo.responseCode === "00"){
-        //     navigateTo({
-        //         target: "pay",
-        //         close_current: true,
-        //         ///data: data,
-        //     });
-        // }
+        if (Tos.GLOBAL_CONFIG.userInfo != null)
+            if (Tos.GLOBAL_CONFIG.userInfo.responseCode === "00"){
+                navigateTo({
+                    target: "pay",
+                    close_current: true,
+                    ///data: data,
+                });
+            }
     },
 
     onMount:function (){

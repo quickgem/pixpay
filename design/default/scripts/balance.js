@@ -61,7 +61,7 @@ ViewModel("balance", {
             navigateReplace({
                 target: "pay",
                 type: "cancel",
-                data:this.user
+                //data:this.user
             });
         },
 

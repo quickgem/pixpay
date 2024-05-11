@@ -211,7 +211,7 @@ ViewModel("makeTransfer", {
             navigateReplace({
                 target: "pay",
                 type: "cancel",
-                data:this.user
+                //data:this.user
             });
         },
 

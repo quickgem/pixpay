@@ -250,14 +250,12 @@ ViewModel("pay", {
       };
       let res = Tos.PedWriteKey(obj, null);
       console.log("Tos.PedWriteKey end  ============>", res.code);
-
-
       that.initCAPKdata();
       that.initAIDdata();
       that.createDir();
       console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
       new GLOBAL_CONFIG().init();
-      saveUserInfo(this.user)
+      if (this.user != null) saveUserInfo(this.user)
       if(Tos.GLOBAL_CONFIG){
         console.log("GLOBAL_CONFIG   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
         if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
@@ -279,8 +277,6 @@ ViewModel("pay", {
       // }else{
       //   console.log("config ====>", Tos.GLOBAL_CONFIG)
       // }
-
-
       console.log("GLOBAL_CONFIG  init end  ==========>");
       return RET_REMOVE;
     },100);
@@ -293,7 +289,5 @@ ViewModel("pay", {
     // Tos.SysLed(0b1111, 0, 0);
     this.isShowExit = false;
     this.isShowToast = false;
-
-
   }
 });

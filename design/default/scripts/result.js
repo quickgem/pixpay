@@ -240,7 +240,7 @@ ViewModel("result", {
       navigateReplace({
         close_current: true,
         target: "pay",
-        data:this.user
+        //data:this.user
       });
     },
 

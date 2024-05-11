@@ -62,7 +62,7 @@ ViewModel("transferSuccess",{
             navigateReplace({
                 target: "pay",
                 close_current: true,
-                data:this.user
+                //data:this.user
             });
         },
 
@@ -98,7 +98,7 @@ ViewModel("transferSuccess",{
             navigateReplace({
                 close_current: true,
                 target: "pay",
-                data:this.user
+                //data:this.user
             });
         },
 

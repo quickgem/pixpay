@@ -27,7 +27,7 @@ ViewModel("inputAmt", {
        navigateReplace({
          target: "pay",
          type: "cancel",
-         data:this.user
+         //data:this.user
        });
     },
      showPrompt: function () {
@@ -73,7 +73,7 @@ ViewModel("inputAmt", {
         target: "pay",
         type: type || "cancel",
         close_current: true,
-        data:this.user
+        //data:this.user
       });
     },
 

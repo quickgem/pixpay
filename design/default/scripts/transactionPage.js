@@ -43,7 +43,7 @@ ViewModel("transactionPage", {
                     navigateReplace({
                         target: "pay",
                         close_current:true,
-                        data:this.user
+                        //data:this.user
                     });
                     break;
                 default:

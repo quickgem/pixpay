@@ -106,7 +106,7 @@ function incVouchNo(){
 function saveUserInfo(data){
     console.log('userInfo before ==>',JSON.stringify(Tos.GLOBAL_CONFIG.userInfo))
     Tos.GLOBAL_CONFIG.userInfo = data
-    console.log('_______________________')
+    console.log('data to save _______________________ ',data)
     SAVE_CONFIG();
     console.log('userInfo after ==>',JSON.stringify(Tos.GLOBAL_CONFIG.userInfo))
 }
