@@ -1,7 +1,4 @@
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
-let APP_LOGIN_URL = "https://biz.corestepbank.com/authentication/login";
-var saveUserInfo = require("mod_global_config").saveUserInfo
-var GLOBAL_API = require("mod_global_api").GLOBAL_API
 
 ViewModel("login", {
     data:{
@@ -508,14 +505,17 @@ ViewModel("login", {
 
     onWillMount:function (){
         //new GLOBAL_API().init();
-        if (Tos.GLOBAL_CONFIG.userInfo != null)
-            if (Tos.GLOBAL_CONFIG.userInfo.responseCode === "00"){
-                navigateTo({
-                    target: "pay",
-                    close_current: true,
-                    ///data: data,
-                });
+        if (Tos.GLOBAL_CONFIG != null) {
+            if (Tos.GLOBAL_CONFIG.userInfo != null) {
+                if (Tos.GLOBAL_CONFIG.userInfo.responseCode === "00") {
+                    navigateTo({
+                        target: "pay",
+                        close_current: true,
+                        ///data: data,
+                    });
+                }
             }
+        }
     },
 
     onMount:function (){
