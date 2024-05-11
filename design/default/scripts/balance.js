@@ -30,7 +30,7 @@ ViewModel("balance", {
             that.notifyPropsChanged();
             that.balanceEnquiryRequest.accountNumber = this.user.customerOrganisationWallet
             that.notifyPropsChanged();
-            console.log('reading balance ===> this.loading =====> ',this.loading)
+            console.log('reading balance =====> this.loading =====>',this.loading)
             function onSuccess(data){
                 console.log('balance response =====> ',JSON.stringify(data))
                 that.loading = false
