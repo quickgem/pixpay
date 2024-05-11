@@ -26,6 +26,7 @@ ViewModel("balance", {
         },
 
         readBalance(){
+            console.log('reading balance ===> ')
             this.loading = true
             this.balanceEnquiryRequest.accountNumber = this.user.customerOrganisationWallet
             this.notifyPropsChanged();
