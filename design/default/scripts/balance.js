@@ -102,12 +102,12 @@ ViewModel("balance", {
     },
 
     onWillMount: function (req) {
-        this.loading = true
         this.user = Tos.GLOBAL_CONFIG.userInfo
+        this.readBalance()
     },
 
     onMount: function () {
-        this.readBalance()
+
     },
 
     onWillUnmount: function () {
