@@ -222,15 +222,13 @@ ViewModel("pay", {
 
   onWillMount: function (req) {
     console.log("onWillMount  begin  ============>");
-    if (Tos.GLOBAL_CONFIG.userInfo.responseCode === "00"){
-      new GLOBAL_CONSTANT().init();
-    }else{
-      if(req.data != null){
-        this.user = req.data
-      }
-    }
+
+    new GLOBAL_CONSTANT().init();
     this.appList = new GLOBAL_PREENTRY().getEntryList();
     console.log("onWillMount end  ============> this.user ==>",JSON.stringify(req.data));
+    if(req.data != null){
+        this.user = req.data
+    }
     this.notifyPropsChanged();
   },
 
@@ -256,7 +254,7 @@ ViewModel("pay", {
       that.initAIDdata();
       that.createDir();
       console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
-      new GLOBAL_CONFIG().init();
+      if (Tos.GLOBAL_CONFIG == null) new GLOBAL_CONFIG().init();
       console.log("this.user   =======> ", JSON.stringify(that.user))
       if (that.user != null) saveUserInfo(that.user)
       if(Tos.GLOBAL_CONFIG){
