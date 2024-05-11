@@ -255,7 +255,8 @@ ViewModel("pay", {
       that.createDir();
       console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
       new GLOBAL_CONFIG().init();
-      if (this.user != null) saveUserInfo(this.user)
+      console.log("this.user   =======> ", that.user)
+      if (that.user != null) saveUserInfo(that.user)
       if(Tos.GLOBAL_CONFIG){
         console.log("GLOBAL_CONFIG   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
         if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
