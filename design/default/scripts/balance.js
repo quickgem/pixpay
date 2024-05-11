@@ -4,21 +4,19 @@ ViewModel("balance", {
     data: {
         showModel:false,
         user:null,
-        loading:true,
+        loading:false,
         showTip:"Fetching account balance",
         balanceEnquiryRequest:{accountNumber:""},
         balance:"0.00"
     },
 
     methods:{
-        // _formatInput: function () {
-        //     if(this.balance === "") this.balanceResponse = "0.00";
-        //     this.balance = parseFloat(this.balance).toFixed(2);
-        //     const parts  = this.balance.toString().split(".");
-        //     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-        //     this.balanceResponse = parts.join(".")
-        //     this.notifyPropsChanged();
-        // },
+        _formatInput: function (amount) {
+            let amountFloat = parseFloat(amount).toFixed(2);
+            const parts  = amountFloat.toString().split(".");
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            return  parts.join(".")
+        },
 
 
         initHTTPCB: function () {
@@ -28,13 +26,14 @@ ViewModel("balance", {
         readBalance(){
             console.log('reading balance ===> ')
             this.loading = true
+            this.notifyPropsChanged();
             this.balanceEnquiryRequest.accountNumber = this.user.customerOrganisationWallet
             this.notifyPropsChanged();
             let that = this
             function onSuccess(data){
                 console.log('balance response =====> ',JSON.stringify(data))
                 that.loading = false
-                that.balance = data.accountBalance
+                that.balance = that._formatInput(data.accountBalance)
                 that.notifyPropsChanged();
             }
             function onError(data){
