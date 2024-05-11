@@ -2,9 +2,9 @@ var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 
 ViewModel("balance", {
     data: {
-        showModel: false,
+        showModel:false,
         user:null,
-        loading:false,
+        loading:true,
         showTip:"Fetching account balance",
         balanceEnquiryRequest:{accountNumber:""},
         balance:"0.00"
@@ -30,16 +30,17 @@ ViewModel("balance", {
             this.loading = true
             this.balanceEnquiryRequest.accountNumber = this.user.customerOrganisationWallet
             this.notifyPropsChanged();
+            let that = this
             function onSuccess(data){
                 console.log('balance response =====> ',JSON.stringify(data))
-                this.loading = false
-                this.balance = data.accountBalance
-                this.notifyPropsChanged();
+                that.loading = false
+                that.balance = data.accountBalance
+                that.notifyPropsChanged();
             }
             function onError(data){
-                this.loading = false
-                this.error = data
-                this.notifyPropsChanged();
+                that.loading = false
+                that.error = data
+                that.notifyPropsChanged();
             }
             Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BALANCE_ENQUIRY,this.balanceEnquiryRequest,onSuccess,onError)
         },
