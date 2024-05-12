@@ -56,6 +56,8 @@ ViewModel("emvProcess", {
     plaintextPINstate: 1,
     plaintextPIN: "",
     passwordStar:"",
+    loading: false,
+    showTip:"Processing transaction ...",
     trans:{},
     purchaseRequest:{
 
@@ -173,12 +175,14 @@ ViewModel("emvProcess", {
       }
       this.handleProcess(true,"online ....");
       // transOnline(Tos.GLOBAL_CONFIG.networkParam,callback,this.trans);
+      this.loading = true
       transOnlineTms(callback,this.trans,this.flow);
     },
 
 
     netSuccess: function () {
-     let toCardData = {
+      this.loading = false
+      let toCardData = {
         onlineResult:0x00 ,     /*Number Terminal online request result code */
         authData : "",       /* String Authorization data, tag 91 */
         authDataLen: 0,     /*Number Authorization data length */
@@ -191,13 +195,14 @@ ViewModel("emvProcess", {
       console.log("netSuccess  tip ================= " ,JSON.stringify(this.trans));
       if(this.trans.response !== "00"){
        toCardData.onlineResult =0x01;
-     }
-     if(this.trans.receiveIccData){
+      }
+      if(this.trans.receiveIccData){
 
-     }
-     this.jump2Next();
+      }
+      this.jump2Next();
     },
     netError: function (error ) {
+      this.loading = false
       this.jumpError(error);
     },
     netshowPrompt: function (tip ) {

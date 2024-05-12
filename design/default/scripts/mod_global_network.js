@@ -233,8 +233,6 @@ function dateTime(){
 function transOnlineTms(callback,trans,flow) {
   const currentDateTime = dateTime()
   console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(trans))
-  callback.showPrompt("Processing ...")
-  callback.timeTick()
 
   function onSuccess(data){
     console.log("onSuccess ====>  ", JSON.stringify(data))

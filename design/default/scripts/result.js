@@ -187,8 +187,6 @@
 //   }
 // });
 
-
-var SAVE_CONFIG = require("mod_global_config").SAVE_CONFIG;
 var PRINT_TICKET = require("mod_global_print").PRINT_TICKET;
 var TRANS_REPORT = require("mod_global_report").TRANS_REPORT;
 var GLOBAL_FUNCS = require("mod_global_funcs").GLOBAL_FUNCS;
@@ -216,7 +214,6 @@ ViewModel("result", {
     transferResponse:""
   },
   methods: {
-
     onKeyDown(args) {
       console.log("key down----->>>>:", args);
       switch (args) {
