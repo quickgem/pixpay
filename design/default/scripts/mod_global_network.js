@@ -219,61 +219,7 @@ function generateReference(n){
   return Math.floor(Math.pow(10, n-1) + Math.random() * 9*Math.pow(10, n-1)).toString()
 }
 
-function dateTime(){
-  let transactionTime = Tos.GLOBAL_TRANSACTION.trans.transTime;
-  console.log("\ntransactionTime year ==========>", transactionTime.year);
-  console.log("\ntransactionTime month ==========>", transactionTime.month);
-  console.log("\ntransactionTime date ==========>", transactionTime.date);
-  console.log("\ntransactionTime h ==========>", transactionTime.h);
-  console.log("\ntransactionTime m ==========>", transactionTime.m);
-  console.log("\ntransactionTime s ==========>", transactionTime.s);
-  return transactionTime.year+'-'+transactionTime.month+'-'+transactionTime.date+' '+transactionTime.h+':'+transactionTime.m+':'+transactionTime.s
-}
-
-function transOnlineTms(callback,trans,flow) {
-  const currentDateTime = dateTime()
-  console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(trans))
-
-  function onSuccess(data){
-    console.log("onSuccess ====>  ", JSON.stringify(data))
-    callback.success()
-  }
-  function onError(data){
-    console.log("onError ====>  ", JSON.stringify(data))
-    callback.error(data)
-  }
- const request = {
-   cardAcceptorId:"2CSTLA100000001",
-   minorAmount:trans.amount,
-   track2Data:trans.track2,
-   pinBlock:flow.pin,
-   processingCode:"000000",
-   emvDataString:trans.sendIccData,
-   acquiringInstitutionId:"778035",
-   terminalId:Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,
-   pinCaptureCode:"06",
-   rrn:generateReference(12),
-   expiryDate:trans.expDate,
-   cardAcceptorLocation:"COREBANK LTD  TMS POS  APP -  LAGOS LANG",
-   stan:generateReference(6),
-   transactionCurrencyCode:"566",
-   merchantType:"6013",
-   cardSequenceNumber:trans.cardSerialNo,
-   mid:Tos.GLOBAL_CONFIG.userInfo.mid,
-   name:trans.cardHolderName,
-   date:currentDateTime,
-   aid:trans.aid,
-   appLab:trans.emvAppName,
-   dateTime:currentDateTime,
- }
-  Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,onSuccess,onError)
-}
-
-
-
-
 exports.transOnline = transOnline;
-exports.transOnlineTms = transOnlineTms;
 exports.GLOBAL_CHOOSE_NETWORK = GLOBAL_CHOOSE_NETWORK;
 exports.GLOBAL_NETWORK_SOCKET = GLOBAL_NETWORK_SOCKET;
 

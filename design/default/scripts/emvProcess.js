@@ -2,8 +2,7 @@ var GLOBAL_HEXARR_2_STRING = require("mod_global_funcs").GLOBAL_HEXARR_2_STRING;
 var GLOBAL_FUNCS  = require("mod_global_funcs").GLOBAL_FUNCS;
 var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
-var transOnline = require("mod_global_network").transOnline;
-var transOnlineTms = require("mod_global_network").transOnlineTms;
+// var transOnline = require("mod_global_network").transOnline;
 var GLOBAL_HEXARR2STRING = require("mod_global_funcs").GLOBAL_HEXARR2STRING;
 
 
@@ -176,10 +175,55 @@ ViewModel("emvProcess", {
       this.handleProcess(true,"online ....");
       // transOnline(Tos.GLOBAL_CONFIG.networkParam,callback,this.trans);
       this.loading = true
-      transOnlineTms(callback,this.trans,this.flow);
+      this.transOnlineTms(callback,this.trans,this.flow);
     },
-
-
+    dateTime: function (){
+      let transactionTime = Tos.GLOBAL_TRANSACTION.trans.transTime;
+      console.log("\ntransactionTime year ==========>", transactionTime.year);
+      console.log("\ntransactionTime month ==========>", transactionTime.month);
+      console.log("\ntransactionTime date ==========>", transactionTime.date);
+      console.log("\ntransactionTime h ==========>", transactionTime.h);
+      console.log("\ntransactionTime m ==========>", transactionTime.m);
+      console.log("\ntransactionTime s ==========>", transactionTime.s);
+      return transactionTime.year+'-'+transactionTime.month+'-'+transactionTime.date+' '+transactionTime.h+':'+transactionTime.m+':'+transactionTime.s
+    },
+    transOnlineTms: function(callback,trans,flow) {
+      const currentDateTime = this.dateTime()
+      console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(trans))
+      function onSuccess(data){
+        console.log("onSuccess ====>  ", JSON.stringify(data))
+        callback.success()
+      }
+      function onError(data){
+        console.log("onError ====>  ", JSON.stringify(data))
+        callback.error(data)
+      }
+      const request = {
+        cardAcceptorId:"2CSTLA100000001",
+        minorAmount:trans.amount,
+        track2Data:trans.track2,
+        pinBlock:flow.pin,
+        processingCode:"000000",
+        emvDataString:trans.sendIccData,
+        acquiringInstitutionId:"778035",
+        terminalId:Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,
+        pinCaptureCode:"06",
+        rrn:generateReference(12),
+        expiryDate:trans.expDate,
+        cardAcceptorLocation:"COREBANK LTD  TMS POS  APP -  LAGOS LANG",
+        stan:generateReference(6),
+        transactionCurrencyCode:"566",
+        merchantType:"6013",
+        cardSequenceNumber:trans.cardSerialNo,
+        mid:Tos.GLOBAL_CONFIG.userInfo.mid,
+        name:trans.cardHolderName,
+        date:currentDateTime,
+        aid:trans.aid,
+        appLab:trans.emvAppName,
+        dateTime:currentDateTime,
+      }
+      Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,onSuccess,onError)
+    },
     netSuccess: function () {
       this.loading = false
       let toCardData = {
