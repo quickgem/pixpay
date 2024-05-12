@@ -231,16 +231,17 @@ function dateTime(){
 }
 
 function transOnlineTms(callback,trans,flow) {
+  console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(trans))
   const currentDateTime = dateTime()
   callback.showPrompt("Processing ...")
   callback.timeTick()
 
   function onSuccess(data){
-    console.log("onSuccess ====>  ", data)
+    console.log("onSuccess ====>  ", JSON.stringify(data))
     callback.success()
   }
   function onError(data){
-    console.log("onError ====>  ", data)
+    console.log("onError ====>  ", JSON.stringify(data))
     callback.error(data)
   }
  const request = {
