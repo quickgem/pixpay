@@ -3,6 +3,7 @@ var GLOBAL_FUNCS  = require("mod_global_funcs").GLOBAL_FUNCS;
 var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 var transOnline = require("mod_global_network").transOnline;
+var transOnlineTms = require("mod_global_network").transOnlineTms;
 var GLOBAL_HEXARR2STRING = require("mod_global_funcs").GLOBAL_HEXARR2STRING;
 
 
@@ -171,8 +172,8 @@ ViewModel("emvProcess", {
         this.notifyPropsChanged();
       }
       this.handleProcess(true,"online ....");
-      transOnline(Tos.GLOBAL_CONFIG.networkParam,callback,this.trans);
-
+      // transOnline(Tos.GLOBAL_CONFIG.networkParam,callback,this.trans);
+      transOnlineTms(callback,this.trans,this.flow);
     },
 
 

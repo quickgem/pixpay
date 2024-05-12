@@ -215,10 +215,66 @@ function transOnline(urlParam,cb,trans) {
 
 }
 
+function generateReference(n){
+  return Math.floor(Math.pow(10, n-1) + Math.random() * 9*Math.pow(10, n-1)).toString()
+}
+
+function dateTime(){
+  Date.prototype.today = function () {
+    return this.getFullYear()+"-"+(((this.getMonth()+1) < 10)?"0":"") + (this.getMonth()+1)+"-"+((this.getDate() < 10)?"0":"") + this.getDate();
+  }
+  Date.prototype.timeNow = function () {
+    return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
+  }
+  var newDate = new Date();
+  return newDate.today() + " " + newDate.timeNow();
+}
+
+function transOnlineTms(callback,trans,flow) {
+  const currentDateTime = dateTime()
+  callback.showPrompt("Processing ...")
+  callback.timeTick()
+
+  function onSuccess(data){
+    console.log("onSuccess ====>  ", data)
+    callback.success()
+  }
+  function onError(data){
+    console.log("onError ====>  ", data)
+    callback.error(data)
+  }
+ const request = {
+   cardAcceptorId:"2CSTLA100000001",
+   minorAmount:trans.amount,
+   track2Data:trans.track2,
+   pinBlock:flow.pin,
+   processingCode:"000000",
+   emvDataString:trans.sendIccData,
+   acquiringInstitutionId:"778035",
+   terminalId:Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,
+   pinCaptureCode:"06",
+   rrn:generateReference(12),
+   expiryDate:trans.expDate,
+   cardAcceptorLocation:"COREBANK LTD  TMS POS  APP -  LAGOS LANG",
+   stan:generateReference(6),
+   transactionCurrencyCode:"566",
+   merchantType:"6013",
+   cardSequenceNumber:trans.cardSerialNo,
+   mid:Tos.GLOBAL_CONFIG.userInfo.mid,
+   name:trans.cardHolderName,
+   date:currentDateTime,
+   aid:trans.aid,
+   appLab:trans.emvAppName,
+   dateTime:currentDateTime,
+ }
+  Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,onSuccess,onError)
+}
+
 
 
 
 exports.transOnline = transOnline;
+exports.transOnlineTms = transOnlineTms;
 exports.GLOBAL_CHOOSE_NETWORK = GLOBAL_CHOOSE_NETWORK;
 exports.GLOBAL_NETWORK_SOCKET = GLOBAL_NETWORK_SOCKET;
 
