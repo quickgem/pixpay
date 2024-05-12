@@ -111,7 +111,7 @@ function GLOBAL_NETWORK_SOCKET(param,cb,data) {
     console.log("SocketCls 8888888 ===================>>");
     cb.showPrompt("Socket Send ...");
     console.log("Socket Send ===================>>");
-    Tos.SocSend(this.socHandler, data, data.length);
+    //Tos.SocSend(this.socHandler, data, data.length);
     incVouchNo();
     this.SocStatus();
   };

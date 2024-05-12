@@ -174,66 +174,17 @@ ViewModel("emvProcess", {
         this.notifyPropsChanged();
       }
       this.handleProcess(true,"online ....");
-      this.netSuccess()
       // transOnline(Tos.GLOBAL_CONFIG.networkParam,callback,this.trans);
-      // this.loading = true
-      // this.transOnlineTms();
-    },
-    dateTime: function (){
-      let transactionTime = Tos.GLOBAL_TRANSACTION.trans.transTime;
-      console.log("\ntransactionTime year ==========>", transactionTime.year);
-      console.log("\ntransactionTime month ==========>", transactionTime.month);
-      console.log("\ntransactionTime date ==========>", transactionTime.date);
-      console.log("\ntransactionTime h ==========>", transactionTime.h);
-      console.log("\ntransactionTime m ==========>", transactionTime.m);
-      console.log("\ntransactionTime s ==========>", transactionTime.s);
-      return transactionTime.year+'-'+transactionTime.month+'-'+transactionTime.date+' '+transactionTime.h+':'+transactionTime.m+':'+transactionTime.s
-    },
-    transOnlineTms: function() {
-      const currentDateTime = this.dateTime()
-      console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(this.trans))
-      function onSuccess(data){
-        this.loading = true
-        this.notifyPropsChanged();
-        console.log("onSuccess ====>  ", JSON.stringify(data))
-        //this.netSuccess()
-      }
-      function onError(data){
-        this.loading = true
-        this.isError = true
-        this.error = data
-        this.notifyPropsChanged();
-        console.log("onError ====>  ", JSON.stringify(data))
-        //this.netError()
-      }
-      function generateReference(n){
-        return Math.floor(Math.pow(10, n-1) + Math.random() * 9*Math.pow(10, n-1)).toString()
-      }
-      const request = {
-        cardAcceptorId:"2CSTLA100000001",
-        minorAmount:this.trans.amount,
-        track2Data:this.trans.track2,
-        pinBlock:this.flow.pin,
-        processingCode:"000000",
-        emvDataString:this.trans.sendIccData,
-        acquiringInstitutionId:"778035",
-        terminalId:Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,
-        pinCaptureCode:"06",
-        rrn:generateReference(12),
-        expiryDate:this.trans.expDate,
-        cardAcceptorLocation:"COREBANK LTD  TMS POS  APP -  LAGOS LANG",
-        stan:generateReference(6),
-        transactionCurrencyCode:"566",
-        merchantType:"6013",
-        cardSequenceNumber:this.trans.cardSerialNo,
-        mid:Tos.GLOBAL_CONFIG.userInfo.mid,
-        name:this.trans.cardHolderName,
-        date:currentDateTime,
-        aid:this.trans.aid,
-        appLab:this.trans.emvAppName,
-        dateTime:currentDateTime,
-      }
-      Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,onSuccess,onError)
+      //this.transOnlineTms();
+      //this.netSuccess()
+      navigateTo({
+        target: "postbridge",
+        close_current: true,
+        data: {
+          trans: this.trans,
+          flow: this.flow
+        },
+      });
     },
     netSuccess: function () {
       this.loading = false
