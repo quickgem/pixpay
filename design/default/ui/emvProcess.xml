@@ -1,5 +1,6 @@
 <window v-model="emvProcess" name="emvProcess" anim_hint="htranslate"
   style:normal:bg_color="#FFFFFF" v-on:key_down:0="{onKeyDown, Args=0}"
+  v-on:key_down:NETEVENT="{initHTTPCB}"
   v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}"
   v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}"
   v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}"

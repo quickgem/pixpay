@@ -5,9 +5,6 @@ var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 // var transOnline = require("mod_global_network").transOnline;
 var GLOBAL_HEXARR2STRING = require("mod_global_funcs").GLOBAL_HEXARR2STRING;
 
-
-
-
 ViewModel("emvProcess", {
   data: {
     user:null,
@@ -64,6 +61,10 @@ ViewModel("emvProcess", {
     flow:{},
   },
   methods: {
+    initHTTPCB: function () {
+      console.log("HttpclientCbEvent start 0000000===========");
+      Tos.HttpclientCbEvent();
+    },
     setPinTimer: function () {
       let that = this;
       this.timeOut = 60;
