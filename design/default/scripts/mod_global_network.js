@@ -220,19 +220,19 @@ function generateReference(n){
 }
 
 function dateTime(){
-  Date.prototype.today = function () {
-    return this.getFullYear()+"-"+(((this.getMonth()+1) < 10)?"0":"") + (this.getMonth()+1)+"-"+((this.getDate() < 10)?"0":"") + this.getDate();
-  }
-  Date.prototype.timeNow = function () {
-    return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
-  }
-  var newDate = new Date();
-  return newDate.today() + " " + newDate.timeNow();
+  let transactionTime = Tos.GLOBAL_TRANSACTION.trans.transTime;
+  console.log("\ntransactionTime year ==========>", transactionTime.year);
+  console.log("\ntransactionTime month ==========>", transactionTime.month);
+  console.log("\ntransactionTime date ==========>", transactionTime.date);
+  console.log("\ntransactionTime h ==========>", transactionTime.h);
+  console.log("\ntransactionTime m ==========>", transactionTime.m);
+  console.log("\ntransactionTime s ==========>", transactionTime.s);
+  return transactionTime.year+'-'+transactionTime.month+'-'+transactionTime.date+' '+transactionTime.h+':'+transactionTime.m+':'+transactionTime.s
 }
 
 function transOnlineTms(callback,trans,flow) {
-  console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(trans))
   const currentDateTime = dateTime()
+  console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(trans))
   callback.showPrompt("Processing ...")
   callback.timeTick()
 
