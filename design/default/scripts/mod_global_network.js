@@ -215,10 +215,6 @@ function transOnline(urlParam,cb,trans) {
 
 }
 
-function generateReference(n){
-  return Math.floor(Math.pow(10, n-1) + Math.random() * 9*Math.pow(10, n-1)).toString()
-}
-
 exports.transOnline = transOnline;
 exports.GLOBAL_CHOOSE_NETWORK = GLOBAL_CHOOSE_NETWORK;
 exports.GLOBAL_NETWORK_SOCKET = GLOBAL_NETWORK_SOCKET;

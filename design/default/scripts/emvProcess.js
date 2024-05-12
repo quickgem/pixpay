@@ -175,7 +175,7 @@ ViewModel("emvProcess", {
       this.handleProcess(true,"online ....");
       // transOnline(Tos.GLOBAL_CONFIG.networkParam,callback,this.trans);
       this.loading = true
-      this.transOnlineTms(callback,this.trans,this.flow);
+      this.transOnlineTms();
     },
     dateTime: function (){
       let transactionTime = Tos.GLOBAL_TRANSACTION.trans.transTime;
@@ -187,39 +187,44 @@ ViewModel("emvProcess", {
       console.log("\ntransactionTime s ==========>", transactionTime.s);
       return transactionTime.year+'-'+transactionTime.month+'-'+transactionTime.date+' '+transactionTime.h+':'+transactionTime.m+':'+transactionTime.s
     },
-    transOnlineTms: function(callback,trans,flow) {
+    transOnlineTms: function() {
       const currentDateTime = this.dateTime()
-      console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(trans))
+      console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(this.trans))
       function onSuccess(data){
+        this.loading = true
         console.log("onSuccess ====>  ", JSON.stringify(data))
-        callback.success()
+        this.netSuccess()
       }
       function onError(data){
+        this.loading = true
         console.log("onError ====>  ", JSON.stringify(data))
-        callback.error(data)
+        this.netError()
+      }
+      function generateReference(n){
+        return Math.floor(Math.pow(10, n-1) + Math.random() * 9*Math.pow(10, n-1)).toString()
       }
       const request = {
         cardAcceptorId:"2CSTLA100000001",
-        minorAmount:trans.amount,
-        track2Data:trans.track2,
-        pinBlock:flow.pin,
+        minorAmount:this.trans.amount,
+        track2Data:this.trans.track2,
+        pinBlock:this.flow.pin,
         processingCode:"000000",
-        emvDataString:trans.sendIccData,
+        emvDataString:this.trans.sendIccData,
         acquiringInstitutionId:"778035",
         terminalId:Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,
         pinCaptureCode:"06",
         rrn:generateReference(12),
-        expiryDate:trans.expDate,
+        expiryDate:this.trans.expDate,
         cardAcceptorLocation:"COREBANK LTD  TMS POS  APP -  LAGOS LANG",
         stan:generateReference(6),
         transactionCurrencyCode:"566",
         merchantType:"6013",
-        cardSequenceNumber:trans.cardSerialNo,
+        cardSequenceNumber:this.trans.cardSerialNo,
         mid:Tos.GLOBAL_CONFIG.userInfo.mid,
-        name:trans.cardHolderName,
+        name:this.trans.cardHolderName,
         date:currentDateTime,
-        aid:trans.aid,
-        appLab:trans.emvAppName,
+        aid:this.trans.aid,
+        appLab:this.trans.emvAppName,
         dateTime:currentDateTime,
       }
       Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,onSuccess,onError)
