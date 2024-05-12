@@ -202,17 +202,13 @@ function transOnline(urlParam,cb,trans) {
             cb.timeTick(time);
           }
   };
-   let online=function () {
-       let iso8583= GLOBAL_PACK_8583(trans)
-       let _instance =  GLOBAL_NETWORK_SOCKET(urlParam,onlineCB,iso8583);
-       let onlineCls = new _instance();
-           onlineCls.CreateNew();
-   }
-
-    doReversal(urlParam,reversalCb);
-
-
-
+  let online=function () {
+     let iso8583= GLOBAL_PACK_8583(trans)
+     let _instance =  GLOBAL_NETWORK_SOCKET(urlParam,onlineCB,iso8583);
+     let onlineCls = new _instance();
+         onlineCls.CreateNew();
+  }
+  doReversal(urlParam,reversalCb);
 }
 
 exports.transOnline = transOnline;

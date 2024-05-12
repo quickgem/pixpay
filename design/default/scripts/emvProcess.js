@@ -2,7 +2,7 @@ var GLOBAL_HEXARR_2_STRING = require("mod_global_funcs").GLOBAL_HEXARR_2_STRING;
 var GLOBAL_FUNCS  = require("mod_global_funcs").GLOBAL_FUNCS;
 var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
-// var transOnline = require("mod_global_network").transOnline;
+var transOnline = require("mod_global_network").transOnline;
 var GLOBAL_HEXARR2STRING = require("mod_global_funcs").GLOBAL_HEXARR2STRING;
 
 ViewModel("emvProcess", {
@@ -174,9 +174,10 @@ ViewModel("emvProcess", {
         this.notifyPropsChanged();
       }
       this.handleProcess(true,"online ....");
+      this.netSuccess()
       // transOnline(Tos.GLOBAL_CONFIG.networkParam,callback,this.trans);
-      this.loading = true
-      this.transOnlineTms();
+      // this.loading = true
+      // this.transOnlineTms();
     },
     dateTime: function (){
       let transactionTime = Tos.GLOBAL_TRANSACTION.trans.transTime;
