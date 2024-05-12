@@ -21,7 +21,6 @@ function GLOBAL_API() {
         console.log("REQUEST:====>", requestString);
         let that = this
         this.httpCB = function (ret) {
-            console.log("RESPONSE RT:====>", JSON.stringify(ret));
             let data = ret.data && ret.data.response_buf || [];
             that.parseData(data,onSuccess,onError);
         };
@@ -56,6 +55,7 @@ function GLOBAL_API() {
         let decodeStr = String.fromCharCode.apply(null, u8arr);
         if (decodeStr) {
             let parsedData = JSON.parse(decodeStr);
+            console.log('RESPONSE RT:====>', JSON.stringify(parsedData))
             if(parsedData.responseCode === "00"){
                 console.log('returned responseCode =========>', JSON.stringify(parsedData.responseCode))
                 onSuccess(parsedData)
