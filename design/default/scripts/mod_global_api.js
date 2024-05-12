@@ -44,9 +44,9 @@ function GLOBAL_API() {
             type = 1;
         }
         ret = Tos.SocSetProperty(type);
-        console.log("selecNetwork =========>", ret.code);
+        console.log("selectNetwork =========>", ret.code);
         ret = Tos.SocGetProperty(0);
-        console.log("selecNetwork get =========>", ret.code, ret.data);
+        console.log("selectNetwork get =========>", ret.code, ret.data);
         return true;
     }
 

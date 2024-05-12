@@ -192,13 +192,17 @@ ViewModel("emvProcess", {
       console.log('TMS PROCESS STARTED ===>>>> ',JSON.stringify(this.trans))
       function onSuccess(data){
         this.loading = true
+        this.notifyPropsChanged();
         console.log("onSuccess ====>  ", JSON.stringify(data))
-        this.netSuccess()
+        //this.netSuccess()
       }
       function onError(data){
         this.loading = true
+        this.isError = true
+        this.error = data
+        this.notifyPropsChanged();
         console.log("onError ====>  ", JSON.stringify(data))
-        this.netError()
+        //this.netError()
       }
       function generateReference(n){
         return Math.floor(Math.pow(10, n-1) + Math.random() * 9*Math.pow(10, n-1)).toString()
