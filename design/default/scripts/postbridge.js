@@ -9,6 +9,7 @@ ViewModel("postbridge", {
         balanceEnquiryRequest:{accountNumber:""},
         balance:"0.00",
         trans:{},
+        rrn:"",
         flow:{}
     },
 
@@ -22,15 +23,19 @@ ViewModel("postbridge", {
             navigateTo({
                 target: "result",
                 type:  "success",
+                rrn: this.rrn,
+                code: data.responseCode?data.responseCode:data.isoResponseCode,
                 close_current: true,
             });
         },
-        onError: function () {
+        onError: function (data) {
             this.loading = false
             this.notifyPropsChanged();
             navigateReplace({
                 target: "result",
                 type: "error",
+                rrn: this.rrn,
+                code: data.responseCode?data.responseCode:data.isoResponseCode,
                 close_current: true
             });
         },
@@ -68,6 +73,8 @@ ViewModel("postbridge", {
                 aid:this.trans.aid,
                 appLab:this.trans.emvAppName,
             }
+            this.rrn = request.rrn
+            that.notifyPropsChanged();
             Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,this.onSuccess,this.onError)
         },
         onFail: function () {

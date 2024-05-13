@@ -7,6 +7,7 @@ function GLOBAL_CONFIG() {
         merchantName:"Topwise",
         tpdu: "6000380000",
         head: "603200322012",
+        partner: "CORESTEP",
 
         timeout:60,
         resendTime:3,
