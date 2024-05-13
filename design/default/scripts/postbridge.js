@@ -5,7 +5,7 @@ ViewModel("postbridge", {
         showModel:false,
         user:null,
         loading:false,
-        showTip:"Fetching account balance",
+        showTip:"Processing transaction...",
         balanceEnquiryRequest:{accountNumber:""},
         balance:"0.00",
         trans:{},
