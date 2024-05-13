@@ -240,6 +240,11 @@ ViewModel("pay", {
   onMount: function (data) {
     let that = this;
     timerAdd(function (){
+      that.initCAPKdata();
+      that.initAIDdata();
+      that.createDir();
+      console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
+      if (Tos.GLOBAL_CONFIG == null) new GLOBAL_CONFIG().init();
       console.log("Tos.PedWriteKey begin  ============>");
       Tos.GLOBAL_CONFIG.injectKeys()
       // let keyData = [0x08, 0x8c, 0xae, 0xd6, 0x53, 0xbc, 0xaa, 0xa3, 0x68, 0xfc, 0xc0, 0x11, 0x8a, 0xd7, 0xd3, 0x37];
@@ -255,11 +260,6 @@ ViewModel("pay", {
       // };
       // let res = Tos.PedWriteKey(obj, null);
       console.log("Tos.PedWriteKey end  ============>", res.code);
-      that.initCAPKdata();
-      that.initAIDdata();
-      that.createDir();
-      console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
-      if (Tos.GLOBAL_CONFIG == null) new GLOBAL_CONFIG().init();
       console.log("this.user   =======> ", JSON.stringify(that.user))
       if (that.user != null) saveUserInfo(that.user)
       if(Tos.GLOBAL_CONFIG){
