@@ -14,6 +14,11 @@ var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 var GLOBAL_GET_FILE = require("mod_global_app_manage").GLOBAL_GET_FILE;
 var GLOBAL_ARRAYBUFFER_GET_FILE = require("mod_global_app_manage").GLOBAL_ARRAYBUFFER_GET_FILE;
 
+function decorateAmount(amt) {
+    let amount = amt.toString()
+    return (parseInt(amount.substring(0,amount.length-2))).toLocaleString()+"."+amount.substring(amount.length-2,amount.length)
+}
+
 function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     console.log("args ====>, ", JSON.stringify(arg))
     console.log("trans ====>, ", JSON.stringify(trans))
@@ -75,13 +80,13 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,ALIGN_LEFT,fontSize.MIDDLE);
     addText("MID:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet,ALIGN_LEFT,fontSize.MIDDLE);
-    let cardNo = trans.pan.substring(0,6)+"******"+trans.pan.substring(trans.pan.length-5,4)
+    let cardNo = trans.pan.substring(0,5)+"******"+trans.pan.substring(trans.pan.length-4,trans.pan.length)
     addText("CARD:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(cardNo,ALIGN_LEFT,fontSize.MIDDLE);
     addText("NAME:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(trans.cardHolderName,ALIGN_LEFT,fontSize.MIDDLE);
     addText("AMOUNT:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(trans.amount/100,ALIGN_RIGHT,fontSize.MIDDLE);
+    addTextSpace(decorateAmount(trans.amount),ALIGN_RIGHT,fontSize.MIDDLE);
     addText("AID:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(trans.cardHolderName,ALIGN_LEFT,fontSize.MIDDLE);
     addText("STAN:",ALIGN_LEFT,fontSize.MIDDLE);
