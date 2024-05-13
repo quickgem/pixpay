@@ -241,19 +241,19 @@ ViewModel("pay", {
     let that = this;
     timerAdd(function (){
       console.log("Tos.PedWriteKey begin  ============>");
-
-      let keyData = [0x08, 0x8c, 0xae, 0xd6, 0x53, 0xbc, 0xaa, 0xa3, 0x68, 0xfc, 0xc0, 0x11, 0x8a, 0xd7, 0xd3, 0x37];
-      let obj = {
-        dst_value: keyData,
-        dst_type: KEYTYPE_PEK,
-        src_algo_type: SYMMETRIC_CRYPT_DES,
-        src_type: KEYTYPE_TMK,
-        src_idx: -1,
-        dst_idx: 1,
-        dst_len: keyData.length,
-        dst_algo_type: SYMMETRIC_CRYPT_DES
-      };
-      let res = Tos.PedWriteKey(obj, null);
+      Tos.GLOBAL_CONFIG.injectKeys()
+      // let keyData = [0x08, 0x8c, 0xae, 0xd6, 0x53, 0xbc, 0xaa, 0xa3, 0x68, 0xfc, 0xc0, 0x11, 0x8a, 0xd7, 0xd3, 0x37];
+      // let obj = {
+      //   dst_value: keyData,
+      //   dst_type: KEYTYPE_PEK,
+      //   src_algo_type: SYMMETRIC_CRYPT_DES,
+      //   src_type: KEYTYPE_TMK,
+      //   src_idx: -1,
+      //   dst_idx: 1,
+      //   dst_len: keyData.length,
+      //   dst_algo_type: SYMMETRIC_CRYPT_DES
+      // };
+      // let res = Tos.PedWriteKey(obj, null);
       console.log("Tos.PedWriteKey end  ============>", res.code);
       that.initCAPKdata();
       that.initAIDdata();
