@@ -174,16 +174,13 @@ ViewModel("emvProcess", {
         this.notifyPropsChanged();
       }
       this.handleProcess(true,"online ....");
-      // transOnline(Tos.GLOBAL_CONFIG.networkParam,callback,this.trans);
-      //this.transOnlineTms();
-      //this.netSuccess()
       navigateTo({
         target: "postbridge",
         close_current: true,
-        data: {
+        data:{
           trans: this.trans,
-          flow: this.flow
-        },
+          flow: this.flow,
+        }
       });
     },
     netSuccess: function () {
