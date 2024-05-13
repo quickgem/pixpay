@@ -4,6 +4,7 @@ var GLOBAL_PREENTRY = require("mod_global_trans").GLOBAL_PREENTRY;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 var GLOBAL_CONSTANT = require("mod_global_constant").GLOBAL_CONSTANT;
 var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
+var injectKeys = require("mod_global_config").injectKeys;
 var saveUserInfo = require("mod_global_config").saveUserInfo;
 var GLOBAL_CHOOSE_NETWORK = require("mod_global_network").GLOBAL_CHOOSE_NETWORK;
 var GLOBAL_API = require("mod_global_api").GLOBAL_API;
@@ -240,13 +241,8 @@ ViewModel("pay", {
   onMount: function (data) {
     let that = this;
     timerAdd(function (){
-      that.initCAPKdata();
-      that.initAIDdata();
-      that.createDir();
-      console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
-      if (Tos.GLOBAL_CONFIG == null) new GLOBAL_CONFIG().init();
       console.log("Tos.PedWriteKey begin  ============>");
-      new GLOBAL_CONFIG().injectKeys()
+      injectKeys()
       // let keyData = [0x08, 0x8c, 0xae, 0xd6, 0x53, 0xbc, 0xaa, 0xa3, 0x68, 0xfc, 0xc0, 0x11, 0x8a, 0xd7, 0xd3, 0x37];
       // let obj = {
       //   dst_value: keyData,
@@ -260,6 +256,11 @@ ViewModel("pay", {
       // };
       // let res = Tos.PedWriteKey(obj, null);
       console.log("Tos.PedWriteKey end  ============>", res.code);
+      that.initCAPKdata();
+      that.initAIDdata();
+      that.createDir();
+      console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
+      if (Tos.GLOBAL_CONFIG == null) new GLOBAL_CONFIG().init();
       console.log("this.user   =======> ", JSON.stringify(that.user))
       if (that.user != null) saveUserInfo(that.user)
       if(Tos.GLOBAL_CONFIG){

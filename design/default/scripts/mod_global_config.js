@@ -105,47 +105,6 @@ function GLOBAL_CONFIG() {
 
         return hexArr;
     }
-
-  this.injectKeys = function(){
-        console.log("inject master key");
-        // let tmk = [
-        //     0x08, 0x8c, 0xae, 0xd6, 0x53, 0xbc, 0xaa, 0xa3,
-        //     0x68, 0xfc, 0xc0, 0x11,0x8a, 0xd7, 0xd3, 0x37
-        // ];
-        let tmk = this.GLOBAL_STRING_2_HEXARR("31313131313131313131313131313131")
-        let tmkObj = {
-            src_algo_type: SYMMETRIC_CRYPT_DES,
-            src_type: KEYTYPE_TMK,
-            src_idx: -1,
-            dst_type: KEYTYPE_TMK,
-            dst_idx: 1,
-            dst_value: tmk,
-            dst_len: tmk.length,
-            dst_algo_type: SYMMETRIC_CRYPT_DES,
-        };
-        let res = Tos.PedWriteKey(tmkObj, null);
-        console.log("inject master key result ",res.code);
-
-        console.log("inject pinkey key");
-        // let pinkey = [
-        //     0x07,0x6c,0x5e,0xc6,0x32,0xb4,0xac,0x83,
-        //     0x56,0x9c,0xc1,0x21,0x8d,0xd5,0xe6,0x50,
-        // ];
-        let pinkey = this.GLOBAL_STRING_2_HEXARR("00000000000000000000000000000000")
-        let pinkeyObj = {
-            src_algo_type: SYMMETRIC_CRYPT_DES,
-            src_type: KEYTYPE_TMK,
-            src_idx: 1,
-            dst_type: KEYTYPE_PEK,
-            dst_idx: 1,
-            dst_value: pinkey,
-            dst_len: pinkey.length,
-            dst_algo_type: SYMMETRIC_CRYPT_DES,
-        };
-        res = Tos.PedWriteKey(pinkeyObj, null);
-        console.log("inject pinkey key result ",res.code);
-
-    }
 }
 function SAVE_CONFIG(){
     let configArr = JSON.stringify(Tos.GLOBAL_CONFIG).split("");
@@ -172,6 +131,47 @@ function saveUserInfo(data){
     console.log('userInfo after ==>',JSON.stringify(Tos.GLOBAL_CONFIG.userInfo))
 }
 
+function injectKeys (){
+    console.log("inject master key");
+    // let tmk = [
+    //     0x08, 0x8c, 0xae, 0xd6, 0x53, 0xbc, 0xaa, 0xa3,
+    //     0x68, 0xfc, 0xc0, 0x11,0x8a, 0xd7, 0xd3, 0x37
+    // ];
+    let tmk = this.GLOBAL_STRING_2_HEXARR("31313131313131313131313131313131")
+    let tmkObj = {
+        src_algo_type: SYMMETRIC_CRYPT_DES,
+        src_type: KEYTYPE_TMK,
+        src_idx: -1,
+        dst_type: KEYTYPE_TMK,
+        dst_idx: 1,
+        dst_value: tmk,
+        dst_len: tmk.length,
+        dst_algo_type: SYMMETRIC_CRYPT_DES,
+    };
+    let res = Tos.PedWriteKey(tmkObj, null);
+    console.log("inject master key result ",res.code);
+
+    console.log("inject pinkey key");
+    // let pinkey = [
+    //     0x07,0x6c,0x5e,0xc6,0x32,0xb4,0xac,0x83,
+    //     0x56,0x9c,0xc1,0x21,0x8d,0xd5,0xe6,0x50,
+    // ];
+    let pinkey = this.GLOBAL_STRING_2_HEXARR("00000000000000000000000000000000")
+    let pinkeyObj = {
+        src_algo_type: SYMMETRIC_CRYPT_DES,
+        src_type: KEYTYPE_TMK,
+        src_idx: 1,
+        dst_type: KEYTYPE_PEK,
+        dst_idx: 1,
+        dst_value: pinkey,
+        dst_len: pinkey.length,
+        dst_algo_type: SYMMETRIC_CRYPT_DES,
+    };
+    res = Tos.PedWriteKey(pinkeyObj, null);
+    console.log("inject pinkey key result ",res.code);
+
+}
+
 function clearUserInfo(){
     Tos.GLOBAL_CONFIG.userInfo = {}
     SAVE_CONFIG();
@@ -183,3 +183,4 @@ exports.SAVE_CONFIG = SAVE_CONFIG;
 exports.incVouchNo = incVouchNo;
 exports.saveUserInfo = saveUserInfo;
 exports.clearUserInfo = clearUserInfo;
+exports.injectKeys = injectKeys;
