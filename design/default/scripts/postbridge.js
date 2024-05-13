@@ -17,7 +17,7 @@ ViewModel("postbridge", {
         initHTTPCB: function () {
             Tos.HttpclientCbEvent();
         },
-        onSuccess: function () {
+        onSuccess: function (data) {
             this.loading = false
             this.notifyPropsChanged();
             navigateTo({
@@ -71,7 +71,7 @@ ViewModel("postbridge", {
                 name:this.trans.cardHolderName,
                 date:currentDateTime,
                 aid:this.trans.aid,
-                appLab:this.trans.emvAppName,
+                appLab:this.trans.emvAppLabel,
             }
             this.rrn = request.rrn
             that.notifyPropsChanged();

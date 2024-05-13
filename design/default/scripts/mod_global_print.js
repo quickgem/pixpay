@@ -94,7 +94,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addText("RRN:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(arg.rrn,ALIGN_LEFT,fontSize.MIDDLE);
     addText("APPLAB:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(trans.emvAppName,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(trans.emvAppLabel,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace( '--------------------------------',ALIGN_CENTER,fontSize.LARGE);
     addTextSpace( 'powered by bizgem.io',ALIGN_CENTER,fontSize.SMALL);
     addTextSpace( '--------------------------------',ALIGN_CENTER,fontSize.LARGE);
