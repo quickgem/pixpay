@@ -6,7 +6,7 @@
  * ALIGN_CENTER  2
  * ALIGN_RIGHT   3
  */
-const {getResponse} = require("./mod_global_response");
+const  getResponse = require("mod_global_response").getResponse;
 
 var sprintf = require("mod_global_funcs").sprintf;
 var SHOW_MASK_CARD = require("mod_global_funcs").SHOW_MASK_CARD;
