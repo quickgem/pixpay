@@ -246,7 +246,7 @@ ViewModel("pay", {
       console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
       if (Tos.GLOBAL_CONFIG == null) new GLOBAL_CONFIG().init();
       console.log("Tos.PedWriteKey begin  ============>");
-      Tos.GLOBAL_CONFIG.injectKeys()
+      new GLOBAL_CONFIG().injectKeys()
       // let keyData = [0x08, 0x8c, 0xae, 0xd6, 0x53, 0xbc, 0xaa, 0xa3, 0x68, 0xfc, 0xc0, 0x11, 0x8a, 0xd7, 0xd3, 0x37];
       // let obj = {
       //   dst_value: keyData,
