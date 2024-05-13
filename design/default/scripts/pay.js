@@ -263,7 +263,7 @@ ViewModel("pay", {
       if (Tos.GLOBAL_CONFIG == null) new GLOBAL_CONFIG().init();
       console.log("this.user   =======> ", JSON.stringify(that.user))
       if (that.user != null) saveUserInfo(that.user)
-      if(Tos.GLOBAL_CONFIG){
+      if(Tos.GLOBAL_CONFIG != null){
         console.log("GLOBAL_CONFIG   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
         if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
           navigateTo({
@@ -271,13 +271,12 @@ ViewModel("pay", {
             close_current: true,
           });
         }
-        // else{
-        //   console.log("GLOBAL_CONFIG ppp   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
-        //   navigateTo({
-        //     target: "pay",
-        //     close_current: true,
-        //   });
-        // }
+      } else {
+        console.log("GLOBAL_CONFIG ppp   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
+        navigateTo({
+          target: "login",
+          close_current: true,
+        });
       }
       // if(Tos.GLOBAL_CONFIG){
       //   Tos.GLOBAL_CONFIG.merchantName = this.user.customerFirstName + '' + this.user.customerLastName
