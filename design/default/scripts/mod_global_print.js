@@ -74,23 +74,28 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addText("RESPONSE CODE:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(arg.code === ""?"999":arg.code,ALIGN_LEFT,fontSize.MIDDLE);
     addText("MESSAGE:",ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("MESSAGE:")
     let msg = getResponse(arg.code).responseMessage
     addTextSpace(msg?msg:"Unknown Error",ALIGN_LEFT,fontSize.MIDDLE);
+    console.log(msg)
     addText("TID:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,ALIGN_LEFT,fontSize.MIDDLE);
     addText("MID:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet,ALIGN_LEFT,fontSize.MIDDLE);
     let cardNo = trans.pan.substring(0,5)+"******"+trans.pan.substring(trans.pan.length-4,trans.pan.length)
+    console.log("cardNo",cardNo)
     addText("CARD:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(cardNo,ALIGN_LEFT,fontSize.MIDDLE);
     addText("NAME:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(trans.cardHolderName,ALIGN_LEFT,fontSize.MIDDLE);
     addText("AMOUNT:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(decorateAmount(trans.amount),ALIGN_RIGHT,fontSize.MIDDLE);
+    console.log("AMOUNT",decorateAmount(trans.amount))
     addText("AID:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(trans.cardHolderName,ALIGN_LEFT,fontSize.MIDDLE);
     addText("STAN:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(arg.rrn.substring(0,6),ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("arg.rrn.substring(0,6)",arg.rrn.substring(0,6))
     addText("RRN:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(arg.rrn,ALIGN_LEFT,fontSize.MIDDLE);
     addText("APPLAB:",ALIGN_LEFT,fontSize.MIDDLE);
