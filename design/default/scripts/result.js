@@ -69,7 +69,7 @@ ViewModel("result", {
     onPrint:function () {
       let that  = this;
       timerAdd(function () {
-        PRINT_TICKET(that.trans,that.callback,false,that.currPrint, {code: this.responseCode, rrn: this.rrn});
+        PRINT_TICKET(that.trans,that.callback,false,that.currPrint, {code: that.responseCode, rrn: that.rrn});
         return RET_REMOVE;
       }, 100);
     },
