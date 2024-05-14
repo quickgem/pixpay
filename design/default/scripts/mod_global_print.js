@@ -95,7 +95,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addTextSpace(trans.cardHolderName,ALIGN_LEFT,fontSize.MIDDLE);
     addText("STAN:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(arg.rrn.substring(0,6),ALIGN_LEFT,fontSize.MIDDLE);
-    console.log("arg.rrn.substring(0,6)",arg.rrn.substring(0,6))
+    console.log("arg.rrn.substring(0,6)")
     addText("RRN:",ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(arg.rrn,ALIGN_LEFT,fontSize.MIDDLE);
     addText("APPLAB:",ALIGN_LEFT,fontSize.MIDDLE);
