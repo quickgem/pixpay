@@ -56,11 +56,11 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     setSpace(fontSpace);
     //console.log("setSpace ======>>>>>");
     addTextSpace( Tos.GLOBAL_CONFIG.partner,ALIGN_CENTER,fontSize.LARGE);
-    addTextSpace( '--------------------------------',ALIGN_CENTER,fontSize.LARGE);
+    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.LARGE);
     //console.log("set data  0000 ======>>>>>");
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationName,ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationAddress,ALIGN_CENTER,fontSize.MIDDLE);
-    addTextSpace( '--------------------------------',ALIGN_CENTER,fontSize.LARGE);
+    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.LARGE);
     if(currIndex === 0) {
         addTextSpace("*** MERCHANT COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
     }else{
@@ -71,38 +71,21 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     }else{
         addTextSpace( 'DECLINED',ALIGN_CENTER,fontSize.LARGE);
     }
-    addText("RESPONSE CODE:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(arg.code === ""?"999":arg.code,ALIGN_LEFT,fontSize.MIDDLE);
-    addText("MESSAGE:",ALIGN_LEFT,fontSize.MIDDLE);
-    console.log("MESSAGE:")
-    let msg = getResponse(arg.code).responseMessage
-    addTextSpace(msg?msg:"Unknown Error",ALIGN_LEFT,fontSize.MIDDLE);
-    console.log(msg)
-    addText("TID:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,ALIGN_LEFT,fontSize.MIDDLE);
-    addText("MID:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`RESPONSE CODE: ${arg.code === ""?"999":arg.code}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`MESSAGE: ${getResponse(arg.code).responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`TID: ${Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`MID: ${Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet}`,ALIGN_LEFT,fontSize.MIDDLE);
     let cardNo = trans.pan.substring(0,5)+"******"+trans.pan.substring(trans.pan.length-4,trans.pan.length)
-    console.log("cardNo",cardNo)
-    addText("CARD:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(cardNo,ALIGN_LEFT,fontSize.MIDDLE);
-    addText("NAME:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(trans.cardHolderName,ALIGN_LEFT,fontSize.MIDDLE);
-    addText("AMOUNT:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(decorateAmount(trans.amount),ALIGN_RIGHT,fontSize.MIDDLE);
-    console.log("AMOUNT",decorateAmount(trans.amount))
-    addText("AID:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(trans.cardHolderName,ALIGN_LEFT,fontSize.MIDDLE);
-    addText("STAN:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(arg.rrn.substring(0,6),ALIGN_LEFT,fontSize.MIDDLE);
-    console.log("arg.rrn.substring(0,6)")
-    addText("RRN:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(arg.rrn,ALIGN_LEFT,fontSize.MIDDLE);
-    addText("APPLAB:",ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(trans.emvAppLabel,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace( '--------------------------------',ALIGN_CENTER,fontSize.LARGE);
+    addTextSpace(`CARD: ${cardNo}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`NAME: ${trans.cardHolderName}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`AMOUNT: ${decorateAmount(trans.amount)}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`AID: ${trans.aid}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`STAN: ${arg.rrn.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`RRN: ${arg.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`APPLAB: ${trans.emvAppLabel}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.LARGE);
     addTextSpace( 'powered by bizgem.io',ALIGN_CENTER,fontSize.SMALL);
-    addTextSpace( '--------------------------------',ALIGN_CENTER,fontSize.LARGE);
+    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.LARGE);
     //setBold(false);
     Tos.PrnStart();
     console.log("PRINT_TICKET  filled data end ======>>>>>");
