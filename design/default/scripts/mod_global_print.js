@@ -14,10 +14,6 @@ var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 var GLOBAL_GET_FILE = require("mod_global_app_manage").GLOBAL_GET_FILE;
 var GLOBAL_ARRAYBUFFER_GET_FILE = require("mod_global_app_manage").GLOBAL_ARRAYBUFFER_GET_FILE;
 
-function decorateAmount(amt) {
-    let amount = amt.toString()
-    return (parseInt(amount.substring(0,amount.length-2))).toLocaleString()+"."+amount.substring(amount.length-2,amount.length)
-}
 
 function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     console.log("args ====>, ", JSON.stringify(arg))
@@ -79,7 +75,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addTextSpace(`CARD: ${cardNo}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`NAME: ${trans.cardHolderName}`,ALIGN_LEFT,fontSize.MIDDLE);
     addText(`AMOUNT:`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`₦${decorateAmount(trans.amount)}`,ALIGN_RIGHT,fontSize.LARGE);
+    addTextSpace(`₦${GET_SHOW_AMOUNT(trans.amount)}`,ALIGN_RIGHT,fontSize.LARGE);
     addTextSpace(`AID: ${trans.aid}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`STAN: ${arg.rrn.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`RRN: ${arg.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);

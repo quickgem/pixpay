@@ -147,7 +147,7 @@ function  GET_SHOW_AMOUNT(amount){
     return "0.00"
   }
   let amt  = parseInt(amount);
-  let data =(amt/100).toFixed(2);
+  let data = (amt/100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   console.log("GET_SHOW_AMOUNT  amt) ==========>:", data);
   return data;
 }
