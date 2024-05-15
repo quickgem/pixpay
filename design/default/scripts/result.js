@@ -195,7 +195,7 @@ ViewModel("result", {
       console.log("onMount success ============>", 'trans ====>',JSON.stringify(this.trans));
       console.log("onMount success ============>", 'transParam ====>',JSON.stringify(this.transParam));
       this.onPrint();
-    }else if (this.resultCode === 1){
+    }else if (this.resultCode === 0){
       console.log("onMount failure ============>", 'flow ====>',JSON.stringify(this.flow));
       console.log("onMount failure ============>", 'trans ====>',JSON.stringify(this.trans));
       console.log("onMount failure ============>", 'transParam ====>',JSON.stringify(this.transParam));
