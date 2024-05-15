@@ -35,7 +35,7 @@ ViewModel("result", {
           this.onConfirm();
           break;
         case "return":
-          this.onConfirm();
+          this.onPrintMerchantCopy();
           break;
         default:
           break;
@@ -68,6 +68,15 @@ ViewModel("result", {
 
     onPrint:function () {
       let that  = this;
+      timerAdd(function () {
+        PRINT_TICKET(that.trans,that.callback,false,that.currPrint, {code: that.responseCode, rrn: that.rrn});
+        return RET_REMOVE;
+      }, 100);
+    },
+
+    onPrintMerchantCopy:function () {
+      let that  = this;
+      that.currPrint=1
       timerAdd(function () {
         PRINT_TICKET(that.trans,that.callback,false,that.currPrint, {code: that.responseCode, rrn: that.rrn});
         return RET_REMOVE;
