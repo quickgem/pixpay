@@ -6,7 +6,7 @@ var getResponse = require("mod_global_response").getResponse;
 ViewModel("result", {
   data: {
     amount: "0.00",
-    btnText: "Success (10s)",
+    btnText: "Success (60s)",
     resultCode: 1,
     isTimerActive: false,
     isPrinting: false,
@@ -101,7 +101,7 @@ ViewModel("result", {
     delayClsPrn: function () {
       if (this.isTimerActive) return;
       this.isTimerActive = true;
-      let time = 10;
+      let time = 60;
       let that = this;
       console.log("delayClsPrn 000===========>");
       timerAdd(function () {
