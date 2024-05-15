@@ -178,7 +178,6 @@ function clearUserInfo(){
     SAVE_CONFIG();
 }
 
-
 exports.GLOBAL_CONFIG = GLOBAL_CONFIG;
 exports.SAVE_CONFIG = SAVE_CONFIG;
 exports.incVouchNo = incVouchNo;

@@ -255,7 +255,7 @@ ViewModel("pay", {
       //   dst_algo_type: SYMMETRIC_CRYPT_DES
       // };
       // let res = Tos.PedWriteKey(obj, null);
-      console.log("Tos.PedWriteKey end  ============>", res.code);
+      console.log("Tos.PedWriteKey end  ============>");
       that.initCAPKdata();
       that.initAIDdata();
       that.createDir();
