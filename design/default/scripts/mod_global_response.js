@@ -48,7 +48,7 @@ const GLOBAL_RESPONSE = [
     {responseCode:"52", responseMessage:"No checking account"},
     {responseCode:"53", responseMessage:"No savings account"},
     {responseCode:"54", responseMessage:"Expired card"},
-    {responseCode:"55", responseMessage:"Incorrect personal identification number"},
+    {responseCode:"55", responseMessage:"Incorrect pin"},
     {responseCode:"56", responseMessage:"No card record"},
     {responseCode:"57", responseMessage:"Transaction not permitted to cardholder"},
     {responseCode:"58", responseMessage:"Transaction not permitted to terminal"},
