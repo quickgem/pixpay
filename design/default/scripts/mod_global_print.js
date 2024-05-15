@@ -56,15 +56,15 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     setSpace(fontSpace);
     //console.log("setSpace ======>>>>>");
     addTextSpace( Tos.GLOBAL_CONFIG.partner,ALIGN_CENTER,fontSize.LARGE);
-    addTextSpace( '-----------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
+    addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     //console.log("set data  0000 ======>>>>>");
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationName,ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationAddress,ALIGN_CENTER,fontSize.MIDDLE);
-    addTextSpace( '-----------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
+    addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     if(currIndex === 1) {
         addTextSpace("*** MERCHANT COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
     }else{
-        addTextSpace("*** CARDHOLDER COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
+        addTextSpace("*** CUSTOMER COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
     }
     if (arg.code === "00"){
         addTextSpace( 'APPROVED',ALIGN_CENTER,fontSize.LARGE);
@@ -84,9 +84,9 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addTextSpace(`STAN: ${arg.rrn.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`RRN: ${arg.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`APPLAB: ${trans.emvAppLabel}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace( '-----------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
+    addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace( 'powered by bizgem.io',ALIGN_CENTER,fontSize.SMALL);
-    addTextSpace( '-----------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
+    addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     //setBold(false);
     Tos.PrnStart();
     console.log("PRINT_TICKET  filled data end ======>>>>>");
