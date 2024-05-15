@@ -56,12 +56,12 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     setSpace(fontSpace);
     //console.log("setSpace ======>>>>>");
     addTextSpace( Tos.GLOBAL_CONFIG.partner,ALIGN_CENTER,fontSize.LARGE);
-    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.LARGE);
+    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     //console.log("set data  0000 ======>>>>>");
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationName,ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationAddress,ALIGN_CENTER,fontSize.MIDDLE);
-    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.LARGE);
-    if(currIndex === 0) {
+    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
+    if(currIndex === 1) {
         addTextSpace("*** MERCHANT COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
     }else{
         addTextSpace("*** CARDHOLDER COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
@@ -78,14 +78,15 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     let cardNo = trans.pan.substring(0,5)+"******"+trans.pan.substring(trans.pan.length-4,trans.pan.length)
     addTextSpace(`CARD: ${cardNo}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`NAME: ${trans.cardHolderName}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`AMOUNT: ${decorateAmount(trans.amount)}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addText(`AMOUNT:`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`₦${decorateAmount(trans.amount)}`,ALIGN_RIGHT,fontSize.LARGE);
     addTextSpace(`AID: ${trans.aid}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`STAN: ${arg.rrn.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`RRN: ${arg.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`APPLAB: ${trans.emvAppLabel}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.LARGE);
+    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace( 'powered by bizgem.io',ALIGN_CENTER,fontSize.SMALL);
-    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.LARGE);
+    addTextSpace( '------------------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     //setBold(false);
     Tos.PrnStart();
     console.log("PRINT_TICKET  filled data end ======>>>>>");
