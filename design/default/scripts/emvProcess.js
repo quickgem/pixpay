@@ -1,4 +1,5 @@
 var GLOBAL_HEXARR_2_STRING = require("mod_global_funcs").GLOBAL_HEXARR_2_STRING;
+var GLOBAL_HEX2ASCII = require("mod_global_funcs").GLOBAL_HEX2ASCII;
 var GLOBAL_FUNCS  = require("mod_global_funcs").GLOBAL_FUNCS;
 var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
@@ -304,7 +305,7 @@ ViewModel("emvProcess", {
       if (ret.code === 0) {
         console.log("  app name length ==============>", ret.data.length);
         console.log("  app name data ==============>", ret.data);
-        cardInfo = GLOBAL_HEXARR_2_STRING(ret.data);
+        cardInfo = GLOBAL_HEX2ASCII(GLOBAL_HEXARR_2_STRING(ret.data));
         Tos.GLOBAL_TRANSACTION.trans.emvAppName = cardInfo;
         console.log("  app name  ==============>", cardInfo);
       }
@@ -323,7 +324,7 @@ ViewModel("emvProcess", {
       if (ret.code === 0) {
         console.log("  card holder name length ==============>", ret.data.length);
         console.log("  card holder name data ==============>", ret.data);
-        cardInfo = GLOBAL_HEXARR_2_STRING(ret.data);
+        cardInfo = GLOBAL_HEX2ASCII(GLOBAL_HEXARR_2_STRING(ret.data));
         Tos.GLOBAL_TRANSACTION.trans.cardHolderName = cardInfo;
         console.log("  card holder name  ==============>", cardInfo);
       }
