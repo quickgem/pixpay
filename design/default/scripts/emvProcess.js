@@ -3,7 +3,6 @@ var GLOBAL_FUNCS  = require("mod_global_funcs").GLOBAL_FUNCS;
 var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 var transOnline = require("mod_global_network").transOnline;
-var GLOBAL_HEXARR2STRING = require("mod_global_funcs").GLOBAL_HEXARR2STRING;
 
 ViewModel("emvProcess", {
   data: {
@@ -303,7 +302,7 @@ ViewModel("emvProcess", {
       /************ app name **********/
       ret = Tos.TemvGetTLVData(0x9F12);
       if (ret.code === 0) {
-        cardInfo = GLOBAL_HEXARR2STRING(ret.data);
+        cardInfo = GLOBAL_HEXARR_2_STRING(ret.data);
         Tos.GLOBAL_TRANSACTION.trans.emvAppName = cardInfo;
         console.log("  app name  ==============>", cardInfo);
       }
@@ -320,7 +319,7 @@ ViewModel("emvProcess", {
       /************ card holder name **********/
       ret = Tos.TemvGetTLVData(0x5F20);
       if (ret.code === 0) {
-        cardInfo = GLOBAL_HEXARR2STRING(ret.data);
+        cardInfo = GLOBAL_HEXARR_2_STRING(ret.data);
         Tos.GLOBAL_TRANSACTION.trans.cardHolderName = cardInfo;
         console.log("  card holder name  ==============>", cardInfo);
       }
