@@ -71,7 +71,7 @@ ViewModel("postbridge", {
                 name:this.trans.cardHolderName,
                 date:currentDateTime,
                 aid:this.trans.aid,
-                appLab:this.trans.emvAppLabel,
+                appLab:this.trans.emvAppName,
             }
             this.rrn = request.rrn
             that.notifyPropsChanged();

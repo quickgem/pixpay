@@ -79,7 +79,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addTextSpace(`AID: ${trans.aid}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`STAN: ${arg.rrn.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`RRN: ${arg.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`APPLAB: ${trans.emvAppLabel}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`APPLAB: ${trans.emvAppName}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace( 'powered by bizgem.io',ALIGN_CENTER,fontSize.SMALL);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
