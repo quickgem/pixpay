@@ -302,6 +302,8 @@ ViewModel("emvProcess", {
       /************ app name **********/
       ret = Tos.TemvGetTLVData(0x9F12);
       if (ret.code === 0) {
+        console.log("  app name length ==============>", ret.data.length);
+        console.log("  app name data ==============>", ret.data);
         cardInfo = GLOBAL_HEXARR_2_STRING(ret.data);
         Tos.GLOBAL_TRANSACTION.trans.emvAppName = cardInfo;
         console.log("  app name  ==============>", cardInfo);
@@ -319,6 +321,8 @@ ViewModel("emvProcess", {
       /************ card holder name **********/
       ret = Tos.TemvGetTLVData(0x5F20);
       if (ret.code === 0) {
+        console.log("  card holder name length ==============>", ret.data.length);
+        console.log("  card holder name data ==============>", ret.data);
         cardInfo = GLOBAL_HEXARR_2_STRING(ret.data);
         Tos.GLOBAL_TRANSACTION.trans.cardHolderName = cardInfo;
         console.log("  card holder name  ==============>", cardInfo);
