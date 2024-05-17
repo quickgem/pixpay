@@ -197,7 +197,7 @@ ViewModel("emvProcess", {
       };
       console.log("netSuccess  tip ================= " ,JSON.stringify(this.trans));
       if(this.trans.response !== "00"){
-        toCardData.onlineResult =0x01;
+       toCardData.onlineResult =0x01;
       }
       if(this.trans.receiveIccData){
 
@@ -397,7 +397,7 @@ ViewModel("emvProcess", {
             res = Tool.GetClearPINBlock(that.plaintextPIN, that.plaintextPIN.length);
           }
           console.log("\r\nGetClearPINBlock ===========>", JSON.stringify(res));
-          let isByPass = that.plaintextPIN.length ?[0]:[1];
+		  let isByPass = that.plaintextPIN.length ?[0]:[1];
 
           return {
             code: that.plaintextPINstate === 0 ? 1 : 0,
@@ -645,8 +645,8 @@ ViewModel("emvProcess", {
       });
     },
     showStar:function(len){
-      let w = "*";
-      this.passwordStar = w.repeat(len);
+            let w = "*";
+            this.passwordStar = w.repeat(len);
     },
     onKeyDown(args) {
       console.log("key down----->>>>:", args, this.isShowModal, this.modalText);
