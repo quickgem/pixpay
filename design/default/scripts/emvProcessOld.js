@@ -197,7 +197,7 @@ ViewModel("emvProcess", {
       };
       console.log("netSuccess  tip ================= " ,JSON.stringify(this.trans));
       if(this.trans.response !== "00"){
-        toCardData.onlineResult =0x01;
+       toCardData.onlineResult =0x01;
       }
       if(this.trans.receiveIccData){
 
@@ -348,7 +348,7 @@ ViewModel("emvProcess", {
       // 返回值-出参入参都是： {code, data, msg}
       let obj = {
         cGetOnlinePin: function (bAllowBypass, pPAN, uiPAN) {
-          let cardNum = GLOBAL_HEXARR_2_STRING(pPAN).replace("F","");
+          let cardNum = GLOBAL_HEXARR_2_STRING(pPAN);
           that.cardNum = cardNum;
           let tret = Tos.SysGetTime();
           console.log("startPinBlock start =========", tret.data);
@@ -364,12 +364,12 @@ ViewModel("emvProcess", {
             if (that.valueLen === 0) {
               // 没有输入密码
               return {
-                data: [1],
+                data: [0],
                 code: 1
               };
             } else {
               return {
-                data: [0],
+                data: [1],
                 code: 1
               };
             }
@@ -397,11 +397,9 @@ ViewModel("emvProcess", {
             res = Tool.GetClearPINBlock(that.plaintextPIN, that.plaintextPIN.length);
           }
           console.log("\r\nGetClearPINBlock ===========>", JSON.stringify(res));
-          let isByPass = that.plaintextPIN.length ?[0]:[1];
-
           return {
             code: that.plaintextPINstate === 0 ? 1 : 0,
-            data: { pPIN: res.data, pbBypass: isByPass }
+            data: { pPIN: res.data, pbBypass: [0] }
           };
           // return {
           //   code: 1,
@@ -645,8 +643,8 @@ ViewModel("emvProcess", {
       });
     },
     showStar:function(len){
-      let w = "*";
-      this.passwordStar = w.repeat(len);
+            let w = "*";
+            this.passwordStar = w.repeat(len);
     },
     onKeyDown(args) {
       console.log("key down----->>>>:", args, this.isShowModal, this.modalText);
