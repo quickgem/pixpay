@@ -308,6 +308,8 @@ ViewModel("emvProcess", {
         cardInfo = GLOBAL_HEX2ASCII(GLOBAL_HEXARR_2_STRING(ret.data));
         Tos.GLOBAL_TRANSACTION.trans.emvAppName = cardInfo;
         console.log("  app name  ==============>", cardInfo);
+      }else if (Tos.GLOBAL_TRANSACTION.trans.pan.length === 19){
+        Tos.GLOBAL_TRANSACTION.trans.emvAppName = 'Verve';
       }
 
 
