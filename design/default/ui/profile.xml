@@ -3,29 +3,24 @@
     <view name="view3" x="73" y="0" w="38" h="38" style:normal:round_radius="20" style:normal:bg_color="#FFC002">
       <label name="label1" x="0" y="0" w="38" h="38" v-data:text="{nameSummary}"/>
     </view>
-    <label name="name" x="0" y="38" w="189" h="18" v-data:text="{fullName}"/>
-    <label name="email" x="0" y="66" w="189" h="18" style:normal:font_size="16" v-data:text="{user.customerEmail}"/>
+    <label name="name" x="-2" y="48" w="189" h="18" v-data:text="{fullName}"/>
+    <label name="email" x="0" y="66" w="189" h="18" style:normal:font_size="14" v-data:text="{user.customerEmail}"/>
   </view>
   <view name="view1" x="0" y="92" w="320" h="108">
     <button name="button" v-on:click="{navigate, Args=support}" x="0" y="0" w="320" h="36" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="bottom" style:over:text_align_h="left" style:over:border="top|bottom" style:over:margin="12" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:margin="12" text="Support"/>
     <button name="button" v-on:click="{navigate, Args=password}" x="0" y="36" w="320" h="36" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="bottom" style:over:text_align_h="left" style:over:border="top|bottom" style:over:margin="12" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:margin="12" text="Change Password"/>
     <button name="button" v-on:click="{navigate, Args=close}" x="0" y="72" w="320" h="36" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="none" style:over:text_align_h="left" style:over:border="top|bottom" style:over:margin="12" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:margin="12" text="Close Business"/>
   </view>
-  <view v-if="{isSupport}" name="support" x="0" y="0" w="320" h="211" style:normal:bg_color="#FFFFFF" style:normal:round_radius="2">
-    <view name="view4" x="0" y="0" w="320" h="30">
-      <label name="label" x="-7" y="0" w="327" h="28" style:normal:font_size="24" text="Support"/>
+  <view v-if="{isSupport}" name="support" x="0" y="0" w="320" h="211" style:normal:bg_color="#FFFFFF" style:normal:round_radius="2" disg:hide="true">
+    <view name="view4" x="67" y="10" w="243" h="30">
+      <label name="label" x="0" y="2" w="203" h="28" style:normal:font_size="24" text="Support"/>
     </view>
-    <view name="support_view" x="0" y="48" w="320" h="125">
-      <button name="button" x="0" y="0" w="320" h="43" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="bottom" style:normal:text_align_v="middle" style:over:border_color="#43536A" style:over:border="bottom" style:over:bg_color="#00000000" style:over:text_align_h="left" style:pressed:margin="12" style:over:margin="12" style:pressed:border_color="#43536A" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:bg_color="#00000000" text="Call Us:">
-        <label name="label2" x="113" y="7" w="141" h="26" style:normal:text_align_h="center" style:normal:font_name="default" style:normal:spacer="2" style:normal:x_offset="0" style:normal:bg_color="#43536A" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" v-data:text="{user.customerPhone}"/>
-      </button>
-      <button name="button" x="0" y="43" w="320" h="46" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="bottom" style:normal:text_align_v="middle" style:over:border_color="#43536A" style:over:border="bottom" style:over:bg_color="#00000000" style:over:text_align_h="left" style:pressed:margin="12" style:over:margin="12" style:pressed:border_color="#43536A" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:bg_color="#00000000" text="Send us email:">
-        <label name="label2" x="113" y="7" w="197" h="26" style:normal:text_align_h="left" style:normal:font_name="default" style:normal:spacer="2" style:normal:x_offset="0" style:normal:bg_color="#43536A" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" style:normal:margin_left="5" v-data:text="{user.customerEmail}" style:normal:font_size="16"/>
-      </button>
-      <button name="button" x="0" y="89" w="320" h="43" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="bottom" style:normal:text_align_v="middle" style:over:border_color="#43536A" style:over:border="bottom" style:over:bg_color="#00000000" style:over:text_align_h="left" style:pressed:margin="12" style:over:margin="12" style:pressed:border_color="#43536A" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:bg_color="#00000000" text="whatsapp us:">
-        <label name="label2" x="113" y="7" w="140" h="26" style:normal:text_align_h="center" style:normal:font_name="default" style:normal:spacer="2" style:normal:x_offset="0" style:normal:bg_color="#43536A" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" v-data:text="{user.customerPhone}"/>
-      </button>
+    <view name="support_view" x="0" y="57" w="320" h="115">
+      <label name="label2" x="10" y="7" w="300" h="26" style:normal:text_align_h="center" style:normal:font_name="default" style:normal:spacer="2" style:normal:x_offset="0" style:normal:bg_color="#43536A" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" text="Call us on: 09049929256"/>
+      <label name="label2" x="10" y="79" w="300" h="26" style:normal:text_align_h="center" style:normal:font_name="default" style:normal:spacer="2" style:normal:x_offset="0" style:normal:bg_color="#43536A" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" text="Send us message on Whatsapp on: 09049929256"/>
+      <label name="label2" x="10" y="43" w="300" h="26" style:normal:text_align_h="center" style:normal:font_name="default" style:normal:spacer="2" style:normal:x_offset="0" style:normal:bg_color="#43536A" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" style:normal:margin_left="5" style:normal:font_size="16" text="Email us at: support@corestep.com"/>
     </view>
+    <button name="button" x="0" y="5" w="57" h="40" style:normal:icon="icon_back" style:normal:border="none" style:normal:bg_color="#00000000" style:pressed:border="none" style:pressed:icon="icon_back" style:pressed:bg_color="#00000000" style:normal:text_color="#000000" style:pressed:text_color="#000000" style:over:border="none" style:over:bg_color="#00000000" style:over:text_color="#000000" style:over:icon="icon_back" v-on:click="{onKeyDown, Args=cancel}"/>
   </view>
   <view v-if="{isChangePassword}" name="change_password" x="0" y="0" w="320" h="210" style:normal:bg_color="#FFFFFF" disg:hide="true">
     <view name="view5" x="0" y="0" w="320" h="27">

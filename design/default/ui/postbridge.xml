@@ -1,5 +1,5 @@
 <window v-model="postbridge" name="balance" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" v-on:key_down:return="onKeyDown, Args=return">
-  <view v-if="{loading}" x="0" y="0" w="320" h="210" style:normal:bg_color="#00000078" disg:hide="true">
+  <view v-if="{loading}" x="0" y="0" w="320" h="210" style:normal:bg_color="#00000078">
     <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
       <view w="120" h="60" x="42" y="24">
         <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>

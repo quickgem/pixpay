@@ -7,7 +7,8 @@ function GLOBAL_API() {
     this.FUND_TRANSFER = `${this.BASE_URL}/transaction/fund-transfer`;
     this.BANK_LIST = `${this.BASE_URL}/transaction/bank-list`;
     this.LOGIN = `${this.BASE_URL}/authentication/login`;
-    this.TRANSACTION_HISTORY = `${this.BASE_URL}/wallet/read-mini-by-account-number`;
+    // this.TRANSACTION_HISTORY = `${this.BASE_URL}/wallet/read-mini-by-account-number`;
+    this.TRANSACTION_HISTORY = `${this.BASE_URL}/transaction/read-by-terminal-id`;
     this.TMS_PURCHASE = `${this.BASE_URL}/tms/purchase`;
 
     this.callApi = function (url,request,onSuccess, onError) {

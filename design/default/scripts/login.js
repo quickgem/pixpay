@@ -1,5 +1,4 @@
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
-
 ViewModel("login", {
     data:{
         deviceSN: "",
@@ -236,7 +235,6 @@ ViewModel("login", {
         },
 
         onReceiveData: function () {
-            console.log(this.loginRequest)
             let that = this;
             let ret = Tos.HttpclientRecv();
             console.log("onReceiveData ==============>", ret.code);

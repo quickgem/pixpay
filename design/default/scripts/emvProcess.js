@@ -82,12 +82,14 @@ ViewModel("emvProcess", {
         return RET_REPEAT;
       }, 1000);
     },
+
     hidePlaintextPIN: function () {
       this.plaintextPINstate = -1;
       this.plaintextPIN = "";
       this.isPlaintextPINModal = false;
       this.notifyPropsChanged();
     },
+
     handlePlaintextPINConfirm: function () {
       this.plaintextPINstate = 0;
       this.isPlaintextPINModal = false;
@@ -665,7 +667,9 @@ ViewModel("emvProcess", {
         case "9":
           if (this.plaintextPINstate === 1) {
             this.plaintextPIN += args;
-            this.showStar(this.plaintextPIN.length);
+            this.valueLen = this.plaintextPIN.length;
+            this.lineX = 25 + (this.valueLen - 1) * 22 + "";
+            // this.showStar(this.plaintextPIN.length);
             this.notifyPropsChanged();
           }
           break;
@@ -679,10 +683,12 @@ ViewModel("emvProcess", {
           console.log("keydown hideCardBox 2222 ===========");
           this.cancel();
           break;
-        case "delete":
+        case "backspace":
           if (this.plaintextPINstate === 1) {
             this.plaintextPIN = this.plaintextPIN.substring(0, this.plaintextPIN.length - 1);
-            this.showStar(this.plaintextPIN.length);
+            this.valueLen = this.plaintextPIN.length;
+            this.lineX = 25 + (this.valueLen - 1) * 22 + "";
+            // this.showStar(this.plaintextPIN.length);
             this.notifyPropsChanged();
             break;
           }

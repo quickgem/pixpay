@@ -73,7 +73,11 @@ ViewModel("profile", {
                     this.notifyPropsChanged();
                 }
                 else{
-                    this.onFail();
+                    navigateReplace({
+                        target: "pay",
+                        close_current:true
+                        //data:this.user
+                    });
                 }
             }
 
@@ -84,37 +88,12 @@ ViewModel("profile", {
             console.log("key down----->>>>:", args);
             var key = args;
             switch (key) {
-                case "0":
-                    if(!this.value) break;
-                case "1":
-                case "2":
-                case "3":
-                case "4":
-                case "5":
-                case "6":
-                case "7":
-                case "8":
-                case "9":
-                    if (this.showModel) break;
-                    if(this.value.length>12) break;
-                    this.value += key;
-                    this._formatInput();
-                    break;
                 case "cancel":
                     this.handleCancel();
                     break;
                 case "backspace":
-                    if (this.showModel) {
-                        this.hideModel();
-                        return;
-                    }
-                    this.reduceNum();
                     break;
                 case "return":
-                    if (this.showModel) {
-                        this.hideModel();
-                        return;
-                    }
                     break;
                 default:
                     break;
@@ -125,8 +104,10 @@ ViewModel("profile", {
     onWillMount: function (req) {
         if(req){
             this.user = Tos.GLOBAL_CONFIG.userInfo
-            this.nameSummary = req.data.customerFirstName[0] + req.data.customerLastName[0]
-            this.fullName = req.data.customerFirstName + req.data.customerLastName
+            this.nameSummary = Tos.GLOBAL_CONFIG.userInfo.customerFirstName[0] + Tos.GLOBAL_CONFIG.userInfo.customerLastName[0]
+            this.fullName = Tos.GLOBAL_CONFIG.userInfo.customerFirstName +  " " + Tos.GLOBAL_CONFIG.userInfo.customerLastName
+
+            this.notifyPropsChanged()
         }
 
     },

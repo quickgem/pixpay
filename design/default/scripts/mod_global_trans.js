@@ -117,29 +117,29 @@ function GLOBAL_PREENTRY(){
                 entry: ["inputAmt", "makeTransfer","transferLoading","transferSuccess"]
             },
 
-            {
-                appName: "Balance",
-                icon: "balance",
-                transParam:{appName:"Balance",transType: TRANS_TYPE.REFUND, msgType:"0200",procCode:"000000",serviceCode:"00"},
-                entry: ["balance"]
-            },
-            {
-                appName: "Transactions", icon: "transactionhistory",
-                transParam:{appName:"Transactions"},
-                entry: ["transactionPage"],
-            },
-
-            {
-                appName: "Profile",
-                icon: "profile",
-                transParam:{appName:"Profile"},
-                entry: ["profile"]
-            },
+            // {
+            //     appName: "Balance",
+            //     icon: "balance",
+            //     transParam:{appName:"Balance",transType: TRANS_TYPE.REFUND, msgType:"0200",procCode:"000000",serviceCode:"00"},
+            //     entry: ["balance"]
+            // },
+            // {
+            //     appName: "Transactions", icon: "transactionhistory",
+            //     transParam:{appName:"Transactions"},
+            //     entry: ["transactionPage"],
+            // },
+            //
+            // {
+            //     appName: "Profile",
+            //     icon: "profile",
+            //     transParam:{appName:"Profile"},
+            //     entry: ["profile"]
+            // },
             {
                 appName: "More",
                 icon: "more_background",
                 transParam:{appName:"More"},
-                entry: ["pay"]
+                entry: ["moreApps"]
             }
         ];
         let list = this.entryList.map(function (v) {
@@ -187,29 +187,58 @@ function GLOBAL_PREENTRY(){
 
     this.getMoreList = function (){
         let TRANS_TYPE = Tos.CONSTANT.TRANS_TYPE;
-        this.billsList = [
+        this.moreList = [
             {
-                appName: "Authorization", icon: "pre_auth",
-                transParam:{appName:"Authorization",transType:TRANS_TYPE.PRE_AUTH, msgType:"0100",procCode:"030000",serviceCode:"06",needSave:true,nReversal:true},
-                entry: ["inputAmt","searchCard",[["inputPinblock","online","eSign","result"],["emvProcess","eSign","result"]]],
+                appName: "Balance",
+                icon: "balance",
+                transParam:{appName:"Balance",transType: TRANS_TYPE.REFUND, msgType:"0200",procCode:"000000",serviceCode:"00"},
+                entry: ["balance"]
             },
             {
-                appName: "Auth Void",
-                icon: "auth_void",
-                transParam:{appName:"Auth Void",transType:TRANS_TYPE.PRE_AUTH_VOID, msgType:"0100",procCode:"200000",serviceCode:"06",needSave:true,nReversal:true},
-                entry: ["inputPwd","inputTransDate","inputAuthCode","inputAmt","searchCard",[["inputPinblock","online","eSign","result"],["emvProcess","eSign","result"]]]
+                appName: "Transactions", icon: "transactionhistory",
+                transParam:{appName:"Transactions"},
+                entry: ["transactionPage",'transReceipt'],
             },
+
             {
-                appName: "Auth Com",
-                icon: "auth_com",
-                transParam:{appName:"Auth Com",transType:TRANS_TYPE.AUTH_CMP, msgType:"0200",procCode:"000000",serviceCode:"06",needSave:true,nReversal:true},
-                entry: ["inputTransDate","inputAuthCode","inputAmt","searchCard",[["inputPinblock","online","eSign","result"],["emvProcess","eSign","result"]]]
+                appName: "Profile",
+                icon: "profile",
+                transParam:{appName:"Profile"},
+                entry: ["profile"]
+            },
+
+        ];
+        return  this.moreList.map(function (v) {
+            return {
+                appName: v.appName,
+                icon: v.icon,
+                entry: JSON.stringify(v.entry),
+                transParam: JSON.stringify(v.transParam)
             }
-        ]
+        })
+        // this.billsList = [
+        //     {
+        //         appName: "Authorization", icon: "pre_auth",
+        //         transParam:{appName:"Authorization",transType:TRANS_TYPE.PRE_AUTH, msgType:"0100",procCode:"030000",serviceCode:"06",needSave:true,nReversal:true},
+        //         entry: ["inputAmt","searchCard",[["inputPinblock","online","eSign","result"],["emvProcess","eSign","result"]]],
+        //     },
+        //     {
+        //         appName: "Auth Void",
+        //         icon: "auth_void",
+        //         transParam:{appName:"Auth Void",transType:TRANS_TYPE.PRE_AUTH_VOID, msgType:"0100",procCode:"200000",serviceCode:"06",needSave:true,nReversal:true},
+        //         entry: ["inputPwd","inputTransDate","inputAuthCode","inputAmt","searchCard",[["inputPinblock","online","eSign","result"],["emvProcess","eSign","result"]]]
+        //     },
+        //     {
+        //         appName: "Auth Com",
+        //         icon: "auth_com",
+        //         transParam:{appName:"Auth Com",transType:TRANS_TYPE.AUTH_CMP, msgType:"0200",procCode:"000000",serviceCode:"06",needSave:true,nReversal:true},
+        //         entry: ["inputTransDate","inputAuthCode","inputAmt","searchCard",[["inputPinblock","online","eSign","result"],["emvProcess","eSign","result"]]]
+        //     }
+        // ]
     };
 
 }
-function  GLOBAL_JUMP (index, args){
+function  GLOBAL_JUMP (index,args){
     console.log("GLOBAL_JUMP index=================>", index);
     // console.log("User args ======>", args)
     if(index !== undefined &&index !== null && index !== ""){

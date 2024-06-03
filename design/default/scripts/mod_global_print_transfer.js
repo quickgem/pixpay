@@ -1,4 +1,4 @@
-/**
+ /**
  *
  * ALIGN
  * ALIGN_DEFAULT 0  current cursor
@@ -6,11 +6,10 @@
  * ALIGN_CENTER  2
  * ALIGN_RIGHT   3
  */
-const  getResponse = require("mod_global_response").getResponse;
+// const  getResponse = require("mod_global_response").getResponse;
 
 var sprintf = require("mod_global_funcs").sprintf;
 var SHOW_MASK_CARD = require("mod_global_funcs").SHOW_MASK_CARD;
-var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 var GLOBAL_GET_FILE = require("mod_global_app_manage").GLOBAL_GET_FILE;
 var GLOBAL_ARRAYBUFFER_GET_FILE = require("mod_global_app_manage").GLOBAL_ARRAYBUFFER_GET_FILE;
 
@@ -37,7 +36,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     let config =Tos.GLOBAL_CONFIG;
     let  fontSize ={
         SMALL:{ w: 16, h: 16 },
-        MIDDLE:{ w: 24, h: 24 },
+        MIDDLE:{ w: 18, h: 18 },
         LARGE:{ w: 32, h: 32 },
     }
     let TRANS_TYPE = Tos.CONSTANT.TRANS_TYPE;
@@ -45,11 +44,14 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     let fontSpace ={w:1,h:5};
 
     let ret = Tos.PrnInit(3000);
+
     if (ret.code !== 0) {
         //console.log("PrnInit fail ======>>>>>");
         return;
     }
+
     setSpace(fontSpace);
+
     //console.log("setSpace ======>>>>>");
     addTextSpace( Tos.GLOBAL_CONFIG.partner,ALIGN_CENTER,fontSize.LARGE);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
@@ -62,24 +64,31 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     }else{
         addTextSpace("*** CUSTOMER COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
     }
-    if (arg.code === "00"){
+    if (arg.responseCode === "00"){
         addTextSpace( 'APPROVED',ALIGN_CENTER,fontSize.LARGE);
     }else{
         addTextSpace( 'DECLINED',ALIGN_CENTER,fontSize.LARGE);
     }
-    addTextSpace(`RESPONSE CODE: ${arg.code === ""?"999":arg.code}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`MESSAGE: ${getResponse(arg.code).responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`TID: ${Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`MID: ${Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet}`,ALIGN_LEFT,fontSize.MIDDLE);
-    let cardNo = trans.pan.substring(0,5)+"******"+trans.pan.substring(trans.pan.length-4,trans.pan.length)
-    addTextSpace(`CARD: ${cardNo}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`NAME: ${trans.cardHolderName}`,ALIGN_LEFT,fontSize.MIDDLE);
+
+    addTextSpace(`RESPONSE CODE: ${arg.responseCode === ""?"999":arg.responseCode}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`MESSAGE: ${arg.responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
+    if(arg.extraData){
+        addTextSpace(`CARD.: ${arg.extraData.card}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`STAN: ${arg.extraData.stan}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`RRN: ${arg.extraData.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`APPLAB: ${arg.extraData.applab}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
+    }else{
+        addTextSpace(`BUSINESS ACC.: ${arg.debitAccountNumber}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`NAME: ${arg.creditAccountName}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`ACCOUNT NO.: ${arg.creditAccount}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`REF MSG.: ${arg.narration}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
+        addTextSpace(`REF NO.: ${arg.reference}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
+    }
     addText(`AMOUNT:`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`₦${GET_SHOW_AMOUNT(trans.amount)}`,ALIGN_RIGHT,fontSize.LARGE);
-    addTextSpace(`AID: ${trans.aid}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`STAN: ${arg.rrn.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`RRN: ${arg.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`APPLAB: ${trans.emvAppName}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`₦${arg.amount}`,ALIGN_RIGHT,fontSize.LARGE);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace( `powered by ${Tos.GLOBAL_CONFIG.partner}`,ALIGN_CENTER,fontSize.SMALL);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
@@ -115,7 +124,6 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
             return RET_REMOVE;
         }
     }, 200);
-
 }
 
 function getPrintError(errorCode) {

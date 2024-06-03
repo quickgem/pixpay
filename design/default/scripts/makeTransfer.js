@@ -1,9 +1,6 @@
-const {saveUserInfo} = require("./mod_global_config");
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
-const NameEnquiryUrl = "https://biz.corestepbank.com/transaction/name-enquiry"
-const ReadBankUrl = 'https://biz.corestepbank.com/transaction/bank-list'
 var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
-var GET_BANK_LIST = require("mod_global_bank_list").BANK_LIST
+
 
 ViewModel("makeTransfer", {
     data: {
@@ -53,18 +50,13 @@ ViewModel("makeTransfer", {
         flow:{},
         title:"",
         showTip:"Fetching account details",
-        loginRequest:{
-            username: "chiwuezegeorge@gmail.com",
-            password: "",
-            source: "POS_TERMINAL"
-        },
         isError:false,
-        error:""
+        error:"",
+        filteredBanks:null
     },
 
     methods:{
         resetBank(){
-            this.banks = GET_BANK_LIST
             this.isNoBank = true
             this.notifyPropsChanged();
         },
@@ -82,31 +74,6 @@ ViewModel("makeTransfer", {
             console.log("after parsing ====> ", JSON.stringify(this.selectedBank))
         },
 
-        doBankSearch(){
-             this.filteredBankList = this.banks.filter(it =>{
-                 return it.name.toLowerCase() === this.searchQy.toLowerCase()
-            })
-
-            this.isNoBank = true
-            this.notifyPropsChanged();
-        },
-
-        callBankSearch(){
-            if(this.searchQy){
-                if(this.doBankSearch().length){
-                    this.filteredBankList = this.doBankSearch()
-                    this.isNoBank = false
-                    this.notifyPropsChanged();
-                    console.log(this.filteredBankList)
-                }else{
-                    this.isNoBank = true
-                    this.popUp = true
-                    this.notifyPropsChanged();
-                }
-
-
-            }
-        },
 
         closePopUp(){
             this.popUp = false
@@ -136,14 +103,46 @@ ViewModel("makeTransfer", {
         },
 
         navigatorTransactionSummary(){
-            this.fundTransferRequest.narration = `trf to ${this.fundTransferRequest.creditAccountName}`.toLowerCase()
+            this.fundTransferRequest.narration = `trf to ${this.nameEnquiryResponse.accountName}`.toLowerCase()
+            this.fundTransferRequest.debitAccountName = this.user.customerFirstName + " " + this.user.customerLastName
+            this.fundTransferRequest.creditAccountName = this.nameEnquiryResponse.accountName
+            this.fundTransferRequest.sessionId = this.nameEnquiryResponse.sessionId
+            this.fundTransferRequest.debitAccountNumber = this.user.customerOrganisationWallet
+            this.fundTransferRequest.creditAccountNumber = this.nameEnquiryResponse.accountNumber
             this._formatInput()
             this.transactionSummary = true
             this.notifyPropsChanged()
         },
 
-        readBankList(){
+        filter(args){
+            const that = this
+            that.filteredBanks = that.banks.filter(it => {
+                return it.name[0].toLowerCase() === args
+            })
+            that.notifyPropsChanged();
+        },
 
+        readBankList(){
+            const that = this
+            that.nameEnquiryLoading = true
+            that.showTip = 'Loading banks'
+            that.notifyPropsChanged();
+            function onSuccess(data){
+                that.banks = data.data
+                that.filteredBanks = that.banks.filter(it => {
+                    return it.name[0].toLowerCase() === 'a'
+                })
+                that.nameEnquiryLoading = false
+                that.notifyPropsChanged();
+            }
+            function onError(data){
+                that.nameEnquiryLoading = false
+                that.isError = true
+                that.nameEnquiry = false
+                that.error = data
+                that.notifyPropsChanged();
+            }
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BANK_LIST, {},onSuccess,onError)
         },
 
 
@@ -171,20 +170,17 @@ ViewModel("makeTransfer", {
 
             that.notifyPropsChanged();
             function onSuccess(data){
-                this.loading = false
-                this.notifyPropsChanged();
-                saveUserInfo(data)
-                navigateTo({
-                    target: "pay",
-                    close_current: true,
-                    ///data: data,
-                });
+                that.nameEnquiryLoading = false
+                that.nameEnquiry = true
+                that.nameEnquiryResponse = data
+                that.notifyPropsChanged();
             }
             function onError(data){
-                this.loading = false
-                this.isError = true
-                this.error = data
-                this.notifyPropsChanged();
+                that.nameEnquiryLoading = false
+                that.isError = true
+                that.nameEnquiry = false
+                that.error = data
+                that.notifyPropsChanged();
             }
             Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.NAME_ENQUIRY,this.nameEnquiryRequest,onSuccess,onError)
         },
@@ -195,7 +191,6 @@ ViewModel("makeTransfer", {
             this.transferTypeValue = args
             if(this.transferTypeValue === 'Transfer to Other Banks'){
                 this.otherBanks = true
-                this.banks = GET_BANK_LIST
             }else{
                 this.otherBanks = false
             }
@@ -249,7 +244,6 @@ ViewModel("makeTransfer", {
 
         openBankList(){
             this.searchBank = true
-            this.banks = GET_BANK_LIST
             this.notifyPropsChanged()
         },
 
@@ -352,18 +346,19 @@ ViewModel("makeTransfer", {
         this.flow =Tos.GLOBAL_TRANSACTION.flow;
         this.trans =Tos.GLOBAL_TRANSACTION.trans;
         this.title =  this.trans.transName;
-        this.banks = GET_BANK_LIST
+        this.fundTransferRequest.amount = GET_SHOW_AMOUNT(this.trans.amount)
 
         if(req){
             this.user = Tos.GLOBAL_CONFIG.userInfo
         }
 
+        this.readBankList()
+
         this.notifyPropsChanged()
     },
 
     onMount: function () {
-        this.fundTransferRequest.amount = GET_SHOW_AMOUNT(this.trans.amount)
-        this.banks = GET_BANK_LIST
+
     },
 
     onWillUnmount: function () {

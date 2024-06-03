@@ -1,51 +1,19 @@
-<window v-model="searchCard" name="searchCard" anim_hint="htranslate"
-        style:normal:bg_color="#FFFFFF" v-on:key_down:0="{onKeyDown, Args=0}"
-        v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}"
-        v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}"
-        v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}"
-        v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}"
-        v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}"
-        v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}"
-        v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
-  <label name="title" x="50" y="0" w="220" h="48" style:normal:text_color="#00B050"
-         style:normal:border_width="0" style:normal:font_size="32" text="Waiting" />
+<window v-model="searchCard" name="searchCard" anim_hint="htranslate" style:normal:bg_color="#FFFFFF" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <label name="title" x="50" y="0" w="220" h="48" style:normal:text_color="#00B050" style:normal:border_width="0" style:normal:font_size="32" text="Waiting"/>
   <label name="title" x="270" y="5" w="50" h="30" style:normal:text_color="#000000" style:normal:border_width="0" style:normal:font_size="24" style:normal:border="bottom" style:normal:border_color="#BFBFBF" v-data:text="{timeOutShow}"/>
-
-  <image animation="opacity(from=255, to=50, yoyo_times=0, duration=1200, delay=1000)" name="image"
-         x="10" y="58" w="100" h="100" draw_type="default" image="ic_nfc" />
-  <image animation="opacity(from=255, to=50, yoyo_times=0, duration=1200, delay=1300)" name="image"
-         x="110" y="58" w="100" h="100" draw_type="default" image="ic_mag" />
-  <image animation="opacity(from=255, to=50, yoyo_times=0, duration=1200, delay=1600)" name="image"
-         x="210" y="58" w="100" h="100" draw_type="default" image="ic_card" />
-  <image name="image1" x="16" y="166" w="16" h="16" draw_type="default" image="tips" />
-  <label name="label" x="42" y="158" w="160" h="32" style:normal:text_color="#00B050"
-         text="Please Swap/Insert/Tap card" />
-
+  <image animation="opacity(from=255, to=50, yoyo_times=0, duration=1200, delay=1000)" name="image" x="10" y="58" w="100" h="100" draw_type="default" image="ic_nfc"/>
+  <image animation="opacity(from=255, to=50, yoyo_times=0, duration=1200, delay=1300)" name="image" x="110" y="58" w="100" h="100" draw_type="default" image="ic_mag"/>
+  <image animation="opacity(from=255, to=50, yoyo_times=0, duration=1200, delay=1600)" name="image" x="210" y="58" w="100" h="100" draw_type="default" image="ic_card"/>
+  <image name="image1" x="16" y="166" w="16" h="16" draw_type="default" image="tips"/>
+  <label name="label" x="42" y="158" w="160" h="32" style:normal:text_color="#00B050" text="Please Swap/Insert/Tap card"/>
   <view v-if="{isShowModal}" text="view" x="0" y="0" w="100%" h="100%" disg:custom="container">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
       <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="150" x="40" y="30">
-        <label x="0" y="0" w="240" h="40" style:normal:font_size="24" v-data:text="{modalTitle}" />
-        <label name="label" x="0" y="40" w="240" h="70" style:normal:font_size="24"
-               style:normal:text_color="#00B050" v-data:text="{modalText}" />
-        <button name="next" v-on:click="{handleCancel}" x="0" y="110" w="120" h="40"
-                style:normal:round_radius="10" style:normal:border="none"
-                style:normal:border_color="#00B050" style:normal:border_width="0"
-                style:normal:bg_color="#FFC000" style:normal:text_color="#000000"
-                style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0"
-                style:normal:round_radius_bottom_right="0"
-                style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0"
-                style:pressed:round_radius_bottom_right="0"
-                style:pressed:bg_color="#FFB000" text="Cancel" />
-        <button name="next" v-on:click="{handleConfirm}" x="120" y="110" w="120" h="40"
-                style:normal:round_radius="10" style:normal:border="none"
-                style:normal:border_color="#00B050" style:normal:border_width="0"
-                style:normal:bg_color="#00B050" style:normal:text_color="#000000"
-                style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0"
-                style:normal:round_radius_bottom_left="0" style:pressed:bg_color="#00B040"
-                style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0"
-                style:pressed:round_radius_bottom_left="0" text="Ok" />
+        <label x="0" y="0" w="240" h="40" style:normal:font_size="24" v-data:text="{modalTitle}"/>
+        <label name="label" x="0" y="40" w="240" h="70" style:normal:font_size="24" style:normal:text_color="#00B050" v-data:text="{modalText}"/>
+        <button name="next" v-on:click="{handleCancel}" x="0" y="110" w="120" h="40" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00B050" style:normal:border_width="0" style:normal:bg_color="#FFC000" style:normal:text_color="#000000" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0" style:pressed:round_radius_bottom_right="0" style:pressed:bg_color="#FFB000" text="Cancel"/>
+        <button name="next" v-on:click="{handleConfirm}" x="120" y="110" w="120" h="40" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00B050" style:normal:border_width="0" style:normal:bg_color="#00B050" style:normal:text_color="#000000" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_left="0" style:pressed:bg_color="#00B040" style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0" style:pressed:round_radius_bottom_left="0" text="Ok"/>
       </view>
     </view>
   </view>
-
 </window>

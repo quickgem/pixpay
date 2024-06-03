@@ -51,42 +51,54 @@ ViewModel("transferLoading",{
             for(let i=0; i < length; i++){
                 result += characters.charAt(Math.floor(Math.random() * characterLength));
             }
+
             return result
         },
 
-        doTransfer(){
-            this.fundsRequest.reference = `corebank-${this.reference(Math.floor(Math.random() * (30 - 10 + 1)) + 10)}`
-            this.fundsRequest.narration = `trf to ${this.creditAccountName}`.toLowerCase()
-            this.fundsRequest.pin = this.value
-            console.log("transferPayload before: =>", JSON.stringify(this.fundsRequest))
-            this.callTransferFundsEndpoint()
+        generateSimpleReference(length) {
+            let result = '';
+            const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            const charactersLength = characters.length;
+
+            // Add a prefix with the current timestamp for additional uniqueness
+            const timestamp = Date.now().toString(36);
+
+            // Generate random characters for the reference
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+
+            return `${timestamp}-${result}`;
         },
+
 
         callTransferFundsEndpoint(){
             let that = this;
             that.loading = true
+            const uniqueNumber = Math.floor(Math.random() * (1000000000000000 - 1 + 1)) + 1;
+            this.fundsRequest.reference = `corebank-ref-${this.generateSimpleReference(30)}`
+            console.log(this.fundsRequest.reference)
+            this.fundsRequest.pin = this.value
             that.notifyPropsChanged();
             function onSuccess(data){
-                this.loading = false
-                this.notifyPropsChanged();
-                this.fundsRequest = null
+                that.loading = false
+                that.notifyPropsChanged();
                 navigateReplace({
                     target: "transferSuccess",
                     type: "success",
                     close_current: true,
-                    data:data
+                    data:data,
+                    code: data.responseCode?data.responseCode:data.isoResponseCode,
                 });
             }
             function onError(data){
-                this.loading = false
-                this.fundsRequest.reference = null
-                this.fundsRequest.narration = null
-                this.error = data.responseMessage
-                this.notifyPropsChanged();
+                that.loading = false
+                that.error = data.responseMessage
+                that.isError = true
+                that.notifyPropsChanged();
             }
             Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.FUND_TRANSFER,this.fundsRequest,onSuccess,onError)
         },
-
 
         onKeyDown(args) {
             console.log("key down----->>>>:", args);

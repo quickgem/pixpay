@@ -1,39 +1,55 @@
-<window v-model="transactionPage" name="transactionPage" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
-  <view name="view1" x="0" y="0" w="320" h="25">
-    <label name="label" x="79" y="0" w="160" h="28" style:normal:font_size="24" text="Transaction History"/>
+<?xml ruler_x="49"?>
+<window v-model="transactionPage" name="transactionPage" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" floating="false" style="default" style:normal:border="none">
+  <label name="label" x="20" y="5" w="111" h="25" style:normal:font_size="16" text="Transaction History"/>
+  <view name="view3" h="31" x="160" y="2" w="160">
+    <button name="filter_btn" v-on:click="{toggleFilter}" x="84" y="1" w="66" h="27" style:normal:round_radius="6" style:normal:spacer="2" style:normal:margin="0" style:normal:bg_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:over:round_radius="6" style:over:font_size="16" style:pressed:font_size="16" text="Filter"/>
+    <button name="refresh_btn" v-on:click="{refreshList}" x="0" y="0" w="74" h="28" style:normal:round_radius="6" style:normal:font_size="16" style:pressed:font_size="16" style:pressed:round_radius="6" style:over:font_size="16" style:over:round_radius="6" style:normal:bg_color="#00000000" text="Refresh"/>
   </view>
-  <view name="view3" x="0" y="25" w="320" h="185">
-    <view name="view2" x="0" y="0" w="320" h="24">
-      <label name="label1" x="10" y="0" w="160" h="24" style:normal:text_align_h="left" style:normal:text_color="#0D0D0D" text="Recent Transaction"/>
-    </view>
-    <list_view name="list_view" x="0" y="59" w="320" h="148" default_item_height="60">
-      <scroll_view name="scroll_view" x="0" y="-34" w="-10" h="210" style:normal:border_color="#000000">
-        <list_item name="list_item" h="61">
-          <view name="view" h="67" x="0" y="0" w="320">
-            <image name="image" v-data:image="{item.icon}" w="31" h="31" floating="false" x="21" y="10" style:normal:font_size="16" style:normal:border_color="#00000000" style:normal:border="none" style:normal:icon="trans-credit" style:normal:bg_image="trans-credit"/>
-            <label name="trans_narration" h="28" x="70" y="1" w="119" style:normal:text_align_h="left" text="Airtime Top Up"/>
-            <label name="trans_narration" h="28" x="70" y="29" w="131" style:normal:text_align_h="left" text="Airtime Top Up"/>
-            <label name="trans_narration" h="28" x="258" y="1" w="52" text="10000"/>
-            <label name="trans_narration" h="28" x="211" y="1" w="25" text="+"/>
-            <label name="trans_narration" h="19" x="233" y="6" w="25" text="NGN"/>
-          </view>
-        </list_item>
-      </scroll_view>
-    </list_view>
+  <view v-if="{!isTransactions}" name="no_transaction" x="0" y="43" w="320" h="169" style:normal:bg_image="" style:normal:bg_color="#FFFFFF">
+    <image name="image2" x="104" y="0" w="100" h="100" draw_type="icon" image="no_transactions"/>
   </view>
-  <view v-if="{is_notTransactions}" name="no_transaction" x="0" y="25" w="320" h="185" style:normal:bg_image="no_transactions" style:normal:bg_color="#FFFFFF" disg:hide="true"/>
-  <view v-if="{loading}" x="0" y="0" w="320" h="210" disg:custom="container" disg:hide="true">
-    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
-      <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
-        <view w="120" h="60" x="42" y="24">
-          <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+  <list_view v-if="{isTransactions}" name="list_view" x="0" y="43" w="320" h="167" default_item_height="60" disg:hide="true">
+    <scroll_view name="scroll_view" x="0" y="0" w="320" h="139" yslidable="true" with_focus_state="true" move_to_page="true" style:normal:bg_color="#FFFFFF">
+      <!--      <list_item v-for="{appList}" name="list_item" h="80" w="320" focusable="true" with_focus_state="true" style:normal:bg_color="#FFFFFF" style:normal:border="none" style:pressed:border="none" style:over:border="none" style:focused:border="none" style:over:bg_color="#8EAAD778" style:pressed:bg_color="#8EAAD778" style:focused:bg_color="#8EAAD778" v-on:key_down:return="{appOperate, Args=fscript?index=index}">-->
+      <list_item v-for="{transactions}" v-on:click="{getTrans,Args=fscript?amount=item.trnAmount&amp;&amp;date=item.trnCreatedAt&amp;&amp;creditAccountName=item.trnCrAccountName&amp;&amp;creditAccount=item.trnCrAccountNumber&amp;&amp;debitAccountName=item.trnDrAccountName&amp;&amp;debitAccountNumber=item.trnDrAccountNumber&amp;&amp;bankName=item.trnCrInstitutionName&amp;&amp;reference=item.trnReference&amp;&amp;narration=item.trnNarration&amp;&amp;responseCode=item.trnResponseCode&amp;&amp;responseMessage=item.trnStatus&amp;&amp;drCr=item.trnDrCr&amp;&amp;extraData=item.trnExtraData&amp;&amp;trnService=item.trnService&amp;}" name="list_item" h="57" focusable="true" with_focus_state="true" style:normal:bg_color="#FFFFFF" style:normal:border="none" style:pressed:border="none" style:over:border="none" style:focused:border="none" style:over:bg_color="#8EAAD778" style:pressed:bg_color="#8EAAD778" style:focused:bg_color="#8EAAD778" style:normal:margin_bottom="30">
+        <view name="view" h="57" style:normal:bg_color="#00000000" style:normal:border="bottom" style:normal:border_color="#A5A5A5" w="320" x="0" y="0">
+          <image name="trfsImage1" h="20" draw_type="scale" image="trade" x="10" y="4" w="21" style:normal:font_size="24"/>
+          <label name="trans_narration" h="20" x="41" y="0" w="198" style:normal:text_align_h="left" v-data:text="{item.trnNarration}" style:normal:font_size="12"/>
+          <label name="trans_narration" h="20" x="41" y="24" w="57" style:normal:text_align_h="left" v-data:text="{item.trnCreatedAt}" style:normal:font_size="12"/>
+          <label v-if="{item.trnDrCr == CR}" name="credit" h="28" x="249" y="16" w="52" v-data:text="{item.trnAmount}" style:normal:text_color="#70AC47" style:normal:font_size="18"/>
+          <label v-if="{item.trnDrCr == DR}" name="debit" h="28" v-data:text="{item.trnAmount}" x="249" y="16" w="52" style:normal:text_color="#FF0000" style:normal:font_size="18"/>
         </view>
+      </list_item>
+      <view v-if="{totalPageNum > 1}" name="view3" h="38">
+        <label name="label4" h="21" x="138" y="7" w="38" v-data:text="{totalPage}"/>
+        <button v-on:click="prevPage" name="prev" h="36" x="27" y="2" w="70" style:normal:round_radius="6" style:normal:font_size="14" style:normal:bg_color="#00000000" text="Prev"/>
+        <button v-on:click="nextPage" name="next" h="36" style:normal:round_radius="6" style:normal:font_size="14" style:normal:bg_color="#00000000" x="240" y="2" w="70" text="Next"/>
       </view>
-      <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
+    </scroll_view>
+    <scroll_bar_m name="scroll_bar" x="310" y="0" w="10" h="170" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
+  </list_view>
+  <view v-if="loading" name="view1" x="0" y="0" w="320" h="210" style:normal:bg_color="#FFFFFF" disg:hide="true">
+    <label name="label1" x="77" y="111" w="160" h="28" style:normal:font_size="14" v-data:text="{showTip}"/>
+    <image name="image" x="135" y="61" w="44" h="40" draw_type="icon" image="nodata"/>
+  </view>
+  <view v-if="{filterOn}" name="filter_modal" x="0" y="0" w="320" h="269" style:normal:bg_color="#000000A7" disg:hide="true">
+    <view name="view5" x="39" y="10" w="248" h="154" style:normal:bg_color="#FFFFFF" style:normal:round_radius="6">
+      <label name="label3" x="10" y="10" w="116" h="28" style:normal:text_align_h="left" text="Filter Transactions:"/>
+      <button name="yesterday" v-on:click="{getYesterdayDate}" x="10" y="45" w="228" h="36" style:normal:round_radius="6" style:normal:bg_color="#00000000" style:pressed:round_radius="6" style:over:round_radius="6" text="Yesterday"/>
+      <button v-on:click="{toggleCustomFilter}" name="custom" x="10" y="98" w="228" h="36" style:normal:round_radius="6" style:normal:bg_color="#00000000" style:pressed:round_radius="6" style:over:round_radius="6" text="Custom"/>
+      <button v-on:click="{toggleFilter}" name="close_btn" x="204" y="5" w="34" h="30" style:normal:bg_image_draw_type="icon" style:normal:bg_image="end_" style:normal:round_radius="6" style:normal:border_color="#00000000" style:normal:font_size="24" style:normal:bg_color="#C00000" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#C00000" style:pressed:bg_image_draw_type="icon" style:pressed:bg_image="end_" style:over:border_color="#00000000" style:over:round_radius="6" style:over:bg_color="#C00000" style:over:bg_image_draw_type="icon" style:over:bg_image="end_"/>
+    </view>
+    <view v-if="{customDate}" name="view5" x="0" y="0" w="320" h="210" style:normal:bg_color="#FFFFFF" style:normal:round_radius="0">
+      <view name="startDate" x="20" y="20" w="266" h="64">
+        <label name="label3" x="0" y="0" w="129" h="28" style:normal:text_align_h="left" text="Start Date"/>
+        <spin_box min="0" max="1024" step="1" v-data:text="{startDate}" name="spin_box" x="0" y="28" w="266" h="37" tips="Please enter your value" input_type="date" auto_fix="true" style:empty:text_color="#000000a7" style:empty:font_name="ap" cancelable="true" style:normal:border_color="#7E7E7E" style:normal:bg_color="#FFFFFF" style:normal:round_radius="4"/>
+      </view>
+      <view name="endDate" x="22" y="84" w="266" h="65">
+        <label name="label3" x="0" y="0" w="129" h="28" style:normal:text_align_h="left" text="End Date"/>
+        <spin_box min="0" max="1024" step="1" v-data:text="{endDate}" name="spin_box" x="0" y="28" w="266" h="37" tips="Please enter your value" input_type="date" auto_fix="true" style:empty:text_color="#000000a7" style:empty:font_name="ap" cancelable="true" style:normal:border_color="#7E7E7E" style:normal:bg_color="#FFFFFF" style:normal:round_radius="4"/>
+      </view>
+      <button v-on:click="{logCustomDate}" name="custom" x="22" y="169" w="264" h="31" style:normal:round_radius="6" style:normal:bg_color="#00000000" style:pressed:round_radius="6" style:over:round_radius="6" text="Filter"/>
+      <button v-on:click="{toggleCustomFilter}" name="close_btn" x="276" y="10" w="34" h="29" style:normal:bg_image_draw_type="icon" style:normal:bg_image="end_" style:normal:round_radius="6" style:normal:border_color="#00000000" style:normal:font_size="24" style:normal:bg_color="#C00000" style:pressed:round_radius="6" style:pressed:bg_image_draw_type="icon" style:pressed:bg_image="end_" style:pressed:bg_color="#C00000" style:over:border_color="#00000000" style:over:round_radius="6" style:over:bg_color="#C00000" style:over:bg_image_draw_type="icon" style:over:bg_image="end_"/>
     </view>
   </view>
 </window>

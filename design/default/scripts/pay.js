@@ -23,6 +23,7 @@ ViewModel("pay", {
     token:null,
     fullName:null,
     mid:null,
+    theme:"#596B6D"
   },
 
   methods: {
@@ -227,65 +228,46 @@ ViewModel("pay", {
     new GLOBAL_API().init();
     new GLOBAL_CONSTANT().init();
     this.appList = new GLOBAL_PREENTRY().getEntryList();
-    console.log("onWillMount end  ============> this.user ==>",JSON.stringify(req.data));
-    if(req.data != null){
-        this.user = req.data
-    }else{
-      if (Tos.GLOBAL_CONFIG != null && Tos.GLOBAL_CONFIG.userInfo != null){
-        this.user = Tos.GLOBAL_CONFIG.userInfo
-      }
+    if(Tos.GLOBAL_CONFIG == null){
+      console.log("Tos.PedWriteKey begin  ============>");
+      injectKeys()
+      console.log("Tos.PedWriteKey end  ============>");
+      this.initCAPKdata();
+      this.initAIDdata();
+      this.createDir();
+      console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
+      new GLOBAL_CONFIG().init();
     }
-    this.notifyPropsChanged();
+
+    if(req.data != null) {
+      this.user = req.data;
+      saveUserInfo(req.data)
+    }
+
+    if (Tos.GLOBAL_CONFIG != null && Tos.GLOBAL_CONFIG.userInfo != null) this.user = Tos.GLOBAL_CONFIG.userInfo;
+
+    if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
+      navigateTo({
+        target: "login",
+        close_current: true,
+      });
+    }
+
   },
 
   onMount: function (data) {
     let that = this;
-    timerAdd(function (){
-      console.log("Tos.PedWriteKey begin  ============>");
-      injectKeys()
-      // let keyData = [0x08, 0x8c, 0xae, 0xd6, 0x53, 0xbc, 0xaa, 0xa3, 0x68, 0xfc, 0xc0, 0x11, 0x8a, 0xd7, 0xd3, 0x37];
-      // let obj = {
-      //   dst_value: keyData,
-      //   dst_type: KEYTYPE_PEK,
-      //   src_algo_type: SYMMETRIC_CRYPT_DES,
-      //   src_type: KEYTYPE_TMK,
-      //   src_idx: -1,
-      //   dst_idx: 1,
-      //   dst_len: keyData.length,
-      //   dst_algo_type: SYMMETRIC_CRYPT_DES
-      // };
-      // let res = Tos.PedWriteKey(obj, null);
-      console.log("Tos.PedWriteKey end  ============>");
-      that.initCAPKdata();
-      that.initAIDdata();
-      that.createDir();
-      console.log("GLOBAL_CONFIG  init begin  after createDir ==========>");
-      if (Tos.GLOBAL_CONFIG == null) new GLOBAL_CONFIG().init();
-      console.log("this.user   =======> ", JSON.stringify(that.user))
-      if (that.user != null) saveUserInfo(that.user)
-      if(Tos.GLOBAL_CONFIG != null){
-        console.log("GLOBAL_CONFIG   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
-        if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
-          navigateTo({
-            target: "login",
-            close_current: true,
-          });
-        }
-      } else {
-        console.log("GLOBAL_CONFIG ppp   ============>",JSON.stringify(Tos.GLOBAL_CONFIG));
-        navigateTo({
-          target: "login",
-          close_current: true,
-        });
-      }
-      // if(Tos.GLOBAL_CONFIG){
-      //   Tos.GLOBAL_CONFIG.merchantName = this.user.customerFirstName + '' + this.user.customerLastName
-      // }else{
-      //   console.log("config ====>", Tos.GLOBAL_CONFIG)
-      // }
-      console.log("GLOBAL_CONFIG  init end  ==========>");
-      return RET_REMOVE;
-    },100);
+
+    if(Tos.GLOBAL_CONFIG != null) that.theme = Tos.GLOBAL_CONFIG.theme.primary
+    // timerAdd(function (){
+    //
+    //
+    //
+    //
+    //
+    //   console.log("GLOBAL_CONFIG  init end  ==========>");
+    //   return RET_REMOVE;
+    // },100);
     this.isShowScrollbar = this.appList.length  > 6;
 
     this.notifyPropsChanged();

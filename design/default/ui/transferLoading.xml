@@ -12,7 +12,7 @@
       <view v-if="{valueLen >= 4}" name="dot3" x="81" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen < 12}" name="line" v-data:x="{lineX}" y="11" w="3" h="30" style:normal:bg_color="#00B0F0" animation="opacity(from=255, to=0, yoyo_times=0, duration=500)"/>
     </view>
-    <button v-on:click="{doTransfer}" name="button5" x="32" y="163" w="237" h="36" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>
+    <button v-on:click="{callTransferFundsEndpoint}" name="button5" x="42" y="158" w="237" h="36" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>
   </view>
   <view v-if="{loading}" x="0" y="0" w="320" h="216" disg:custom="container" disg:hide="true">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">

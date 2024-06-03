@@ -1,12 +1,13 @@
 <window v-model="transferSuccess" name="transferSuccess" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
   <view name="view" x="0" y="0" w="320" h="210">
-    <image name="image" x="112" y="0" w="96" h="79" draw_type="default" style:normal:icon="Succeed" style:normal:bg_image_draw_type="center"/>
-    <label name="label" x="170" y="80" w="80" h="28" v-data:text="{amount}" style:normal:text_align_h="left"/>
-    <label name="label" x="40" y="119" w="167" h="28" v-data:text="{name}"/>
-    <label name="label" x="10" y="122" w="20" h="22" text="to"/>
-    <label name="label" x="86" y="80" w="84" h="28" text="Transfer of"/>
-    <label name="label" x="207" y="119" w="84" h="28" text="is successful"/>
-    <button name="button" x="18" y="164" w="141" h="36" v-on:click="{onPrint}" style:normal:round_radius="5" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Print Merchant Copy"/>
-    <button name="button" x="169" y="164" w="133" h="36" v-on:click="{handleConfirm}" style:normal:round_radius="5" style:normal:bg_color="#00000000" style:normal:border_color="#596B6D" text="Back to home"/>
+    <image name="image" x="10" y="20" w="300" h="49" draw_type="default" style:normal:icon="Succeed" style:normal:bg_image_draw_type="center" style:normal:font_size="16" scale_y="0.8" scale_x="0.8"/>
+    <view name="view1" x="10" y="69" w="300" h="81">
+      <label name="label" x="0" y="10" w="300" h="28" v-data:text="{amount}" style:normal:text_align_h="center" style:normal:font_size="24"/>
+      <label name="label" x="0" y="28" w="300" h="27" style:normal:font_size="18" text="is successfully sent to"/>
+      <label name="label" x="0" y="55" w="300" h="26" v-data:text="{name}" style:normal:font_size="18"/>
+      <label name="label" x="-52" y="-52" w="104" h="28" style:normal:font_size="24"/>
+    </view>
+    <button name="button" x="10" y="160" w="168" h="40" v-on:click="{printNext, Args=1}" style:normal:round_radius="5" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Print Merchant Copy"/>
+    <button name="button" x="199" y="160" w="103" h="40" v-on:click="{handleConfirm}" style:normal:round_radius="5" style:normal:bg_color="#00000000" style:normal:border_color="#596B6D" text="Back to home"/>
   </view>
 </window>

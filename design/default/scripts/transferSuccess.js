@@ -1,4 +1,4 @@
-var PRINT_TICKET = require("customPrintFunc").PRINT_TICKET;
+var PRINT_TICKET = require("mod_global_print_transfer").PRINT_TICKET;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 
 ViewModel("transferSuccess",{
@@ -33,7 +33,8 @@ ViewModel("transferSuccess",{
         trans:{},
         flow:{},
         transParam:{},
-        transferResponse:""
+        transferResponse:"",
+        fundRequestData:""
     },
 
     methods:{
@@ -70,7 +71,6 @@ ViewModel("transferSuccess",{
             GLOBAL_JUMP("", args);
         },
 
-
         onKeyDown(args) {
             console.log("key down----->>>>:", args);
             var key = args;
@@ -104,7 +104,8 @@ ViewModel("transferSuccess",{
 
         printNext: function (count) {
             this.currPrint = count;
-            // PRINT_TICKET(trans,cb,rePrint,count);
+            this.notifyPropsChanged()
+            PRINT_TICKET(this.trans,this.callback,false,this.currPrint,this.fundTransferResponse);
         },
 
         noPaper: function (count) {
@@ -116,7 +117,7 @@ ViewModel("transferSuccess",{
         onPrint:function () {
             let that  = this;
             timerAdd(function () {
-                PRINT_TICKET(that.trans,that.callback,false,that.currPrint,that.user,that.fundTransferResponse);
+                PRINT_TICKET(that.trans,that.callback,false,that.currPrint,that.fundTransferResponse);
                 return RET_REMOVE;
             }, 100);
         },
@@ -171,8 +172,10 @@ ViewModel("transferSuccess",{
     onWillMount(req){
         if(req) {
             this.user = Tos.GLOBAL_CONFIG.userInfo
-            this.fundTransferResponse = req.data.fundsResponse
-
+            this.fundTransferResponse = req.data
+            this.trans = Tos.GLOBAL_TRANSACTION.trans
+            this.name = this.fundTransferResponse.creditAccountName
+            this.amount = `₦${this.fundTransferResponse.amount}`
             // if (req.type === "success") {
             //     this.resultCode = 1
             //     this.btnText = "Success (10s)";
@@ -194,14 +197,14 @@ ViewModel("transferSuccess",{
             // }
             // this.delayClsPrn();
             this.notifyPropsChanged()
+            this.onPrint();
         }
     },
 
     onMount(){
-        this.amount = this.fundTransferResponse.amount
-        this.name = this.fundTransferResponse.creditAccountName
-        this._formatInput()
-        this.onPrint();
+        // this.name = this.fundTransferResponse.creditAccountName
+        // this._formatInput()
+
     },
 
     onWillUnmount(){},

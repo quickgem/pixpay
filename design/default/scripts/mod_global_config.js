@@ -1,5 +1,7 @@
 var GLOBAL_FILE_SAVE_COVER = require("mod_global_app_manage").GLOBAL_FILE_SAVE_COVER;
+
 var GLOBAL_GET_FILE = require("mod_global_app_manage").GLOBAL_GET_FILE;
+
 function GLOBAL_CONFIG() {
   this.config = {
         termId : "00000219",
@@ -8,10 +10,8 @@ function GLOBAL_CONFIG() {
         tpdu: "6000380000",
         head: "603200322012",
         partner: "CORESTEP",
-
         timeout:60,
         resendTime:3,
-
         voucherNo:1,
         batchNO:1,
         maxTransNum:500,
@@ -21,11 +21,16 @@ function GLOBAL_CONFIG() {
         operatorPwd:"888888",
         printCount : 2,
         printGray:4,
-
         eSignSupport:true,
         reverselTime:3,
         reverselType:0 ,//0:reversel  next time ,1: at once
         countryCode:"156",
+        theme:{
+            primary:'#09efef',
+            secondary:'',
+            light:'',
+            dark:''
+        },
         networkParam:{
           addr_len: 4,
           port: 8889,
@@ -51,7 +56,8 @@ function GLOBAL_CONFIG() {
           organisations:"",
           customerOrganisationName:"",
           customerOrganisationAddress:""
-      }
+      },
+        transactions:null
   };
 
   this.init = function (){
@@ -86,6 +92,7 @@ function GLOBAL_CONFIG() {
     Tos.GLOBAL_CONFIG = config;
   };
 }
+
 function SAVE_CONFIG(){
     let configArr = JSON.stringify(Tos.GLOBAL_CONFIG).split("");
     let arr = configArr.map(function (v){
@@ -104,11 +111,13 @@ function incVouchNo(){
 }
 
 function saveUserInfo(data){
-    console.log('userInfo before ==>',JSON.stringify(Tos.GLOBAL_CONFIG.userInfo))
     Tos.GLOBAL_CONFIG.userInfo = data
-    console.log('data to save _______________________ ',data)
     SAVE_CONFIG();
-    console.log('userInfo after ==>',JSON.stringify(Tos.GLOBAL_CONFIG.userInfo))
+}
+
+function saveTransactions(data){
+    Tos.GLOBAL_CONFIG.transactions = data
+    SAVE_CONFIG();
 }
 
 function GLOBAL_STRING_2_HEXARR (hexStr) {
@@ -184,3 +193,4 @@ exports.incVouchNo = incVouchNo;
 exports.saveUserInfo = saveUserInfo;
 exports.clearUserInfo = clearUserInfo;
 exports.injectKeys = injectKeys;
+exports.saveTransactions = saveTransactions;

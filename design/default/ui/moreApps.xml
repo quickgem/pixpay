@@ -1,0 +1,32 @@
+<window v-model="moreApps" name="moreApps" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <list_view name="list_view" h="200" default_item_height="104" w="320" x="0" y="0">
+    <scroll_view name="scroll_view" x="0" y="0" w="300" h="200" yslidable="true" with_focus_state="true" children_layout="list_view(c=3,xm=10,ym=10,s=10)" floating="false">
+      <!--     <button name="view_pay_settings"
+              v-on:click="{goSettings}"
+              style:pressed:round_radius="6" style:pressed:bg_color="#DCDCDC" style:border_width="0"
+              style:normal:bg_color="#cccccc" style:normal:round_radius="6" w="93" h="94" x="0" y="0"
+              style:normal:border="none" style:normal:border_color="#00000000"
+              style:pressed:border_color="#00000000" style:pressed:border_width="0"
+              style:over:border_color="#00000000" style:over:border="none"
+              style:focused:border_color="#00000000" style:focused:border="none"
+              style:over:bg_color="#CCCCCC" style:focused:bg_color="#CCCCCC" style:over:round_radius="6"
+              style:disable:round_radius="6" style:focused:round_radius="6">
+        <column w="93" h="100%">
+          <image name="image" v-data:image="{settings_icon}" w="48" h="48" floating="true" x="22" y="10" />
+          <label w="100%" h="30" floating="true" x="0" y="58" style:normal:text_color="#000000" line_wrap="true" style:normal:font_size="20" v-data:text="{setting_name}" />
+        </column>
+      </button>-->
+      <list_item v-for="{moreList}" focusable="true" with_focus_state="true" name="list_item" h="88" style:normal:bg_color="#00000000" style:normal:round_radius="6" style:focused:round_radius="6" style:over:round_radius="6" style:pressed:round_radius="6" style:over:bg_color="#8EAAD7" style:pressed:bg_color="#00000000" style:focused:bg_color="#8EAAD7" style:normal:border="all" style:over:border="#none" style:pressed:border="#none" style:focused:border="#none" v-on:key_down:return="{appClick, Args=fscript?name=item.appName&amp;entry=item.entry&amp;transParam=item.transParam" floating="false" style:normal:border_color="#00000000" style:normal:margin_left="2" style:normal:margin_right="2" style:normal:margin_top="2" style:normal:margin_bottom="2">
+        <property name="style:normal:margin">
+          <![CDATA[2]]>
+        </property>
+        <button name="view_child" h="88" style:normal:bg_color="#00000000" style:over:bg_color="#00000000" style:pressed:bg_color="#00000000" style:focused:bg_color="#00000000" style:normal:border="right" style:over:border="#none" style:pressed:border="#none" style:focused:border="#none" v-on:click="{appClick, Args=fscript?name=item.appName&amp;entry=item.entry&amp;transParam=item.transParam}" w="93" x="0" y="0" style:normal:border_color="#00000000">
+          <column w="93" h="88" x="0" y="0" style:normal:border_color="#00000000" style:normal:border="none">
+            <image name="image" v-data:image="{item.icon}" w="24" h="24" floating="true" x="34" y="20" style:normal:font_size="16" style:normal:border_color="#00000000" style:normal:border="none"/>
+            <label w="93" h="16" floating="true" x="0" y="62" style:normal:text_color="#000000" line_wrap="true" style:normal:font_size="16" v-data:text="{item.appName}" style:normal:border_color="#00000000" style:normal:border="none"/>
+          </column>
+        </button>
+      </list_item>
+    </scroll_view>
+  </list_view>
+</window>
