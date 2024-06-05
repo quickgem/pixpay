@@ -106,7 +106,7 @@
     <label name="label5" h="39" style:normal:font_size="20" v-data:text="{transferTypeValue}" style:normal:border_color="#848484" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:border="bottom" style:normal:border_width="1" x="0" y="0" w="320" text="Transfer to {transferTypeValue}"/>
   </view>
   <view v-if="{searchBank}" name="selectbank_view" x="0" y="0" w="320" h="218" style:normal:border_color="#000000" style:normal:bg_color="#FFFFFF" style:normal:border_width="0" style:normal:border="none">
-    <label name="label7" x="0" y="0" w="187" h="32" style:normal:font_size="24" text="Select A Bank"/>
+    <label name="label7" x="10" y="0" w="167" h="24" style:normal:font_size="24" style:normal:text_align_h="left" text="Select A Bank"/>
     <view name="view7" x="187" y="0" w="125" h="208" style:normal:bg_color="#FFFFFF">
       <!-- refactor this @hint loop. -->
       <button name="a" v-on:click="{filter, Args=a}" x="70" y="10" w="20" h="20" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="A"/>
@@ -136,12 +136,20 @@
       <button name="b" v-on:click="{filter, Args=b}" x="100" y="10" w="20" h="20" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="B"/>
       <button name="z" v-on:click="{filter, Args=z}" x="100" y="188" w="20" h="20" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="Z"/>
     </view>
-    <list_view x="0" y="34" w="187" h="184" style:normal:bg_color="#FFFFFF">
-      <scroll_view x="0" y="0" w="100%" h="184" with_focus_state="true">
+    <list_view v-if="{!loadingBanks}" x="0" y="24" w="187" h="194" style:normal:bg_color="#FFFFFF">
+      <scroll_view x="0" y="-3" w="100%" h="197" with_focus_state="true">
         <list_item v-for="{filteredBanks}" style="settings_style" h="39" focusable="true" with_focus_state="true" v-data:text="{item.name}" v-on:click="{selectBank,Args=fscript?code=item.code&amp;&amp;name=item.name&amp;}" style:normal:font_size="16"/>
       </scroll_view>
       <scroll_bar_m name="scroll_bar1" x="r" y="-40" w="6" h="258" style:normal:round_radius="30" style:normal:fg_color="#00000000" style:normal:bg_color="#848484"/>
     </list_view>
+    <label v-if="{loadingBanks}" name="label8" x="16" y="81" w="160" h="28" text="Loading Banks..."/>
+    <view v-if="{loadingBanks}" w="121" h="51" x="36" y="92">
+      <view name="view1" x="0" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+      <view name="view1" x="25" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+      <view name="view1" x="50" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+      <view name="view1" x="75" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+      <view name="view1" x="100" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+    </view>
   </view>
   <view v-if="{transactionSummary}" name="transaction_summary" x="0" y="-6" w="320" h="224" style:normal:bg_color="#FFFFFF" disg:hide="true">
     <view name="view8" x="10" y="1" w="300" h="62" style:normal:bg_color="#FFFFFF">

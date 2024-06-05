@@ -173,6 +173,7 @@ ViewModel("transactionPage", {
 
         nextPage(){
             const that = this
+            that.transactions = []
             that.currentPage = that.currentPage + 1
             that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage)
             that.totalPage = `page: ${that.currentPage}/${Math.ceil(that.totalPageNum)}`;
@@ -181,6 +182,7 @@ ViewModel("transactionPage", {
 
         prevPage(){
             const that = this
+            that.transactions = []
             that.currentPage = that.currentPage - 1
             that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage)
             that.totalPage = `page: ${that.currentPage}/${Math.ceil(that.totalPageNum)}`

@@ -55,7 +55,8 @@ ViewModel("makeTransfer", {
         showTip:"Fetching account details",
         isError:false,
         error:"",
-        filteredBanks:null
+        filteredBanks:null,
+        loadingBanks:false
     },
 
     methods:{
@@ -116,32 +117,38 @@ ViewModel("makeTransfer", {
 
         filter(args){
             const that = this
+            that.loadingBanks = true;
+            that.notifyPropsChanged();
+
 
             that.filteredBanks = that.banks.filter(it => {
-                that.activeBankIndicator = it.name[0].toLowerCase() === args ? that.theme.secondary : that.theme.primary_bold
                 return it.name[0].toLowerCase() === args
-            })
+            }).map(it => ({ ...it }));
+            that.loadingBanks = false;
             that.notifyPropsChanged();
         },
 
         readBankList(){
             const that = this
+            that.loadingBanks = true
+            // that.showTip = 'Loading banks'
+            that.notifyPropsChanged();
             function onSuccess(data){
                 that.banks = data.data
                 that.filteredBanks = that.banks.filter(it => {
                     return it.name[0].toLowerCase() === 'a'
-                })
-                that.nameEnquiryLoading = false
+                }).map(it => ({ ...it }));
+                that.loadingBanks = false
                 that.notifyPropsChanged();
             }
             function onError(data){
-                that.nameEnquiryLoading = false
+                that.loadingBanks = false
                 that.isError = true
                 that.nameEnquiry = false
                 that.error = data
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BANK_LIST, {},onSuccess,onError)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BANK_LIST,{},onSuccess,onError)
         },
 
 
@@ -161,6 +168,7 @@ ViewModel("makeTransfer", {
         doNameSearch(){
             let that = this;
             that.nameEnquiryLoading = true
+            that.showTip = 'Loading Account Details'
             if(that.transferTypeValue === "Transfer to CoreBank"){
                 that.nameEnquiryRequest.accountBankCode = "000000"
                 this.fundTransferRequest.bankName = "CoreBank"
@@ -188,17 +196,8 @@ ViewModel("makeTransfer", {
         handleClick(args){
             this.transferType = true
             this.transferTypeValue = args
-            if(this.transferTypeValue === 'Transfer to Other Banks'){
-                this.otherBanks = true
-                this.nameEnquiryLoading = true
-                this.showTip = 'Loading banks'
-                this.notifyPropsChanged();
-                this.readBankList()
-            }else{
-                this.otherBanks = false
-            }
+            this.otherBanks = this.transferTypeValue === 'Transfer to Other Banks';
             this.notifyPropsChanged();
-
         },
 
         onFail: function () {
@@ -354,6 +353,7 @@ ViewModel("makeTransfer", {
 
         this.user = Tos.GLOBAL_CONFIG.userInfo
         this.activeBankIndicator = this.theme.primary_bold
+        this.readBankList()
 
         this.notifyPropsChanged()
     },

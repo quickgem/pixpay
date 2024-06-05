@@ -1,10 +1,12 @@
 <?xml ruler_x="49"?>
 <window v-model="transactionPage" name="transactionPage" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" v-on:key_down:return="{onKeyDown, Args=return}" floating="false" style="default" style:normal:border="none">
   <label name="label" x="102" y="0" w="117" h="25" style:normal:font_size="16" style:normal:text_align_h="center" text="Transaction History"/>
-  <view v-if="{totalPageNum > 1}" name="view3" h="35" x="0" y="25" w="320" style:normal:bg_color="#FFFFFF">
-    <label name="label4" h="28" x="65" y="4" w="38" v-data:text="{totalPage}" style:normal:font_size="14"/>
-    <button v-if="{currentPage > 1}" v-on:click="prevPage" name="prev" h="28" x="10" y="4" w="45" style:normal:round_radius="6" style:normal:font_size="14" style:normal:bg_color="#00000000" style:disable:text_color="#A5A5A5" text="Prev"/>
-    <button v-if="{currentPage < totalPageNum}" v-on:click="nextPage" name="next" h="28" style:normal:round_radius="6" style:normal:font_size="14" style:normal:bg_color="#00000000" x="123" y="4" w="45" style:disable:text_color="#A5A5A5" text="Next"/>
+  <view name="view3" h="35" x="0" y="25" w="320" style:normal:bg_color="#FFFFFF">
+    <view v-if="{totalPageNum > 1}" style:normal:bg_color="#FFFFFF" h="35" name="inner_view3" w="171">
+      <label name="label4" h="28" x="65" y="4" w="38" v-data:text="{totalPage}" style:normal:font_size="14"/>
+      <button v-if="{currentPage > 1}" v-on:click="prevPage" name="prev" h="28" x="10" y="4" w="45" style:normal:round_radius="6" style:normal:font_size="14" style:normal:bg_color="#00000000" style:disable:text_color="#A5A5A5" text="Prev"/>
+      <button v-if="{currentPage < totalPageNum}" v-on:click="nextPage" name="next" h="28" style:normal:round_radius="6" style:normal:font_size="14" style:normal:bg_color="#00000000" x="123" y="4" w="45" style:disable:text_color="#A5A5A5" text="Next"/>
+    </view>
     <button name="refresh_btn" v-on:click="{refreshList}" x="181" y="3" w="54" h="28" style:normal:round_radius="6" style:normal:font_size="16" style:pressed:font_size="16" style:pressed:round_radius="6" style:over:font_size="16" style:over:round_radius="6" style:normal:bg_color="#00000000" text="Reload"/>
     <button name="filter_btn" v-on:click="{toggleFilter}" x="245" y="4" w="66" h="27" style:normal:round_radius="6" style:normal:spacer="2" style:normal:margin="0" style:normal:bg_color="#848484" style:normal:font_size="16" style:pressed:round_radius="6" style:over:round_radius="6" style:over:font_size="16" style:pressed:font_size="16" style:normal:text_color="#FFFFFF" text="Filter"/>
   </view>
