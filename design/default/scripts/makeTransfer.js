@@ -126,10 +126,6 @@ ViewModel("makeTransfer", {
 
         readBankList(){
             const that = this
-            that.nameEnquiryLoading = true
-            that.otherBanks = true
-            that.showTip = 'Loading banks'
-            that.notifyPropsChanged();
             function onSuccess(data){
                 that.banks = data.data
                 that.filteredBanks = that.banks.filter(it => {
@@ -193,6 +189,10 @@ ViewModel("makeTransfer", {
             this.transferType = true
             this.transferTypeValue = args
             if(this.transferTypeValue === 'Transfer to Other Banks'){
+                this.otherBanks = true
+                this.nameEnquiryLoading = true
+                this.showTip = 'Loading banks'
+                this.notifyPropsChanged();
                 this.readBankList()
             }else{
                 this.otherBanks = false
