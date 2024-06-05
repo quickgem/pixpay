@@ -1,6 +1,6 @@
-var saveTransactions = require("mod_global_config").saveTransactions;
-var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
+var PRINT_TICKET = require("mod_global_print_transfer").PRINT_TICKET;
+var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 ViewModel("transactionPage", {
     data: {
         user:null,
@@ -27,7 +27,12 @@ ViewModel("transactionPage", {
         originalData:null,
         startDate:"2020/01/01",
         endDate:"2020/01/01",
-        requestDate:""
+        requestDate:"",
+        isShowingReceipt:false,
+        trans:null,
+        responseMessage:null,
+        amount:null,
+        extraData:null
     },
 
     methods: {
@@ -53,23 +58,44 @@ ViewModel("transactionPage", {
             return true;
         },
 
-        paginate(arr, currentPage, itemsPerPage){
-            let arr_length = arr.length/2
-            let start = (currentPage-1)*itemsPerPage
-            let end = start+itemsPerPage
-            return arr.slice(start ? start : 0, end ? end : arr_length);
+        paginate(arr, currentPage, itemsPerPage) {
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+
+            return arr.slice(start, end);
         },
 
         onKeyDown: function(args) {
-            console.log("key down----->>>>:", args);
-            var key = args;
+            const key = args
             switch (key) {
                 case "cancel":
-                    navigateReplace({
-                        target: "moreApps",
-                        close_current:true,
-                        //data:this.user
-                    });
+                    if(this.customDate) {
+                        this.toggleCustomFilter();
+                    }else if(this.filterOn){
+                        this.toggleFilter();
+                    }else if(this.filterOn && this.customDate){
+                        this.toggleCustomFilter();
+                        this.toggleFilter()
+                    }else if(this.isShowingReceipt){
+                        this.isShowingReceipt = false;
+                        this.notifyPropsChanged()
+
+                        return;
+                    }
+                    else{
+                        navigateReplace({
+                            target: "moreApps",
+                            close_current:true,
+                        });
+                    }
+
+                    break;
+                case "return":
+                    if(this.customDate){
+                        this.logCustomDate();
+                        this.toggleCustomFilter();
+                        return;
+                    }
                     break;
                 default:
                     break;
@@ -85,31 +111,71 @@ ViewModel("transactionPage", {
             GLOBAL_JUMP("", args);
         },
 
+        onPrint:function () {
+            let that  = this;
+            that.trans.extraData = that.extraData
+            that.trans.responseMessage = this.responseMessage
+            timerAdd(function () {
+                PRINT_TICKET('',that.callback,false,that.currPrint,that.trans);
+                return RET_REMOVE;
+            }, 100);
+        },
+
+        printNext: function (count) {
+            this.currPrint = count;
+            this.trans.extraData = this.extraData
+            this.trans.responseMessage = this.responseMessage
+            this.notifyPropsChanged()
+            PRINT_TICKET('',this.callback,false,1,this.trans);
+        },
+
+        getExtraData(obj){
+            let keyValuePairs = obj.split(';');
+            let transactionData = {}
+            for(let i=0; i < keyValuePairs.length; i++){
+                let pair = keyValuePairs[i].split(':');
+
+                let key = pair[0].trim()
+                let value = pair[1].trim();
+
+                transactionData[key] = value
+            }
+            return transactionData
+        },
 
         getTrans(obj){
-            const data = obj
-            this.navigateTo(data)
+            this.trans = obj
+            this.isShowingReceipt=true;
+            if(this.trans){
+                this.amount = `₦${this.trans.amount}`;
+                this.responseMessage = `${this.trans.status === 'SUCCESS' || this.trans.status === 'ACTIVE' ? 'APPROVED' :  this.trans.status === 'FAILED' ? 'DECLINED' : this.trans.status}| ${this.trans.responseMessage}`;
+                console.log("amount ============", this.amount);
+                if(this.trans.extraData){
+                    this.extraData = this.getExtraData(this.trans.extraData)
+                }
+            }
+            this.notifyPropsChanged()
+            console.log('transaction:', JSON.stringify(this.trans))
+
         },
 
         toggleFilter: function (){
             const that = this
             that.filterOn = !that.filterOn;
             that.notifyPropsChanged()
-            console.log(that.filterOn)
         },
 
         toggleCustomFilter: function(){
             const that = this
             that.customDate = !that.customDate;
             that.notifyPropsChanged()
-            console.log(that.customDate)
         },
 
         nextPage(){
             const that = this
             that.currentPage = that.currentPage + 1
             that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage)
-            that.totalPage = `${that.currentPage}/${that.totalPageNum}`;
+            that.totalPage = `page: ${that.currentPage}/${Math.ceil(that.totalPageNum)}`;
             that.notifyPropsChanged()
         },
 
@@ -117,7 +183,7 @@ ViewModel("transactionPage", {
             const that = this
             that.currentPage = that.currentPage - 1
             that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage)
-            that.totalPage = `${that.currentPage}/${that.totalPageNum}`
+            that.totalPage = `page: ${that.currentPage}/${Math.ceil(that.totalPageNum)}`
             that.notifyPropsChanged()
         },
 
@@ -143,14 +209,12 @@ ViewModel("transactionPage", {
 
         logCustomDate(){
             const newStartDate = this.startDate.replaceAll('/','-')
-            const newEndDate = this.endDate.replaceAll('/','-')
 
-            this.showTip = 'Loading custom transactions..'
+            this.showTip = 'Loading custom transactions'
 
             this.readTransactionRequest.startDate = newStartDate
-            this.readTransactionRequest.endDate = newEndDate
+            this.readTransactionRequest.endDate = newStartDate
 
-            this.notifyPropsChanged()
             console.log(this.readTransactionRequest)
 
             this.readTransactions()
@@ -202,36 +266,46 @@ ViewModel("transactionPage", {
         },
 
         readTransactions() {
-            let that = this
-            that.loading = true
-            that.customDate = false
-            that.filterOn = false
+            this.loading = true;
+            this.customDate = false;
+            this.filterOn = false;
+            this.currentPage = 1;
+            this.transactions = null
 
-            // console.log('today:===> ',today)
-            that.readTransactionRequest.trnTerminalId = Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId
-            that.notifyPropsChanged()
-            function onSuccess(data){
-                that.loading = false
-                that.originalData = data.data
-                if(that.originalData.length < 1){
-                    that.isTransactions = false
-                }else{
-                    that.transactions = that.paginate(that.originalData, that.currentPage,that.itemsPerPage)
-                    that.totalPageNum = that.originalData.length/that.itemsPerPage
-                    that.totalPage = `${that.currentPage}/${that.totalPageNum}`
-                    that.isTransactions = true
+
+            this.readTransactionRequest.trnTerminalId = Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId;
+            this.notifyPropsChanged();
+
+            const onSuccess = (data) => {
+                this.loading = false;
+                this.originalData = data.data;
+
+                if (this.originalData.length < 1) {
+                    this.isTransactions = false;
+                } else {
+                    this.transactions = this.paginate(this.originalData, this.currentPage, this.itemsPerPage);
+                    this.totalPageNum = Math.ceil(this.originalData.length / this.itemsPerPage);
+                    this.totalPage = `page: ${this.currentPage}/${this.totalPageNum}`;
+                    this.isTransactions = true;
                 }
 
-                that.notifyPropsChanged();
-                console.log(that.transactions)
-            }
-            function onError(data){
-                that.loading = false
-                that.error = data
-                that.notifyPropsChanged();
-            }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TRANSACTION_HISTORY,that.readTransactionRequest,onSuccess,onError)
+                this.notifyPropsChanged();
+            };
+
+            const onError = (error) => {
+                this.loading = false;
+                this.error = error;
+                this.notifyPropsChanged();
+            };
+
+            Tos.GLOBAL_API.callApi(
+                Tos.GLOBAL_API.TRANSACTION_HISTORY,
+                this.readTransactionRequest,
+                onSuccess,
+                onError
+            );
         }
+
     },
 
     onWillMount: function (req) {

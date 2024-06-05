@@ -26,10 +26,11 @@ function GLOBAL_CONFIG() {
         reverselType:0 ,//0:reversel  next time ,1: at once
         countryCode:"156",
         theme:{
-            primary:'#09efef',
-            secondary:'',
-            light:'',
-            dark:''
+            primary:'#d2d2d3b9',
+            primary_bold:'#3F3F3F',
+            secondary:'#FF9900FF',
+            light:'#FFFFFF',
+            dark:'#000000'
         },
         networkParam:{
           addr_len: 4,

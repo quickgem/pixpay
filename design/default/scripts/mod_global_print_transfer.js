@@ -76,7 +76,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
         addTextSpace(`CARD.: ${arg.extraData.card}`,ALIGN_LEFT,fontSize.MIDDLE);
         addTextSpace(`STAN: ${arg.extraData.stan}`,ALIGN_LEFT,fontSize.MIDDLE);
         addTextSpace(`RRN: ${arg.extraData.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);
-        addTextSpace(`APPLAB: ${arg.extraData.applab}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`APPLAB: ${arg.extraData.appLab}`,ALIGN_LEFT,fontSize.MIDDLE);
         addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     }else{
         addTextSpace(`BUSINESS ACC.: ${arg.debitAccountNumber}`,ALIGN_LEFT,fontSize.MIDDLE);

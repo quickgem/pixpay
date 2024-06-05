@@ -1,28 +1,14 @@
-var GLOBAL_PROPS = require("mod_global_props").GLOBAL_PROPS;
 var GLOBAL_TRANSACTION = require("mod_global_trans").GLOBAL_TRANSACTION;
 var GLOBAL_PREENTRY = require("mod_global_trans").GLOBAL_PREENTRY;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
-var GLOBAL_CONSTANT = require("mod_global_constant").GLOBAL_CONSTANT;
-var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
-var injectKeys = require("mod_global_config").injectKeys;
-var saveUserInfo = require("mod_global_config").saveUserInfo;
 var GLOBAL_CHOOSE_NETWORK = require("mod_global_network").GLOBAL_CHOOSE_NETWORK;
-var GLOBAL_API = require("mod_global_api").GLOBAL_API;
 
 ViewModel("moreApps", {
     data: {
         currentIndex: 0,
         isShowScrollbar: false,
-        isShowExit: false,
-        noticeText:"Exit The Application?",
-        isShowToast:false,
-        toastTip:"",
-        title:"",
         moreList: [],
-        user:null,
-        token:null,
-        fullName:null,
-        mid:null,
+        theme:""
     },
 
     methods: {
@@ -44,47 +30,6 @@ ViewModel("moreApps", {
             }
         },
 
-        showExit: function () {
-            this.isShowExit =true;
-            this.notifyPropsChanged();
-        },
-
-        handleCancel: function () {
-            this.isShowExit =false;
-            this.notifyPropsChanged();
-        },
-
-        handleConfirm: function () {
-            this.exitApp();
-        },
-
-        hideToast: function () {
-            this.isShowToast = false;
-            this.notifyPropsChanged();
-        },
-
-        showToast:function (tip){
-            this.isShowToast = true;
-            this.toastTip =tip;
-            this.setToastTimer();
-            this.notifyPropsChanged();
-        },
-
-        setToastTimer: function () {
-            let loop = 0;
-            let that = this;
-            timerAdd(function () {
-                if (!that.isShowToast) {
-                    return RET_REMOVE;
-                }
-                loop++;
-                if (loop >= 2) {
-                    that.hideToast();
-                    return RET_REMOVE;
-                }
-                return RET_REPEAT;
-            }, 1000);
-        },
 
         navigateTo: function (args) {
             GLOBAL_JUMP("");
@@ -113,98 +58,6 @@ ViewModel("moreApps", {
 
         },
 
-        exitApp:function () {
-            navigateReplace({
-                close_current: true,
-                target: "login"
-            });
-
-        },
-
-        initCAPKdata: function () {
-            let ret = Tos.TemvCheckEmvParam(OPT_CHECK_CAPK);
-            console.log("Tos.TemvCheckEmvParam(OPT_CHECK_CAPK) ==============> ", ret.code);
-            if (ret.code === 1) {
-                return;
-            }
-            const capkList = GLOBAL_PROPS.capkList;
-            const len = capkList.length;
-            Tos.TemvUpdateEmvParam(OPT_DEL_ALL_CAPK);
-            for (let i = 0; i < len; i++) {
-                console.log("\ncapks[i].length = ", capkList[i].length);
-                ret = Tos.TemvUpdateEmvParam(OPT_ADD_ONE_CAPK, capkList[i], capkList[i].length);
-                console.log("\nTos.TemvUpdateEmvParam CAPK==============> ", ret.code);
-            }
-
-            //just for flag
-            Tos.GLOBAL_INIT_CAPK_DATA = true;
-            console.log("\ninitCAPKdata ==============> end");
-        },
-
-        initAIDdata: function () {
-            let ret = Tos.TemvCheckEmvParam(OPT_CHECK_AID);
-            console.log("Tos.TemvCheckEmvParam(OPT_CHECK_AID) ==============> ", ret.code);
-            if (ret.code === 1) {
-                return;
-            }
-            const aidList = GLOBAL_PROPS.aidList;
-            const len = aidList.length;
-            Tos.TemvUpdateEmvParam(OPT_DEL_ALL_AID);
-            for (let i = 0; i < len; i++) {
-                console.log("\naidList[i].length = ", aidList[i].length);
-                ret = Tos.TemvUpdateEmvParam(OPT_ADD_ONE_AID, aidList[i], aidList[i].length);
-                console.log("\nTos.TemvUpdateEmvParam AID==============> ", ret.code);
-            }
-
-            //just for flag
-            Tos.GLOBAL_INIT_AID_DATA = true;
-            console.log("\ninitAIDdata ==============> end");
-        },
-
-        initWIFI() {
-            if (!Tos.global_wifi.init) return;
-            let res = READ_FILE();
-            console.log("READ_FILE_res", JSON.stringify(res));
-            if (res.wifiOpen) OPEN_WIFI();
-            if (res.ssid) CONNECT_WIFI(res.ssid, res.password, res.sec_mode);
-        },
-
-        createDir:function () {
-            console.log("createDir  ============>");
-            let filePath =Tos.CONSTANT.filePath;
-
-            let rootDir = filePath.payRoot;
-            console.log("rootDir  ============>",rootDir);
-
-            let exist = Tos.FileAccess(rootDir);
-            console.log("rootDir access ============>",JSON.stringify(exist));
-
-            let ret ;
-            if(exist.code != 0){
-                ret =Tos.FileMkdir(rootDir);
-                console.log("FileMkdir rootDir  ============>",JSON.stringify(ret));
-            }
-            let recordDir = filePath.recorDir;
-            console.log("recordDir  ============>",recordDir);
-
-            exist = Tos.FileAccess(recordDir);
-            console.log("recordDir access ============>",JSON.stringify(exist));
-
-            if(exist.code != 0){
-                ret = Tos.FileMkdir(recordDir);
-                console.log("FileMkdir recordDir  ============>",JSON.stringify(ret));
-            }
-
-            let eSignDir = filePath.eSignDir;
-            console.log("eSignDir  ============>",eSignDir);
-            exist = Tos.FileAccess(eSignDir);
-            console.log("eSignDir access ============>",JSON.stringify(exist));
-
-            if(exist.code != 0){
-                ret = Tos.FileMkdir(eSignDir);
-                console.log("FileMkdir eSignDir  ============>",JSON.stringify(ret));
-            }
-        },
 
     },
 
@@ -216,9 +69,13 @@ ViewModel("moreApps", {
     },
 
     onMount: function (data) {
-        this.isShowScrollbar = this.moreList.length  > 6;
+        let that = this;
+        that.isShowScrollbar = that.moreList.length  > 6;
 
-        this.notifyPropsChanged();
+
+        if(Tos.GLOBAL_CONFIG != null) that.theme = Tos.GLOBAL_CONFIG.theme
+
+        that.notifyPropsChanged();
     },
 
     onWillUnmount: function () {

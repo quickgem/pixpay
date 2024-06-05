@@ -565,6 +565,7 @@ ViewModel("emvProcess", {
       this.isShowModal = true;
       this.notifyPropsChanged();
     },
+
     hideModal() {
       console.log("hideModal 000===========>", this.isShowCardTips);
       if (this.errorCode > 0) {

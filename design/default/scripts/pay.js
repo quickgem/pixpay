@@ -258,7 +258,7 @@ ViewModel("pay", {
   onMount: function (data) {
     let that = this;
 
-    if(Tos.GLOBAL_CONFIG != null) that.theme = Tos.GLOBAL_CONFIG.theme.primary
+    if(Tos.GLOBAL_CONFIG != null) that.theme = Tos.GLOBAL_CONFIG.theme
     // timerAdd(function (){
     //
     //

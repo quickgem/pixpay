@@ -23,6 +23,7 @@ ViewModel("transReceipt", {
             printError:this.printError
         },
         extraData:null,
+        responseMessage:""
     },
     methods: {
         setScreenTimer: function () {
@@ -74,6 +75,8 @@ ViewModel("transReceipt", {
 
         onPrint:function () {
             let that  = this;
+            that.trans.extraData = that.extraData
+            that.trans.responseMessage = this.responseMessage
             timerAdd(function () {
                 PRINT_TICKET('',that.callback,false,that.currPrint,that.trans);
                 return RET_REMOVE;
@@ -81,8 +84,8 @@ ViewModel("transReceipt", {
         },
         printNext: function (count) {
             this.currPrint = count;
-            this.trans.responseCode = "00"
-            this.trans.responseMessage = "Completed Successfully"
+            this.trans.extraData = this.extraData
+            this.trans.responseMessage = this.responseMessage
             this.notifyPropsChanged()
             PRINT_TICKET('',this.callback,false,1,this.trans);
         },
@@ -101,20 +104,18 @@ ViewModel("transReceipt", {
             }, 1000);
         },
 
-        getExtraData: function(obj){
-            let keyValuePairs = obj.extraData.split(';');
+        getExtraData(){
+            let keyValuePairs = this.trans.extraData.split(';');
             let transactionData = {}
-
-            for(let i=0; i<keyValuePairs.length; i++){
+            for(let i=0; i < keyValuePairs.length; i++){
                 let pair = keyValuePairs[i].split(':');
 
                 let key = pair[0].trim()
                 let value = pair[1].trim();
 
                 transactionData[key] = value
-
-                return transactionData
             }
+            return transactionData
         },
 
         delayClsPrn: function () {
@@ -151,9 +152,12 @@ ViewModel("transReceipt", {
         this.trans = req.data;
         if (this.trans) {
             this.amount = `₦${this.trans.amount}`;
+            this.responseMessage = `${this.trans.status === 'SUCCESS' || this.trans.status === 'ACTIVE' ? 'APPROVED' :  this.trans.status === 'FAILED' ? 'DECLINED' : this.trans.status}| ${this.trans.responseMessage}`;
+            const stingTrans = JSON.stringify(this.trans)
+            this.trans = JSON.parse(stingTrans)
             console.log("amount ============", this.amount);
             if(this.trans.extraData){
-                this.extraData = this.getExtraData(this.trans.extraData)
+                this.extraData = this.getExtraData()
             }
         }
 

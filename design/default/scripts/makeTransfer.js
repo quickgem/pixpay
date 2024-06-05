@@ -6,6 +6,7 @@ ViewModel("makeTransfer", {
     data: {
         showModel: false,
         searchQy:"",
+        theme:null,
         transferType:false,
         transferTypeValue:"Transfer to CoreBank",
         accountNumberStr:"",
@@ -47,6 +48,8 @@ ViewModel("makeTransfer", {
         trans:{},
         popUp:false,
         transParam:{},
+        activeBankIndicator:null,
+        bankFilterAlphabets:['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
         flow:{},
         title:"",
         showTip:"Fetching account details",
@@ -56,10 +59,7 @@ ViewModel("makeTransfer", {
     },
 
     methods:{
-        resetBank(){
-            this.isNoBank = true
-            this.notifyPropsChanged();
-        },
+
 
         selectBank(args){
             console.log("selected bank ====> ", args)
@@ -116,7 +116,9 @@ ViewModel("makeTransfer", {
 
         filter(args){
             const that = this
+
             that.filteredBanks = that.banks.filter(it => {
+                that.activeBankIndicator = it.name[0].toLowerCase() === args ? that.theme.secondary : that.theme.primary_bold
                 return it.name[0].toLowerCase() === args
             })
             that.notifyPropsChanged();
@@ -125,6 +127,7 @@ ViewModel("makeTransfer", {
         readBankList(){
             const that = this
             that.nameEnquiryLoading = true
+            that.otherBanks = true
             that.showTip = 'Loading banks'
             that.notifyPropsChanged();
             function onSuccess(data){
@@ -190,7 +193,7 @@ ViewModel("makeTransfer", {
             this.transferType = true
             this.transferTypeValue = args
             if(this.transferTypeValue === 'Transfer to Other Banks'){
-                this.otherBanks = true
+                this.readBankList()
             }else{
                 this.otherBanks = false
             }
@@ -347,12 +350,10 @@ ViewModel("makeTransfer", {
         this.trans =Tos.GLOBAL_TRANSACTION.trans;
         this.title =  this.trans.transName;
         this.fundTransferRequest.amount = GET_SHOW_AMOUNT(this.trans.amount)
+        if(Tos.GLOBAL_CONFIG != null) this.theme = Tos.GLOBAL_CONFIG.theme
 
-        if(req){
-            this.user = Tos.GLOBAL_CONFIG.userInfo
-        }
-
-        this.readBankList()
+        this.user = Tos.GLOBAL_CONFIG.userInfo
+        this.activeBankIndicator = this.theme.primary_bold
 
         this.notifyPropsChanged()
     },
