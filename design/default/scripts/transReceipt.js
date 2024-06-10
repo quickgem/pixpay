@@ -160,6 +160,7 @@ ViewModel("transReceipt", {
             console.log("amount ============", this.amount);
             if(this.trans.extraData){
                 this.extraData = this.getExtraData()
+                console.log('hello')
             }
         }
 
