@@ -32,7 +32,9 @@ ViewModel("transactionPage", {
         trans:null,
         responseMessage:null,
         amount:null,
-        extraData:null
+        extraData:null,
+        trnTypeColor:null,
+        trnStatus:null,
     },
 
     methods: {
@@ -150,8 +152,17 @@ ViewModel("transactionPage", {
                 this.amount = `₦${this.trans.amount}`;
                 this.responseMessage = `${this.trans.status === 'SUCCESS' || this.trans.status === 'ACTIVE' ? 'APPROVED' :  this.trans.status === 'FAILED' ? 'DECLINED' : this.trans.status}| ${this.trans.responseMessage}`;
                 console.log("amount ============", this.amount);
-                if(this.trans.extraData){
-                    this.extraData = this.getExtraData(this.trans.extraData)
+                if(this.trans.trnService === 'CARD_COLLECTION'){
+                    this.extraData = {
+                        card:this.trans.card,
+                        name:this.trans.name,
+                        appLab:this.trans.appLab,
+                        stan:this.trans.stan,
+                        rrn:this.trans.rrn,
+                        aid:this.trans.aid,
+                        tid:this.trans.tid,
+                        mid:this.trans.mid
+                    }
                 }
             }
             this.notifyPropsChanged()
@@ -173,19 +184,21 @@ ViewModel("transactionPage", {
 
         nextPage(){
             const that = this
-            that.transactions = []
-            that.currentPage = that.currentPage + 1
-            that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage)
+            that.currentPage = that.currentPage + 1 // update page
+            that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage) // paginate data
             that.totalPage = `page: ${that.currentPage}/${Math.ceil(that.totalPageNum)}`;
+            that.customDate = false
+            that.filterOn = false;
             that.notifyPropsChanged()
         },
 
         prevPage(){
             const that = this
-            that.transactions = []
-            that.currentPage = that.currentPage - 1
-            that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage)
+            that.currentPage = that.currentPage - 1 // update page
+            that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage) // paginate data
             that.totalPage = `page: ${that.currentPage}/${Math.ceil(that.totalPageNum)}`
+            that.customDate = false
+            that.filterOn = false;
             that.notifyPropsChanged()
         },
 
@@ -217,6 +230,10 @@ ViewModel("transactionPage", {
             this.readTransactionRequest.startDate = newStartDate
             this.readTransactionRequest.endDate = newStartDate
 
+            this.customDate = false
+            this.filterOn = false;
+
+            this.notifyPropsChanged()
             console.log(this.readTransactionRequest)
 
             this.readTransactions()
@@ -224,6 +241,9 @@ ViewModel("transactionPage", {
         },
 
         refreshList(){
+            this.customDate = false
+            this.filterOn = false;
+            this.notifyPropsChanged()
             this.getTodayDate()
             this.readTransactions()
         },
@@ -267,13 +287,21 @@ ViewModel("transactionPage", {
             this.readTransactions()
         },
 
+        parseExtraData(trans){
+            this.originalData = this.originalData.map(transaction => {
+                if (transaction.extraData) {
+                    transaction.extraData = JSON.parse(transaction.extraData);
+                }
+                return transaction
+            })
+
+    },
+
         readTransactions() {
             this.loading = true;
             this.customDate = false;
             this.filterOn = false;
             this.currentPage = 1;
-            this.transactions = null
-
 
             this.readTransactionRequest.trnTerminalId = Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId;
             this.notifyPropsChanged();
@@ -285,6 +313,15 @@ ViewModel("transactionPage", {
                 if (this.originalData.length < 1) {
                     this.isTransactions = false;
                 } else {
+                    this.originalData = this.originalData.map(transaction => {
+                        if (transaction.trnExtraData) {
+                            transaction.trnExtraData = this.getExtraData(transaction.trnExtraData);
+                        }
+                        return transaction
+                    })
+
+                    console.log('checking:', JSON.stringify(this.originalData.map(transaction => transaction.trnExtraData)))
+
                     this.transactions = this.paginate(this.originalData, this.currentPage, this.itemsPerPage);
                     this.totalPageNum = Math.ceil(this.originalData.length / this.itemsPerPage);
                     this.totalPage = `page: ${this.currentPage}/${this.totalPageNum}`;

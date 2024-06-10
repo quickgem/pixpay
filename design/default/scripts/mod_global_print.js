@@ -69,6 +69,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     }
     addTextSpace(`RESPONSE CODE: ${arg.code === ""?"999":arg.code}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`MESSAGE: ${getResponse(arg.code).responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
+    // addTextSpace(`DATE: ${arg.createdAt}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`TID: ${Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`MID: ${Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet}`,ALIGN_LEFT,fontSize.MIDDLE);
     let cardNo = trans.pan.substring(0,5)+"******"+trans.pan.substring(trans.pan.length-4,trans.pan.length)

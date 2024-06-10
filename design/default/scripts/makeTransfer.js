@@ -56,7 +56,8 @@ ViewModel("makeTransfer", {
         isError:false,
         error:"",
         filteredBanks:null,
-        loadingBanks:false
+        loadingBanks:false,
+        isFiltering:false
     },
 
     methods:{
@@ -115,29 +116,42 @@ ViewModel("makeTransfer", {
             this.notifyPropsChanged()
         },
 
+        showFilterView(){
+            this.isFiltering = true;
+            this.notifyPropsChanged()
+        },
+
         filter(args){
-            const that = this
-            that.loadingBanks = true;
-            that.notifyPropsChanged();
+            this.filteredBanks = [];  // Reinitialize filteredBanks to a new empty array
 
+            for(let i = 0; i < this.banks.length; i++){
 
-            that.filteredBanks = that.banks.filter(it => {
-                return it.name[0].toLowerCase() === args
-            }).map(it => ({ ...it }));
-            that.loadingBanks = false;
-            that.notifyPropsChanged();
+                if(this.banks[i].name[0].toLowerCase() === args){
+                    this.filteredBanks.push(this.banks[i])
+                }
+            }
+
+            console.log('filtered banks:===>', JSON.stringify(this.filteredBanks))
+
+            this.isFiltering = false;
+            // this.filteredBanks = this.banks.filter(it => {
+            //     return it.name[0].toLowerCase() === args
+            // }).map(it => JSON.parse(JSON.stringify(it)));
+
+            this.notifyPropsChanged();
         },
 
         readBankList(){
             const that = this
             that.loadingBanks = true
+            that.searchBank = true
             // that.showTip = 'Loading banks'
             that.notifyPropsChanged();
             function onSuccess(data){
                 that.banks = data.data
                 that.filteredBanks = that.banks.filter(it => {
                     return it.name[0].toLowerCase() === 'a'
-                }).map(it => ({ ...it }));
+                })
                 that.loadingBanks = false
                 that.notifyPropsChanged();
             }
@@ -246,7 +260,11 @@ ViewModel("makeTransfer", {
 
         openBankList(){
             this.searchBank = true
+            this.filteredBanks = this.banks.filter(it => {
+                return it.name[0].toLowerCase() === 'a'
+            })
             this.notifyPropsChanged()
+
         },
 
         handleNext: function () {
@@ -353,13 +371,13 @@ ViewModel("makeTransfer", {
 
         this.user = Tos.GLOBAL_CONFIG.userInfo
         this.activeBankIndicator = this.theme.primary_bold
-        this.readBankList()
+        this.banks = Tos.GLOBAL_CONFIG.banks
 
         this.notifyPropsChanged()
     },
 
     onMount: function () {
-
+        console.log('banks:', JSON.stringify(this.banks))
     },
 
     onWillUnmount: function () {

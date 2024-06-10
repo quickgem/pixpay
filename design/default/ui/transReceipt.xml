@@ -69,7 +69,7 @@
         </view>
         <view name="view5" h="24" style:normal:border_color="#00000000" x="0" y="196" w="290">
           <label name="from" x="10" y="0" w="46" h="23" style:normal:font_size="14" style:normal:text_align_h="left" text="Status"/>
-          <label name="fromValue" x="56" y="-2" w="234" h="25" v-data:text="{trans.trnStatus}" style:normal:text_align_h="right" style:normal:font_size="12"/>
+          <label name="fromValue" x="56" y="-2" w="234" h="25" v-data:text="{responseMessage}" style:normal:text_align_h="right" style:normal:font_size="12"/>
         </view>
         <view name="view3" h="24" style:normal:border_color="#00000000" x="0" y="162" w="290">
           <label name="from" x="10" y="0" w="82" h="23" style:normal:font_size="14" style:normal:text_align_h="left" text="Bank"/>
@@ -79,7 +79,7 @@
         <button v-on:click="{onPrint}" name="button4" x="154" y="284" w="126" h="39" style:normal:round_radius="6" style:normal:bg_color="#00000000" style:normal:text_color="#000000" style:normal:border_color="#7B7B7B" text="Customer Copy"/>
         <view name="view12" h="54" style:normal:border_color="#7E7E7E" x="0" y="220" w="310" style:normal:border="top" style:normal:border_width="1">
           <label name="from" x="10" y="0" w="284" h="19" style:normal:font_size="14" style:normal:text_align_h="center" text="Transaction I.D"/>
-          <label name="fromValue" x="0" y="29" w="310" h="25" v-data:text="{trans.trnReference}" style:normal:text_align_h="center" style:normal:font_size="12"/>
+          <label name="fromValue" x="0" y="29" w="310" h="25" v-data:text="{trans.reference}" style:normal:text_align_h="center" style:normal:font_size="12"/>
         </view>
       </view>
     </scroll_view>

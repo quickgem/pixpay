@@ -58,7 +58,8 @@ function GLOBAL_CONFIG() {
           customerOrganisationName:"",
           customerOrganisationAddress:""
       },
-        transactions:null
+      transactions:null,
+      banks:null
   };
 
   this.init = function (){
@@ -119,6 +120,13 @@ function saveUserInfo(data){
 function saveTransactions(data){
     Tos.GLOBAL_CONFIG.transactions = data
     SAVE_CONFIG();
+}
+
+function saveBankList(data){
+    Tos.GLOBAL_CONFIG.banks = data
+    SAVE_CONFIG();
+
+    console.log('banks:', JSON.stringify(Tos.GLOBAL_CONFIG.banks))
 }
 
 function GLOBAL_STRING_2_HEXARR (hexStr) {
@@ -195,3 +203,4 @@ exports.saveUserInfo = saveUserInfo;
 exports.clearUserInfo = clearUserInfo;
 exports.injectKeys = injectKeys;
 exports.saveTransactions = saveTransactions;
+exports.saveBankList = saveBankList;

@@ -6,6 +6,7 @@ var GLOBAL_CONSTANT = require("mod_global_constant").GLOBAL_CONSTANT;
 var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
 var injectKeys = require("mod_global_config").injectKeys;
 var saveUserInfo = require("mod_global_config").saveUserInfo;
+var saveBankList = require("mod_global_config").saveBankList;
 var GLOBAL_CHOOSE_NETWORK = require("mod_global_network").GLOBAL_CHOOSE_NETWORK;
 var GLOBAL_API = require("mod_global_api").GLOBAL_API;
 
@@ -32,15 +33,15 @@ ViewModel("pay", {
       var key = args;
       switch (key) {
         case "cancel":
-          // if (this.isShowToast) {
-          //   this.hideToast();
-          //   return;
-          // }
-          // if (this.isShowExit) {
-          //   this.handleCancel();
-          //   return;
-          // }
-          // this.showExit();
+          if (this.isShowToast) {
+            this.hideToast();
+            return;
+          }
+          if (this.isShowExit) {
+            this.handleCancel();
+            return;
+          }
+          this.showExit();
           break;
         case "return":
           if (this.isShowToast) {
@@ -131,7 +132,7 @@ ViewModel("pay", {
     exitApp:function () {
       navigateReplace({
         close_current: true,
-        target: "login"
+        target: "home"
       });
 
     },
@@ -240,8 +241,8 @@ ViewModel("pay", {
     }
 
     if(req.data != null) {
-      this.user = req.data;
-      saveUserInfo(req.data)
+      // this.user = req.data;
+      saveBankList(req.data)
     }
 
     if (Tos.GLOBAL_CONFIG != null && Tos.GLOBAL_CONFIG.userInfo != null) this.user = Tos.GLOBAL_CONFIG.userInfo;

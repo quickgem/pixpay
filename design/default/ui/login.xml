@@ -1,4 +1,4 @@
-<window v-model="login" v-on:key_down:NETEVENT="{initHTTPCB}" name="login" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+<window v-model="login" v-on:key_down:NETEVENT="{initHTTPCB}" name="login" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" anim_hint="slide_up(duration=2,easing=cubic_out)">
   <!--  <view v-if="{type}" w="100%" h="100%">-->
   <!--    <label name="pay_num" x="0" y="70" w="320" h="60" tips="" style:normal:font_size="32" style:normal:border="none" style:normal:bg_color="#00000000" v-data:text="{valueStr}" style:normal:border_width="2"/>-->
   <!--    <label name="tips_text" x="0" y="125" w="320" h="30" style:normal:text_color="#595959" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" v-data:text="{tip_text}"/>-->
@@ -19,21 +19,21 @@
         <button v-on:click="{loginAction}" name="act_button" x="28" y="116" w="261" h="32" style="default" style:pressed:border_color="#00000000" style:pressed:bg_color="#8F9294" style:normal:bg_color="#596B6D" style:normal:round_radius="6" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" text="Login"/>
       </view>
       <label name="label" x="24" y="20" w="37" h="28" style:normal:font_size="20" style:normal:text_align_h="right" text="Login"/>
-      <view v-if="{loading}" x="0" y="0" w="320" h="210" disg:custom="container">
-        <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
-          <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
-            <view w="120" h="60" x="42" y="24">
-              <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-              <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-              <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-              <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-              <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-            </view>
-          </view>
-          <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
+    </scroll_view>
+  </view>
+  <view v-if="{loading}" x="0" y="0" w="320" h="210" disg:custom="container" disg:hide="true">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
+        <view w="120" h="60" x="42" y="24">
+          <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
         </view>
       </view>
-    </scroll_view>
+      <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
+    </view>
   </view>
   <view v-if="{isShowExit}" text="view" x="0" y="0" w="100%" h="100%" disg:custom="container" disg:hide="true">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078" disg:hide="true">

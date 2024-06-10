@@ -1,4 +1,6 @@
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
+var saveUserInfo = require("mod_global_config").saveUserInfo;
+
 ViewModel("login", {
     data:{
         deviceSN: "",
@@ -142,21 +144,45 @@ ViewModel("login", {
             }, 1000);
         },
 
+        readBankList(){
+            const that = this
+            // that.showTip = 'Loading banks'
+            function onSuccess(data){
+                that.loading = false
+                that.notifyPropsChanged();
+                // that.filteredBanks = that.banks.filter(it => {
+                //     return it.name[0].toLowerCase() === 'a'
+                // })
+                // that.loadingBanks = false
+
+                navigateTo({
+                    target: "pay",
+                    close_current: true,
+                    data: data.data,
+                });
+            }
+            function onError(data){
+                that.loadingBanks = false
+                that.isError = true
+                that.nameEnquiry = false
+                that.error = data
+                that.notifyPropsChanged();
+            }
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BANK_LIST,{},onSuccess,onError)
+        },
+
         loginAction: function () {
             const that =this
             that.loading = true
             that.notifyPropsChanged()
             function onSuccess(data){
                 console.log('callback =========>>>>>',JSON.stringify(data))
-                that.loading = false
-                that.notifyPropsChanged();
-                navigateTo({
-                    target: "pay",
-                    close_current: true,
-                    data: data,
-                });
+                that.user = data
+                saveUserInfo(data)
+                that.readBankList()
             }
             function onError(data){
+                console.log('onError', JSON.stringify(data), data)
                 this.loading = false
                 this.isError = true
                 this.error = data

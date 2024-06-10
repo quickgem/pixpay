@@ -78,6 +78,7 @@ ViewModel("app_store", {
       console.log("HttpclientCbEvent start 0000000===========");
       Tos.HttpclientCbEvent();
     },
+
     handleError: function () {
       this.downloadBuffer = [];
       this.saveBuffer = [];

@@ -1,6 +1,8 @@
 var PRINT_TICKET = require("mod_global_print_transfer").PRINT_TICKET;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
+const  getResponse = require("mod_global_response").getResponse;
+
 
 ViewModel("transReceipt", {
     data: {
@@ -152,7 +154,7 @@ ViewModel("transReceipt", {
         this.trans = req.data;
         if (this.trans) {
             this.amount = `₦${this.trans.amount}`;
-            this.responseMessage = `${this.trans.status === 'SUCCESS' || this.trans.status === 'ACTIVE' ? 'APPROVED' :  this.trans.status === 'FAILED' ? 'DECLINED' : this.trans.status}| ${this.trans.responseMessage}`;
+            this.responseMessage = `${this.trans.status === 'SUCCESS' || this.trans.status === 'ACTIVE' ? 'APPROVED' :  this.trans.status === 'FAILED' ? 'DECLINED' : this.trans.status}| ${getResponse(this.trans.responseCode)}`;
             const stingTrans = JSON.stringify(this.trans)
             this.trans = JSON.parse(stingTrans)
             console.log("amount ============", this.amount);

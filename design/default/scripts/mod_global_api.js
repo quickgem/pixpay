@@ -13,20 +13,36 @@ function GLOBAL_API() {
 
     this.callApi = function (url,request,onSuccess, onError) {
         this.globalChooseNetworks();
-        let head = {
-            params:`Authorization:${Tos.GLOBAL_CONFIG.userInfo.session}\r\nmid:${Tos.GLOBAL_CONFIG.userInfo.mid}\r\nAccept:*/*\r\n`,
-            method: 1,
-            ContentType: "application/json"
-        };
-        let requestString = JSON.stringify(request) + "\r\n";
-        console.log("REQUEST:====>", requestString);
-        let that = this
-        this.httpCB = function (ret) {
-            let data = ret.data && ret.data.response_buf || [];
-            that.parseData(data,onSuccess,onError);
-        };
-        let httpret = Tos.HttpclientCommon(head, url, requestString, "","", 30, 1, that.httpCB);
-        console.log("RESPONSE:====>", JSON.stringify(httpret));
+
+        if(this.globalChooseNetworks()){
+            let head = {
+                params:`Authorization:${Tos.GLOBAL_CONFIG.userInfo.session}\r\nmid:${Tos.GLOBAL_CONFIG.userInfo.mid}\r\nAccept:*/*\r\n`,
+                method: 1,
+                ContentType: "application/json"
+            };
+            let requestString = JSON.stringify(request) + "\r\n";
+            console.log("REQUEST:====>", requestString);
+            let that = this
+            this.httpCB = function (ret) {
+                console.log('ret ====>', JSON.stringify(ret));
+                let data = ret.data && ret.data.response_buf || [];
+                if(ret.code !== 0){
+                    that.parseData(data,onSuccess,onError);
+                }else{
+                    onError(httpret)
+                    console.log("RESPONSE:====>", JSON.stringify(httpret));
+                    console.log('onError', JSON.stringify(httpret))
+                }
+
+            };
+            let httpret = Tos.HttpclientCommon(head, url, requestString, "","", 30, 1, that.httpCB);
+            console.log('httpret:====>', JSON.stringify(httpret));
+        }
+        else{
+            onError('network Error')
+            console.log('network Error')
+        }
+
     }
 
     this.globalChooseNetworks = function () {
@@ -60,18 +76,22 @@ function GLOBAL_API() {
             if(parsedData.responseCode === "00" || parsedData.isoResponseCode  === "00"){
                 console.log('returned responseCode =========>', parsedData.responseCode?parsedData.responseCode:parsedData.isoResponseCode)
                 onSuccess(parsedData)
-            }else if (data.responseCode === "115"){
+            }
+            else if (data.responseCode === "115"){
                 Tos.GLOBAL_CONFIG.userInfo = {}
                 navigateTo({
                     target: "login",
                     close_current: true,
                 });
-            }else {
+            }
+            else {
                 onError(parsedData)
+                console.log('parsedData', JSON.stringify(parsedData))
             }
         }
         else {
-            onError({})
+            onError('something went wrong.')
+
         }
     }
 
