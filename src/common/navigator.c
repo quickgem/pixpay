@@ -1,5 +1,6 @@
 ﻿#include "awtk.h"
 #include "navigator.h"
+extern ret_t result_init(widget_t* win, void* ctx);
 extern ret_t moreApps_init(widget_t* win, void* ctx);
 extern ret_t transferSuccess_init(widget_t* win, void* ctx);
 extern ret_t transferLoading_init(widget_t* win, void* ctx);
@@ -26,7 +27,9 @@ extern ret_t sample_ui_init(widget_t* win, void* ctx);
 extern ret_t home_page_init(widget_t* win, void* ctx);
 
 static ret_t navigator_window_init(const char* name, widget_t* win, void* ctx) {
-    if (tk_str_eq(name, "moreApps")) {
+    if (tk_str_eq(name, "result")) {
+      return result_init(win, ctx);
+    } else if (tk_str_eq(name, "moreApps")) {
       return moreApps_init(win, ctx);
     } else if (tk_str_eq(name, "transferSuccess")) {
       return transferSuccess_init(win, ctx);
