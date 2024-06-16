@@ -1,5 +1,4 @@
 var SAVE_CONFIG = require("mod_global_config").SAVE_CONFIG;
-var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
 var sprintf = require("mod_global_funcs").sprintf;
 var GLOBAL_FORMAT_HARDWARE_KEYBOARD = require("mod_global_funcs").GLOBAL_FORMAT_HARDWARE_KEYBOARD;
 

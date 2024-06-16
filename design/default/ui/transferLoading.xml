@@ -1,20 +1,19 @@
 <window v-model="transferLoading" name="transferLoading" v-on:key_down:cancel="{onKeyDown, Args=cancel}" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}">
   <view name="view10" x="0" y="0" w="320" h="216" style:normal:bg_color="#FFFFFF">
-    <label name="title" x="0" y="0" w="320" h="30" style:normal:text_color="#000000" style:normal:border_width="1" style:normal:font_size="24" style:normal:border="bottom" style:normal:round_radius="0" style:normal:border_color="#BFBFBF" v-data:text="{title}"/>
-    <view name="view11" x="36" y="34" w="233" h="54">
+    <view name="view11" x="42" y="10" w="233" h="54">
       <label name="label70" x="2" y="0" w="231" h="28" style:normal:font_size="20" text="Enter Transaction pin"/>
       <label name="label71" x="2" y="26" w="231" h="28" style:normal:font_size="16" style:normal:text_color="#596B6D" text="Input card secured pin to complete payment"/>
     </view>
-    <view w="104" h="50" y="98" style:normal:bg_color="#D8D8D8" x="108" style:normal:round_radius="6">
+    <view w="104" h="50" y="74" style:normal:bg_color="#D8D8D8" x="106" style:normal:round_radius="6">
       <view v-if="{valueLen >= 1}" name="dot" x="10" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen >= 2}" name="dot1" x="32" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen >= 3}" name="dot2" x="54" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen >= 4}" name="dot3" x="81" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen < 12}" name="line" v-data:x="{lineX}" y="11" w="3" h="30" style:normal:bg_color="#00B0F0" animation="opacity(from=255, to=0, yoyo_times=0, duration=500)"/>
     </view>
-    <button v-on:click="{callTransferFundsEndpoint}" name="button5" x="42" y="158" w="237" h="36" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>
+    <button v-on:click="{callTransferFundsEndpoint}" name="button5" x="40" y="158" w="237" h="48" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>
   </view>
-  <view v-if="{loading}" x="0" y="0" w="320" h="216" disg:custom="container" disg:hide="true">
+  <view v-if="{loading}" x="0" y="0" w="320" h="216" disg:custom="container">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
       <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
         <view w="120" h="60" x="42" y="24">
@@ -28,20 +27,19 @@
       <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
     </view>
   </view>
-  <view v-if="{isError}" x="0" y="0" w="320" h="217" style:normal:bg_color="#00000078" disg:hide="true">
-    <view name="view" x="68" y="41" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0" style:normal:bg_image="">
-      <view name="view1" x="60" y="10" w="80" h="81" style:normal:bg_image="Failed"/>
-      <label name="label" x="20" y="91" w="160" h="28" style:normal:text_color="#C00000" v-data:text="{error}"/>
-    </view>
-  </view>
-  <view v-if="{isShowExit}" text="view" x="0" y="0" w="320" h="216" disg:custom="container" disg:hide="true">
+  <view v-if="{isShowExit}" text="view" x="0" y="0" w="320" h="216" disg:custom="container">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
       <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="150" x="40" y="30">
-        <label x="0" y="0" w="240" h="40" style:normal:font_size="24" v-data:text="{Notice}"/>
-        <label name="label" x="0" y="40" w="240" h="70" style:normal:font_size="24" style:normal:text_color="#00B050" v-data:text="{noticeText}"/>
-        <button name="next" v-on:click="{handleCancel}" x="0" y="110" w="120" h="40" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00B050" style:normal:border_width="0" style:normal:bg_color="#FFC000" style:normal:text_color="#000000" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0" style:pressed:round_radius_bottom_right="0" style:pressed:bg_color="#FFB000" text="Cancel"/>
-        <button name="next" v-on:click="{handleConfirm}" x="120" y="110" w="120" h="40" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00B050" style:normal:border_width="0" style:normal:bg_color="#00B050" style:normal:text_color="#000000" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_left="0" style:pressed:bg_color="#00B040" style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0" style:pressed:round_radius_bottom_left="0" text="Ok"/>
+        <label name="label" x="17" y="50" w="207" h="46" style:normal:font_size="20" style:normal:text_color="#000000" v-data:text="{noticeText}" auto_adjust_size="true" word_wrap="true" style:normal:margin="10"/>
+        <button name="next" v-on:click="{handleCancel}" x="10" y="106" w="100" h="34" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#ff00008d" style:normal:text_color="#FFFFFF" style:normal:round_radius_top_left="10" style:normal:round_radius_top_right="10" style:normal:round_radius_bottom_right="10" style:pressed:round_radius_top_left="10" style:pressed:round_radius_top_right="10" style:pressed:round_radius_bottom_right="10" style:pressed:bg_color="#00000000" style:pressed:round_radius="10" text="Cancel"/>
+        <button name="next" v-on:click="{handleConfirm}" x="120" y="106" w="110" h="34" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#595959" style:normal:text_color="#FFFFFF" style:normal:round_radius_top_left="10" style:normal:round_radius_top_right="10" style:normal:round_radius_bottom_left="10" style:pressed:bg_color="#00000000" style:pressed:round_radius_top_left="10" style:pressed:round_radius_top_right="10" style:pressed:round_radius_bottom_left="10" style:pressed:round_radius="10" text="Ok"/>
       </view>
+    </view>
+  </view>
+  <view v-if="{isError}" x="0" y="0" w="320" h="216" style:normal:bg_color="#00000078" disg:hide="true">
+    <view name="view11" x="10" y="10" w="87.5%" h="41" style:normal:bg_color="#FFFFFF" style:normal:round_radius="10" style:normal:border_width="0" style:normal:bg_image="" style:normal:border_color="#ACB8C9" animation="move(name=slide_in,delay=1,easing=circular_in,x_from=310,x_to=20,y_from=41,y_to=41)" auto_adjust_size="true">
+      <view name="view10" x="10" y="0" w="26" h="41" style:normal:bg_image="Failed" style:normal:bg_image_draw_type="scale_auto" style:normal:border_color="#00000000"/>
+      <label name="label9" x="46" y="2" w="220" h="36" style:normal:text_color="#C00000" v-data:text="{error}" style:normal:text_align_h="left" style:normal:font_size="16" line_wrap="true" word_wrap="false" auto_adjust_size="true"/>
     </view>
   </view>
 </window>

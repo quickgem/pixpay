@@ -1,6 +1,5 @@
 ﻿#include "awtk.h"
 #include "navigator.h"
-extern ret_t transReceipt_init(widget_t* win, void* ctx);
 extern ret_t moreApps_init(widget_t* win, void* ctx);
 extern ret_t transferSuccess_init(widget_t* win, void* ctx);
 extern ret_t transferLoading_init(widget_t* win, void* ctx);
@@ -10,9 +9,7 @@ extern ret_t emvProcessArchive_init(widget_t* win, void* ctx);
 extern ret_t profile_init(widget_t* win, void* ctx);
 extern ret_t error_init(widget_t* win, void* ctx);
 extern ret_t balance_init(widget_t* win, void* ctx);
-extern ret_t test_init(widget_t* win, void* ctx);
 extern ret_t inputAmt_init(widget_t* win, void* ctx);
-extern ret_t calc_init(widget_t* win, void* ctx);
 extern ret_t app_store_init(widget_t* win, void* ctx);
 extern ret_t makeTransfer_init(widget_t* win, void* ctx);
 extern ret_t error_dialog_init(widget_t* win, void* ctx);
@@ -29,9 +26,7 @@ extern ret_t sample_ui_init(widget_t* win, void* ctx);
 extern ret_t home_page_init(widget_t* win, void* ctx);
 
 static ret_t navigator_window_init(const char* name, widget_t* win, void* ctx) {
-    if (tk_str_eq(name, "transReceipt")) {
-      return transReceipt_init(win, ctx);
-    } else if (tk_str_eq(name, "moreApps")) {
+    if (tk_str_eq(name, "moreApps")) {
       return moreApps_init(win, ctx);
     } else if (tk_str_eq(name, "transferSuccess")) {
       return transferSuccess_init(win, ctx);
@@ -49,12 +44,8 @@ static ret_t navigator_window_init(const char* name, widget_t* win, void* ctx) {
       return error_init(win, ctx);
     } else if (tk_str_eq(name, "balance")) {
       return balance_init(win, ctx);
-    } else if (tk_str_eq(name, "test")) {
-      return test_init(win, ctx);
     } else if (tk_str_eq(name, "inputAmt")) {
       return inputAmt_init(win, ctx);
-    } else if (tk_str_eq(name, "calc")) {
-      return calc_init(win, ctx);
     } else if (tk_str_eq(name, "app_store")) {
       return app_store_init(win, ctx);
     } else if (tk_str_eq(name, "makeTransfer")) {

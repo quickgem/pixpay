@@ -61,24 +61,13 @@ ViewModel("makeTransfer", {
     },
 
     methods:{
-
-
         selectBank(args){
-            console.log("selected bank ====> ", args)
             this.selectedBank = args
-            this.notifyPropsChanged();
             this.fundTransferRequest.bankName = this.selectedBank.name
             this.fundTransferRequest.bankCode = this.selectedBank.code
             this.nameEnquiryRequest.accountBankCode = this.selectedBank.code
             this.isSelectedBank = true
             this.searchBank = false
-            this.notifyPropsChanged();
-            console.log("after parsing ====> ", JSON.stringify(this.selectedBank))
-        },
-
-
-        closePopUp(){
-            this.popUp = false
             this.notifyPropsChanged();
         },
 
@@ -131,38 +120,8 @@ ViewModel("makeTransfer", {
                 }
             }
 
-            console.log('filtered banks:===>', JSON.stringify(this.filteredBanks))
-
             this.isFiltering = false;
-            // this.filteredBanks = this.banks.filter(it => {
-            //     return it.name[0].toLowerCase() === args
-            // }).map(it => JSON.parse(JSON.stringify(it)));
-
             this.notifyPropsChanged();
-        },
-
-        readBankList(){
-            const that = this
-            that.loadingBanks = true
-            that.searchBank = true
-            // that.showTip = 'Loading banks'
-            that.notifyPropsChanged();
-            function onSuccess(data){
-                that.banks = data.data
-                that.filteredBanks = that.banks.filter(it => {
-                    return it.name[0].toLowerCase() === 'a'
-                })
-                that.loadingBanks = false
-                that.notifyPropsChanged();
-            }
-            function onError(data){
-                that.loadingBanks = false
-                that.isError = true
-                that.nameEnquiry = false
-                that.error = data
-                that.notifyPropsChanged();
-            }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BANK_LIST,{},onSuccess,onError)
         },
 
 
@@ -185,8 +144,8 @@ ViewModel("makeTransfer", {
             that.showTip = 'Loading Account Details'
             if(that.transferTypeValue === "Transfer to CoreBank"){
                 that.nameEnquiryRequest.accountBankCode = "000000"
-                this.fundTransferRequest.bankName = "CoreBank"
-                this.fundTransferRequest.bankCode = "000000"
+                that.fundTransferRequest.bankName = "CoreBank"
+                that.fundTransferRequest.bankCode = "000000"
             }
 
             that.notifyPropsChanged();
@@ -200,10 +159,10 @@ ViewModel("makeTransfer", {
                 that.nameEnquiryLoading = false
                 that.isError = true
                 that.nameEnquiry = false
-                that.error = data
+                that.error = data.responseMessage
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.NAME_ENQUIRY,this.nameEnquiryRequest,onSuccess,onError)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.NAME_ENQUIRY,that.nameEnquiryRequest,onSuccess,onError)
         },
 
 
@@ -239,7 +198,8 @@ ViewModel("makeTransfer", {
                 return;
             }else if(this.transferType) {
                 this.transferType = false;
-                this.isSelectedBank = false
+                // if(!this.fundTransferRequest.bankCode || !this.nameEnquiryRequest.accountBankCode) this.isSelectedBank = false;
+                // this.selectedBank = {name:"Select Bank"};
                 this.otherBanks = false
                 this.notifyPropsChanged();
                 return;
@@ -268,7 +228,6 @@ ViewModel("makeTransfer", {
         },
 
         handleNext: function () {
-            console.log('accountNumber ===> ', this.accountNumberStr)
             if(this.transferType && this.transferTypeValue === 'Transfer to Other Banks'){
                 if(this.isSelectedBank){
                     this.navigateTo({fundRequest:this.fundTransferRequest})
@@ -305,6 +264,16 @@ ViewModel("makeTransfer", {
                     this._formatInput();
                     break;
                 case "cancel":
+                    if(this.isError){
+                        this.isError = false;
+                        this.notifyPropsChanged();
+                        return;
+                    }
+                    if(this.nameEnquiry){
+                        this.nameEnquiry = false;
+                        this.notifyPropsChanged();
+                        return;
+                    }
                     if(this.transactionSummary){
                         this.transferType = true
                         this.nameEnquiry = true

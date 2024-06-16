@@ -159,7 +159,7 @@
         <![CDATA[12]]>
       </property>
     </edit>
-    <button v-if="{otherBanks}" v-on:click="{openBankList}" name="view12" x="22" y="133" w="265" h="45" style:normal:round_radius="10" style:normal:border_color="#3F3F3F" style:normal:bg_color="#00000000" style:pressed:round_radius="10" style:pressed:font_size="16" style:pressed:text_align_h="left" style:pressed:bg_color="#00000000" style:pressed:margin="20" style:normal:margin="20" style:normal:text_align_h="left">
+    <button v-if="{otherBanks}" v-on:click="{openBankList}" name="view12" x="22" y="133" w="265" h="45" style:normal:round_radius="10" style:normal:border_color="#3F3F3F" style:normal:bg_color="#00000000" style:pressed:round_radius="10" style:pressed:font_size="16" style:pressed:text_align_h="left" style:pressed:bg_color="#ACB8C9" style:pressed:margin="20" style:normal:margin="20" style:normal:text_align_h="left">
       <label name="label11" x="10" y="3" w="160" h="38" style:normal:text_align_h="left" v-data:text="{selectedBank.name}"/>
     </button>
     <view v-if="{nameEnquiry}" name="name_enquiry_container" x="0" y="121" w="320" h="95" style:normal:bg_color="#BFBFBF" disg:hide="true">
@@ -169,12 +169,12 @@
     </view>
     <label name="label5" h="39" style:normal:font_size="20" v-data:text="{transferTypeValue}" style:normal:border_color="#848484" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:border="bottom" style:normal:border_width="1" x="0" y="0" w="320" text="Transfer to {transferTypeValue}"/>
   </view>
-  <view v-if="{searchBank}" name="selectbank_view" x="0" y="1" w="320" h="210" style:normal:border_color="#000000" style:normal:bg_color="#FFFFFF" style:normal:border_width="0" style:normal:border="none" disg:hide="true">
+  <view v-if="{searchBank}" name="selectbank_view" x="0" y="1" w="320" h="210" style:normal:border_color="#000000" style:normal:bg_color="#FFFFFF" style:normal:border_width="0" style:normal:border="none">
     <label name="label7" x="10" y="10" w="108" h="24" style:normal:font_size="24" style:normal:text_align_h="left" text="Select A Bank"/>
     <button v-if="{!loadingBanks}" v-on:click="{showFilterView}" name="button2" x="210" y="10" w="100" h="36" style:normal:round_radius="10" style:normal:bg_color="#3F3F3F" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:round_radius="10" style:pressed:text_color="#FFFFFF" style:pressed:font_size="16" style:pressed:bg_color="#ED7D30" style:pressed:border_color="#00000000" style:over:border_color="#FFFFFF" style:over:round_radius="10" style:over:text_color="#FFFFFF" style:over:bg_color="#3F3F3F" text="Filter banks"/>
     <list_view v-if="{!loadingBanks}" x="0" y="56" w="320" h="154" style:normal:bg_color="#FFFFFF">
       <scroll_view v-if="{!isFiltering}" x="0" y="0" w="100%" h="154" with_focus_state="true">
-        <list_item v-for="{filteredBanks}" h="39" focusable="true" with_focus_state="true" v-on:click="{selectBank,Args=fscript?code=item.code&amp;&amp;name=item.name&amp;}" style:normal:font_size="16">
+        <list_item v-for="{filteredBanks}" h="39" focusable="true" with_focus_state="true" v-on:click="{selectBank,Args=fscript?code=item.code&amp;&amp;name=item.name&amp;}" style:normal:font_size="16" style:pressed:bg_color="#ACB8C9" style:over:bg_color="#ACB8C9" style:focused:bg_color="#ACB8C9">
           <label v-data:text="{item.name}" w="300" h="39" style:normal:text_align_h="left" x="10"/>
         </list_item>
       </scroll_view>
@@ -226,21 +226,21 @@
   <!--  <button  name="button2" x="0" y="-4" w="40" h="40" style:normal:icon="icon_back" style:normal:border="none" style:normal:bg_color="#00000000" style:pressed:border="none" style:pressed:icon="icon_back" style:pressed:bg_color="#00000000" style:normal:text_color="#000000" style:pressed:text_color="#000000" style:over:border="none" style:over:bg_color="#00000000" style:over:text_color="#000000" style:over:icon="icon_back" floating="true"/>-->
   <list_view v-if="{transactionSummary}" name="list_view10" x="0" y="0" w="320" h="210" default_item_height="60" disg:hide="true">
     <scroll_view name="scroll_view" x="0" y="0" w="-10" h="100%">
-      <view name="transaction_summary" h="292" style:normal:bg_color="#FFFFFF">
+      <view name="transaction_summary" h="273" style:normal:bg_color="#FFFFFF">
         <view name="view8" x="10" y="1" w="300" h="62" style:normal:bg_color="#FFFFFF">
           <label name="amount_label" x="10" y="0" w="280" h="28" text="Transfer Summary"/>
           <label name="tansaction_amount" x="10" y="28" w="280" h="34" style:normal:font_size="24" v-data:text="{fundTransferAmount}" style:normal:text_color="#596B6D"/>
         </view>
-        <view name="view9" x="21" y="70" w="278" h="144" style:normal:border_color="#00000000">
+        <view name="view9" x="10" y="70" w="300" h="144" style:normal:border_color="#00000000">
           <label name="from" x="0" y="2" w="33" h="28" style:normal:text_align_h="left" text="From:"/>
-          <label name="fromValue" x="43" y="2" w="235" h="28" v-data:text="{fundTransferRequest.debitAccountName}" style:normal:text_align_h="right"/>
+          <label name="fromValue" x="62" y="2" w="235" h="28" v-data:text="{fundTransferRequest.debitAccountName}" style:normal:text_align_h="right"/>
           <label name="to" x="0" y="30" w="17" h="28" style:normal:text_align_h="left" text="To:"/>
-          <label name="toValue" x="43" y="30" w="235" h="28" v-data:text="{fundTransferRequest.creditAccountName}" style:normal:text_align_h="right"/>
+          <label name="toValue" x="65" y="30" w="235" h="28" v-data:text="{fundTransferRequest.creditAccountName}" style:normal:text_align_h="right"/>
           <label name="to1" x="478" y="387" w="37" h="28" text="from:"/>
           <label name="bankName" x="0" y="68" w="71" h="28" style:normal:text_align_h="left" text="Bank Name:"/>
-          <label name="bankNameValue" x="81" y="68" w="197" h="28" v-data:text="{fundTransferRequest.bankName}" style:normal:text_align_h="right"/>
+          <label name="bankNameValue" x="100" y="68" w="197" h="28" v-data:text="{fundTransferRequest.bankName}" style:normal:text_align_h="right"/>
           <label name="narration1" x="0" y="106" w="59" h="28" style:normal:text_align_h="left" text="Narration:"/>
-          <label name="narrationValue" x="69" y="106" w="209" h="28" v-data:text="{fundTransferRequest.narration}" style:normal:text_align_h="right"/>
+          <label name="narrationValue" x="88" y="106" w="209" h="28" v-data:text="{fundTransferRequest.narration}" style:normal:text_align_h="right"/>
         </view>
         <button v-on:click="{enterPin}" name="button4" x="32" y="224" w="256" h="36" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>
       </view>
@@ -258,10 +258,10 @@
       <view name="view5" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
     </view>
   </view>
-  <view v-if="{isError}" x="0" y="0" w="320" h="210" style:normal:bg_color="#00000078" disg:hide="true">
-    <view name="view11" x="55" y="10" w="255" h="46" style:normal:bg_color="#FFFFFF" style:normal:round_radius="10" style:normal:border_width="0" style:normal:bg_image="" style:normal:border_color="#ACB8C9" animation="move(name=slide_in,delay=2,easing=circular_in,x_from=310,x_to=60,y_from=41,y_to=41)">
-      <view name="view10" x="10" y="14" w="26" h="17" style:normal:bg_image="Failed" style:normal:bg_image_draw_type="scale_auto" style:normal:border_color="#00000000"/>
-      <label name="label9" x="46" y="8" w="144" h="28" style:normal:text_color="#C00000" v-data:text="{error}" style:normal:text_align_h="left" style:normal:font_size="16"/>
+  <view v-if="{isError}" x="0" y="0" w="320" h="216" style:normal:bg_color="#00000078" disg:hide="true">
+    <view name="view11" x="10" y="10" w="87.5%" h="41" style:normal:bg_color="#FFFFFF" style:normal:round_radius="10" style:normal:border_width="0" style:normal:bg_image="" style:normal:border_color="#ACB8C9" animation="move(name=slide_in,delay=1,easing=circular_in,x_from=310,x_to=20,y_from=41,y_to=41)" auto_adjust_size="true">
+      <view name="view10" x="10" y="0" w="26" h="41" style:normal:bg_image="Failed" style:normal:bg_image_draw_type="scale_auto" style:normal:border_color="#00000000"/>
+      <label name="label9" x="46" y="2" w="220" h="36" style:normal:text_color="#C00000" v-data:text="{error}" style:normal:text_align_h="left" style:normal:font_size="16" line_wrap="true" word_wrap="false" auto_adjust_size="true"/>
     </view>
   </view>
 </window>

@@ -1,13 +1,12 @@
 <window v-model="transferSuccess" name="transferSuccess" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
   <view name="view" x="0" y="0" w="320" h="210">
-    <image name="image" x="10" y="20" w="300" h="49" draw_type="default" style:normal:icon="Succeed" style:normal:bg_image_draw_type="center" style:normal:font_size="16" scale_y="0.8" scale_x="0.8"/>
+    <image name="image" x="140" y="20" w="40" h="39" draw_type="default" style:normal:icon="" style:normal:bg_image_draw_type="scale_auto" style:normal:font_size="16" scale_y="0.8" scale_x="0.8" style:normal:bg_image="Succeed"/>
     <view name="view1" x="10" y="69" w="300" h="81">
-      <label name="label" x="0" y="10" w="300" h="28" v-data:text="{amount}" style:normal:text_align_h="center" style:normal:font_size="24"/>
+      <label name="label" x="0" y="0" w="300" h="28" v-data:text="{amount}" style:normal:text_align_h="center" style:normal:font_size="24"/>
       <label name="label" x="0" y="28" w="300" h="27" style:normal:font_size="18" text="is successfully sent to"/>
       <label name="label" x="0" y="55" w="300" h="26" v-data:text="{name}" style:normal:font_size="18"/>
       <label name="label" x="-52" y="-52" w="104" h="28" style:normal:font_size="24"/>
     </view>
-    <button name="button" x="10" y="160" w="168" h="40" v-on:click="{printNext, Args=1}" style:normal:round_radius="5" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Print Merchant Copy"/>
-    <button name="button" x="199" y="160" w="103" h="40" v-on:click="{handleConfirm}" style:normal:round_radius="5" style:normal:bg_color="#00000000" style:normal:border_color="#596B6D" text="Back to home"/>
+    <button name="button" x="10" y="160" w="300" h="40" v-on:click="{printNext, Args=1}" style:normal:round_radius="5" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Print Merchant Copy"/>
   </view>
 </window>

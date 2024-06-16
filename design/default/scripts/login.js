@@ -23,8 +23,8 @@ ViewModel("login", {
         showTip:"Loading...",
         title:"",
         loginRequest:{
-            username: "chiwuezegeorge@gmail.com",
-            password: "123456",
+            username: "",
+            password: "",
             source: "POS_TERMINAL"
         },
         error:"",
@@ -101,6 +101,11 @@ ViewModel("login", {
             var key = args;
             switch (key) {
                 case "cancel":
+                    if(this.isError){
+                        this.isError = false
+                        this.notifyPropsChanged()
+                        return;
+                    }
                     if (this.isShowToast) {
                         this.hideToast();
                         return;
@@ -182,17 +187,20 @@ ViewModel("login", {
                 that.readBankList()
             }
             function onError(data){
+                that.error = data.responseMessage
+
                 console.log('onError', JSON.stringify(data), data)
-                this.loading = false
-                this.isError = true
-                this.error = data
-                this.notifyPropsChanged();
+                that.loading = false
+                that.isError = true
+                console.log('error:', JSON.stringify(data))
+                that.notifyPropsChanged();
             }
             Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.LOGIN,this.loginRequest,onSuccess,onError)
         },
 
         showExit: function () {
             this.isShowExit =true;
+            this.isError = false;
             this.notifyPropsChanged();
         },
 

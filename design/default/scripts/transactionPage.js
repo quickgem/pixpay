@@ -1,6 +1,7 @@
-var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
 var PRINT_TICKET = require("mod_global_print_transfer").PRINT_TICKET;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
+var getResponse = require("mod_global_response").getResponse;
+
 ViewModel("transactionPage", {
     data: {
         user:null,
@@ -150,7 +151,7 @@ ViewModel("transactionPage", {
             this.isShowingReceipt=true;
             if(this.trans){
                 this.amount = `₦${this.trans.amount}`;
-                this.responseMessage = `${this.trans.status === 'SUCCESS' || this.trans.status === 'ACTIVE' ? 'APPROVED' :  this.trans.status === 'FAILED' ? 'DECLINED' : this.trans.status}| ${this.trans.responseMessage}`;
+                this.responseMessage = `${this.trans.status === 'SUCCESS' || this.trans.status === 'ACTIVE' ? 'APPROVED' :  this.trans.status === 'FAILED' ? 'DECLINED' : this.trans.status}| ${getResponse(this.trans.responseCode).responseMessage}`;
                 console.log("amount ============", this.amount);
                 if(this.trans.trnService === 'CARD_COLLECTION'){
                     this.extraData = {

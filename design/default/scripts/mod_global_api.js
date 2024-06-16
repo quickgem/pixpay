@@ -26,14 +26,7 @@ function GLOBAL_API() {
             this.httpCB = function (ret) {
                 console.log('ret ====>', JSON.stringify(ret));
                 let data = ret.data && ret.data.response_buf || [];
-                if(ret.code !== 0){
-                    that.parseData(data,onSuccess,onError);
-                }else{
-                    onError(httpret)
-                    console.log("RESPONSE:====>", JSON.stringify(httpret));
-                    console.log('onError', JSON.stringify(httpret))
-                }
-
+                that.parseData(data,onSuccess,onError);
             };
             let httpret = Tos.HttpclientCommon(head, url, requestString, "","", 30, 1, that.httpCB);
             console.log('httpret:====>', JSON.stringify(httpret));

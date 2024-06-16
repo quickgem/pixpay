@@ -8,10 +8,6 @@
  */
 // const  getResponse = require("mod_global_response").getResponse;
 
-var sprintf = require("mod_global_funcs").sprintf;
-var SHOW_MASK_CARD = require("mod_global_funcs").SHOW_MASK_CARD;
-var GLOBAL_GET_FILE = require("mod_global_app_manage").GLOBAL_GET_FILE;
-var GLOBAL_ARRAYBUFFER_GET_FILE = require("mod_global_app_manage").GLOBAL_ARRAYBUFFER_GET_FILE;
 const  getResponse = require("mod_global_response").getResponse;
 
 function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {

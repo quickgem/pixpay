@@ -1,5 +1,3 @@
-var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
-
 ViewModel ("subSettings", {
     data : {
         isSubSettings: false,

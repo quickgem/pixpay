@@ -1,6 +1,5 @@
 {
-  "name": "bizgem_demo",
-  "version": "1.0.0",
-  "dependencies": {
-  }
+  "name": "corestepmfb_pos",
+  "version": "1.0.9",
+  "dependencies": {}
 }

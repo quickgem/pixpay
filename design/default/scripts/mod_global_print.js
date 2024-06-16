@@ -7,12 +7,7 @@
  * ALIGN_RIGHT   3
  */
 const  getResponse = require("mod_global_response").getResponse;
-
-var sprintf = require("mod_global_funcs").sprintf;
-var SHOW_MASK_CARD = require("mod_global_funcs").SHOW_MASK_CARD;
-var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
-var GLOBAL_GET_FILE = require("mod_global_app_manage").GLOBAL_GET_FILE;
-var GLOBAL_ARRAYBUFFER_GET_FILE = require("mod_global_app_manage").GLOBAL_ARRAYBUFFER_GET_FILE;
+const GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 
 
 function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {

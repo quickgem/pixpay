@@ -103,11 +103,7 @@ function GLOBAL_PREENTRY(){
             {
                 appName: "Card", icon: "paywithcard",
                 transParam:{appName:"Pay with Card",transType: TRANS_TYPE.SALE, msgType:"0200",procCode:"000000",serviceCode:"00",needSave:true,nReversal:true},
-                // entry: ["inputAmt", "searchCard",[["inputPinblock","online","eSign","result"],["emvProcess",'eSign', "result"]]], // checking if this is the entry flow
-                // entry: ["inputAmt", "searchCard",[["inputPinblock","online","eSign","result"],["inputPinblock","online","eSign","result"],["inputPinblock","online","eSign","result"]]], // checking if this is the entry flow
-                // entry: ["inputAmt", "searchCard",[["inputPinblock","emvProcess","online","result"],["inputPinblock","emvProcess","online","result"],["inputPinblock","emvProcess","online","result"]]], // checking if this is the entry flow
                 entry: ["inputAmt", "searchCard",[["emvProcess","result"],["emvProcess","result"],["emvProcess","result"]]], // checking if this is the entry flow
-                // entry: ["inputAmt", "searchCard","inputPinblock","result"], // checking if this is the entry flow
             },
             // FILE INDEX 1
             {
@@ -117,24 +113,6 @@ function GLOBAL_PREENTRY(){
                 entry: ["inputAmt", "makeTransfer","transferLoading","transferSuccess"]
             },
 
-            // {
-            //     appName: "Balance",
-            //     icon: "balance",
-            //     transParam:{appName:"Balance",transType: TRANS_TYPE.REFUND, msgType:"0200",procCode:"000000",serviceCode:"00"},
-            //     entry: ["balance"]
-            // },
-            // {
-            //     appName: "Transactions", icon: "transactionhistory",
-            //     transParam:{appName:"Transactions"},
-            //     entry: ["transactionPage"],
-            // },
-            //
-            // {
-            //     appName: "Profile",
-            //     icon: "profile",
-            //     transParam:{appName:"Profile"},
-            //     entry: ["profile"]
-            // },
             {
                 appName: "More",
                 icon: "more_background",
@@ -208,33 +186,14 @@ function GLOBAL_PREENTRY(){
             },
 
         ];
-        return  this.moreList.map(function (v) {
+        return  this.moreList.map(function (a) {
             return {
-                appName: v.appName,
-                icon: v.icon,
-                entry: JSON.stringify(v.entry),
-                transParam: JSON.stringify(v.transParam)
+                appName: a.appName,
+                icon: a.icon,
+                entry: JSON.stringify(a.entry),
+                transParam: JSON.stringify(a.transParam)
             }
         })
-        // this.billsList = [
-        //     {
-        //         appName: "Authorization", icon: "pre_auth",
-        //         transParam:{appName:"Authorization",transType:TRANS_TYPE.PRE_AUTH, msgType:"0100",procCode:"030000",serviceCode:"06",needSave:true,nReversal:true},
-        //         entry: ["inputAmt","searchCard",[["inputPinblock","online","eSign","result"],["emvProcess","eSign","result"]]],
-        //     },
-        //     {
-        //         appName: "Auth Void",
-        //         icon: "auth_void",
-        //         transParam:{appName:"Auth Void",transType:TRANS_TYPE.PRE_AUTH_VOID, msgType:"0100",procCode:"200000",serviceCode:"06",needSave:true,nReversal:true},
-        //         entry: ["inputPwd","inputTransDate","inputAuthCode","inputAmt","searchCard",[["inputPinblock","online","eSign","result"],["emvProcess","eSign","result"]]]
-        //     },
-        //     {
-        //         appName: "Auth Com",
-        //         icon: "auth_com",
-        //         transParam:{appName:"Auth Com",transType:TRANS_TYPE.AUTH_CMP, msgType:"0200",procCode:"000000",serviceCode:"06",needSave:true,nReversal:true},
-        //         entry: ["inputTransDate","inputAuthCode","inputAmt","searchCard",[["inputPinblock","online","eSign","result"],["emvProcess","eSign","result"]]]
-        //     }
-        // ]
     };
 
 }

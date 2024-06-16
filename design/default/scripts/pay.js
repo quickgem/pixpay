@@ -5,7 +5,6 @@ var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 var GLOBAL_CONSTANT = require("mod_global_constant").GLOBAL_CONSTANT;
 var GLOBAL_CONFIG = require("mod_global_config").GLOBAL_CONFIG;
 var injectKeys = require("mod_global_config").injectKeys;
-var saveUserInfo = require("mod_global_config").saveUserInfo;
 var saveBankList = require("mod_global_config").saveBankList;
 var GLOBAL_CHOOSE_NETWORK = require("mod_global_network").GLOBAL_CHOOSE_NETWORK;
 var GLOBAL_API = require("mod_global_api").GLOBAL_API;
@@ -24,7 +23,7 @@ ViewModel("pay", {
     token:null,
     fullName:null,
     mid:null,
-    theme:"#596B6D"
+    theme:"#596B6D",
   },
 
   methods: {
@@ -57,6 +56,10 @@ ViewModel("pay", {
         default:
           break;
       }
+    },
+
+    showMore: function(){
+      this.isMoreApp = true;
     },
 
     showExit: function () {
@@ -119,12 +122,14 @@ ViewModel("pay", {
         Tos.GLOBAL_TRANSACTION.trans.voucherNo = Tos.GLOBAL_CONFIG.voucherNo;
         console.log("Tos.GLOBAL_TRANSACTION.trans.voucherNo ==============> ", Tos.GLOBAL_TRANSACTION.trans.voucherNo);
 
-       if (!GLOBAL_CHOOSE_NETWORK()) {
-           this.showToast("Network Invalid !");
-           return;
+        if (!GLOBAL_CHOOSE_NETWORK()) {
+          this.showToast("Network Invalid !");
+          return;
         }
-        GLOBAL_JUMP("",this.user);
-      }
+        GLOBAL_JUMP("","");
+    }
+
+
 
 
     },
@@ -241,7 +246,6 @@ ViewModel("pay", {
     }
 
     if(req.data != null) {
-      // this.user = req.data;
       saveBankList(req.data)
     }
 
@@ -258,19 +262,7 @@ ViewModel("pay", {
 
   onMount: function (data) {
     let that = this;
-
     if(Tos.GLOBAL_CONFIG != null) that.theme = Tos.GLOBAL_CONFIG.theme
-    // timerAdd(function (){
-    //
-    //
-    //
-    //
-    //
-    //   console.log("GLOBAL_CONFIG  init end  ==========>");
-    //   return RET_REMOVE;
-    // },100);
-    this.isShowScrollbar = this.appList.length  > 6;
-
     this.notifyPropsChanged();
   },
 

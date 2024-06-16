@@ -5,7 +5,7 @@
     <label name="label1" x="10" y="2" w="70" h="20" style:normal:font_size="16" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}" text="Account No:"/>
     <label name="account_number" x="10" y="22" w="86" h="22" style:normal:bg_color="#00000000" v-data:text="{user.customerOrganisationWallet}" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}"/>
     <label name="bank" x="163" y="25" w="100" h="16" style:normal:text_align_h="left" style:normal:font_size="16" v-data:style:normal:text_color="{theme.dark}" text="CoreStep MFB"/>
-    <label name="label1" x="163" y="2" w="70" h="20" style:normal:font_size="16" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}" text="Bank:"/>
+    <label name="label" x="163" y="2" w="70" h="20" style:normal:font_size="16" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}" text="Bank:"/>
   </view>
   <list_view name="list_view" h="101" default_item_height="104" w="320" x="0" y="95">
     <scroll_view name="scroll_view" x="0" y="0" w="300" h="140" yslidable="true" with_focus_state="true" children_layout="list_view(c=3,xm=10,ym=10,s=10)" floating="false">
@@ -27,29 +27,28 @@
   </list_view>
   <view v-if="{isInstalling == 1}" x="c" y="m" w="100%" h="100%" disg:custom="container" disg:lock="true" disg:hide="true">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000000">
-      <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
+      <view name="view6" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
         <view w="120" h="60" x="42" y="24">
           <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0" disg:hide="true"/>
-          <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view2" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view4" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view5" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
         </view>
       </view>
-      <label name="label" x="80" y="110" w="160" h="28" style:normal:text_color="#00B050" text="Loading"/>
+      <label name="label2" x="80" y="110" w="160" h="28" style:normal:text_color="#00B050" text="Loading"/>
     </view>
   </view>
   <view v-if="{isShowExit}" text="view" x="0" y="0" w="100%" h="100%" disg:custom="container" disg:hide="true">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
       <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="150" x="40" y="30">
-        <label x="0" y="0" w="240" h="40" style:normal:font_size="24" v-data:text="{Notice}"/>
-        <label name="label" x="0" y="40" w="240" h="70" style:normal:font_size="24" style:normal:text_color="#00B050" v-data:text="{noticeText}"/>
-        <button name="next" v-on:click="{handleCancel}" x="0" y="110" w="120" h="40" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00B050" style:normal:border_width="0" style:normal:bg_color="#FFC000" style:normal:text_color="#000000" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0" style:pressed:round_radius_bottom_right="0" style:pressed:bg_color="#FFB000" text="Cancel"/>
-        <button name="next" v-on:click="{handleConfirm}" x="120" y="110" w="120" h="40" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00B050" style:normal:border_width="0" style:normal:bg_color="#00B050" style:normal:text_color="#000000" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_left="0" style:pressed:bg_color="#00B040" style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0" style:pressed:round_radius_bottom_left="0" text="Ok"/>
+        <label name="label3" x="19" y="44" w="202" h="51" style:normal:font_size="20" style:normal:text_color="#000000" v-data:text="{noticeText}" word_wrap="true" auto_adjust_size="true" style="center" style:normal:border_color="#00000000"/>
+        <button name="next" v-on:click="{handleCancel}" x="9" y="105" w="110" h="35" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#ff00008d" style:normal:text_color="#FFFFFF" style:normal:round_radius_top_left="10" style:normal:round_radius_top_right="10" style:normal:round_radius_bottom_right="10" style:pressed:round_radius_top_left="10" style:pressed:round_radius_top_right="10" style:pressed:round_radius_bottom_right="10" style:pressed:bg_color="#00000000" style:pressed:round_radius="10" text="Cancel"/>
+        <button name="next1" v-on:click="{handleConfirm}" x="129" y="105" w="103" h="35" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00000000" style:normal:border_width="0" style:normal:bg_color="#595959" style:normal:text_color="#FFFFFF" style:normal:round_radius_top_left="10" style:normal:round_radius_top_right="10" style:normal:round_radius_bottom_left="10" style:pressed:bg_color="#00000000" style:pressed:round_radius_top_left="10" style:pressed:round_radius_top_right="10" style:pressed:round_radius_bottom_left="10" style:pressed:round_radius_bottom_right="10" style:pressed:round_radius="10" text="Ok"/>
       </view>
     </view>
   </view>
-  <view v-if="{isShowToast}" text="view" x="0" y="0" w="320" h="210" disg:custom="container" style:normal:bg_color="#ffffff00" disg:hide="true">
+  <view v-if="{isShowToast}" text="view" x="0" y="0" w="320" h="210" disg:custom="container" style:normal:bg_color="#ffffff00">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#96969696" disg:hide="true">
       <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="220" h="120" x="50" y="46" disg:hide="true">
         <label x="0" y="80" w="220" h="36" style:normal:font_size="24" v-data:text="{toastTip}"/>

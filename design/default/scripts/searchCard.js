@@ -1,4 +1,4 @@
-var GLOBAL_FUNCS  = require("mod_global_funcs").GLOBAL_FUNCS;
+ var GLOBAL_FUNCS  = require("mod_global_funcs").GLOBAL_FUNCS;
 var GLOBAL_JUMP  = require("mod_global_trans").GLOBAL_JUMP;
 var GLOBAL_STRING_2_HEXARR = require("mod_global_funcs").GLOBAL_STRING_2_HEXARR;
 var sprintf  = require("mod_global_funcs").sprintf;

@@ -76,7 +76,7 @@ ViewModel("transferLoading",{
             let that = this;
             that.loading = true
             const uniqueNumber = Math.floor(Math.random() * (1000000000000000 - 1 + 1)) + 1;
-            this.fundsRequest.reference = `corebank-ref-${this.generateSimpleReference(30)}`
+            this.fundsRequest.reference = `corebank-ref-${this.generateSimpleReference(14)}`
             console.log(this.fundsRequest.reference)
             this.fundsRequest.pin = this.value
             that.notifyPropsChanged();
