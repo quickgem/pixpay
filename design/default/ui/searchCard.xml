@@ -5,7 +5,7 @@
   <image animation="opacity(from=255, to=50, yoyo_times=0, duration=1200, delay=1300)" name="image" x="110" y="58" w="100" h="100" draw_type="default" image="ic_mag"/>
   <image animation="opacity(from=255, to=50, yoyo_times=0, duration=1200, delay=1600)" name="image" x="210" y="58" w="100" h="100" draw_type="default" image="ic_card"/>
   <image name="image1" x="16" y="166" w="16" h="16" draw_type="default" image="tips"/>
-  <label name="label" x="42" y="158" w="160" h="32" style:normal:text_color="#00B050" text="Please Swap/Insert/Tap card"/>
+  <label name="label" x="60" y="158" w="160" h="32" style:normal:text_color="#00B050" text="Please Swap/Insert/Tap card"/>
   <view v-if="{isShowModal}" text="view" x="0" y="0" w="100%" h="100%" disg:custom="container">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
       <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="150" x="40" y="30">

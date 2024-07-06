@@ -76,13 +76,7 @@ ViewModel("transferSuccess",{
             var key = args;
             switch (key) {
                 case "cancel":
-                    if(this.isError){
-                        this.isError = false
-                        this.notifyPropsChanged();
-                    }else{
-                        this.isShowExit = true
-                        this.notifyPropsChanged()
-                    }
+                    this.onConfirm()
                     break;
                 default:
                     break;
@@ -105,7 +99,7 @@ ViewModel("transferSuccess",{
         printNext: function (count) {
             this.currPrint = count;
             this.notifyPropsChanged()
-            PRINT_TICKET(this.trans,this.callback,false,this.currPrint,this.fundTransferResponse);
+            PRINT_TICKET(this.trans,this.callback,false,1,this.fundTransferResponse);
         },
 
         noPaper: function (count) {

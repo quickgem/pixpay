@@ -177,6 +177,14 @@ ViewModel("login", {
         },
 
         loginAction: function () {
+            if(!this.loginRequest.username){
+
+                 return
+            }
+           if(!this.loginRequest.password){
+
+                 return
+             }
             const that =this
             that.loading = true
             that.notifyPropsChanged()

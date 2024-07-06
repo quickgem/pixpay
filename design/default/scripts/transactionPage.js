@@ -36,6 +36,8 @@ ViewModel("transactionPage", {
         extraData:null,
         trnTypeColor:null,
         trnStatus:null,
+        approvePag:false,
+        updatePage:null
     },
 
     methods: {
@@ -185,21 +187,26 @@ ViewModel("transactionPage", {
 
         nextPage(){
             const that = this
+            that.approvePag = true;
             that.currentPage = that.currentPage + 1 // update page
             that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage) // paginate data
             that.totalPage = `page: ${that.currentPage}/${Math.ceil(that.totalPageNum)}`;
-            that.customDate = false
-            that.filterOn = false;
+            that.updatePage = `page updated to: ${that.currentPage}/${Math.ceil(that.totalPageNum)}`;
             that.notifyPropsChanged()
         },
 
+        approvePagFunc(){
+            this.approvePag = false;
+            this.notifyPropsChanged()
+        },
+
+
         prevPage(){
             const that = this
+            // that.approvePag = true;
             that.currentPage = that.currentPage - 1 // update page
             that.transactions  = that.paginate(that.originalData, that.currentPage, that.itemsPerPage) // paginate data
             that.totalPage = `page: ${that.currentPage}/${Math.ceil(that.totalPageNum)}`
-            that.customDate = false
-            that.filterOn = false;
             that.notifyPropsChanged()
         },
 
@@ -242,9 +249,9 @@ ViewModel("transactionPage", {
         },
 
         refreshList(){
-            this.customDate = false
-            this.filterOn = false;
-            this.notifyPropsChanged()
+            // this.customDate = false
+            // this.filterOn = false;
+            // this.notifyPropsChanged()
             this.getTodayDate()
             this.readTransactions()
         },

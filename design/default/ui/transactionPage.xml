@@ -6,7 +6,7 @@
     <image name="image2" x="104" y="0" w="100" h="100" draw_type="icon" image="no_transactions"/>
   </view>
   <list_view v-if="{isTransactions}" name="list_view1" x="0" y="50" w="320" h="160" default_item_height="60" style:normal:bg_color="#FFFFFF">
-    <scroll_view v-if="{!filterOn}" name="scroll_view" x="0" y="0" w="-10" h="100%">
+    <scroll_view v-if="{!approvePag}" name="scroll_view" x="0" y="0" w="-10" h="100%">
       <list_item v-for="{transactions}" name="list_item" h="64" v-on:click="{getTrans,Args=fscript?amount=item.trnAmount&amp;&amp;date=item.trnCreatedAt&amp;&amp;creditAccountName=item.trnCrAccountName&amp;&amp;creditAccount=item.trnCrAccountNumber&amp;&amp;debitAccountName=item.trnDrAccountName&amp;&amp;debitAccountNumber=item.trnDrAccountNumber&amp;&amp;bankName=item.trnCrInstitutionName&amp;&amp;reference=item.trnReference&amp;&amp;narration=item.trnNarration&amp;&amp;responseCode=item.trnResponseCode&amp;&amp;status=item.trnStatus&amp;&amp;drCr=item.trnDrCr&amp;&amp;type=item.trnDrCr&amp;&amp;name=item.trnExtraData.name&amp;&amp;card=item.trnExtraData.card&amp;&amp;rrn=item.trnExtraData.rrn&amp;&amp;stan=item.trnExtraData.stan&amp;&amp;appLab=item.trnExtraData.appLab&amp;&amp;mid=item.trnExtraData.mid&amp;&amp;aid=item.trnExtraData.aid&amp;&amp;tid=item.trnExtraData.tid&amp;&amp;trnService=item.trnService&amp;&amp;responseMessage=item.trnResponseMessage&amp;&amp;responseMessage=item.trnResponseMessage&amp;}" style:pressed:bg_color="#ACB8C9" style:over:bg_color="#ACB8C9" style:normal:text_align_h="center" style:focused:bg_color="#ACB8C9">
         <view name="view" h="63" style:normal:bg_color="#FFFFFF" w="320" x="0" y="1">
           <label v-if="{item.trnStatus == PENDING}" name="status1" h="20" x="263" y="41" w="39" style:normal:text_color="#FFC000" style:normal:font_size="14" text="PENDING"/>
@@ -19,6 +19,14 @@
           <label v-if="{item.trnService == 'CARD_COLLECTION'}" name="trans_narration1" h="20" x="10" y="10" w="164" style:normal:text_align_h="left" v-data:text="{item.trnExtraData.name}" style:normal:font_size="13"/>
         </view>
       </list_item>
+      <view name="view3" h="42" style:normal:bg_color="#FFFFFF">
+        <view v-if="{totalPageNum > 1}" style:normal:bg_color="#FFFFFF" h="32" name="inner_view3" w="220" x="10">
+          <label name="label4" h="32" x="80" y="2" w="59" v-data:text="{totalPage}" style:normal:font_size="16"/>
+          <button v-if="{currentPage > 1}" v-on:click="prevPage" name="prev" h="32" x="0" y="2" w="70" style:normal:round_radius="6" style:normal:font_size="18" style:normal:bg_color="#00000000" style:disable:text_color="#A5A5A5" style:pressed:round_radius="6" style:pressed:font_size="16" text="Prev"/>
+          <button v-if="{currentPage < totalPageNum}" v-on:click="nextPage" name="next" h="32" style:normal:round_radius="6" style:normal:font_size="18" style:normal:bg_color="#00000000" x="149" y="2" w="70" style:disable:text_color="#A5A5A5" style:pressed:round_radius="6" style:pressed:font_size="16" text="Next"/>
+        </view>
+        <button name="refresh_btn" v-on:click="{refreshList}" x="240" y="2" w="70" h="32" style:normal:round_radius="6" style:normal:font_size="18" style:pressed:font_size="16" style:pressed:round_radius="6" style:over:font_size="16" style:over:round_radius="6" style:normal:bg_color="#00000000" text="Reload"/>
+      </view>
     </scroll_view>
     <scroll_bar_m name="scroll_bar1" x="310" y="0" w="10" h="191" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
   </list_view>
@@ -32,16 +40,8 @@
       <button name="yesterday" v-on:click="{getYesterdayDate}" x="46" y="48" w="228" h="40" style:normal:round_radius="10" style:normal:bg_color="#ED7D30" style:pressed:round_radius="10" style:over:round_radius="10" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:border_color="#00000000" style:pressed:text_color="#FFFFFF" style:pressed:font_size="16" style:pressed:bg_color="#ED7D30" style:over:border_color="#FFFFFF" style:over:bg_color="#3F3F3F" text="Yesterday"/>
       <button v-on:click="{toggleCustomFilter}" name="custom1" x="46" y="98" w="228" h="40" style:normal:round_radius="10" style:normal:bg_color="#00000000" style:pressed:round_radius="10" style:over:round_radius="10" style:pressed:font_size="16" style:pressed:bg_color="#00000000" style:over:border_color="#ED7D30" style:over:text_color="#ED7D30" text="Custom Date"/>
       <button v-on:click="{toggleFilter}" name="close_btn" x="276" y="10" w="34" h="30" style:normal:bg_image_draw_type="icon" style:normal:bg_image="end_" style:normal:round_radius="6" style:normal:border_color="#00000000" style:normal:font_size="24" style:normal:bg_color="#C00000" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#C00000" style:pressed:bg_image_draw_type="icon" style:pressed:bg_image="end_" style:over:border_color="#00000000" style:over:round_radius="6" style:over:bg_color="#C00000" style:over:bg_image_draw_type="icon" style:over:bg_image="end_"/>
-      <view name="view3" h="42" x="0" y="168" w="320" style:normal:bg_color="#FFFFFF">
-        <view v-if="{totalPageNum > 1}" style:normal:bg_color="#FFFFFF" h="32" name="inner_view3" w="220" x="10">
-          <label name="label4" h="32" x="80" y="2" w="59" v-data:text="{totalPage}" style:normal:font_size="16"/>
-          <button v-if="{currentPage > 1}" v-on:click="prevPage" name="prev" h="32" x="0" y="2" w="70" style:normal:round_radius="6" style:normal:font_size="18" style:normal:bg_color="#00000000" style:disable:text_color="#A5A5A5" style:pressed:round_radius="6" style:pressed:font_size="16" text="Prev"/>
-          <button v-if="{currentPage < totalPageNum}" v-on:click="nextPage" name="next" h="32" style:normal:round_radius="6" style:normal:font_size="18" style:normal:bg_color="#00000000" x="149" y="2" w="70" style:disable:text_color="#A5A5A5" style:pressed:round_radius="6" style:pressed:font_size="16" text="Next"/>
-        </view>
-        <button name="refresh_btn" v-on:click="{refreshList}" x="240" y="2" w="70" h="32" style:normal:round_radius="6" style:normal:font_size="18" style:pressed:font_size="16" style:pressed:round_radius="6" style:over:font_size="16" style:over:round_radius="6" style:normal:bg_color="#00000000" text="Reload"/>
-      </view>
     </view>
-    <view v-if="{customDate}" name="view2" x="0" y="0" w="320" h="210" v-on:key_down:return="{onKeyDown, Args=return}" style:normal:bg_color="#FFFFFF" style:normal:round_radius="0" animation="move(name=slide_left,delay=2,easing=circular_in,x_from=310,x_to=0,y_from=0,y_to=0)">
+    <view v-if="{customDate}" name="view2" x="0" y="0" w="320" h="210" v-on:key_down:return="{onKeyDown, Args=return}" style:normal:bg_color="#FFFFFF" style:normal:round_radius="0" animation="move(name=slide_left,delay=2,easing=circular_in,x_from=310,x_to=0,y_from=0,y_to=0)" disg:hide="true">
       <view name="startDate" x="10" y="48" w="300" h="64">
         <label name="label2" x="10" y="14" w="80" h="28" style:normal:text_align_h="left" style:normal:font_size="18" text="Custom Date:"/>
         <!--        <spin_box min="0" max="1024" step="1" visible="false"  name="spin_box" x="247" y="110" w="167" h="37" tips="Please enter your value" input_type="date" auto_fix="true" style:empty:text_color="#000000a7" style:empty:font_name="ap" cancelable="true" style:normal:border_color="#00000000" style:normal:bg_color="#D6DCE4" style:normal:round_radius="10" style:normal:text_color="#000000" style:normal:text_align_h="center" style:focused:border_color="#00000000" style:focused:round_radius="10" style:focused:text_align_h="center" style:focused:bg_color="#D6DCE4"/>-->
@@ -222,4 +222,12 @@
     </scroll_view>
     <scroll_bar_m name="scroll_bar1" x="310" y="0" w="10" h="191" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
   </list_view>
+  <view v-if="{approvePag}" name="view19" x="0" y="0" w="320" h="210" style:normal:bg_color="#00000064">
+    <view name="view20" x="83" y="93" w="227" h="107" style:normal:round_radius="10" style:normal:bg_color="#FFFFFF">
+      <view name="view21" x="0" y="0" w="6" h="107" style:normal:round_radius_top_left="10" style:normal:round_radius_bottom_left="10" style:normal:bg_color="#00B050"/>
+      <label name="label7" x="16" y="10" w="201" h="28" style:normal:text_align_h="left" v-data:text="{updatePage}"/>
+      <view name="view22" x="250" y="20" w="203" h="42"/>
+      <button name="button5" v-on:click="{approvePagFunc}" x="16" y="51" w="94" h="46" style:normal:round_radius="10" style:normal:bg_color="#00000000" style:pressed:round_radius="10" style:pressed:font_size="16" text="Okay"/>
+    </view>
+  </view>
 </window>

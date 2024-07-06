@@ -167,6 +167,7 @@ ViewModel("result", {
       else if (req.type === "error") {
         this.resultCode = 0;
         GLOBAL_FUNCS.setLEDStatus(0b0100, 0);
+        console.log('error code:', req.code)
         let response = getResponse(req.code?req.code:"")
         this.btnText = response.responseMessage?response.responseMessage:"Failure (10s)";
       }

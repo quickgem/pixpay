@@ -7,6 +7,7 @@
       <label name="label" x="0" y="55" w="300" h="26" v-data:text="{name}" style:normal:font_size="18"/>
       <label name="label" x="-52" y="-52" w="104" h="28" style:normal:font_size="24"/>
     </view>
-    <button name="button" x="10" y="160" w="300" h="40" v-on:click="{printNext, Args=1}" style:normal:round_radius="5" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Print Merchant Copy"/>
+    <button name="button" x="10" y="160" w="165" h="40" v-on:click="{printNext, Args=1}" style:normal:round_radius="10" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Print Merchant Copy"/>
+    <button name="button1" x="185" y="160" w="125" h="40" v-on:click="{onConfirm}" style:normal:round_radius="10" style:normal:bg_color="#FFFFFF" style:pressed:bg_color="#FFFFFF" style:pressed:font_size="16" style:pressed:round_radius="10" text="Go Back Home"/>
   </view>
 </window>

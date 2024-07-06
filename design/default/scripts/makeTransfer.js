@@ -73,10 +73,11 @@ ViewModel("makeTransfer", {
 
         _formatInput: function () {
             if(this.fundTransferRequest.amount === "") this.fundTransferAmount = "₦ 0.00";
-            this.fundTransferRequest.amount = parseFloat(this.fundTransferRequest.amount).toFixed(2);
-            const parts  = this.fundTransferRequest.amount.toString().split(".");
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            this.fundTransferAmount = parts.join(".")
+            // parseFloat(this.fundTransferRequest.amount).toFixed(2);
+            this.fundTransferRequest.amount = this.fundTransferRequest.amount.replace(/,/g, '');
+            // const parts  = this.fundTransferRequest.amount.toString().split(".");
+            // parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            // this.fundTransferAmount = parts.join(".")
             this.notifyPropsChanged();
         },
 
@@ -336,6 +337,7 @@ ViewModel("makeTransfer", {
         this.trans =Tos.GLOBAL_TRANSACTION.trans;
         this.title =  this.trans.transName;
         this.fundTransferRequest.amount = GET_SHOW_AMOUNT(this.trans.amount)
+        this.fundTransferAmount = GET_SHOW_AMOUNT(this.trans.amount)
         if(Tos.GLOBAL_CONFIG != null) this.theme = Tos.GLOBAL_CONFIG.theme
 
         this.user = Tos.GLOBAL_CONFIG.userInfo
@@ -346,7 +348,6 @@ ViewModel("makeTransfer", {
     },
 
     onMount: function () {
-        console.log('banks:', JSON.stringify(this.banks))
     },
 
     onWillUnmount: function () {

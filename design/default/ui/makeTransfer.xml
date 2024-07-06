@@ -159,8 +159,8 @@
         <![CDATA[12]]>
       </property>
     </edit>
-    <button v-if="{otherBanks}" v-on:click="{openBankList}" name="view12" x="22" y="133" w="265" h="45" style:normal:round_radius="10" style:normal:border_color="#3F3F3F" style:normal:bg_color="#00000000" style:pressed:round_radius="10" style:pressed:font_size="16" style:pressed:text_align_h="left" style:pressed:bg_color="#ACB8C9" style:pressed:margin="20" style:normal:margin="20" style:normal:text_align_h="left">
-      <label name="label11" x="10" y="3" w="160" h="38" style:normal:text_align_h="left" v-data:text="{selectedBank.name}"/>
+    <button v-if="{otherBanks}" v-on:click="{openBankList}" name="view12" x="22" y="133" w="265" h="45" style:normal:round_radius="10" style:normal:border_color="#3F3F3F" style:normal:bg_color="#00000000" style:pressed:round_radius="10" style:pressed:font_size="16" style:pressed:text_align_h="left" style:pressed:bg_color="#ACB8C9" style:pressed:margin="20" style:normal:margin="20" style:normal:text_align_h="left" auto_adjust_size="true">
+      <label name="label11" x="10" y="3" w="245" h="38" style:normal:text_align_h="left" v-data:text="{selectedBank.name}" line_wrap="true" auto_adjust_size="true"/>
     </button>
     <view v-if="{nameEnquiry}" name="name_enquiry_container" x="0" y="121" w="320" h="95" style:normal:bg_color="#BFBFBF" disg:hide="true">
       <label name="label3" x="10" y="10" w="228" h="28" style:normal:text_align_h="left" v-data:text="{nameEnquiryResponse.accountName}"/>
@@ -174,8 +174,8 @@
     <button v-if="{!loadingBanks}" v-on:click="{showFilterView}" name="button2" x="210" y="10" w="100" h="36" style:normal:round_radius="10" style:normal:bg_color="#3F3F3F" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:round_radius="10" style:pressed:text_color="#FFFFFF" style:pressed:font_size="16" style:pressed:bg_color="#ED7D30" style:pressed:border_color="#00000000" style:over:border_color="#FFFFFF" style:over:round_radius="10" style:over:text_color="#FFFFFF" style:over:bg_color="#3F3F3F" text="Filter banks"/>
     <list_view v-if="{!loadingBanks}" x="0" y="56" w="320" h="154" style:normal:bg_color="#FFFFFF">
       <scroll_view v-if="{!isFiltering}" x="0" y="0" w="100%" h="154" with_focus_state="true">
-        <list_item v-for="{filteredBanks}" h="39" focusable="true" with_focus_state="true" v-on:click="{selectBank,Args=fscript?code=item.code&amp;&amp;name=item.name&amp;}" style:normal:font_size="16" style:pressed:bg_color="#ACB8C9" style:over:bg_color="#ACB8C9" style:focused:bg_color="#ACB8C9">
-          <label v-data:text="{item.name}" w="300" h="39" style:normal:text_align_h="left" x="10"/>
+        <list_item v-for="{filteredBanks}" h="39" focusable="true" with_focus_state="true" v-on:click="{selectBank,Args=fscript?code=item.code&amp;&amp;name=item.name&amp;}" style:normal:font_size="16" style:pressed:bg_color="#ACB8C9" style:over:bg_color="#ACB8C9" style:focused:bg_color="#ACB8C9" auto_adjust_size="true">
+          <label v-data:text="{item.name}" w="300" h="39" style:normal:text_align_h="left" x="10" line_wrap="true" auto_adjust_size="true"/>
         </list_item>
       </scroll_view>
       <scroll_bar_m name="scroll_bar1" x="r" y="-52" w="6" h="258" style:normal:round_radius="30" style:normal:fg_color="#00000000" style:normal:bg_color="#848484"/>

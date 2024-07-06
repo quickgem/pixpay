@@ -70,9 +70,12 @@ def generate_snap():
    for jsf in js_files:
       fnbase, _ = os.path.splitext(os.path.basename(jsf))
       if fnbase.startswith("mod_"):
-         os.system(cmd + ' -m ' + jsf + ' ' + WD + 'scripts/' + fnbase + '.snap')
+         ret = os.system(cmd + ' -m ' + jsf + ' ' + WD + 'scripts/' + fnbase + '.snap')
       else:
-         os.system(cmd + ' ' + jsf + ' ' + WD + 'scripts/' + fnbase + '.snap')
+         ret = os.system(cmd + ' ' + jsf + ' ' + WD + 'scripts/' + fnbase + '.snap')
+      if ret != 0:
+         print('exiting...')
+         exit(-1)
 
 ################################################################################
 # Change to work directory; clean & create output directory.
