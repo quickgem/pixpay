@@ -1,6 +1,6 @@
 // const clearUserInfo = require("./mod_global_config").clearUserInfo;
 
-function GLOBAL_API(params) {
+function GLOBAL_API() {
     this.BASE_URL = "https://biz.corestepbank.com"
     this.STAGE = "dev"
     this.BASE_URL2= `isw-alb-56700477.eu-west-2.elb.amazonaws.com:8080/${this.STAGE}`
@@ -12,7 +12,7 @@ function GLOBAL_API(params) {
     this.TERMINAL_LOGIN = `${this.BASE_URL2}/authentication/terminal-login`
     // this.TRANSACTION_HISTORY = `${this.BASE_URL}/wallet/read-mini-by-account-number`;
     this.TRANSACTION_HISTORY = `${this.BASE_URL}/transaction/read-by-terminal-id`;
-    this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-transaction-id/${params}`
+    this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-transaction-id`
     this.TMS_PURCHASE = `${this.BASE_URL}/tms/purchase`;
 
     this.callApi = function (url, request, onSuccess, onError) {
