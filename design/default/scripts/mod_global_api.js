@@ -3,7 +3,7 @@
 function GLOBAL_API() {
     this.BASE_URL = "https://biz.corestepbank.com"
     this.STAGE = "dev"
-    this.BASE_URL2= `isw-alb-56700477.eu-west-2.elb.amazonaws.com:8080/${this.STAGE}`
+    this.BASE_URL2= `http://isw-alb-56700477.eu-west-2.elb.amazonaws.com:8080/${this.STAGE}`
     this.BALANCE_ENQUIRY = `${this.BASE_URL}/wallet/balance-enquiry`;
     this.NAME_ENQUIRY = `${this.BASE_URL}/transaction/name-enquiry`;
     this.FUND_TRANSFER = `${this.BASE_URL}/transaction/fund-transfer`;
@@ -12,7 +12,7 @@ function GLOBAL_API() {
     this.TERMINAL_LOGIN = `${this.BASE_URL2}/authentication/terminal-login`
     // this.TRANSACTION_HISTORY = `${this.BASE_URL}/wallet/read-mini-by-account-number`;
     this.TRANSACTION_HISTORY = `${this.BASE_URL}/transaction/read-by-terminal-id`;
-    this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-transaction-id`
+    this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-transaction-id/{terminalId}`
     this.TMS_PURCHASE = `${this.BASE_URL}/tms/purchase`;
 
     this.callApi = function (url, request, onSuccess, onError) {
@@ -21,7 +21,7 @@ function GLOBAL_API() {
 
             if (this.globalChooseNetworks()) {
                 let head = {
-                    params: `Authorization:${Tos.GLOBAL_CONFIG.userInfo.session || Tos.GLOBAL_CONFIG.userInfo.token}\r\nmid:${Tos.GLOBAL_CONFIG.userInfo.mid || Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId}\r\nAccept:*/*\r\n`,
+                    params: `Authorization:${Tos.GLOBAL_CONFIG.userInfo.session}\r\nmid:${Tos.GLOBAL_CONFIG.userInfo.mid}\r\nAccept:*/*\r\n`,
                     method: 1,
                     ContentType: "application/json"
                 };
