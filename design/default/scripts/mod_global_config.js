@@ -1,29 +1,29 @@
-var GLOBAL_FILE_SAVE_COVER = require("mod_global_app_manage").GLOBAL_FILE_SAVE_COVER;
+var GLOBAL_FILE_SAVE_COVER = require(mod_global_app_manage).GLOBAL_FILE_SAVE_COVER;
 
-var GLOBAL_GET_FILE = require("mod_global_app_manage").GLOBAL_GET_FILE;
+var GLOBAL_GET_FILE = require(mod_global_app_manage).GLOBAL_GET_FILE;
 
 function GLOBAL_CONFIG() {
   this.config = {
         termId : "00000219", //0000219
-        merchantId : "linjianzhang", // linjianzhang
-        merchantName:"Topwise",
-        tpdu: "6000380000",
-        head: "603200322012",
-        partner: "CORESTEP",
+        merchantId : linjianzhang, // linjianzhang
+        merchantName:Topwise,
+        tpdu: 6000380000,
+        head: 603200322012,
+        partner: CORESTEP,
         timeout:60,
         resendTime:3,
         voucherNo:1,
         batchNO:1,
         maxTransNum:500,
         maxRefundAmt:50000000,
-        securityPwd:"88888888",
-        operatorPwd:"888888",
+        securityPwd:88888888,
+        operatorPwd:888888,
         printCount : 2,
         printGray:4,
         eSignSupport:true,
         reverselTime:3,
         reverselType:0 ,//0:reversel  next time ,1: at once
-        countryCode:"156",
+        countryCode:156,
         theme:{
             primary:'#d2d2d3b9',
             primary_bold:'#3F3F3F',
@@ -36,24 +36,85 @@ function GLOBAL_CONFIG() {
           port: 8889,
           addr: [203, 124, 15, 248], soc_type: 0
         },
-        userInfo: {
-          responseCode:"",
-          responseMessage:"",
-          token:"",
-          session:"",
-          customerFirstName:"",
-          customerLastName:"",
-          customerEmail:"",
-          customerPhone:"",
-          customerCountry:"",
-          customerOrganisationTerminalId:"",
-          customerOrganisationWallet:"",
-          customerCountryCode:"",
-          mid:"",
-          organisations:"",
-          customerOrganisationName:"",
-          customerOrganisationAddress:""
-      },
+        // userInfo: {
+        //   responseCode:,
+        //   responseMessage:,
+        //   token:,
+        //   session:,
+        //   customerFirstName:,
+        //   customerLastName:,
+        //   customerEmail:,
+        //   customerPhone:,
+        //   customerCountry:,
+        //   customerOrganisationTerminalId:,
+        //   customerOrganisationWallet:,
+        //   customerCountryCode:,
+        //   mid:,
+        //   organisations:,
+        //   customerOrganisationName:,
+        //   customerOrganisationAddress:
+        // },
+
+        userInfo:{
+            userId: "",
+            userRoleId: "",
+            userType: "",
+            userFirstName: "",
+            organisationName: "",
+            organisationId: "",
+            organisationAddress: "",
+            userMiddleName: "",
+            userLastName: "",
+            userPhone: "",
+            userEmail: "",
+            userStatus: "",
+            userCreatedAt: "",
+            userUpdatedAt: "",
+            privileges: [],
+            token: "",
+            responseCode: "",
+            responseMessage: "",
+            terminal: {
+              terminalId: "",
+              terminalSerialNumber: "",
+              terminalOrganisationId: "",
+              terminalAccountNumber: "",
+              terminalCallHomeTimeInHours: "",
+              terminalCardAcceptorId: "",
+              terminalCountryCode: "",
+              terminalCurrencyCode: "",
+              terminalMcc: "",
+              terminalMerchantNameLocation: "",
+              terminalTimeOutInSeconds: "",
+              terminalPin: "",
+              terminalStatus: "",
+              terminalCreatedAt: "",
+              terminalUpdatedAt:"",
+              tid: ""
+            },
+            organisation: {
+              organisationId: "",
+              organisationCustomerId: "",
+              organisationAccountNumber: "",
+              organisationName: "",
+              organisationLogo: "",
+              organisationRegistrationNumber: "",
+              organisationRegistrationDate: "",
+              organisationPhone: "",
+              organisationEmail: "",
+              organisationType: "",
+              organisationWebsite: "",
+              organisationAddress: "",
+              organisationIndustryType: "",
+              organisationStage: "",
+              organisationReferralCode: "",
+              organisationInviteCode: "",
+              organisationRoleId: "",
+              organisationStatus: "",
+              organisationCreatedAt: "",
+              organisationUpdatedAt: ""
+            }
+          },
         transactions:null,
         banks:null
   };
@@ -64,7 +125,7 @@ function GLOBAL_CONFIG() {
     }
 
     let config =  this.config;
-    let configArr = JSON.stringify(this.config).split("");
+    let configArr = JSON.stringify(this.config).split();
     let arr = configArr.map(function (v){
       return v.charCodeAt();
     })
@@ -74,7 +135,7 @@ function GLOBAL_CONFIG() {
 }
 
 function SAVE_CONFIG(){
-    let configArr = JSON.stringify(Tos.GLOBAL_CONFIG).split("");
+    let configArr = JSON.stringify(Tos.GLOBAL_CONFIG).split();
     let arr = configArr.map(function (v){
         return v.charCodeAt();
     })
@@ -109,7 +170,7 @@ function GLOBAL_STRING_2_HEXARR (hexStr) {
         return null;
     }
     if(hexStr.length %2 !==0){
-        hexStr="0"+hexStr;
+        hexStr=0+hexStr;
     }
     let pos = 0;
     let len = hexStr.length;
@@ -124,7 +185,7 @@ function GLOBAL_STRING_2_HEXARR (hexStr) {
 }
 
 function injectKeys (){
-    let tmk = GLOBAL_STRING_2_HEXARR("31313131313131313131313131313131")
+    let tmk = GLOBAL_STRING_2_HEXARR(31313131313131313131313131313131)
     let tmkObj = {
         src_algo_type: SYMMETRIC_CRYPT_DES,
         src_type: KEYTYPE_TMK,
@@ -148,7 +209,7 @@ function injectKeys (){
         dst_algo_type: SYMMETRIC_CRYPT_DES,
     };
     res = Tos.PedWriteKey(pinkeyObj, null);
-    console.log("inject pinkey key result ",res.code);
+    console.log("inject pinkey key result" ,res.code);
 }
 
 function clearUserInfo(){

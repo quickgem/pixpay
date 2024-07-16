@@ -21,7 +21,7 @@ function GLOBAL_API() {
 
             if (this.globalChooseNetworks()) {
                 let head = {
-                    params: `Authorization:${Tos.GLOBAL_CONFIG.userInfo.session}\r\nmid:${Tos.GLOBAL_CONFIG.userInfo.mid}\r\nAccept:*/*\r\n`,
+                    params: `Authorization:${Tos.GLOBAL_CONFIG.userInfo.token}\r\nmid:${Tos.GLOBAL_CONFIG.organisation.organisationId}\r\nAccept:*/*\r\n`,
                     method: 1,
                     ContentType: "application/json"
                 };
