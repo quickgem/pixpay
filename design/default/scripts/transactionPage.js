@@ -41,28 +41,7 @@ ViewModel("transactionPage", {
     },
 
     methods: {
-        GLOBAL_CHOOSE_NETWORKs: function () {
-            let type = 1; // WIFI : 1 ,GPRS : 0
-            let ret = Tos.WifiCheck();
-            console.log("WifiCheck =========>", ret.code);
-            if (ret.code < 0) {
-                ret = Tos.MobileDataAvailable();
-                console.log("MobileDataAvailable =========>", ret.code);
-                if (ret.code <= 0) {
-                    return false;
-                } else {
-                    type = 0;
-                }
-            } else {
-                type = 1;
-            }
-            ret = Tos.SocSetProperty(type);
-            console.log("selecNetwork =========>", ret.code);
-            ret = Tos.SocGetProperty(0);
-            console.log("selecNetwork get =========>", ret.code, ret.data);
-            return true;
-        },
-
+       
         paginate(arr, currentPage, itemsPerPage) {
             const start = (currentPage - 1) * itemsPerPage;
             const end = start + itemsPerPage;
@@ -345,8 +324,8 @@ ViewModel("transactionPage", {
                 this.notifyPropsChanged();
             };
 
-            Tos.GLOBAL_API.callApi(
-                Tos.GLOBAL_API.TRANSACTION_HISTORY,
+            Tos.GLOBAL_API(this.user.terminal.terminalId).callApi(
+                Tos.GLOBAL_API.TERMINAL_TRANSACTIONS,
                 this.readTransactionRequest,
                 onSuccess,
                 onError

@@ -27,6 +27,13 @@ ViewModel("login", {
             password: "",
             source: "POS_TERMINAL"
         },
+        terminalLoginRequest:{
+            deviceId: "",
+            latitude: "",
+            longitude: "",
+            userEmail: "",
+            userPassword: ""
+        },
         error:"",
         isError:false
     },
@@ -203,7 +210,7 @@ ViewModel("login", {
                 console.log('error:', JSON.stringify(data))
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.LOGIN,this.loginRequest,onSuccess,onError)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TERMINAL_LOGIN,this.terminalLoginRequest,onSuccess,onError)
         },
 
         showExit: function () {

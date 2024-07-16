@@ -249,7 +249,7 @@ ViewModel("pay", {
       saveBankList(req.data)
     }
 
-    if (Tos.GLOBAL_CONFIG != null && Tos.GLOBAL_CONFIG.userInfo != null) this.user = Tos.GLOBAL_CONFIG.userInfo;
+    if (Tos.GLOBAL_CONFIG != null && Tos.GLOBAL_CONFIG.userInfo != null) this.user = Tos.GLOBAL_CONFIG.userInfo.organisation;
 
     if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
       navigateTo({
