@@ -1,23 +1,23 @@
-var GLOBAL_FILE_SAVE_COVER = require(mod_global_app_manage).GLOBAL_FILE_SAVE_COVER;
+var GLOBAL_FILE_SAVE_COVER = require("mod_global_app_manage").GLOBAL_FILE_SAVE_COVER;
 
-var GLOBAL_GET_FILE = require(mod_global_app_manage).GLOBAL_GET_FILE;
+var GLOBAL_GET_FILE = require("mod_global_app_manage").GLOBAL_GET_FILE;
 
 function GLOBAL_CONFIG() {
   this.config = {
         termId : "00000219", //0000219
-        merchantId : linjianzhang, // linjianzhang
-        merchantName:Topwise,
-        tpdu: 6000380000,
-        head: 603200322012,
-        partner: CORESTEP,
+        merchantId : "linjianzhang", // linjianzhang
+        merchantName:"Topwise",
+        tpdu: "6000380000",
+        head: "603200322012",
+        partner: "CORESTEP",
         timeout:60,
         resendTime:3,
         voucherNo:1,
         batchNO:1,
         maxTransNum:500,
         maxRefundAmt:50000000,
-        securityPwd:88888888,
-        operatorPwd:888888,
+        securityPwd:"88888888",
+        operatorPwd:"888888",
         printCount : 2,
         printGray:4,
         eSignSupport:true,

@@ -25,7 +25,7 @@
       </view>
       <!--      style:normal:margin_left="5" style:focused:margin_left="5" style:empty_over:margin_left="5" style:over:margin_left="5" style:changed:margin_left="5"-->
       <view name="view2" x="0" y="48" w="320" h="162">
-        <edit min="0" max="1024" step="1" name="username" x="10" y="10" w="300" h="46" tips="Email here" auto_fix="true" style:empty:round_radius="5" v-data:text="{loginRequest.username}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="text" style:normal:font_size="20" style:focused:font_size="20" style:over:font_size="20" style:changed:font_size="20"
+        <edit min="0" max="1024" step="1" name="username" x="10" y="10" w="300" h="46" tips="Email here" auto_fix="true" style:empty:round_radius="5" v-data:text="{terminalLoginRequest.userEmail}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="text" style:normal:font_size="20" style:focused:font_size="20" style:over:font_size="20" style:changed:font_size="20"
         >
           <property name="on:key_down">
             if(key == "CANCEL") {
@@ -34,7 +34,7 @@
           </property>
         </edit>
         <!--        <edit min="0" max="1024" step="1" name="password" x="10" y="63" w="293" h="32" tips="Password" auto_fix="true" password_visible="true" style:empty:margin="0" style:empty:margin_left="12" input_type="password" style:focused:margin_left="12" style:empty_focus:margin_left="12" style:over:margin_left="12"/>-->
-        <edit min="0" max="1024" step="1" name="password" x="10" y="60" w="300" h="46" tips="***********" auto_fix="true" style:empty:round_radius="5" v-data:text="{loginRequest.password}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="password">
+        <edit min="0" max="1024" step="1" name="password" x="10" y="60" w="300" h="46" tips="***********" auto_fix="true" style:empty:round_radius="5" v-data:text="{terminalLoginRequest.userPassword}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="password">
           <property name="on:key_down">
             if(key == "CANCEL") {
               widget_set('self', 'focused', false);

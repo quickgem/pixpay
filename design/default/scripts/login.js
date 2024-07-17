@@ -184,11 +184,11 @@ ViewModel("login", {
         },
 
         loginAction: function () {
-            if(!this.loginRequest.username){
+            if(!this.terminalLoginRequest.userEmail){
 
                  return
             }
-           if(!this.loginRequest.password){
+           if(!this.terminalLoginRequest.userPassword){
 
                  return
              }
