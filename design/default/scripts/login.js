@@ -184,11 +184,11 @@ ViewModel("login", {
         },
 
         loginAction: function () {
-            if(!this.loginRequest.username){
+            if(!this.terminalLoginRequest.userEmail){
 
                  return
             }
-           if(!this.loginRequest.password){
+           if(!this.terminalLoginRequest.userPassword){
 
                  return
              }
@@ -197,9 +197,12 @@ ViewModel("login", {
             that.notifyPropsChanged()
             function onSuccess(data){
                 console.log('callback =========>>>>>',JSON.stringify(data))
-                that.user = data
                 saveUserInfo(data)
-                that.readBankList()
+                // that.readBankList()
+                navigateTo({
+                    target: "pay",
+                    close_current: true,
+                });
             }
             function onError(data){
                 that.error = data.responseMessage
@@ -207,7 +210,6 @@ ViewModel("login", {
                 console.log('onError', JSON.stringify(data), data)
                 that.loading = false
                 that.isError = true
-                console.log('error:', JSON.stringify(data))
                 that.notifyPropsChanged();
             }
             Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TERMINAL_LOGIN,this.terminalLoginRequest,onSuccess,onError)
