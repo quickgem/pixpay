@@ -290,7 +290,6 @@ ViewModel("transactionPage", {
             this.filterOn = false;
             this.currentPage = 1;
 
-            this.readTransactionRequest.trnTerminalId = Tos.GLOBAL_API.userInfo.organisation.organisationId;
             this.notifyPropsChanged();
 
             const onSuccess = (data) => {
@@ -324,13 +323,13 @@ ViewModel("transactionPage", {
                 this.notifyPropsChanged();
             };
 
-            Tos.GLOBAL_API(this.user.terminal.terminalId).callApi(
-                Tos.GLOBAL_API.TERMINAL_TRANSACTIONS+Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId,
+            Tos.GLOBAL_API().callApi(
+                Tos.GLOBAL_API.TERMINAL_TRANSACTIONS+this.user.terminal.terminalId,
                 "",
                 onSuccess,
                 onError,
                 0,
-                Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId
+                this.user.organisation.organisationId
             );
         }
 

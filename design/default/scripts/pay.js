@@ -249,7 +249,7 @@ ViewModel("pay", {
       saveBankList(req.data)
     }
 
-    if (Tos.GLOBAL_CONFIG != null && Tos.GLOBAL_CONFIG.userInfo != null) this.user = Tos.GLOBAL_CONFIG.userInfo.organisation;
+    if (Tos.GLOBAL_CONFIG != null && Tos.GLOBAL_CONFIG.userInfo != null) this.user = Tos.GLOBAL_CONFIG.userInfo;
 
     if (Tos.GLOBAL_CONFIG.userInfo.responseCode !== "00"){
       navigateTo({
@@ -263,6 +263,7 @@ ViewModel("pay", {
   onMount: function (data) {
     let that = this;
     if(Tos.GLOBAL_CONFIG != null) that.theme = Tos.GLOBAL_CONFIG.theme
+    console.log('user organisation:', that.user.organisation)
     this.notifyPropsChanged();
   },
 
