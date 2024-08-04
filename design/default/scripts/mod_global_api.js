@@ -4,7 +4,7 @@ function GLOBAL_API() {
     this.BASE_URL = "https://biz.corestepbank.com"
     this.STAGE = "dev"
     this.BASE_URL2= `http://isw-alb-56700477.eu-west-2.elb.amazonaws.com:8080/${this.STAGE}`
-    this.BALANCE_ENQUIRY = `${this.BASE_URL}/account/read-by-account-number/${Tos.GLOBAL_CONFIG.userInfo.terminal.terminalAccountNumber}`;
+    this.BALANCE_ENQUIRY = `${this.BASE_URL}/account/read-by-account-number/`;
     this.NAME_ENQUIRY = `${this.BASE_URL2}/payment/name-enquiry`;
     this.FUND_TRANSFER = `${this.BASE_URL2}/payment/transfer`;
     this.BANK_LIST = `${this.BASE_URL2}/bank-list/read`;
@@ -13,7 +13,7 @@ function GLOBAL_API() {
     // this.TRANSACTION_HISTORY = `${this.BASE_URL}/wallet/read-mini-by-account-number`;
     this.TRANSACTION_HISTORY = `${this.BASE_URL}/transaction/read-by-terminal-id`;
     // this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-transaction-organisation-id/{organisationId}`
-    this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-id/${Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId}`
+    this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-id/`
 
     this.TMS_PURCHASE = `${this.BASE_URL}/tms/purchase`;
 

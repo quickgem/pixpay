@@ -40,7 +40,7 @@ ViewModel("balance", {
                 that.error = data
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BALANCE_ENQUIRY,"",onSuccess,onError, 0)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BALANCE_ENQUIRY+Tos.GLOBAL_CONFIG.userInfo.terminal.terminalAccountNumber,"",onSuccess,onError, 0)
         },
 
         onFail: function () {
