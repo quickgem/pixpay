@@ -192,6 +192,10 @@ ViewModel("login", {
                  return
              }
             const that =this
+            const serialNumber = Tos.SysGetTusn();
+            if(serialNumber.code >= 0){
+                console.log(serialNumber.data);
+            }
             that.loading = true
             that.notifyPropsChanged()
             function onSuccess(data){
