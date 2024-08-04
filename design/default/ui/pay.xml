@@ -1,10 +1,10 @@
 
 <window v-model="pay" name="pay" move_focus_prev_key="up" move_focus_next_key="down" style:border_width="0" v-data:style:normal:bg_color="{theme.light}" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
-  <label name="customer_firstname" x="10" y="10" w="233" h="20" style:normal:bg_color="#00000000" v-data:text="{user.organisationName}" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}"/>
+  <label name="customer_firstname" x="10" y="10" w="233" h="20" style:normal:bg_color="#00000000" v-data:text="{user.organisation.organisationName}" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}"/>
   <view name="view3" h="49" v-data:style:normal:bg_color="{theme.primary}" style:normal:round_radius="6" style:normal:border_color="#00000000" floating="false" w="300" x="10" y="36">
     <!--    #596B6D-->
     <label name="label1" x="10" y="2" w="70" h="20" style:normal:font_size="16" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}" text="Account No:"/>
-    <label name="account_number" x="10" y="22" w="86" h="22" style:normal:bg_color="#00000000" v-data:text="{user.organisationAccountNumber}" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}"/>
+    <label name="account_number" x="10" y="22" w="86" h="22" style:normal:bg_color="#00000000" v-data:text="{user.organisation.organisationAccountNumber}" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}"/>
     <label name="bank" x="163" y="25" w="100" h="16" style:normal:text_align_h="left" style:normal:font_size="16" v-data:style:normal:text_color="{theme.dark}" text="CoreStep MFB"/>
     <label name="label" x="163" y="2" w="70" h="20" style:normal:font_size="16" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}" text="Bank:"/>
   </view>

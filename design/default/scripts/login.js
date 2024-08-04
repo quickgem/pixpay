@@ -162,18 +162,18 @@ ViewModel("login", {
             function onSuccess(data){
                 that.loading = false
                 that.notifyPropsChanged();
-                that.filteredBanks = that.banks.filter(it => {
-                    return it.name[0].toLowerCase() === 'a'
-                })
+                // that.filteredBanks = that.banks.filter(it => {
+                //     return it.name[0].toLowerCase() === 'a'
+                // })
                 // that.loadingBanks = false
                 navigateTo({
                     target: "pay",
                     close_current: true,
-                    data: data.data,
+                    data: data,
                 });
             }
             function onError(data){
-                that.loadingBanks = false
+                that.loading= false
                 that.isError = true
                 that.nameEnquiry = false
                 that.error = data
