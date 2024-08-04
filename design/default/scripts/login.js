@@ -179,7 +179,7 @@ ViewModel("login", {
                 that.error = data
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BANK_LIST,{},onSuccess,onError, 0)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BANK_LIST,"",onSuccess,onError, 0, null)
         },
 
         loginAction: function () {
@@ -215,7 +215,7 @@ ViewModel("login", {
                 that.isError = true
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TERMINAL_LOGIN,this.terminalLoginRequest,onSuccess,onError, 1)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TERMINAL_LOGIN,this.terminalLoginRequest,onSuccess,onError, 1, null)
         },
 
         showExit: function () {

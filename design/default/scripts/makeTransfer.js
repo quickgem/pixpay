@@ -163,7 +163,7 @@ ViewModel("makeTransfer", {
                 that.error = data.responseMessage
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.NAME_ENQUIRY,that.nameEnquiryRequest,onSuccess,onError,1)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.NAME_ENQUIRY,that.nameEnquiryRequest,onSuccess,onError,1,Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId)
         },
 
 

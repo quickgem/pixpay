@@ -17,13 +17,13 @@ function GLOBAL_API() {
 
     this.TMS_PURCHASE = `${this.BASE_URL}/tms/purchase`;
 
-    this.callApi = function (url, request, onSuccess, onError, method) {
+    this.callApi = function (url, request, onSuccess, onError, method, mid) {
         try {
             this.globalChooseNetworks();
 
             if (this.globalChooseNetworks()) {
                 let head = {
-                    params: `Authorization:${Tos.GLOBAL_CONFIG.userInfo.token}\r\nmid:100\r\nAccept:*/*\r\n`,
+                    params: `Authorization:${Tos.GLOBAL_CONFIG.userInfo.token}\r\nmid:${mid}\r\nAccept:*/*\r\n`,
                     method: method,
                     ContentType: "application/json"
                 };

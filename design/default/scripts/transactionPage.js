@@ -329,7 +329,8 @@ ViewModel("transactionPage", {
                 "",
                 onSuccess,
                 onError,
-                0
+                0,
+                Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId
             );
         }
 
