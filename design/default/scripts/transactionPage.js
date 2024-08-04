@@ -290,7 +290,7 @@ ViewModel("transactionPage", {
             this.filterOn = false;
             this.currentPage = 1;
 
-            this.readTransactionRequest.trnTerminalId = Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId;
+            this.readTransactionRequest.trnTerminalId = Tos.GLOBAL_API.userInfo.organisation.organisationId;
             this.notifyPropsChanged();
 
             const onSuccess = (data) => {
