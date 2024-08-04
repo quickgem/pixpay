@@ -326,9 +326,10 @@ ViewModel("transactionPage", {
 
             Tos.GLOBAL_API(this.user.terminal.terminalId).callApi(
                 Tos.GLOBAL_API.TERMINAL_TRANSACTIONS,
-                this.readTransactionRequest,
+                "",
                 onSuccess,
-                onError
+                onError,
+                0
             );
         }
 

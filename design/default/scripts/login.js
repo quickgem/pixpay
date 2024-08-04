@@ -179,23 +179,26 @@ ViewModel("login", {
                 that.error = data
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BANK_LIST,{},onSuccess,onError)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BANK_LIST,{},onSuccess,onError, 0)
         },
 
         loginAction: function () {
-            if(!this.terminalLoginRequest.userEmail){
-
-                 return
-            }
-           if(!this.terminalLoginRequest.userPassword){
-
-                 return
-             }
             const that =this
             const serialNumber = Tos.SysGetTusn();
-            if(serialNumber.code >= 0){
-                console.log('SN', serialNumber.data);
+            if(serialNumber.code < 0){
+
+                that.error = "Can't get SN"
+                that.isError = true
+                return
             }
+
+           if(!this.terminalLoginRequest.userPassword){
+                that.error = "Password is required"
+                that.isError = true
+                 return
+             }
+           
+            that.terminalLoginRequest.userEmail = serialNumber.data 
             that.loading = true
             that.notifyPropsChanged()
             function onSuccess(data){
@@ -212,7 +215,7 @@ ViewModel("login", {
                 that.isError = true
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TERMINAL_LOGIN,this.terminalLoginRequest,onSuccess,onError)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TERMINAL_LOGIN,this.terminalLoginRequest,onSuccess,onError, 1)
         },
 
         showExit: function () {

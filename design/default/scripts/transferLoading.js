@@ -97,7 +97,7 @@ ViewModel("transferLoading",{
                 that.isError = true
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.FUND_TRANSFER,this.fundsRequest,onSuccess,onError)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.FUND_TRANSFER,this.fundsRequest,onSuccess,onError,1)
         },
 
         onKeyDown(args) {

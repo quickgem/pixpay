@@ -27,7 +27,6 @@ ViewModel("balance", {
             const that = this
             console.log('reading balance ===> ')
             that.loading = true
-            that.balanceEnquiryRequest.accountNumber = this.user.customerOrganisationWallet
             that.notifyPropsChanged();
             console.log('reading balance =====> this.loading =====>',this.loading)
             function onSuccess(data){
@@ -41,7 +40,7 @@ ViewModel("balance", {
                 that.error = data
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BALANCE_ENQUIRY,this.balanceEnquiryRequest,onSuccess,onError)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BALANCE_ENQUIRY,"",onSuccess,onError, 0)
         },
 
         onFail: function () {

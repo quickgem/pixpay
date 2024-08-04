@@ -75,7 +75,7 @@ ViewModel("postbridge", {
             }
             this.rrn = request.rrn
             that.notifyPropsChanged();
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,this.onSuccess,this.onError)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,this.onSuccess,this.onError, 1)
         },
         onFail: function () {
             if (this.showModel) {
