@@ -6,7 +6,7 @@ function GLOBAL_API() {
     this.BASE_URL2= `http://isw-alb-56700477.eu-west-2.elb.amazonaws.com:8080/${this.STAGE}`
     this.BALANCE_ENQUIRY = `${this.BASE_URL}/wallet/balance-enquiry`;
     this.NAME_ENQUIRY = `${this.BASE_URL2}/payment/name-enquiry`;
-    this.FUND_TRANSFER = `${this.BASE_URL2}/transaction/transfer`;
+    this.FUND_TRANSFER = `${this.BASE_URL2}/payment/transfer`;
     this.BANK_LIST = `${this.BASE_URL2}/bank-list/read`;
     this.LOGIN = `${this.BASE_URL}/authentication/login`;
     this.TERMINAL_LOGIN = `${this.BASE_URL2}/authentication/terminal-login`
