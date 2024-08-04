@@ -1,19 +1,4 @@
-<window v-model="login" v-on:key_down:NETEVENT="{initHTTPCB}" name="login" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}"
-    v-on:key_down:2="{onKeyDown, Args=2}"
-    v-on:key_down:3="{onKeyDown, Args=3}"
-    v-on:key_down:4="{onKeyDown, Args=4}"
-    v-on:key_down:5="{onKeyDown, Args=5}"
-    v-on:key_down:6="{onKeyDown, Args=6}"
-    v-on:key_down:7="{onKeyDown, Args=7}"
-    v-on:key_down:8="{onKeyDown, Args=8}"
-    v-on:key_down:9="{onKeyDown, Args=9}"
-    v-on:key_down:backspace="{onKeyDown, Args=backspace}"
-    v-on:key_down:return="{onKeyDown, Args=return}"
-    v-on:key_down:escape="{onKeyDown, Args=escape}"
-    v-on:key_down:delete="{onKeyDown, Args=delete}"
-    v-on:key_down:cancel="{onKeyDown, Args=cancel}"
-
-    anim_hint="slide_up(duration=2,easing=cubic_out)">
+<window v-model="login" v-on:key_down:NETEVENT="{initHTTPCB}" name="login" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" anim_hint="slide_up(duration=2,easing=cubic_out)">
   <!--  <view v-if="{type}" w="100%" h="100%">-->
   <!--    <label name="pay_num" x="0" y="70" w="320" h="60" tips="" style:normal:font_size="32" style:normal:border="none" style:normal:bg_color="#00000000" v-data:text="{valueStr}" style:normal:border_width="2"/>-->
   <!--    <label name="tips_text" x="0" y="125" w="320" h="30" style:normal:text_color="#595959" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" v-data:text="{tip_text}"/>-->
@@ -25,23 +10,11 @@
       </view>
       <!--      style:normal:margin_left="5" style:focused:margin_left="5" style:empty_over:margin_left="5" style:over:margin_left="5" style:changed:margin_left="5"-->
       <view name="view2" x="0" y="48" w="320" h="162">
-        <edit min="0" max="1024" step="1" name="username" x="10" y="10" w="300" h="46" tips="Email here" auto_fix="true" style:empty:round_radius="5" v-data:text="{terminalLoginRequest.userEmail}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="text" style:normal:font_size="20" style:focused:font_size="20" style:over:font_size="20" style:changed:font_size="20"
-        >
-          <property name="on:key_down">
-            if(key == "CANCEL") {
-             widget_set('self', 'focused', false);
-            }
-          </property>
-        </edit>
+        <edit min="0" max="1024" step="1" name="username" x="404" y="10" w="300" h="46" tips="Email here" auto_fix="true" style:empty:round_radius="5" v-data:text="{terminalLoginRequest.userEmail}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="text" style:normal:font_size="20" style:focused:font_size="20" style:over:font_size="20" style:changed:font_size="20" disg:hide="true"/>
         <!--        <edit min="0" max="1024" step="1" name="password" x="10" y="63" w="293" h="32" tips="Password" auto_fix="true" password_visible="true" style:empty:margin="0" style:empty:margin_left="12" input_type="password" style:focused:margin_left="12" style:empty_focus:margin_left="12" style:over:margin_left="12"/>-->
-        <edit min="0" max="1024" step="1" name="password" x="10" y="60" w="300" h="46" tips="***********" auto_fix="true" style:empty:round_radius="5" v-data:text="{terminalLoginRequest.userPassword}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="password">
-          <property name="on:key_down">
-            if(key == "CANCEL") {
-              widget_set('self', 'focused', false);
-            }
-          </property>
-        </edit>
-        <button v-on:click="{loginAction}" name="act_button" x="10" y="116" w="300" h="36" style="default" style:pressed:border_color="#00000000" style:pressed:bg_color="#8F9294" style:normal:bg_color="#596B6D" style:normal:round_radius="6" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" text="Login"/>
+        <label name="label2" x="37" y="0" w="160" h="28" style:normal:text_align_h="left" text="Terminal Pin"/>
+        <edit min="0" max="1024" step="1" name="password" x="37" y="38" w="247" h="46" tips="***********" auto_fix="true" style:empty:round_radius="5" v-data:text="{terminalLoginRequest.userPassword}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="password"/>
+        <button v-on:click="{loginAction}" name="act_button" x="37" y="96" w="247" h="36" style="default" style:pressed:border_color="#00000000" style:pressed:bg_color="#8F9294" style:normal:bg_color="#596B6D" style:normal:round_radius="6" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" text="Login"/>
       </view>
     </scroll_view>
   </view>
