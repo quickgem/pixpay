@@ -8,14 +8,14 @@ function GLOBAL_API() {
     this.NAME_ENQUIRY = `${this.BASE_URL2}/payment/name-enquiry`;
     this.FUND_TRANSFER = `${this.BASE_URL2}/payment/transfer`;
     this.BANK_LIST = `${this.BASE_URL2}/bank-list/read`;
-    this.LOGIN = `${this.BASE_URL}/authentication/login`;
+    this.LOGIN = `${this.BASE_URL2}/authentication/login`;
     this.TERMINAL_LOGIN = `${this.BASE_URL2}/authentication/terminal-login`
     // this.TRANSACTION_HISTORY = `${this.BASE_URL}/wallet/read-mini-by-account-number`;
-    this.TRANSACTION_HISTORY = `${this.BASE_URL}/transaction/read-by-terminal-id`;
+    this.TRANSACTION_HISTORY = `${this.BASE_URL2}/transaction/read-by-terminal-id`;
     // this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-transaction-organisation-id/{organisationId}`
     this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-id/`
 
-    this.TMS_PURCHASE = `${this.BASE_URL}/tms/purchase`;
+    this.TMS_PURCHASE = `${this.BASE_URL2}/tms/purchase`;
 
     this.callApi = function (url, request, onSuccess, onError, method, mid) {
         try {
