@@ -245,9 +245,6 @@ ViewModel("pay", {
       new GLOBAL_CONFIG().init();
     }
 
-    if(req.data != null) {
-      saveBankList(req.data)
-    }
 
     if (Tos.GLOBAL_CONFIG != null && Tos.GLOBAL_CONFIG.userInfo != null) this.user = Tos.GLOBAL_CONFIG.userInfo;
 

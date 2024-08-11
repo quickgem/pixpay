@@ -162,9 +162,9 @@ ViewModel("login", {
             function onSuccess(data){
                 that.loading = false
                 that.notifyPropsChanged();
-                // that.filteredBanks = that.banks.filter(it => {
-                //     return it.name[0].toLowerCase() === 'a'
-                // })
+                that.filteredBanks = that.banks.filter(it => {
+                    return it.name[0].toLowerCase() === 'a'
+                })
                 // that.loadingBanks = false
                 navigateTo({
                     target: "pay",
@@ -204,7 +204,7 @@ ViewModel("login", {
             function onSuccess(data){
                 console.log('callback =========>>>>>',JSON.stringify(data))
                 saveUserInfo(data)
-                that.readBankList()
+                // that.readBankList()
                 
             }
             function onError(data){
