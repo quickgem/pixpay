@@ -3,7 +3,7 @@
 function GLOBAL_API() {
     this.BASE_URL = "https://biz.corestepbank.com"
     this.STAGE = "dev"
-    this.BASE_URL2= `http://isw-alb-56700477.eu-west-2.elb.amazonaws.com:8080/${this.STAGE}`
+    this.BASE_URL2= `https://pwb-tms-alb-440199323.eu-west-2.elb.amazonaws.com:8443/${this.STAGE}`
     this.BALANCE_ENQUIRY = `${this.BASE_URL}/account/read-by-account-number/`;
     this.NAME_ENQUIRY = `${this.BASE_URL2}/payment/name-enquiry`;
     this.FUND_TRANSFER = `${this.BASE_URL2}/payment/transfer`;
