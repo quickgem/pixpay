@@ -204,6 +204,11 @@ ViewModel("login", {
             function onSuccess(data){
                 console.log('callback =========>>>>>',JSON.stringify(data))
                 saveUserInfo(data)
+                that.loading = false
+                navigateTo({
+                    target: "pay",
+                    close_current: true,
+                  });
                 // that.readBankList()
                 
             }
