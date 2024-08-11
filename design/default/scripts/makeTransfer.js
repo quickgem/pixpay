@@ -1,6 +1,5 @@
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 var GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
-var Banks_List = require("mod_global_bank_list").Banks_List
 
 
 ViewModel("makeTransfer", {
@@ -340,8 +339,6 @@ ViewModel("makeTransfer", {
         this.fundTransferRequest.amount = GET_SHOW_AMOUNT(this.trans.amount)
         this.fundTransferAmount = GET_SHOW_AMOUNT(this.trans.amount)
         if(Tos.GLOBAL_CONFIG != null) this.theme = Tos.GLOBAL_CONFIG.theme
-        console.log('banks:', Banks_List)
-        this.banks = Banks_List
 
         this.user = Tos.GLOBAL_CONFIG.userInfo
         this.activeBankIndicator = this.theme.primary_bold
