@@ -102,7 +102,7 @@ ViewModel("balance", {
 
     onWillMount: function (req) {
         this.user = Tos.GLOBAL_CONFIG.userInfo
-        console.log(JSON.stringify('USER:', this.user))
+        console.log('USER:', JSON.stringify(this.user))
         this.readBalance()
     },
 
