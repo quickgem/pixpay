@@ -162,15 +162,16 @@ ViewModel("login", {
             function onSuccess(data){
                 that.loading = false
                 that.notifyPropsChanged();
-                that.filteredBanks = that.banks.filter(it => {
-                    return it.name[0].toLowerCase() === 'a'
-                })
+                console.log('banks', JSON.stringify(data))
+                // that.filteredBanks = that.banks.filter(it => {
+                //     return it.name[0].toLowerCase() === 'a'
+                // })
                 // that.loadingBanks = false
-                navigateTo({
-                    target: "pay",
-                    close_current: true,
-                    data: data,
-                });
+                // navigateTo({
+                //     target: "pay",
+                //     close_current: true,
+                //     data: data,
+                // });
             }
             function onError(data){
                 that.loading= false
@@ -205,11 +206,11 @@ ViewModel("login", {
                 console.log('callback =========>>>>>',JSON.stringify(data))
                 saveUserInfo(data)
                 that.loading = false
+                that.readBankList()
                 navigateTo({
                     target: "pay",
                     close_current: true,
                   });
-                // that.readBankList()
                 
             }
             function onError(data){

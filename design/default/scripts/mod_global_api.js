@@ -7,7 +7,7 @@ function GLOBAL_API() {
     this.BALANCE_ENQUIRY = `${this.BASE_URL2}/account/read-by-account-number/`;
     this.NAME_ENQUIRY = `${this.BASE_URL2}/payment/name-enquiry`;
     this.FUND_TRANSFER = `${this.BASE_URL2}/payment/transfer`;
-    this.BANK_LIST = `${this.BASE_URL2}/bank-list/read`;
+    this.BANK_LIST = `${this.BASE_URL}/transaction/bank-list`;
     this.LOGIN = `${this.BASE_URL2}/authentication/login`;
     this.TERMINAL_LOGIN = `${this.BASE_URL2}/authentication/terminal-login`
     // this.TRANSACTION_HISTORY = `${this.BASE_URL}/wallet/read-mini-by-account-number`;
