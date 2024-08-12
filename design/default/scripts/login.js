@@ -210,8 +210,7 @@ ViewModel("login", {
                 navigateTo({
                     target: "pay",
                     close_current: true,
-                  });
-                
+                });  
             }
             function onError(data){
                 that.error = data.responseMessage

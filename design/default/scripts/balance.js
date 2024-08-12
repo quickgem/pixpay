@@ -23,25 +23,27 @@ ViewModel("balance", {
             Tos.HttpclientCbEvent();
         },
 
-        readBalance(){
+        readBalance: function(){
             const that = this
             console.log('reading balance ===> ')
             that.loading = true
             that.notifyPropsChanged();
-            const endpoint = `${Tos.GLOBAL_API.BALANCE_ENQUIRY}/${Tos.GLOBAL_CONFIG.userInfo.terminal.terminalAccountNumber}`
-            console.log('reading balance =====> this.loading =====>',this.loading)
+            const endpoint = `${Tos.GLOBAL_API.BALANCE_ENQUIRY}/${that.user.terminal.terminalAccountNumber}`
+            console.log('endpoint==>', endpoint)
             function onSuccess(data){
                 console.log('balance response =====> ',JSON.stringify(data))
                 that.loading = false
-                that.balance = that._formatInput(data.accountBalance)
+                console.log('response ===>', JSON.stringify(data))
+                // that.balance = that._formatInput(data.accountBalance)
                 that.notifyPropsChanged();
             }
             function onError(data){
                 that.loading = false
                 that.error = data
                 that.notifyPropsChanged();
+                console.log('response ===>', JSON.stringify(data))
             }
-            Tos.GLOBAL_API.callApi(endpoint,"",onSuccess,onError, 0,Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId)
+            Tos.GLOBAL_API.callApi(endpoint,"",onSuccess,onError, 0,that.user.organisation.organisationId)
         },
 
         onFail: function () {
