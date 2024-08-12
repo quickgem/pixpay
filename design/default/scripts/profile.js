@@ -104,8 +104,8 @@ ViewModel("profile", {
     onWillMount: function (req) {
         if(req){
             this.user = Tos.GLOBAL_CONFIG.userInfo
-            this.nameSummary = Tos.GLOBAL_CONFIG.userInfo.customerFirstName[0] + Tos.GLOBAL_CONFIG.userInfo.customerLastName[0]
-            this.fullName = Tos.GLOBAL_CONFIG.userInfo.customerFirstName +  " " + Tos.GLOBAL_CONFIG.userInfo.customerLastName
+            this.nameSummary = Tos.GLOBAL_CONFIG.userInfo.organisation.organisationName[0]
+            this.fullName = Tos.GLOBAL_CONFIG.userInfo.organisation.organisationName
 
             this.notifyPropsChanged()
         }
