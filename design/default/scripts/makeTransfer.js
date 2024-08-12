@@ -37,7 +37,7 @@ ViewModel("makeTransfer", {
         isShowScrollbar: false,
         nameEnquiryLoading:false,
         isSelectedBank:false,
-        selectedBank: {name:"Select bank"},
+        selectedBank: {bankName:"Select bank"},
         nameEnquiry:false,
         nameEnquiryRequest:{
             accountBankCode:null,
@@ -63,9 +63,9 @@ ViewModel("makeTransfer", {
     methods:{
         selectBank(args){
             this.selectedBank = args
-            this.fundTransferRequest.bankName = this.selectedBank.name
-            this.fundTransferRequest.bankCode = this.selectedBank.code
-            this.nameEnquiryRequest.accountBankCode = this.selectedBank.code
+            this.fundTransferRequest.bankName = this.selectedBank.bankName
+            this.fundTransferRequest.bankCode = this.selectedBank.bankCode
+            this.nameEnquiryRequest.accountBankCode = this.selectedBank.bankCode
             this.isSelectedBank = true
             this.searchBank = false
             this.notifyPropsChanged();
@@ -116,7 +116,7 @@ ViewModel("makeTransfer", {
 
             for(let i = 0; i < this.banks.length; i++){
 
-                if(this.banks[i].name[0].toLowerCase() === args){
+                if(this.banks[i].bankName[0].toLowerCase() === args){
                     this.filteredBanks.push(this.banks[i])
                 }
             }
@@ -222,7 +222,7 @@ ViewModel("makeTransfer", {
         openBankList(){
             this.searchBank = true
             this.filteredBanks = this.banks.filter(it => {
-                return it.name[0].toLowerCase() === 'a'
+                return it.bankName[0].toLowerCase() === 'a'
             })
             this.notifyPropsChanged()
 

@@ -28,6 +28,7 @@ ViewModel("balance", {
             console.log('reading balance ===> ')
             that.loading = true
             that.notifyPropsChanged();
+            const endpoint = `${Tos.GLOBAL_API.BALANCE_ENQUIRY}/${Tos.GLOBAL_CONFIG.userInfo.terminal.terminalAccountNumber}`
             console.log('reading balance =====> this.loading =====>',this.loading)
             function onSuccess(data){
                 console.log('balance response =====> ',JSON.stringify(data))
@@ -40,7 +41,7 @@ ViewModel("balance", {
                 that.error = data
                 that.notifyPropsChanged();
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BALANCE_ENQUIRY+Tos.GLOBAL_CONFIG.userInfo.terminal.terminalAccountNumber,"",onSuccess,onError, 0,Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId)
+            Tos.GLOBAL_API.callApi(endpoint,"",onSuccess,onError, 0,Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId)
         },
 
         onFail: function () {
@@ -103,10 +104,11 @@ ViewModel("balance", {
     onWillMount: function (req) {
         this.user = Tos.GLOBAL_CONFIG.userInfo
         console.log('USER:', JSON.stringify(this.user))
+        this.readBalance()
     },
 
     onMount: function () {
-        this.readBalance()
+
     },
 
     onWillUnmount: function () {}

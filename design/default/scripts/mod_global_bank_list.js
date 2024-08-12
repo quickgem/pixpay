@@ -1,4 +1,4 @@
-const Banks_List = [
+Banks_List = [
     {
       bankCode: "070010",
       logo: "https://s3.amazonaws.com/rubiesstore/070010.png",
@@ -1620,5 +1620,3 @@ const Banks_List = [
       bankName: "KUDA MFB"
     }
   ]
-
-  exports.Banks_List= Banks_List;

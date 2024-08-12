@@ -179,7 +179,6 @@ ViewModel("transactionPage", {
             this.notifyPropsChanged()
         },
 
-
         prevPage(){
             const that = this
             // that.approvePag = true;
@@ -289,13 +288,16 @@ ViewModel("transactionPage", {
             this.customDate = false;
             this.filterOn = false;
             this.currentPage = 1;
-
+            const mid =  this.user.organisation.organisationId
+            const endpoint =`${Tos.GLOBAL_API.TERMINAL_TRANSACTIONS}/${mid}?startDate=01-01-2024&endDate=08-08-2024`
+            console.log('endpoint', endpoint, 'mid', mid)
             this.notifyPropsChanged();
 
             const onSuccess = (data) => {
                 this.loading = false;
+                console.log('transaction data', data)
                 this.originalData = data.data;
-
+                //
                 if (this.originalData.length < 1) {
                     this.isTransactions = false;
                 } else {
@@ -323,21 +325,14 @@ ViewModel("transactionPage", {
                 this.notifyPropsChanged();
             };
 
-            Tos.GLOBAL_API().callApi(
-                Tos.GLOBAL_API.TERMINAL_TRANSACTIONS+this.user.terminal.terminalId,
-                "",
-                onSuccess,
-                onError,
-                0,
-                this.user.organisation.organisationId
-            );
+            Tos.GLOBAL_API.callApi(endpoint, "", onSuccess, onError, 0, mid);
         }
 
     },
 
     onWillMount: function (req) {
         this.user = Tos.GLOBAL_CONFIG.userInfo
-        this.getTodayDate()
+        // this.getTodayDate()
         this.readTransactions()
     },
 
