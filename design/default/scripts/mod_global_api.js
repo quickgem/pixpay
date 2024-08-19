@@ -2,8 +2,8 @@
 
 function GLOBAL_API() {
     this.BASE_URL = "https://biz.corestepbank.com"
-    this.STAGE = "dev"
-    this.BASE_URL2= `https://pwb-tms-alb-440199323.eu-west-2.elb.amazonaws.com:8443/${this.STAGE}`
+    this.STAGE = "prod"
+    this.BASE_URL2= `https://tms-api-prod.corestepbank.com/${this.STAGE}`
     this.BALANCE_ENQUIRY = `${this.BASE_URL2}/terminal/read`;
     this.NAME_ENQUIRY = `${this.BASE_URL2}/payment/name-enquiry`;
     this.FUND_TRANSFER = `${this.BASE_URL2}/payment/transfer`;
