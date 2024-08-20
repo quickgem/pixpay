@@ -4,7 +4,7 @@ function GLOBAL_API() {
     this.BASE_URL = "https://biz.corestepbank.com"
     this.STAGE = "prod"
     this.BASE_URL2= `https://tms-api-prod.corestepbank.com/${this.STAGE}`
-    this.BALANCE_ENQUIRY = `${this.BASE_URL2}/terminal/read`;
+    this.BALANCE_ENQUIRY = `${this.BASE_URL2}/account/read-by-account-number/`;
     this.NAME_ENQUIRY = `${this.BASE_URL2}/payment/name-enquiry`;
     this.FUND_TRANSFER = `${this.BASE_URL2}/payment/transfer`;
     this.BANK_LIST = `${this.BASE_URL}/transaction/bank-list`;

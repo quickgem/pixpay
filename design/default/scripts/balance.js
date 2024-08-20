@@ -32,7 +32,7 @@ ViewModel("balance", {
                 console.log('balance response =====> ',JSON.stringify(data))
                 that.loading = false
                 console.log('response ===>', JSON.stringify(data))
-                that.balance = data.terminalBalance
+                that.balance = data.accountBalance
                 that.notifyPropsChanged();
             }
             function onError(data){
@@ -41,7 +41,7 @@ ViewModel("balance", {
                 that.notifyPropsChanged();
                 console.log('response ===>', JSON.stringify(data))
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BALANCE_ENQUIRY,"",onSuccess,onError, 0,this.user.organisation.organisationId)
+            Tos.GLOBAL_API.callApi(`${Tos.GLOBAL_API.BALANCE_ENQUIRY+this.user.terminal.terminalAccountNumber}`,"",onSuccess,onError, 0,this.user.organisation.organisationId)
         },
 
         onFail: function () {
