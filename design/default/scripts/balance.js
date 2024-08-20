@@ -27,12 +27,13 @@ ViewModel("balance", {
             const that = this
             console.log('reading balance ===> ')
             that.loading = true
+            let url = Tos.GLOBAL_API.BALANCE_ENQUIRY+this.user.terminal.terminalAccountNumber
             that.notifyPropsChanged();
             function onSuccess(data){
                 console.log('balance response =====> ',JSON.stringify(data))
                 that.loading = false
                 console.log('response ===>', JSON.stringify(data))
-                that.balance = data.terminalBalance
+                that.balance = data.accountBalance
                 that.notifyPropsChanged();
             }
             function onError(data){
@@ -41,7 +42,8 @@ ViewModel("balance", {
                 that.notifyPropsChanged();
                 console.log('response ===>', JSON.stringify(data))
             }
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BALANCE_ENQUIRY,"",onSuccess,onError, 0,this.user.organisation.organisationId)
+            console.log(url)
+            Tos.GLOBAL_API.callApi(url,null,onSuccess,onError, 0,this.user.organisation.organisationId)
         },
 
         onFail: function () {
@@ -103,7 +105,6 @@ ViewModel("balance", {
 
     onWillMount: function (req) {
         this.user = Tos.GLOBAL_CONFIG.userInfo
-        console.log('USER:', JSON.stringify(this.user))
         this.readBalance()
     },
 
