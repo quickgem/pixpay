@@ -96,10 +96,10 @@ ViewModel("makeTransfer", {
 
         navigatorTransactionSummary(){
             this.fundTransferRequest.narration = `trf to ${this.nameEnquiryResponse.accountName}`.toLowerCase()
-            this.fundTransferRequest.debitAccountName = this.user.customerFirstName + " " + this.user.customerLastName
+            this.fundTransferRequest.debitAccountName = this.user.organisation.organisationName
             this.fundTransferRequest.creditAccountName = this.nameEnquiryResponse.accountName
             this.fundTransferRequest.sessionId = this.nameEnquiryResponse.sessionId
-            this.fundTransferRequest.debitAccountNumber = this.user.customerOrganisationWallet
+            this.fundTransferRequest.debitAccountNumber = this.user.terminal.terminalAccountNumber
             this.fundTransferRequest.creditAccountNumber = this.nameEnquiryResponse.accountNumber
             this._formatInput()
             this.transactionSummary = true

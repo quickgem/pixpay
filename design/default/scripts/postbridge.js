@@ -58,16 +58,19 @@ ViewModel("postbridge", {
             function generateReference(n){
                 return Math.floor(Math.pow(10, n-1) + Math.random() * 9*Math.pow(10, n-1)).toString()
             }
+            // tid:Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,
+            // mid:Tos.GLOBAL_CONFIG.userInfo.mid,
+
             const request = {
                 amt:this.trans.amount,
                 t2d:this.trans.track2,
                 pbl:this.flow.pin,
                 emv:this.trans.sendIccData,
-                tid:Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,
+                tid:Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId,
                 rrn:generateReference(12),
                 exp:this.trans.expDate,
                 csn:this.trans.cardSerialNo,
-                mid:Tos.GLOBAL_CONFIG.userInfo.mid,
+                mid:Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId,
                 name:this.trans.cardHolderName,
                 date:currentDateTime,
                 aid:this.trans.aid,
