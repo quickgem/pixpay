@@ -4,7 +4,7 @@
   <view name="view3" h="49" v-data:style:normal:bg_color="{theme.primary}" style:normal:round_radius="6" style:normal:border_color="#00000000" floating="false" w="300" x="10" y="36">
     <!--    #596B6D-->
     <label name="label1" x="10" y="2" w="70" h="20" style:normal:font_size="16" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}" text="Account No:"/>
-    <label name="account_number" x="10" y="22" w="86" h="22" style:normal:bg_color="#00000000" v-data:text="{user.organisation.organisationAccountNumber}" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}"/>
+    <label name="account_number" x="10" y="22" w="86" h="22" style:normal:bg_color="#00000000" v-data:text="{user.terminal.terminalAccountNumber}" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}"/>
     <label name="bank" x="163" y="25" w="100" h="16" style:normal:text_align_h="left" style:normal:font_size="16" v-data:style:normal:text_color="{theme.dark}" text="CoreStep MFB"/>
     <label name="label" x="163" y="2" w="70" h="20" style:normal:font_size="16" style:normal:text_align_h="left" v-data:style:normal:text_color="{theme.dark}" text="Bank:"/>
   </view>
