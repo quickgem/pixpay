@@ -4,7 +4,7 @@ function GLOBAL_API() {
     this.BASE_URL = "https://biz.corestepbank.com"
     this.STAGE = "prod"
     this.BASE_URL2= `https://tms-api-prod.corestepbank.com/${this.STAGE}`
-    this.BALANCE_ENQUIRY = `${this.BASE_URL2}/account/read-by-account-number/`;
+    this.BALANCE_ENQUIRY = `${this.BASE_URL2}/terminal/read-by-terminal-account-number/`;
     this.NAME_ENQUIRY = `${this.BASE_URL2}/payment/name-enquiry`;
     this.FUND_TRANSFER = `${this.BASE_URL2}/payment/transfer`;
     this.BANK_LIST = `${this.BASE_URL}/transaction/bank-list`;
@@ -29,6 +29,7 @@ function GLOBAL_API() {
                 };
                 let requestString = JSON.stringify(request) + "\r\n";
                 console.log("REQUEST:====>", requestString);
+                console.log("REQUEST HEAD:====>", JSON.stringify(head));
                 let that = this;
                 this.httpCB = function (ret) {
                     console.log('ret ====>', JSON.stringify(ret));
@@ -69,9 +70,9 @@ function GLOBAL_API() {
                 type = 1;
             }
             ret = Tos.SocSetProperty(type);
-            console.log("selectNetwork =========>", ret.code);
+            console.log("selectNetwork =========>", JSON.stringify(ret.code));
             ret = Tos.SocGetProperty(0);
-            console.log("selectNetwork get =========>", ret.code, ret.data);
+            console.log("selectNetwork get =========>", JSON.stringify(ret.code), JSON.stringify(ret.data));
             return true;
         } catch (error) {
             console.error('Error during network selection:', error);
@@ -82,6 +83,7 @@ function GLOBAL_API() {
     this.parseData = function (data, onSuccess, onError) {
         try {
             let u8arr = new Uint8Array(data);
+            console.log('u8arr', u8arr)
             let decodeStr = String.fromCharCode.apply(null, u8arr);
             if (decodeStr) {
                 let parsedData = JSON.parse(decodeStr);
@@ -99,7 +101,8 @@ function GLOBAL_API() {
                     onError(parsedData);
                     console.log('parsedData', JSON.stringify(parsedData));
                 }
-            } else {
+            }
+            else {
                 onError('Something went wrong.');
             }
         } catch (error) {
