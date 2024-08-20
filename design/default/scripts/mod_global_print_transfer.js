@@ -53,8 +53,8 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addTextSpace( Tos.GLOBAL_CONFIG.partner,ALIGN_CENTER,fontSize.LARGE);
     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
     //console.log("set data  0000 ======>>>>>");
-    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationName,ALIGN_CENTER,fontSize.MIDDLE);
-    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationAddress,ALIGN_CENTER,fontSize.MIDDLE);
+    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.organisation.organisationName,ALIGN_CENTER,fontSize.MIDDLE);
+    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.organisation.organisationAddress,ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
     if(currIndex === 1) {
         addTextSpace("*** MERCHANT COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
