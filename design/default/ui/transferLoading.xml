@@ -4,11 +4,13 @@
       <label name="label70" x="2" y="0" w="231" h="28" style:normal:font_size="20" text="Enter Transaction pin"/>
       <label name="label71" x="2" y="26" w="231" h="28" style:normal:font_size="16" style:normal:text_color="#596B6D" text="Input card secured pin to complete payment"/>
     </view>
-    <view w="104" h="50" y="74" style:normal:bg_color="#D8D8D8" x="106" style:normal:round_radius="6">
+    <view w="115" h="50" y="74" style:normal:bg_color="#D8D8D8" x="96" style:normal:round_radius="6">
       <view v-if="{valueLen >= 1}" name="dot" x="10" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen >= 2}" name="dot1" x="32" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen >= 3}" name="dot2" x="54" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen >= 4}" name="dot3" x="81" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 5}" name="dot3" x="81" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 6}" name="dot3" x="81" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen < 12}" name="line" v-data:x="{lineX}" y="11" w="3" h="30" style:normal:bg_color="#00B0F0" animation="opacity(from=255, to=0, yoyo_times=0, duration=500)"/>
     </view>
     <button v-on:click="{callTransferFundsEndpoint}" name="button5" x="40" y="158" w="237" h="48" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>

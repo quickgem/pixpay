@@ -18,7 +18,7 @@ ViewModel("transferLoading",{
         title:"Complete Transaction",
         valueLen: 0,
         lineX: "",
-        password:"1234",
+        password:6,
         value:""
     },
 
@@ -114,7 +114,7 @@ ViewModel("transferLoading",{
                 case "7":
                 case "8":
                 case "9":
-                    if (this.value.length >= this.password.length) {
+                    if (this.value.length >= this.password) {
                         break;
                     }
                     this.value += key;
