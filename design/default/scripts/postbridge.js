@@ -58,7 +58,7 @@ ViewModel("postbridge", {
             function generateReference(n){
                 return Math.floor(Math.pow(10, n-1) + Math.random() * 9*Math.pow(10, n-1)).toString()
             }
-            // tid:Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId,
+            // tid:Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId, G/CHIWUEZE
             // mid:Tos.GLOBAL_CONFIG.userInfo.mid,
 
             const request = {
@@ -71,14 +71,13 @@ ViewModel("postbridge", {
                 // exp:this.trans.expDate,
                 csn:this.trans.cardSerialNo,
                 // mid:Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId,
-                name:this.trans.cardHolderName,
+                name:`${this.trans.cardHolderName.substring(0, 10)}|${this.trans.emvAppName.toLocaleUpperCase().replace("DEBIT", "").trim().substring(0, 6)}`,
                 // date:currentDateTime,
-                // aid:this.trans.aiid,
-                appLab:this.trans.emvAppName,
+                // aid:this.trans.aid
             }
             this.rrn = request.rrn
             that.notifyPropsChanged();
-            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,this.onSuccess,this.onError, 1)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TMS_PURCHASE,request,this.onSuccess,this.onError)
         },
         onFail: function () {
             if (this.showModel) {
