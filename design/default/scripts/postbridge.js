@@ -72,8 +72,8 @@ ViewModel("postbridge", {
                 csn:this.trans.cardSerialNo,
                 mid:Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId,
                 name:this.trans.cardHolderName,
-                date:currentDateTime,
-                aid:this.trans.aid,
+                // date:currentDateTime,
+                // aid:this.trans.aid,
                 appLab:this.trans.emvAppName,
             }
             this.rrn = request.rrn
