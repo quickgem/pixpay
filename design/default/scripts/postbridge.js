@@ -68,12 +68,12 @@ ViewModel("postbridge", {
                 emv:this.trans.sendIccData,
                 tid:Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId,
                 rrn:generateReference(12),
-                exp:this.trans.expDate,
+                // exp:this.trans.expDate,
                 csn:this.trans.cardSerialNo,
-                mid:Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId,
+                // mid:Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId,
                 name:this.trans.cardHolderName,
-                date:currentDateTime,
-                aid:this.trans.aid,
+                // date:currentDateTime,
+                // aid:this.trans.aiid,
                 appLab:this.trans.emvAppName,
             }
             this.rrn = request.rrn
