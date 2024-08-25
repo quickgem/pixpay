@@ -24,7 +24,7 @@ ViewModel("postbridge", {
                 target: "result",
                 type:  "success",
                 rrn: this.rrn,
-                code: data.responseCode?data.responseCode:data.isoResponseCode,
+                response: data,
                 close_current: true,
             });
         },
@@ -35,7 +35,7 @@ ViewModel("postbridge", {
                 target: "result",
                 type: "error",
                 rrn: this.rrn,
-                code: data.responseCode?data.responseCode:data.isoResponseCode,
+                response: data,
                 close_current: true
             });
         },

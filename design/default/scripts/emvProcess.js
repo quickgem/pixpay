@@ -329,8 +329,7 @@ ViewModel("emvProcess", {
         console.log("  card holder name length ==============>", ret.data.length);
         console.log("  card holder name data ==============>", ret.data);
         cardInfo = GLOBAL_HEX2ASCII(GLOBAL_HEXARR_2_STRING(ret.data));
-        Tos.GLOBAL_TRANSACTION.trans.cardHold
-        erName = cardInfo;
+        Tos.GLOBAL_TRANSACTION.trans.cardHolderName = cardInfo;
         console.log("  card holder name  ==============>", cardInfo);
       }
 

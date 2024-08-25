@@ -10,10 +10,7 @@ const  getResponse = require("mod_global_response").getResponse;
 const GET_SHOW_AMOUNT = require("mod_global_funcs").GET_SHOW_AMOUNT;
 
 
-function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
-    console.log("args ====>, ", JSON.stringify(arg))
-    console.log("trans ====>, ", JSON.stringify(trans))
-
+function PRINT_TICKET(trans,cb,rePrint,currIndex) {
 
     let  status  = Tos.PrnStatus();
     if(status.code===ERR_PRN_PAPER_LACK){
@@ -49,33 +46,33 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addTextSpace( Tos.GLOBAL_CONFIG.partner,ALIGN_CENTER,fontSize.LARGE);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     //console.log("set data  0000 ======>>>>>");
-    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationName,ALIGN_CENTER,fontSize.MIDDLE);
-    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.customerOrganisationAddress,ALIGN_CENTER,fontSize.MIDDLE);
+    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.organisation.organisationName,ALIGN_CENTER,fontSize.MIDDLE);
+    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.organisation.organisationAddress,ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     if(currIndex === 1) {
         addTextSpace("*** MERCHANT COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
     }else{
         addTextSpace("*** CUSTOMER COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
     }
-    if (arg.code === "00"){
+    if (trans.transactionResponseCode === "00"){
         addTextSpace( 'APPROVED',ALIGN_CENTER,fontSize.LARGE);
     }else{
         addTextSpace( 'DECLINED',ALIGN_CENTER,fontSize.LARGE);
     }
-    addTextSpace(`RESPONSE CODE: ${arg.code === ""?"999":arg.code}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`MESSAGE: ${getResponse(arg.code).responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`RESPONSE CODE: ${trans.transactionResponseCode === ""?"999":trans.transactionResponseCode}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`MESSAGE: ${getResponse(trans.transactionResponseCode).responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
     // addTextSpace(`DATE: ${arg.createdAt}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`TID: ${Tos.GLOBAL_CONFIG.userInfo.customerOrganisationTerminalId}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`MID: ${Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet}`,ALIGN_LEFT,fontSize.MIDDLE);
-    let cardNo = trans.pan.substring(0,5)+"******"+trans.pan.substring(trans.pan.length-4,trans.pan.length)
+    addTextSpace(`TID: ${Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`MID: ${Tos.GLOBAL_CONFIG.userInfo.terminal.terminalAccountNumber}`,ALIGN_LEFT,fontSize.MIDDLE);
+    let cardNo = trans.transactionMaskedPan
     addTextSpace(`CARD: ${cardNo}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`NAME: ${trans.cardHolderName}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`NAME: ${trans.transactionCardHolderName}`,ALIGN_LEFT,fontSize.MIDDLE);
     addText(`AMOUNT:`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`₦${GET_SHOW_AMOUNT(trans.amount)}`,ALIGN_RIGHT,fontSize.LARGE);
-    addTextSpace(`AID: ${trans.aid}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`STAN: ${arg.rrn.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`RRN: ${arg.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`APPLAB: ${trans.emvAppName}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`₦${trans.transactionRequestAmount}`,ALIGN_RIGHT,fontSize.LARGE);
+    // addTextSpace(`AID: ${trans.aid}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`STAN: ${arg.transactionRetrievalReferenceNumber.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`RRN: ${arg.transactionRetrievalReferenceNumber}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`APPLAB: ${trans.transactionAppLabel}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     addTextSpace( `powered by ${Tos.GLOBAL_CONFIG.partner}`,ALIGN_CENTER,fontSize.SMALL);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);

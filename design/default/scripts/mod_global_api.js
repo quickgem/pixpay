@@ -15,7 +15,8 @@ function GLOBAL_API() {
     // this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-transaction-organisation-id/{organisationId}`
     this.TERMINAL_TRANSACTIONS = `${this.BASE_URL2}/terminal-transaction/read-by-terminal-id`
 
-    this.TMS_PURCHASE = `${this.BASE_URL2}/tms/purchase`;
+    // this.TMS_PURCHASE = `${this.BASE_URL2}/tms/purchase`;
+    this.TMS_PURCHASE = `${this.BASE_URL2}/payment/card`;
 
     this.callApi = function (url, request, onSuccess, onError, method, mid) {
         try {
