@@ -168,28 +168,9 @@ ViewModel("transferSuccess",{
             this.user = Tos.GLOBAL_CONFIG.userInfo
             this.fundTransferResponse = req.data
             this.trans = Tos.GLOBAL_TRANSACTION.trans
-            this.name = this.fundTransferResponse.creditAccountName
-            this.amount = `₦${this.fundTransferResponse.amount}`
-            // if (req.type === "success") {
-            //     this.resultCode = 1
-            //     this.btnText = "Success (10s)";
-            //     if (req.cardType === 1) {
-            //         GLOBAL_FUNCS.setLEDStatus(0b1011, 0);
-            //     } else {
-            //         GLOBAL_FUNCS.setLEDStatus(0b1011,1,5);
-            //     }
-            // }
-            // else if (req.type === "error") {
-            //     this.resultCode = 0;
-            //     GLOBAL_FUNCS.setLEDStatus(0b0100, 0);
-            //     this.btnText = "Failure (10s)";
-            // }
-            // else {
-            //     this.resultCode = req.type === "cancel" ? 2 : 3;
-            //     GLOBAL_FUNCS.setLEDStatus(0);
-            //     this.btnText = req.type === "cancel" ? "Cancel (10s)" : "Timeout (10s)";
-            // }
-            // this.delayClsPrn();
+            this.name = this.fundTransferResponse.transactionCardHolderName
+            this.amount = `₦${this.fundTransferResponse.transactionResponseAmount}`
+
             this.notifyPropsChanged()
             this.onPrint();
         }

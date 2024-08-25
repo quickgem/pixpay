@@ -4,18 +4,18 @@
       <label name="label70" x="2" y="0" w="231" h="28" style:normal:font_size="20" text="Enter Transaction pin"/>
       <label name="label71" x="2" y="26" w="231" h="28" style:normal:font_size="16" style:normal:text_color="#596B6D" text="Input card secured pin to complete payment"/>
     </view>
-    <view w="115" h="50" y="74" style:normal:bg_color="#D8D8D8" x="96" style:normal:round_radius="6">
+    <view w="142" h="50" y="74" style:normal:bg_color="#D8D8D8" x="87" style:normal:round_radius="6">
       <view v-if="{valueLen >= 1}" name="dot" x="10" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen >= 2}" name="dot1" x="32" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen >= 3}" name="dot2" x="54" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
-      <view v-if="{valueLen >= 4}" name="dot3" x="81" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
-      <view v-if="{valueLen >= 5}" name="dot3" x="81" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
-      <view v-if="{valueLen >= 6}" name="dot3" x="81" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 4}" name="dot3" x="98" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 5}" name="dot4" x="76" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
+      <view v-if="{valueLen >= 6}" name="dot5" x="120" y="20" w="12" h="12" style:normal:bg_color="#000000" style:normal:round_radius="6"/>
       <view v-if="{valueLen < 12}" name="line" v-data:x="{lineX}" y="11" w="3" h="30" style:normal:bg_color="#00B0F0" animation="opacity(from=255, to=0, yoyo_times=0, duration=500)"/>
     </view>
     <button v-on:click="{callTransferFundsEndpoint}" name="button5" x="40" y="158" w="237" h="48" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>
   </view>
-  <view v-if="{loading}" x="0" y="0" w="320" h="216" disg:custom="container">
+  <view v-if="{loading}" x="0" y="0" w="320" h="216" disg:custom="container" disg:hide="true">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
       <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
         <view w="120" h="60" x="42" y="24">
@@ -29,7 +29,7 @@
       <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
     </view>
   </view>
-  <view v-if="{isShowExit}" text="view" x="0" y="0" w="320" h="216" disg:custom="container">
+  <view v-if="{isShowExit}" text="view" x="0" y="0" w="320" h="216" disg:custom="container" disg:hide="true">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
       <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="150" x="40" y="30">
         <label name="label" x="17" y="50" w="207" h="46" style:normal:font_size="20" style:normal:text_color="#000000" v-data:text="{noticeText}" auto_adjust_size="true" word_wrap="true" style:normal:margin="10"/>
