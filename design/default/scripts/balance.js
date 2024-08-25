@@ -42,7 +42,7 @@ ViewModel("balance", {
                 console.log('response ===>', JSON.stringify(data))
             }
             console.log(url)
-            Tos.GLOBAL_API.callApi(url,null,onSuccess,onError, 0,this.user.organisation.organisationId)
+            Tos.GLOBAL_API.callApi(url,null,onSuccess,onError, 1,this.user.organisation.organisationId)
         },
 
         onFail: function () {

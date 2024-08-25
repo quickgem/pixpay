@@ -325,7 +325,7 @@ ViewModel("transactionPage", {
                 this.notifyPropsChanged();
             };
 
-            Tos.GLOBAL_API.callApi(endpoint, "", onSuccess, onError, 0, mid);
+            Tos.GLOBAL_API.callApi(endpoint, "", onSuccess, onError, 1, mid);
         }
 
     },
