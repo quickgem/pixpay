@@ -47,11 +47,41 @@ function GLOBAL_TRANSACTION() {
         transTime: {},
         origTransTime:{}
   };
+  this.transaction={
+      transactionAcquiringInstitutionIdentifier: "",
+      transactionAppLabel: "",
+      transactionCardHolderName: "",
+      transactionCompleted: "",
+      transactionCreatedAt: "",
+      transactionFromAccountIdentification: "",
+      transactionFromAccountType: "",
+      transactionId: 0,
+      transactionMaskedPan: "",
+      transactionOrganisationId: "",
+      transactionOrganisationName: "",
+      transactionPosCurrencyCode: "",
+      transactionProcessingCode: "",
+      transactionReceivingInstitutionId: "",
+      transactionRequestAmount: "",
+      transactionResponseAmount: "",
+      transactionResponseCode: "",
+      transactionResponseMessage: "",
+      transactionResponseTime: "",
+      transactionRetrievalReferenceNumber: "",
+      transactionReversed: "",
+      transactionStan: "",
+      transactionStatus: "",
+      transactionTerminalId: "",
+      transactionToAccountIdentification: "",
+      transactionToAccountType: "",
+      transactionTransactionFee: "",
+      transactionUpdatedAt: ""
+  }
   this.flow={
-          navIndex: 0,
-          entry:[],
-          hasPin:false,
-          pin:"",
+      navIndex: 0,
+      entry:[],
+      hasPin:false,
+      pin:"",
   };
 
   this.transParam={};

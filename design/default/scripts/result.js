@@ -12,7 +12,7 @@ ViewModel("result", {
     isPrinting: false,
     currPrint:0,
     title:"",
-    responseCode:"",
+    // response:{},
     rrn:"",
     callback :{
       printNext:this.printNext,
@@ -69,7 +69,7 @@ ViewModel("result", {
     onPrint:function () {
       let that  = this;
       timerAdd(function () {
-        PRINT_TICKET(that.trans,that.callback,false,that.currPrint, {code: that.responseCode, rrn: that.rrn});
+        PRINT_TICKET(that.trans,that.callback,false,that.currPrint);
         return RET_REMOVE;
       }, 100);
     },
@@ -78,7 +78,7 @@ ViewModel("result", {
       let that  = this;
       that.currPrint=1
       timerAdd(function () {
-        PRINT_TICKET(that.trans,that.callback,false,that.currPrint, {code: that.responseCode, rrn: that.rrn});
+        PRINT_TICKET(that.trans,that.callback,false,that.currPrint);
         return RET_REMOVE;
       }, 100);
     },
@@ -150,7 +150,7 @@ ViewModel("result", {
   },
   onWillMount: function (req) {
     console.log("result type =============>", JSON.stringify(req));
-    this.responseCode = req.code?req.code:""
+    this.trans = req.response
     this.rrn = req.rrn
     if (req) {
       this.req = req;
@@ -184,8 +184,8 @@ ViewModel("result", {
   },
   onMount: function () {
     this.flow =Tos.GLOBAL_TRANSACTION.flow;
-    this.trans =Tos.GLOBAL_TRANSACTION.trans;
-    this.transParam =  Tos.GLOBAL_TRANSACTION.transParam ;
+    this.trans=Tos.GLOBAL_TRANSACTION.trans;
+    this.transParam=Tos.GLOBAL_TRANSACTION.transParam ;
 
 
     if (this.resultCode === 1) {
