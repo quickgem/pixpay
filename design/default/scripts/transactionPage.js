@@ -323,7 +323,7 @@ ViewModel("transactionPage", {
                 this.notifyPropsChanged();
             };
 
-            Tos.GLOBAL_API.callApi(endpoint, this.readTransactionRequest, onSuccess, onError, 1, mid);
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TERMINAL_TRANSACTIONS, this.readTransactionRequest, onSuccess, onError, 1, mid);
         }
 
     },
