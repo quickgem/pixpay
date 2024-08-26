@@ -22,6 +22,7 @@ ViewModel("result", {
     },
     config:{},
     trans:{},
+    response:{},
     flow:{},
     transParam:{},
     user:"",
@@ -69,7 +70,7 @@ ViewModel("result", {
     onPrint:function () {
       let that  = this;
       timerAdd(function () {
-        PRINT_TICKET(that.trans,that.callback,false,that.currPrint);
+        PRINT_TICKET(that.response,that.callback,false,that.currPrint);
         return RET_REMOVE;
       }, 100);
     },
@@ -78,7 +79,7 @@ ViewModel("result", {
       let that  = this;
       that.currPrint=1
       timerAdd(function () {
-        PRINT_TICKET(that.trans,that.callback,false,that.currPrint);
+        PRINT_TICKET(that.response,that.callback,false,that.currPrint);
         return RET_REMOVE;
       }, 100);
     },
@@ -150,8 +151,10 @@ ViewModel("result", {
   },
   onWillMount: function (req) {
     console.log("result type =============>", JSON.stringify(req));
-    this.trans = req.response
+    this.response = req.response
     this.rrn = req.rrn
+    console.log('trans=====>', JSON.stringify(this.trans))
+    console.log('req======>', JSON.stringify(req))
     if (req) {
       this.req = req;
       this.user = Tos.GLOBAL_CONFIG.userInfo
@@ -179,8 +182,6 @@ ViewModel("result", {
       this.delayClsPrn();
       this.notifyPropsChanged();
     }
-
-
   },
   onMount: function () {
     this.flow =Tos.GLOBAL_TRANSACTION.flow;

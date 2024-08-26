@@ -25,6 +25,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex) {
         return;
     }
 
+    console.log('print obj', JSON.stringify(trans))
     console.log("PRINT_TICKET  filled data ======>>>>>");
     let config =Tos.GLOBAL_CONFIG;
     let  fontSize ={
@@ -42,12 +43,14 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex) {
         return;
     }
     setSpace(fontSpace);
-    //console.log("setSpace ======>>>>>");
+    console.log("print partner ======>>>>>");
     addTextSpace( Tos.GLOBAL_CONFIG.partner,ALIGN_CENTER,fontSize.LARGE);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
-    //console.log("set data  0000 ======>>>>>");
     addTextSpace(Tos.GLOBAL_CONFIG.userInfo.organisation.organisationName,ALIGN_CENTER,fontSize.MIDDLE);
-    addTextSpace(Tos.GLOBAL_CONFIG.userInfo.organisation.organisationAddress,ALIGN_CENTER,fontSize.MIDDLE);
+    if (Tos.GLOBAL_CONFIG.userInfo.organisation.organisationAddress) {
+        console.log("print organisationAddress ======>>>>>");
+        addTextSpace(Tos.GLOBAL_CONFIG.userInfo.organisation.organisationAddress, ALIGN_CENTER, fontSize.MIDDLE);
+    }
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     if(currIndex === 1) {
         addTextSpace("*** MERCHANT COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
@@ -59,22 +62,37 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex) {
     }else{
         addTextSpace( 'DECLINED',ALIGN_CENTER,fontSize.LARGE);
     }
+    console.log("print transactionResponseCode ======>>>>>");
     addTextSpace(`RESPONSE CODE: ${trans.transactionResponseCode === ""?"999":trans.transactionResponseCode}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print responseMessage ======>>>>>");
     addTextSpace(`MESSAGE: ${getResponse(trans.transactionResponseCode).responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
-    // addTextSpace(`DATE: ${arg.createdAt}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print transactionCreatedAt ======>>>>>");
+    addTextSpace(`DATE: ${trans.transactionCreatedAt}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print terminalId ======>>>>>");
     addTextSpace(`TID: ${Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print terminalAccountNumber ======>>>>>");
     addTextSpace(`MID: ${Tos.GLOBAL_CONFIG.userInfo.terminal.terminalAccountNumber}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print transactionMaskedPan ======>>>>>");
     let cardNo = trans.transactionMaskedPan
+    console.log("print cardNo ======>>>>>");
     addTextSpace(`CARD: ${cardNo}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print transactionCardHolderName ======>>>>>");
     addTextSpace(`NAME: ${trans.transactionCardHolderName}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print transactionMaskedPan ======>>>>>");
     addText(`AMOUNT:`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print transactionRequestAmount ======>>>>>");
     addTextSpace(`₦${trans.transactionRequestAmount}`,ALIGN_RIGHT,fontSize.LARGE);
     // addTextSpace(`AID: ${trans.aid}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`STAN: ${arg.transactionRetrievalReferenceNumber.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`RRN: ${arg.transactionRetrievalReferenceNumber}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print transactionRetrievalReferenceNumber ======>>>>>");
+    addTextSpace(`STAN: ${trans.transactionRetrievalReferenceNumber.substring(0,6)}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print transactionRetrievalReferenceNumber ======>>>>>");
+    addTextSpace(`RRN: ${trans.transactionRetrievalReferenceNumber}`,ALIGN_LEFT,fontSize.MIDDLE);
+    console.log("print transactionAppLabel ======>>>>>");
     addTextSpace(`APPLAB: ${trans.transactionAppLabel}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
+    console.log("print partner ======>>>>>");
     addTextSpace( `powered by ${Tos.GLOBAL_CONFIG.partner}`,ALIGN_CENTER,fontSize.SMALL);
+    console.log("print transactionMaskedPan ======>>>>>");
     addTextSpace( '---------------------------------------',ALIGN_CENTER,fontSize.MIDDLE);
     //setBold(false);
     Tos.PrnStart();
