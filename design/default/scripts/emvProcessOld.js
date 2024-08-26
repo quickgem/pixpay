@@ -760,7 +760,7 @@ ViewModel("emvProcess", {
     }
 
     this.title =  this.trans.transName;
-    this.handleProcess(true,"EMV Process ...");
+    this.handleProcess(true,"Processing Card...");
     GLOBAL_FUNCS.setLEDStatus(0b1000, 0);
 
     console.log("emvProcess onWillMount=======>>>");
