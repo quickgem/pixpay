@@ -6,7 +6,7 @@ ViewModel("balance", {
         user:null,
         loading:false,
         showTip:"Fetching account balance",
-        balanceEnquiryRequest:{accountNumber:""},
+        balanceEnquiryRequest:{terminalId:""},
         balance:"0.00"
     },
 
@@ -26,8 +26,8 @@ ViewModel("balance", {
         readBalance: function(){
             const that = this
             console.log('reading balance ===> ')
+            this.balanceEnquiryRequest.terminalId = Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId;
             that.loading = true
-            let url = Tos.GLOBAL_API.BALANCE_ENQUIRY+this.user.terminal.terminalAccountNumber
             that.notifyPropsChanged();
             function onSuccess(data){
                 console.log('balance response =====> ',JSON.stringify(data))
@@ -41,8 +41,7 @@ ViewModel("balance", {
                 that.notifyPropsChanged();
                 console.log('response ===>', JSON.stringify(data))
             }
-            console.log(url)
-            Tos.GLOBAL_API.callApi(url,null,onSuccess,onError, 1,this.user.organisation.organisationId)
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.BALANCE_ENQUIRY,this.balanceEnquiryRequest,onSuccess,onError, 1,this.user.organisation.organisationId)
         },
 
         onFail: function () {
