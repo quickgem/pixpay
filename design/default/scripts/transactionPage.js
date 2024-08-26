@@ -288,6 +288,7 @@ ViewModel("transactionPage", {
             this.customDate = false;
             this.filterOn = false;
             this.currentPage = 1;
+            this.getTodayDate()
             const mid =  this.user.organisation.organisationId
             this.notifyPropsChanged();
             this.readTransactionRequest.terminalId = Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId
