@@ -71,7 +71,7 @@ ViewModel("postbridge", {
                 // exp:this.trans.expDate,
                 csn:this.trans.cardSerialNo,
                 // mid:Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId,
-                name:`${this.trans.cardHolderName.substring(0, 10)}|${this.trans.emvAppName.toLocaleUpperCase().replace("DEBIT", "").trim().substring(0, 6)}`,
+                name:`${this.trans.cardHolderName.substring(0, 10)}${this.trans.emvAppName.toLocaleUpperCase().replace("DEBIT", "").trim().substring(0, 6)}`,
                 // date:currentDateTime,
                 // aid:this.trans.aid
             }
