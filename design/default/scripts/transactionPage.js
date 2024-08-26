@@ -290,7 +290,7 @@ ViewModel("transactionPage", {
             this.currentPage = 1;
             const mid =  this.user.organisation.organisationId
             this.notifyPropsChanged();
-            this.readTransactionRequest.terminalId = Tos.GLOBAL_CONFIG.terminal.terminalId
+            this.readTransactionRequest.terminalId = Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId
             const onSuccess = (data) => {
                 this.loading = false;
                 console.log('transaction data', data)

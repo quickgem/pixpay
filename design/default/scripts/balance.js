@@ -32,7 +32,7 @@ ViewModel("balance", {
             function onSuccess(data){
                 console.log('balance response =====> ',JSON.stringify(data))
                 that.loading = false
-                that.balance = data.accountBalance
+                that.balance = data.terminalBalance
                 that.notifyPropsChanged();
             }
             function onError(data){
