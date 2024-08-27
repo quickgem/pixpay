@@ -10,12 +10,12 @@ ViewModel("transactionPage", {
         isTransactions:false,
         error:null,
         readTransactionRequest:{
-            trnTerminalId:"",
-            page:1,
-            searchItem:"",
-            startDate:"",
-            endDate:"",
-
+            terminalId: null,
+            page: 1,
+            pageSize: 5,
+            searchParam: null,
+            startDate: null,
+            endDate:null,
         },
         showTip:null,
         loading2:false,
@@ -288,11 +288,10 @@ ViewModel("transactionPage", {
             this.customDate = false;
             this.filterOn = false;
             this.currentPage = 1;
+            this.getTodayDate()
             const mid =  this.user.organisation.organisationId
-            const endpoint =`${Tos.GLOBAL_API.TERMINAL_TRANSACTIONS}/${mid}?startDate=01-01-2024&endDate=08-08-2024`
-            console.log('endpoint', endpoint, 'mid', mid)
             this.notifyPropsChanged();
-
+            this.readTransactionRequest.terminalId = Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId
             const onSuccess = (data) => {
                 this.loading = false;
                 console.log('transaction data', data)
@@ -301,14 +300,14 @@ ViewModel("transactionPage", {
                 if (this.originalData.length < 1) {
                     this.isTransactions = false;
                 } else {
-                    this.originalData = this.originalData.map(transaction => {
-                        if (transaction.trnExtraData) {
-                            transaction.trnExtraData = this.getExtraData(transaction.trnExtraData);
-                        }
-                        return transaction
-                    })
+                    // this.originalData = this.originalData.map(transaction => {
+                    //     if (transaction.trnExtraData) {
+                    //         transaction.trnExtraData = this.getExtraData(transaction.trnExtraData);
+                    //     }
+                    //     return transaction
+                    // })
 
-                    console.log('checking:', JSON.stringify(this.originalData.map(transaction => transaction.trnExtraData)))
+                    // console.log('checking:', JSON.stringify(this.originalData.map(transaction => transaction.trnExtraData)))
 
                     this.transactions = this.paginate(this.originalData, this.currentPage, this.itemsPerPage);
                     this.totalPageNum = Math.ceil(this.originalData.length / this.itemsPerPage);
@@ -325,7 +324,7 @@ ViewModel("transactionPage", {
                 this.notifyPropsChanged();
             };
 
-            Tos.GLOBAL_API.callApi(endpoint, "", onSuccess, onError, 0, mid);
+            Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.TERMINAL_TRANSACTIONS, this.readTransactionRequest, onSuccess, onError, 1, mid);
         }
 
     },
