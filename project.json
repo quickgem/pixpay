@@ -1,5 +1,5 @@
 {
-  "name": "topwise_pos-master",
+  "name": "bizgem_demo",
   "entry": "login",
   "awtkRoot": "${AWTK_SDK_PATH}/awtk",
   "awtkMvvmRoot": "${AWTK_SDK_PATH}/awtk-mvvm",
