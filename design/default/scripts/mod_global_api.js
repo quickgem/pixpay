@@ -34,7 +34,8 @@ function GLOBAL_API() {
             this.httpCB = function (ret) {
                 console.log('ret ====>', JSON.stringify(ret));
                 let data = ret.data && ret.data.response_buf || [];
-                that.parseData(data,onSuccess,onError);
+                if(ret.code < 0) that.parseData(data,onSuccess,onError);
+                else that.parseData(data,onSuccess,onError);
             };
             let httpret = Tos.HttpclientCommon(head, url, requestString, "","", 30, 1, that.httpCB);
             console.log('httpret:====>', JSON.stringify(httpret));
@@ -74,6 +75,8 @@ function GLOBAL_API() {
         if (decodeStr) {
             let parsedData = JSON.parse(decodeStr);
             console.log('RESPONSE RT:====>', JSON.stringify(parsedData))
+            
+
             if(parsedData.responseCode === "00" || parsedData.transactionResponseCode  === "00"){
                 // console.log('returned responseCode =========>', parsedData.responseCode?parsedDatadData.responseCode:parsedData.isoResponseCode)
                 onSuccess(parsedData)
@@ -89,10 +92,11 @@ function GLOBAL_API() {
                 onError(parsedData)
                 console.log('parsedData', JSON.stringify(parsedData))
             }
+            
+            
         }
         else {
-            onError('something went wrong.')
-
+            onError('something went wrong. u8arr')
         }
     }
 

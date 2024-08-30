@@ -65,16 +65,16 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
         addTextSpace("*** CUSTOMER COPY ***",ALIGN_CENTER,fontSize.MIDDLE);
         addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
     }
-    if (arg.responseCode === "00"){
+    if (arg.transactionResponseCode === "00"){
         addTextSpace( 'APPROVED',ALIGN_CENTER,fontSize.LARGE);
     }
     else{
         addTextSpace( 'DECLINED',ALIGN_CENTER,fontSize.LARGE);
     }
 
-    addTextSpace(`RESPONSE CODE: ${arg.responseCode === ""?"999":arg.responseCode}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`MESSAGE: ${arg.responseCode === "00"?"APPROVED":"DECLINED"} | ${getResponse(arg.responseCode).responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`DATE: ${arg.date || arg.requestDatetime}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`RESPONSE CODE: ${arg.transactionResponseCode === ""?"999":arg.transactionResponseCode}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`MESSAGE: ${arg.transactionResponseCode === "00"?"APPROVED":"DECLINED"} | ${getResponse(arg.transactionResponseCode).responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
+    addTextSpace(`DATE: ${arg.transactionCreatedAt || arg.transactionCreatedAt}`,ALIGN_LEFT,fontSize.MIDDLE);
     if(arg.trnService === 'CARD_COLLECTION'){
         addTextSpace(`TID.: ${arg.extraData.tid}`,ALIGN_LEFT,fontSize.MIDDLE);
         addTextSpace(`MID.: ${arg.extraData.mid}`,ALIGN_LEFT,fontSize.MIDDLE);
@@ -87,17 +87,17 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
         addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
     }
     else{
-        addTextSpace(`TYPE: ${arg.type === 'DR' ? 'Debit' : arg.creditAccount !== Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet ? 'Debit' : 'Credit'}`,ALIGN_LEFT,fontSize.MIDDLE);
-        addTextSpace(`BUSINESS ACC.: ${arg.debitAccountNumber}`,ALIGN_LEFT,fontSize.MIDDLE);
-        addTextSpace(`NAME: ${arg.creditAccountName}`,ALIGN_LEFT,fontSize.MIDDLE);
-        addTextSpace(`ACCOUNT NO.: ${arg.creditAccount}`,ALIGN_LEFT,fontSize.MIDDLE);
-        addTextSpace(`REF MSG.: ${arg.narration}`,ALIGN_LEFT,fontSize.MIDDLE);
+        // addTextSpace(`TYPE: ${arg.type === 'DR' ? 'Debit' : arg.creditAccount !== Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet ? 'Debit' : 'Credit'}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`BUSINESS ACC.: ${arg.transactionFromAccountType}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`NAME: ${arg.transactionToAccountType}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`ACCOUNT NO.: ${arg.transactionToAccountIdentification}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`REF MSG.: ${arg.narration ? arg.narration : 'NA'}`,ALIGN_LEFT,fontSize.MIDDLE);
         addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
-        addTextSpace(`REF NO.: ${arg.reference}`,ALIGN_LEFT,fontSize.MIDDLE);
+        addTextSpace(`REF NO.: ${arg.transactionRetrievalReferenceNumber}`,ALIGN_LEFT,fontSize.MIDDLE);
         addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
     }
     addText(`AMOUNT:`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`₦${arg.amount}`,ALIGN_RIGHT,fontSize.LARGE);
+    addTextSpace(`₦${arg.transactionResponseAmount}`,ALIGN_RIGHT,fontSize.LARGE);
     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace( `powered by ${Tos.GLOBAL_CONFIG.partner}`,ALIGN_CENTER,fontSize.SMALL);
     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);

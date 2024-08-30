@@ -1,10 +1,10 @@
 {
-  "name": "bizgem_demo",
+  "name": "pixpay",
   "entry": "login",
   "awtkRoot": "${AWTK_SDK_PATH}/awtk",
   "awtkMvvmRoot": "${AWTK_SDK_PATH}/awtk-mvvm",
   "type": "PROJECT_WIDGETS_APPLICATION",
-  "appTitle": "TopPay",
+  "appTitle": "PixPay",
   "appExeName": "demo",
   "appType": "APP_SIMULATOR",
   "dependencies": {
@@ -28,7 +28,7 @@
         "fonts": {},
         "lcd": {
           "width": "320",
-          "height": "210",
+          "height": "240",
           "colorDepth": "16bit",
           "colorFormat": "BGR(A)"
         }
