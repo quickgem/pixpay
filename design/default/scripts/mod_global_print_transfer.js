@@ -10,7 +10,7 @@
 
 const  getResponse = require("mod_global_response").getResponse;
 
-function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
+function PRINT_TICKET_TRANSFER(trans,cb,rePrint,currIndex,arg) {
     console.log("args ====>, ", JSON.stringify(arg))
     console.log("trans ====>, ", JSON.stringify(trans))
 
@@ -75,7 +75,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     addTextSpace(`RESPONSE CODE: ${arg.transactionResponseCode === ""?"999":arg.transactionResponseCode}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`MESSAGE: ${arg.transactionResponseCode === "00"?"APPROVED":"DECLINED"} | ${getResponse(arg.transactionResponseCode).responseMessage}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`DATE: ${arg.transactionCreatedAt || arg.transactionCreatedAt}`,ALIGN_LEFT,fontSize.MIDDLE);
-    if(arg.journalNarration === 'CARD_DEBIT'){
+    if(arg.journalNarration === 'CARD_DEBIT' || arg.journalNarration === 'CARD' || arg.journalNarration === 'FEE/CARD_DEBIT'){
         addTextSpace(`TID.: ${arg.transactionFromAccountIdentification}`,ALIGN_LEFT,fontSize.MIDDLE);
         addTextSpace(`CARD.: ${arg.transactionMaskedPan}`,ALIGN_LEFT,fontSize.MIDDLE);
         addTextSpace(`Name.: ${arg.transactionCardHolderName}`,ALIGN_LEFT,fontSize.MIDDLE);
@@ -96,7 +96,7 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
         addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
     }
     addText(`AMOUNT:`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`₦${arg.transactionResponseAmount}`,ALIGN_RIGHT,fontSize.LARGE);
+    addTextSpace(`₦${arg.journalAmount}`,ALIGN_RIGHT,fontSize.LARGE);
     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace( `powered by ${Tos.GLOBAL_CONFIG.partner}`,ALIGN_CENTER,fontSize.SMALL);
     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
@@ -226,7 +226,7 @@ function addLine(lines) {
 
 
 
-exports.PRINT_TICKET =  PRINT_TICKET;
+exports.PRINT_TICKET_TRANSFER =  PRINT_TICKET_TRANSFER;
 
 
 

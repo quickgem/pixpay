@@ -7,6 +7,7 @@
       <view name="view2" x="53" y="43" w="215" h="93" style:normal:bg_color="#ED7D30" style:normal:round_radius="8">
         <label name="label1" x="30" y="10" w="154" h="28" style:normal:text_color="#FFFFFF" style:normal:font_size="18" text="Wallet Balance"/>
         <label name="label3" x="27" y="48" w="160" h="28" v-data:text="{balance}" style:normal:text_color="#FFFFFF" style:normal:font_size="24"/>
+        <label name="label4" x="27" y="48" w="40" h="28" v-data:text="{balance}" style:normal:text_color="#FFFFFF" style:normal:font_size="24" text="NGN"/>
       </view>
     </scroll_view>
   </view>

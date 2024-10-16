@@ -15,7 +15,7 @@
     </view>
     <button v-on:click="{callTransferFundsEndpoint}" name="button5" x="40" y="158" w="237" h="48" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>
   </view>
-  <view v-if="{loading}" x="0" y="0" w="320" h="216" disg:custom="container" disg:hide="true">
+  <view v-if="{loading}" x="0" y="0" w="320" h="216" disg:custom="container">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
       <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
         <view w="120" h="60" x="42" y="24">

@@ -1,4 +1,4 @@
-var PRINT_TICKET = require("mod_global_print_transfer").PRINT_TICKET;
+var PRINT_TICKET_TRANSFER = require("mod_global_print_transfer").PRINT_TICKET_TRANSFER;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 
 ViewModel("transferSuccess",{
@@ -99,7 +99,7 @@ ViewModel("transferSuccess",{
         printNext: function (count) {
             this.currPrint = count;
             this.notifyPropsChanged()
-            PRINT_TICKET(this.trans,this.callback,false,1,this.fundTransferResponse);
+            PRINT_TICKET_TRANSFER(this.trans,this.callback,false,1,this.fundTransferResponse);
         },
 
         noPaper: function (count) {
@@ -111,7 +111,7 @@ ViewModel("transferSuccess",{
         onPrint:function () {
             let that  = this;
             timerAdd(function () {
-                PRINT_TICKET(that.trans,that.callback,false,that.currPrint,that.fundTransferResponse);
+                PRINT_TICKET_TRANSFER(that.trans,that.callback,false,that.currPrint,that.fundTransferResponse);
                 return RET_REMOVE;
             }, 100);
         },

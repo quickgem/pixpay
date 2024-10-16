@@ -1,5 +1,6 @@
 ﻿#include "awtk.h"
 #include "navigator.h"
+extern ret_t account_type_init(widget_t* win, void* ctx);
 extern ret_t balance_init(widget_t* win, void* ctx);
 extern ret_t cardBalance_init(widget_t* win, void* ctx);
 extern ret_t login_init(widget_t* win, void* ctx);
@@ -26,10 +27,10 @@ extern ret_t sample_ui_init(widget_t* win, void* ctx);
 
 #ifndef WITH_MVVM
 
-extern ret_t home_page_init(widget_t* win, void* ctx);
-
 static ret_t navigator_window_init(const char* name, widget_t* win, void* ctx) {
-    if (tk_str_eq(name, "balance")) {
+    if (tk_str_eq(name, "account_type")) {
+      return account_type_init(win, ctx);
+    } else if (tk_str_eq(name, "balance")) {
       return balance_init(win, ctx);
     } else if (tk_str_eq(name, "cardBalance")) {
       return cardBalance_init(win, ctx);
@@ -75,11 +76,8 @@ static ret_t navigator_window_init(const char* name, widget_t* win, void* ctx) {
       return pay_init(win, ctx);
     } else if (tk_str_eq(name, "sample_ui")) {
       return sample_ui_init(win, ctx);
-    } else if (tk_str_eq(name, "home_page")) {
-    return home_page_init(win, ctx);
-  }
-
-  return RET_OK;
+    } 
+return RET_OK;
 }
 
 static ret_t navigator_window_open_and_close(const char* name,

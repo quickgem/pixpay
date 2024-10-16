@@ -1,4 +1,4 @@
-var PRINT_TICKET = require("mod_global_print_transfer").PRINT_TICKET;
+var PRINT_TICKET_TRANSFER = require("mod_global_print_transfer").PRINT_TICKET_TRANSFER;
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 var getResponse = require("mod_global_response").getResponse;
 
@@ -14,7 +14,7 @@ ViewModel("transactionPage", {
         readTransactionRequest:{
             terminalId: "",
             page: 1,
-            pageSize: 5,
+            pageSize: 100,
             searchParam: "",
             startDate: "",
             endDate:"",
@@ -27,7 +27,7 @@ ViewModel("transactionPage", {
         filterOn:false,
         customDate:false,
         currentPage:1,
-        itemsPerPage:5,
+        itemsPerPage:100,
         totalPage:"",
         totalPageNum:"",
         originalData:"",
@@ -104,7 +104,7 @@ ViewModel("transactionPage", {
         onPrint:function () {
             this.trans.responseMessage = this.responseMessage
             timerAdd(function () {
-                PRINT_TICKET('',this.callback,false,this.currPrint,this.trans);
+                PRINT_TICKET_TRANSFER('',this.callback,false,this.currPrint,this.trans);
                 return RET_REMOVE;
             }, 100);
         },
@@ -113,7 +113,7 @@ ViewModel("transactionPage", {
             this.currPrint = count;
             this.trans.responseMessage = this.responseMessage
             this.notifyPropsChanged()
-            PRINT_TICKET('',this.callback,false,1,this.trans);
+            PRINT_TICKET_TRANSFER('',this.callback,false,1,this.trans);
         },
 
         getExtraData(obj){
@@ -136,7 +136,7 @@ ViewModel("transactionPage", {
             this.isShowingReceipt=true;
             if(this.trans){
                 this.amount = `₦${this.trans.journalAmount}`;
-                this.responseMessage = `${this.trans.transactionStatus === 'SUCCESS' || this.trans.transactionStatus === 'ACTIVE' ? 'APPROVED' :  this.trans.transactionStatus === 'FAILED' ? 'DECLINED' : this.trans.transactionStatus}| ${getResponse(obj.responseCode).responseMessage}`;
+                this.responseMessage = `${this.trans.transactionResponseCode === '00' ? 'APPROVED' : 'DECLINED'}| ${getResponse(this.trans.responseCode || this.trans.transactionResponseCode).responseMessage}`;
                 this.extraData = {
                     card:this.trans.transactionMaskedPan,
                     name:this.trans.transactionCardHolderName,
@@ -328,6 +328,7 @@ ViewModel("transactionPage", {
         },
 
         readTransactionsDetails(transactionId) {
+            this.isTransactionCard = false
             this.loadingDetails = true;
             this.notifyPropsChanged();
             console.log('transactionId ===>', JSON.stringify(transactionId))
@@ -336,7 +337,7 @@ ViewModel("transactionPage", {
             console.log('transactionId ===>', JSON.stringify(this.readTransactionRequestDetails))
             const onSuccess = (data) => {
                 this.loadingDetails = false;
-                if(data.data.journalNarration === 'CARD_DEBIT'){
+                if(data.data.journalNarration === 'CARD_DEBIT' || data.data.journalNarration === 'CARD' || data.data.journalNarration === 'FEE/CARD_DEBIT'){
                     this.isTransactionCard = true
                 }else{
                     this.isTransactionCard = false

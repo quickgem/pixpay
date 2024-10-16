@@ -28,7 +28,7 @@
         "fonts": {},
         "lcd": {
           "width": "320",
-          "height": "210",
+          "height": "240",
           "colorDepth": "16bit",
           "colorFormat": "BGR(A)"
         }

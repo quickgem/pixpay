@@ -133,14 +133,14 @@ function GLOBAL_PREENTRY(){
             {
                 appName: "Card", icon: "paywithcard",
                 transParam:{appName:"Pay with Card",transType: TRANS_TYPE.SALE, msgType:"0200",procCode:"000000",serviceCode:"00",needSave:true,nReversal:true},
-                entry: ["inputAmt", "searchCard",[["emvProcess","result"],["emvProcess","result"],["emvProcess","result"]]], // checking if this is the entry flow
+                entry: ["inputAmt","account_type","searchCard",[["emvProcess","result"],["emvProcess","result"],["emvProcess","result"]]], // checking if this is the entry flow
             },
             // FILE INDEX 1
             {
                 appName: "Transfer",
                 icon: "maketransfer",
                 transParam:{appName:"Make Transfer",transType: TRANS_TYPE.SALE_VOID, msgType:"0200",procCode:"000000",serviceCode:"00",needSave:true,nReversal:true},
-                entry: ["inputAmt", "makeTransfer","transferLoading","transferSuccess"]
+                entry: ["inputAmt","account_type", "makeTransfer","transferLoading","transferSuccess"]
             },
 
             {

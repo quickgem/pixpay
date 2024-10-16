@@ -5,9 +5,9 @@
         <label name="Balance" x="0" y="0" w="320" h="34" style:normal:border="none" style:normal:border_color="#00000000" style:normal:font_size="20" text="Balance Enquiry"/>
       </view>
       <label name="label1" x="10" y="25" w="154" h="28" style:normal:text_color="#000000" style:normal:font_size="18" style:normal:text_align_h="left" text="Available Balance"/>
-      <label name="label3" x="80" y="53" w="160" h="28" v-data:text="{balance}" style:normal:text_color="#000000" style:normal:font_size="24" text="{avlBalance}"/>
+      <label name="label3" x="80" y="53" w="160" h="28" v-data:text="{avlBalance}" style:normal:text_color="#000000" style:normal:font_size="24" text="{avlBalance}"/>
       <label name="label1" x="10" y="81" w="154" h="28" style:normal:text_color="#000000" style:normal:font_size="18" style:normal:text_align_h="left" text="Ledger Balance"/>
-      <label name="label3" x="80" y="109" w="160" h="28" v-data:text="{balance}" style:normal:text_color="#000000" style:normal:font_size="24" text="{ledgerBalance}"/>
+      <label name="label3" x="80" y="109" w="160" h="28" v-data:text="{ledgerBalance}" style:normal:text_color="#000000" style:normal:font_size="24" text="{ledgerBalance}"/>
     </scroll_view>
   </view>
   <view v-if="{loading}" x="0" y="0" w="320" h="210" style:normal:bg_color="#00000078" disg:hide="true">

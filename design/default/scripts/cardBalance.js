@@ -39,7 +39,7 @@ ViewModel("cardBalance", {
         displayBalance: function (data) {
             this.avlBalance = `${data.availableBalanceCurrency}${this._formatInput(data.availableBalance)}`
             this.ledgerBalance = `${data.ledgerBalanceCurrency}${this._formatInput(data.ledgerBalance)}`
-            that.notifyPropsChanged();
+            this.notifyPropsChanged();
         },
 
         handleCancel: function () {

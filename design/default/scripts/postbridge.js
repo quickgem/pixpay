@@ -22,7 +22,7 @@ ViewModel("postbridge", {
             this.notifyPropsChanged();
             if (this.trans.amount === 0) {
                 navigateTo({
-                    target: "balance",
+                    target: "cardBalance",
                     type: "success",
                     rrn: this.rrn,
                     response: data,
