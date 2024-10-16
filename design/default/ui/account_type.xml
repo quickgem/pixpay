@@ -1,4 +1,4 @@
 <window name="account_type">
-  <radio_button name="radio_button" x="85" y="56" w="146" h="34" style:normal:border_color="#0070C0" text="RadioButton"/>
-  <radio_button name="radio_button1" x="85" y="123" w="146" h="34" style:normal:border_color="#FF0000" text="RadioButton"/>
+  <radio_button name="radio_button" x="103" y="40" w="100" h="38" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#A8D08D" text="Savings"/>
+  <radio_button name="radio_button" x="103" y="142" w="100" h="38" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#FF0000" text="Current"/>
 </window>
