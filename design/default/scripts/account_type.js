@@ -17,6 +17,21 @@ ViewModel("account_type", {
 
         },
 
+        onKeyDown(args) {
+            console.log("key down----->>>>:", args);
+            var key = args;
+            switch (key) {
+                case "cancel":
+                    //TODO PERFORM CANCEL ACTION HERE
+                    break;
+                case "return":
+                    //TODO PERFORM RETURN ACTION HERE
+                    break;
+                default:
+                    break;
+            }
+        },
+
 
         initHTTPCB: function () {
             Tos.HttpclientCbEvent();
