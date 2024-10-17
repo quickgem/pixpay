@@ -1,5 +1,5 @@
 <window name="account_type">
-  <radio_button name="radio_button" x="103" y="48" w="100" h="38" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#0070C0" style:normal:border="all" style:normal:round_radius="15" style:normal:round_radius_top_left="15" text="Savings"/>
-  <radio_button name="radio_button" x="103" y="96" w="100" h="38" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#0070C0" style:normal:round_radius_top_left="15" style:normal:round_radius="15" text="Current"/>
-  <radio_button name="radio_button" x="103" y="144" w="100" h="38" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#0070C0" style:normal:round_radius_top_left="15" style:normal:round_radius="15" text="Default"/>
+  <radio_button name="radio_button" x="82" y="66" w="148" h="27" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#0070C0" style:normal:border="all" style:normal:round_radius="15" style:normal:round_radius_top_left="15" text="Savings"/>
+  <radio_button name="radio_button" x="82" y="103" w="148" h="27" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#0070C0" style:normal:round_radius_top_left="15" style:normal:round_radius="15" text="Current"/>
+  <radio_button name="radio_button" x="82" y="140" w="148" h="27" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#0070C0" style:normal:round_radius_top_left="15" style:normal:round_radius="15" text="Default"/>
 </window>
