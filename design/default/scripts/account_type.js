@@ -13,7 +13,7 @@ ViewModel("account_type", {
             that.accountType = arg;
             that.notifyPropsChanged()
 
-            // GLOBAL_JUMP('', that.accountType) check here for refactoring
+            // GLOBAL_JUMP('', that.accountType) //TODO check here for refactoring
 
         },
 
