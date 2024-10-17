@@ -2,12 +2,18 @@ var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 
 ViewModel("account_type", {
     data: {
-        user:""
+        user:"",
+        accountType:"Default"
     },
 
     methods: {
 
-        selectAccountType:function (){
+        selectAccountType:function (arg){
+            const that = this;
+            that.accountType = arg;
+            that.notifyPropsChanged()
+
+            // GLOBAL_JUMP('', that.accountType) check here for refactoring
 
         },
 
