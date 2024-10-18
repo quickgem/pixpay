@@ -20,7 +20,7 @@ ViewModel("accountType", {
                     that.isCurrent = '#FFFFFF';
                     that.isSaving = '#FFFFFF';
                     break;
-                case "Saving":
+                case "Savings":
                     that.isDefault = '#FFFFFF';
                     that.isCurrent = '#FFFFFF';
                     that.isSaving = '#FFC002';
