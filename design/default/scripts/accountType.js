@@ -1,6 +1,6 @@
 var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
 
-ViewModel("account_type", {
+ViewModel("accountType", {
     data: {
         user:"",
         accountType:"Default"

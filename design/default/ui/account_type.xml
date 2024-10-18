@@ -1,6 +1,0 @@
-
-  <window v-model="account_type" name="account_type" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" v-on:key_down:return="onKeyDown, Args=return">
-    <radio_button name="radio_button" v-on:click="{selectAccountType, Args=Savings}" x="82" y="66" w="148" h="27" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#0070C0" style:normal:border="all" style:normal:round_radius="15" style:normal:round_radius_top_left="15" text="Savings"/>
-    <radio_button name="radio_button" v-on:click="{selectAccountType, Args=Current}" x="82" y="103" w="148" h="27" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#0070C0" style:normal:round_radius_top_left="15" style:normal:round_radius="15" text="Current"/>
-    <radio_button name="radio_button" v-on:click="{selectAccountType, Args=Default}" x="82" y="140" w="148" h="27" style:normal:text_align_h="center" style:normal:font_size="22" style:normal:border_color="#0070C0" style:normal:round_radius_top_left="15" style:normal:round_radius="15" text="Default"/>
-  </window>

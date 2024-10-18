@@ -25,13 +25,7 @@
         "activedSystemBar": "",
         "activedBottomSystemBar": "",
         "packaged": true,
-        "fonts": {
-          "default": {
-            "18": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
-            "text": " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~",
-            "bpp": "8bits"
-          }
-        },
+        "fonts": {},
         "lcd": {
           "width": "320",
           "height": "240",
