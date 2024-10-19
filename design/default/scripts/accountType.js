@@ -36,7 +36,7 @@ ViewModel("accountType", {
 
             that.notifyPropsChanged()
 
-            // GLOBAL_JUMP('', that.accountType) //TODO check here for refactoring
+            GLOBAL_JUMP('', this.accountType) //TODO check here for refactoring
 
         },
 
@@ -58,8 +58,7 @@ ViewModel("accountType", {
                     this.handleCancel();
                     break;
                 case "return":
-                    //TODO PERFORM RETURN ACTION HERE
-                    GLOBAL_JUMP('', this.accountType) //TODO check here for refactoring
+
                     break;
                 default:
                     break;
