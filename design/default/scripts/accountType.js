@@ -6,7 +6,8 @@ ViewModel("accountType", {
         accountType:"Default",
         isSaving:"#FFFFFF",
         isCurrent:"#FFFFFF",
-        isDefault:"#FFFFFF"
+        isDefault:"#FFFFFF",
+        trans:{},
     },
 
     methods: {
@@ -19,16 +20,19 @@ ViewModel("accountType", {
                     that.isDefault = '#FFC002';
                     that.isCurrent = '#FFFFFF';
                     that.isSaving = '#FFFFFF';
+                    that.trans.accountType="00"
                     break;
                 case "Savings":
                     that.isDefault = '#FFFFFF';
                     that.isCurrent = '#FFFFFF';
                     that.isSaving = '#FFC002';
+                    that.trans.accountType="10"
                     break;
                 case "Current":
                     that.isDefault = '#FFFFFF';
                     that.isCurrent = '#FFC002';
                     that.isSaving = '#FFFFFF';
+                    that.trans.accountType="20"
                     break;
                 default:
                     break;
@@ -36,7 +40,7 @@ ViewModel("accountType", {
 
             that.notifyPropsChanged()
 
-            GLOBAL_JUMP('', this.accountType) //TODO check here for refactoring
+            GLOBAL_JUMP('') //TODO check here for refactoring
 
         },
 
@@ -73,6 +77,7 @@ ViewModel("accountType", {
     },
 
     onWillMount: function (req) {
+        this.trans =Tos.GLOBAL_TRANSACTION.trans;
         console.log('req===>', JSON.stringify(req));
         this.user = Tos.GLOBAL_CONFIG.userInfo
 

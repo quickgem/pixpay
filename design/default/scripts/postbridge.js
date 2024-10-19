@@ -78,6 +78,7 @@ ViewModel("postbridge", {
                 emv:this.trans.sendIccData,
                 tid:Tos.GLOBAL_CONFIG.userInfo.terminal.terminalId,
                 rrn:generateReference(12),
+                act:this.trans.accountType,
                 // exp:this.trans.expDate,
                 csn:this.trans.cardSerialNo,
                 // mid:Tos.GLOBAL_CONFIG.userInfo.organisation.organisationId,

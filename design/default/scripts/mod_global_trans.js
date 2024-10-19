@@ -3,6 +3,7 @@ function GLOBAL_TRANSACTION() {
   this.trans = {
         id:-1,
         voucherNo : 1,
+        accountType : "00",
         batchNo : 0,
         origBatchNo:0,
         origVoucherNo:0,
@@ -218,7 +219,7 @@ function GLOBAL_PREENTRY(){
                 appName: "Card Balance",
                 icon: "paywithcard",
                 transParam:{appName:"Card Balance"},
-                entry: ["searchCard",[["emvProcess","result"],["emvProcess","result"],["emvProcess","result"]]]
+                entry: ["accountType","searchCard",[["emvProcess","result"],["emvProcess","result"],["emvProcess","result"]]]
             },
 
         ];
