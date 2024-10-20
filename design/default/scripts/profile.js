@@ -7,6 +7,7 @@ ViewModel("profile", {
         terminal: null,
         fullName:"",
         isSupport:false,
+        merchant_info:false,
         isChangePassword:false,
         isCloseBusiness:false,
         loading:false,
@@ -28,6 +29,7 @@ ViewModel("profile", {
             if(args==='support') {this.isSupport = true}
             if(args==='password'){this.isChangePassword = true}
             if(args==='close'){this.isCloseBusiness = true}
+            if(args==='merchant'){this.merchant_info = true}
             this.notifyPropsChanged();
         },
 
