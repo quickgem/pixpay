@@ -4,7 +4,7 @@
       <label name="label1" x="16" y="17" w="38" h="38" v-data:text="{nameSummary}"/>
     </view>
     <label name="name" x="91" y="26" w="65" h="18" v-data:text="{fullName}" style:normal:text_align_h="left"/>
-    <label name="email" x="91" y="54" w="102" h="18" style:normal:font_size="14" v-data:text="{user.customerEmail}" style:normal:text_align_h="left"/>
+    <label name="email" x="91" y="54" w="102" h="18" style:normal:font_size="14" v-data:text="{organisation.organisationEmail}" style:normal:text_align_h="left"/>
     <view name="view1" x="0" y="103" w="320" h="117">
       <button name="Support Button" v-on:click="{navigate, Args=support}" x="0" y="0" w="320" h="35" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="top|bottom" style:over:text_align_h="left" style:over:border="top|bottom" style:over:margin="12" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:margin="12" style:pressed:border_color="#00000000" style:pressed:bg_color="#ACB8C9" style:over:bg_color="#ACB8C9" style:focused:bg_color="#ACB8C9" text=" Support"/>
       <button name="Change Password" v-on:click="{navigate, Args=password}" x="0" y="35" w="320" h="35" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="bottom" style:over:text_align_h="left" style:over:border="top|bottom" style:over:margin="12" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:margin="12" style:pressed:bg_color="#ACB8C9" style:over:bg_color="#ACB8C9" style:focused:bg_color="#ACB8C9" text=" Change Password"/>
@@ -65,11 +65,11 @@
     <label name="Merchant Name" x="10" y="49" w="99" h="28" style:normal:text_align_h="left" text="Merchant Name:"/>
     <button name="button1" x="0" y="-1" w="52" h="50" style:normal:bg_image="icon_back" style:normal:bg_color="#FFFFFF"/>
     <label name="Merchant Info(Header)" x="80" y="10" w="160" h="28" text="Merchant Information"/>
-    <label name="space" x="114" y="50" w="186" h="28" style:normal:text_align_h="left"/>
-    <label name="space" x="45" y="87" w="255" h="28" style:normal:text_align_h="left"/>
-    <label name="space" x="93" y="125" w="217" h="28" style:normal:text_align_h="left"/>
-    <label name="space" x="131" y="163" w="179" h="28" style:normal:text_align_h="left"/>
+    <label name="space" x="114" y="50" w="186" h="28" style:normal:text_align_h="left" v-data:text="{terminal.terminalId}"/>
+    <label name="space" x="45" y="87" w="255" h="28" style:normal:text_align_h="left" v-data:text="{organisation.organisationId}"/>
+    <label name="space" x="93" y="125" w="217" h="28" style:normal:text_align_h="left" v-data:text="{organisation.organisationAddress}"/>
+    <label name="space" x="131" y="163" w="179" h="28" style:normal:text_align_h="left" v-data:text="{organisation.organisationName}"/>
   </view>
-  <label name="label2" x="97" y="66" w="213" h="28" style:normal:text_align_h="left"/>
-  <label name="label2" x="178" y="119" w="132" h="28" style:normal:text_align_h="left"/>
+  <label name="label2" x="97" y="66" w="213" h="28" style:normal:text_align_h="left" text="customercare@corestepmfb.com"/>
+  <label name="label2" x="178" y="119" w="132" h="28" style:normal:text_align_h="left" text="+2349155556906"/>
 </window>

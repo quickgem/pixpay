@@ -3,6 +3,8 @@ ViewModel("profile", {
         showModel: false,
         nameSummary:"",
         user:null,
+        organisation:null,
+        terminal: null,
         fullName:"",
         isSupport:false,
         isChangePassword:false,
@@ -104,6 +106,8 @@ ViewModel("profile", {
     onWillMount: function (req) {
         if(req){
             this.user = Tos.GLOBAL_CONFIG.userInfo
+            this.organisation = Tos.GLOBAL_CONFIG.userInfo.organisation
+            this.terminal = Tos.GLOBAL_CONFIG.userInfo.terminal
             this.nameSummary = Tos.GLOBAL_CONFIG.userInfo.organisation.organisationName[0]
             this.fullName = Tos.GLOBAL_CONFIG.userInfo.organisation.organisationName
 
