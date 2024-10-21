@@ -93,7 +93,7 @@ ViewModel("transferLoading",{
             }
             function onError(data){
                 that.loading = false
-                that.error = data.transactionResponseMessage
+                that.error = data.transactionResponseMessage || data.responseMessage
                 that.isError = true
                 that.notifyPropsChanged();
             }

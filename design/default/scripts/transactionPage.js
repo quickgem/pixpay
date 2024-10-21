@@ -102,13 +102,13 @@ ViewModel("transactionPage", {
             GLOBAL_JUMP("", args);
         },
 
-        onPrint:function () {
-            this.trans.responseMessage = this.responseMessage
-            timerAdd(function () {
-                PRINT_TICKET_TRANSFER('',this.callback,false,this.currPrint,this.trans);
-                return RET_REMOVE;
-            }, 100);
-        },
+        // onPrint:function () {
+        //     this.trans.responseMessage = this.responseMessage
+        //     timerAdd(function () {
+        //         PRINT_TICKET_TRANSFER('',this.callback,false,this.currPrint,this.trans);
+        //         return RET_REMOVE;
+        //     }, 100);
+        // },
 
         printNext: function (count) {
             this.trans.responseMessage = this.responseMessage
