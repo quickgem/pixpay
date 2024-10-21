@@ -10,6 +10,7 @@ ViewModel("transactionPage", {
         loading:false,
         transactions:"",
         isTransactions:false,
+        currPrint:0,
         error:"",
         readTransactionRequest:{
             terminalId: "",
