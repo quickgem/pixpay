@@ -14,7 +14,7 @@ ViewModel("transactionPage", {
         readTransactionRequest:{
             terminalId: "",
             page: 1,
-            pageSize: 100,
+            pageSize: 5,
             searchParam: "",
             startDate: "",
             endDate:"",
