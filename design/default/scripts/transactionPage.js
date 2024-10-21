@@ -111,10 +111,9 @@ ViewModel("transactionPage", {
         },
 
         printNext: function (count) {
-            this.currPrint = count;
             this.trans.responseMessage = this.responseMessage
             this.notifyPropsChanged()
-            PRINT_TICKET_TRANSFER('',this.callback,false,1,this.trans);
+            PRINT_TICKET_TRANSFER('',this.callback,false,count,this.trans);
         },
 
         getExtraData(obj){
