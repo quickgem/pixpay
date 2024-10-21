@@ -46,7 +46,7 @@ ViewModel("accountType", {
 
         handleCancel:function(){
             navigateReplace({
-                target: "inputAmt",
+                target: "pay",
                 type: "cancel",
                 close_current:true
                 //data:this.user
