@@ -110,10 +110,16 @@ ViewModel("transactionPage", {
         //     }, 100);
         // },
 
-        printNext: function (count) {
+        printMerchantCopy: function () {
             this.trans.responseMessage = this.responseMessage
             this.notifyPropsChanged()
-            PRINT_TICKET_TRANSFER('',this.callback,false,count,this.trans);
+            PRINT_TICKET_TRANSFER('',this.callback,false,1,this.trans);
+        },
+
+        printCustomerCopy: function (count) {
+            this.trans.responseMessage = this.responseMessage
+            this.notifyPropsChanged()
+            PRINT_TICKET_TRANSFER('',this.callback,false,0,this.trans);
         },
 
         getExtraData(obj){
