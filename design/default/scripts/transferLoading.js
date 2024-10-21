@@ -143,6 +143,9 @@ ViewModel("transferLoading",{
                         this.notifyPropsChanged()
                     }
                     break;
+                case "return":
+                    this.callTransferFundsEndpoint()
+                    break;
                 default:
                     break;
             }

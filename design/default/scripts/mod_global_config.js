@@ -105,7 +105,7 @@ function GLOBAL_CONFIG() {
           {
               bankCode: "000014",
               logo: "https://s3.amazonaws.com/rubiesstore/000014.png",
-              bankName: "ACCESS"
+              bankName: "ACCESS BANK"
           },
           {
               bankCode: "100013",
@@ -730,7 +730,7 @@ function GLOBAL_CONFIG() {
           {
               bankCode: "000012",
               logo: "https://s3.amazonaws.com/rubiesstore/000012.png",
-              bankName: "STANBICIBT"
+              bankName: "STANBICIBT BANK"
           },
           {
               bankCode: "100007",
@@ -750,7 +750,7 @@ function GLOBAL_CONFIG() {
           {
               bankCode: "000001",
               logo: "https://s3.amazonaws.com/rubiesstore/000001.png",
-              bankName: "STERLING"
+              bankName: "STERLING BANK"
           },
           {
               bankCode: "100022",
@@ -783,6 +783,11 @@ function GLOBAL_CONFIG() {
               bankName: "TRIDENT MICROFINANCE BANK"
           },
           {
+              bankCode: "50515",
+              logo: "",
+              bankName: "MONIEPOINT MICROFINANCE BANK"
+          },
+            {
               bankCode: "090005",
               logo: "https://s3.amazonaws.com/rubiesstore/090005.png",
               bankName: "TRUSTBOND"
@@ -790,7 +795,7 @@ function GLOBAL_CONFIG() {
           {
               bankCode: "000004",
               logo: "https://s3.amazonaws.com/rubiesstore/000004.png",
-              bankName: "UBA"
+              bankName: "UNITED BANK OF AFRICA"
           },
           {
               bankCode: "000018",
@@ -1455,7 +1460,7 @@ function GLOBAL_CONFIG() {
           {
               bankCode: "100004",
               logo: "https://s3.amazonaws.com/rubiesstore/100004.png",
-              bankName: "PAYCOM"
+              bankName: "OPAY"
           },
           {
               bankCode: "090137",
@@ -1597,11 +1602,7 @@ function GLOBAL_CONFIG() {
               logo: "https://s3.amazonaws.com/rubiesstore/090005.png",
               bankName: "TRUSTBOND"
           },
-          {
-              bankCode: "000004",
-              logo: "https://s3.amazonaws.com/rubiesstore/000004.png",
-              bankName: "UBA"
-          },
+
           {
               bankCode: "000018",
               logo: "https://s3.amazonaws.com/rubiesstore/000018.png",
