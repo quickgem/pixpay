@@ -129,7 +129,6 @@ ViewModel("makeTransfer", {
                 that.isLoading = false
                 that.notifyPropsChanged()
                 GLOBAL_JUMP("", {data:data, pendingFees:this.studentTotalBillAmount})
-
             }
 
             function onError(data){
@@ -155,8 +154,24 @@ ViewModel("makeTransfer", {
         if(req){
             this.studentBills = req.data.fees
             this.trans = Tos.GLOBAL_TRANSACTION.trans
-            this.compulsoryFees =  req.data.fees.filter(fee => fee.FeeType !== "Non Compulsory Fee");
-            this.otherFees =  req.data.fees.filter(fee => fee.FeeType === "Non Compulsory Fee");
+            const compulsoryFees =  req.data.fees.filter(fee => fee.FeeType !== "Non Compulsory Fee");
+            const compulsoryFeesObjFormat = {}
+            for(let i =0; i < compulsoryFees.length; i++){
+                this.compulsoryFees.push(
+                    compulsoryFeesObjFormat.Amount =  parseFloat(i.Amount).toFixed(2),
+                    compulsoryFeesObjFormat.Fee = i.Fee,
+                    compulsoryFeesObjFormat.Session = i.Session
+                )
+            }
+            const otherFees =  req.data.fees.filter(fee => fee.FeeType === "Non Compulsory Fee");
+            const otherFeesObjFormat = {}
+            for(let i =0; i < otherFees.length; i++){
+                this.otherFees.push(
+                    otherFeesObjFormat.Amount =  parseFloat(i.Amount).toFixed(2),
+                    otherFeesObjFormat.Fee = i.Fee,
+                    otherFeesObjFormat.Session = i.Session
+                )
+            }
             // const billAmount = parseFloat(req.data.totalFees).toFixed(2)
             this.studentTotalBillAmount = 0
             this.notifyPropsChanged()
