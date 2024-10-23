@@ -1,13 +1,14 @@
 <window v-model="transferSuccess" name="transferSuccess" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
-  <view name="view" x="0" y="0" w="320" h="210">
-    <image name="image" x="140" y="20" w="40" h="39" draw_type="default" style:normal:icon="" style:normal:bg_image_draw_type="scale_auto" style:normal:font_size="16" scale_y="0.8" scale_x="0.8" style:normal:bg_image="Succeed"/>
-    <view name="view1" x="10" y="69" w="300" h="81">
-      <label name="label" x="0" y="0" w="300" h="28" v-data:text="{amount}" style:normal:text_align_h="center" style:normal:font_size="24"/>
-      <label name="label" x="0" y="28" w="300" h="27" style:normal:font_size="18" text="is successfully sent to"/>
-      <label name="label" x="0" y="55" w="300" h="26" v-data:text="{name}" style:normal:font_size="18"/>
-      <label name="label" x="-52" y="-52" w="104" h="28" style:normal:font_size="24"/>
-    </view>
-    <button name="button" x="10" y="160" w="165" h="40" v-on:click="{printNext, Args=1}" style:normal:round_radius="10" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Print Merchant Copy"/>
-    <button name="button1" x="185" y="160" w="125" h="40" v-on:click="{onConfirm}" style:normal:round_radius="10" style:normal:bg_color="#FFFFFF" style:pressed:bg_color="#FFFFFF" style:pressed:font_size="16" style:pressed:round_radius="10" text="Go Back Home"/>
+  <view name="error" x="0" y="0" w="320" h="210" style:normal:bg_color="#F79E1B">
+    <image name="image" x="130" y="32" w="60" h="60" draw_type="default" style:normal:icon="" style:normal:bg_image_draw_type="scale_auto" style:normal:font_size="16" scale_y="0.8" scale_x="0.8" style:normal:bg_image="pixpay_cancel"/>
+    <label name="label" x="10" y="102" w="300" h="27" style:normal:font_size="18" style:normal:text_color="#FFFFFF" text="Sorry there was an error. Please try again"/>
+    <button v-on:click="{toOnboarding}" name="cancel" x="10" y="158" w="129" h="42" style:normal:round_radius="33" style:normal:border_color="#00000000" style:normal:bg_color="#FFFFFF" style:pressed:round_radius="30" style:pressed:border="right|top|bottom" style:pressed:border_color="#00000000" style:pressed:font_size="16" style:over:border_color="#00000000" style:over:border="right|top|bottom" style:over:round_radius="30" style:normal:font_size="16" tr_text="CANCEL"/>
+    <button v-on:click="{toOnboarding}" name="print" x="181" y="158" w="129" h="42" style:normal:round_radius="33" style:normal:border_color="#00000000" style:normal:bg_color="#FFFFFF" style:pressed:round_radius="30" style:pressed:border="right|top|bottom" style:pressed:border_color="#00000000" style:pressed:font_size="16" style:over:border_color="#00000000" style:over:border="right|top|bottom" style:over:round_radius="30" style:normal:font_size="16" style:normal:text_color="#F79E1B" tr_text="Try Again"/>
+  </view>
+  <view name="success" x="0" y="0" w="320" h="210" style:normal:bg_color="#F79E1B">
+    <image name="image" x="130" y="27" w="60" h="60" draw_type="default" style:normal:icon="" style:normal:bg_image_draw_type="scale_auto" style:normal:font_size="16" scale_y="0.8" scale_x="0.8" style:normal:bg_image="Succeed"/>
+    <label name="label" x="10" y="97" w="300" h="27" style:normal:font_size="18" style:normal:text_color="#FFFFFF" text="Payment successful"/>
+    <button v-on:click="{toOnboarding}" name="cancel" x="10" y="158" w="129" h="42" style:normal:round_radius="33" style:normal:border_color="#00000000" style:normal:bg_color="#FFFFFF" style:pressed:round_radius="30" style:pressed:border="right|top|bottom" style:pressed:border_color="#00000000" style:pressed:font_size="16" style:over:border_color="#00000000" style:over:border="right|top|bottom" style:over:round_radius="30" style:normal:font_size="16" tr_text="CANCEL"/>
+    <button v-on:click="{toOnboarding}" name="print" x="181" y="158" w="129" h="42" style:normal:round_radius="33" style:normal:border_color="#00000000" style:normal:bg_color="#FFFFFF" style:pressed:round_radius="30" style:pressed:border="right|top|bottom" style:pressed:border_color="#00000000" style:pressed:font_size="16" style:over:border_color="#00000000" style:over:border="right|top|bottom" style:over:round_radius="30" style:normal:font_size="16" style:normal:text_color="#F79E1B" tr_text="PRINT RECIEPT"/>
   </view>
 </window>

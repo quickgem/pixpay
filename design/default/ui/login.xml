@@ -1,12 +1,62 @@
-<window v-model="login" v-on:key_down:NETEVENT="{initHTTPCB}" name="login" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" anim_hint="slide_up(duration=2,easing=cubic_out)" style:normal:bg_color="#FF9800">
+<window v-model="login" v-on:key_down:NETEVENT="{initHTTPCB}" name="login" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" anim_hint="slide_up(duration=2,easing=cubic_out)">
   <!--  <view v-if="{type}" w="100%" h="100%">-->
   <!--    <label name="pay_num" x="0" y="70" w="320" h="60" tips="" style:normal:font_size="32" style:normal:border="none" style:normal:bg_color="#00000000" v-data:text="{valueStr}" style:normal:border_width="2"/>-->
   <!--    <label name="tips_text" x="0" y="125" w="320" h="30" style:normal:text_color="#595959" style:normal:text_align_h="center" style:normal:spacer="0" style:normal:border="none" style:normal:border_width="0" style:normal:font_size="24" v-data:text="{tip_text}"/>-->
   <!--  </view>-->
-  <view name="view" x="0" y="0" w="320" h="240">
-    <view name="inner_view" x="38" y="26" w="245" h="189" floating="false" style:normal:round_radius="10" style:normal:bg_color="#1A5AFF" auto_adjust_size="true">
-      <label name="label" x="26" y="45" w="190" h="73" auto_adjust_size="true" word_wrap="true" line_wrap="true" text="The easiest way to make payments"/>
-      <button name="get_started" x="10" y="137" w="221" h="42" style:normal:round_radius="33" style:normal:border_color="#00000000" style:normal:bg_color="#FFFFFF" tr_text="Get Started"/>
+  <view name="view" x="0" y="0" w="320" h="210">
+    <scroll_view name="scroll_view" x="0" y="0" w="320" h="210">
+      <view name="view1" x="20" y="10" w="280" h="38">
+        <image name="image" x="121" y="0" w="36" h="38" draw_type="default" style:normal:bg_image="" image="pixpay_icon1"/>
+      </view>
+      <!--      style:normal:margin_left="5" style:focused:margin_left="5" style:empty_over:margin_left="5" style:over:margin_left="5" style:changed:margin_left="5"-->
+      <view name="view2" x="0" y="48" w="320" h="162">
+        <!--        <edit min="0" max="1024" step="1" name="password" x="10" y="63" w="293" h="32" tips="Password" auto_fix="true" password_visible="true" style:empty:margin="0" style:empty:margin_left="12" input_type="password" style:focused:margin_left="12" style:empty_focus:margin_left="12" style:over:margin_left="12"/>-->
+        <label name="label2" x="10" y="0" w="300" h="28" style:normal:text_align_h="center" text="Input your terminal pin to continue"/>
+        <edit min="0" max="6" step="1" name="password" x="101" y="38" w="119" h="46" tips="***********" auto_fix="true" style:empty:round_radius="6" v-data:text="{terminalLoginRequest.userPassword}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="password" style:normal:text_align_h="center" style:focused:text_align_h="center" style:empty:text_align_h="center" style:empty_over:text_align_h="center" style:changed:text_align_h="center" style:over:text_align_h="center" style:empty_focus:text_align_h="center" style:focused:round_radius="6" style:empty_over:round_radius="6">
+          <property name="style:changed:round_radius">
+            <![CDATA[6]]>
+          </property>
+        </edit>
+        <button v-on:click="{loginAction}" name="act_button" x="37" y="116" w="247" h="36" style="default" style:pressed:border_color="#00000000" style:pressed:bg_color="#8F9294" style:normal:bg_color="#FFC000" style:normal:round_radius="6" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" text="Login"/>
+      </view>
+    </scroll_view>
+  </view>
+  <view v-if="{loading}" x="0" y="0" w="320" h="210" disg:custom="container" disg:hide="true">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
+        <view w="120" h="60" x="42" y="24">
+          <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+        </view>
+      </view>
+      <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
+    </view>
+  </view>
+  <view v-if="{isShowExit}" text="view" x="0" y="0" w="100%" h="100%" disg:custom="container" disg:hide="true">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078" disg:hide="true">
+      <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="150" x="40" y="30">
+        <label x="0" y="0" w="240" h="40" style:normal:font_size="24" v-data:text="{Notice}"/>
+        <label name="label1" x="0" y="40" w="240" h="70" style:normal:font_size="24" style:normal:text_color="#00B050" v-data:text="{noticeText}"/>
+        <button name="next" v-on:click="{handleCancel}" x="0" y="110" w="120" h="40" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00B050" style:normal:border_width="0" style:normal:bg_color="#FFC000" style:normal:text_color="#000000" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0" style:pressed:round_radius_bottom_right="0" style:pressed:bg_color="#FFB000" text="Cancel"/>
+        <button name="next1" v-on:click="{handleConfirm}" x="120" y="110" w="120" h="40" style:normal:round_radius="10" style:normal:border="none" style:normal:border_color="#00B050" style:normal:border_width="0" style:normal:bg_color="#00B050" style:normal:text_color="#000000" style:normal:round_radius_top_left="0" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_left="0" style:pressed:bg_color="#00B040" style:pressed:round_radius_top_left="0" style:pressed:round_radius_top_right="0" style:pressed:round_radius_bottom_left="0" text="Ok"/>
+      </view>
+    </view>
+  </view>
+  <view v-if="{isShowToast}" text="view" x="0" y="0" w="320" h="210" disg:custom="container" style:normal:bg_color="#ffffff00">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#96969696" disg:hide="true">
+      <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="220" h="120" x="50" y="46" disg:hide="true">
+        <label x="0" y="80" w="220" h="36" style:normal:font_size="24" v-data:text="{toastTip}"/>
+        <image name="image2" x="85" y="20" w="50" h="50" draw_type="scale" image="Timeout"/>
+      </view>
+    </view>
+  </view>
+  <view v-if="{isError}" x="0" y="0" w="320" h="210" style:normal:bg_color="#00000078" disg:hide="true">
+    <view name="view11" x="30" y="10" w="87.5%" h="41" style:normal:bg_color="#FFFFFF" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_image="" animation="opacity(delay=1,easing=linear,from=0,to=255)" auto_adjust_size="true">
+      <view name="view10" x="10" y="0" w="30" h="42" style:normal:bg_image="Faile" style:normal:bg_image_draw_type="scale_auto"/>
+      <label name="label9" x="50" y="3" w="220" h="36" style:normal:text_color="#C00000" v-data:text="{error}" style:normal:text_align_h="left" style:normal:font_size="16" style:normal:text_align_v="none" line_wrap="true" word_wrap="false" auto_adjust_size="true" text="the username and password is a required feiled"/>
     </view>
   </view>
 </window>

@@ -1,0 +1,162 @@
+<window v-model="payment" name="payment" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
+  <view v-if="{confirmSchool}" name="confirm_school" x="0" y="0" w="320" h="210" style:normal:bg_color="#EFF5FF">
+    <view name="inner_container1" x="0" y="0" w="320" h="44">
+      <label name="h" x="78" y="10" w="160" h="28" text="Confirm School"/>
+      <image name="image" x="10" y="0" w="36" h="38" draw_type="scale_auto" image="pixpay_icon1"/>
+    </view>
+    <view name="inner_container2" x="0" y="44" w="320" h="166" style:normal:bg_color="#EFF5FF">
+      <list_view name="list_view" x="10" y="10" w="300" h="156" default_item_height="60">
+        <scroll_view name="scroll_view" x="0" y="-10" w="-10" h="100%">
+          <list_item v-for="{result}" v-on:click="{selectSchool,Args=fscript?AdmissionNo=item.AdmissionNo&amp;&amp;Surname=item.Surname&amp;&amp;FirstName=item.FirstName&amp;&amp;MiddleName=item.MiddleName&amp;&amp;SchoolName=item.SchoolName&amp;&amp;Class=item.Class&amp;&amp;SchoolLocation=item.SchoolLocation&amp;&amp;SchoolLogo=item.SchoolLogo&amp;&amp;SchoolId=item.SchoolId}" name="list_item" style:normal:border="left|bottom" style:normal:border_color="#F79E1B" style:normal:round_radius="16" style:normal:margin="20" h="85" style:normal:margin_bottom="20" auto_adjust_size="true">
+            <image name="image3" h="52" draw_type="scale_auto" image="pixpay_profile" x="10" y="10" w="56"/>
+            <label name="label" x="80" y="10" w="200" h="22" line_wrap="true" word_wrap="false" style:normal:text_align_h="left" style:normal:font_size="14" v-data:text="{item.SchoolName}" style:normal:text_align_v="top" auto_adjust_size="true"/>
+            <view name="badge" h="31" style:normal:bg_color="#3A71FF" style:normal:round_radius="32" x="76" y="42" w="200" auto_adjust_size="true">
+              <label name="h3" x="0" y="0" w="200" h="100%" style:normal:font_size="12" style:normal:text_color="#EFF5FF" v-data:text="{item.SchoolLocation}" line_wrap="true" word_wrap="false" auto_adjust_size="true" max_w="0" style:normal:text_align_h="left" style:normal:margin_left="8" style:normal:text_align_v="top" style:normal:margin="3"/>
+            </view>
+          </list_item>
+        </scroll_view>
+        <scroll_bar_d name="scroll_bar" x="300" y="0" w="10" h="100%"/>
+      </list_view>
+    </view>
+  </view>
+  <view v-if="{confirmChild}" name="confirm_child" x="0" y="0" w="320" h="210" style:normal:bg_color="#EFF5FF" disg:hide="true">
+    <view name="inner_container" x="0" y="0" w="310" h="27">
+      <label name="h1" x="105" y="0" w="92" h="28" text="Confirm Child"/>
+      <image name="image1" x="10" y="1" w="36" h="38" draw_type="scale_auto" image="pixpay_icon1"/>
+    </view>
+    <view name="inner_container3" x="0" y="27" w="320" h="173">
+      <image name="image2" x="126" y="10" w="60" h="60" draw_type="scale_auto" image="pixpay_profile"/>
+      <label name="h2" x="44" y="68" w="225" h="43" style:normal:text_color="#233344" style:normal:font_size="18" line_wrap="true" word_wrap="true" v-data:text="{studentFullName}"/>
+      <view name="badge1" h="24" style:normal:bg_color="#3A71FF" style:normal:round_radius="32" x="112" y="115" w="88">
+        <label name="h4" x="0" y="0" w="100%" h="100%" style:normal:font_size="12" style:normal:text_color="#EFF5FF" v-data:text="{student.AdmissionNo}"/>
+      </view>
+      <label name="h5" x="117" y="149" w="79" h="14" style:normal:text_color="#233344" style:normal:font_size="12" line_wrap="true" word_wrap="true" v-data:text="{student.Class}"/>
+    </view>
+    <view name="inner_container4" x="0" y="244" w="320" h="21"/>
+  </view>
+  <view v-if="{addmissionNumber}" name="addmission_number" x="0" y="0" w="320" h="210" style:normal:bg_color="#FFFFFF">
+    <view name="inner_container5" x="0" y="0" w="320" h="44">
+      <label name="h6" x="78" y="10" w="160" h="28" text="Addmission Number"/>
+      <image name="image4" x="10" y="5" w="36" h="38" draw_type="scale_auto" image="pixpay_icon1"/>
+    </view>
+    <view name="inner_container6" x="0" y="44" w="320" h="80">
+      <edit min="0" max="1024" step="1" v-data:text="{fetchStudentDetailsRequest.admissionNo}" name="edit" x="35" y="25" w="254" h="40" tips="22/13A68" auto_fix="true" style:empty:border="bottom" style:empty:border_color="#FFC000" style:empty:text_color="#0000005a" style:empty:font_size="30" style:empty:text_align_h="center" style:empty:bg_color="#00000000" style="line" style:empty_focus:border="bottom" style:empty_focus:border_color="#FFC000" style:empty_focus:text_color="#00000063" style:empty_focus:font_size="30" style:empty_focus:text_align_h="center" style:empty_focus:bg_color="#00000000">
+        <property name="style:empty_focus:selected_bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:over:border_color">
+          <![CDATA[#FFC000]]>
+        </property>
+        <property name="style:over:font_size">
+          <![CDATA[30]]>
+        </property>
+        <property name="style:over:text_align_h">
+          <![CDATA[center]]>
+        </property>
+        <property name="style:over:bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:over:selected_bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:empty_over:border_color">
+          <![CDATA[#FFC000]]>
+        </property>
+        <property name="style:empty_over:border">
+          <![CDATA[bottom]]>
+        </property>
+        <property name="style:empty_over:font_size">
+          <![CDATA[30]]>
+        </property>
+        <property name="style:empty_over:text_align_h">
+          <![CDATA[center]]>
+        </property>
+        <property name="style:empty_over:bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:empty_over:selected_bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:changed:border_color">
+          <![CDATA[#FFC000]]>
+        </property>
+        <property name="style:changed:border">
+          <![CDATA[bottom]]>
+        </property>
+        <property name="style:changed:font_size">
+          <![CDATA[30]]>
+        </property>
+        <property name="style:changed:text_align_h">
+          <![CDATA[center]]>
+        </property>
+        <property name="style:changed:bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:changed:selected_bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:normal:border_color">
+          <![CDATA[#FFC000]]>
+        </property>
+        <property name="style:normal:font_size">
+          <![CDATA[30]]>
+        </property>
+        <property name="style:normal:text_align_h">
+          <![CDATA[center]]>
+        </property>
+        <property name="style:normal:text_align_v">
+          <![CDATA[middle]]>
+        </property>
+        <property name="style:normal:bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:normal:selected_bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:focused:bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:focused:selected_bg_color">
+          <![CDATA[#00000000]]>
+        </property>
+        <property name="style:focused:font_size">
+          <![CDATA[30]]>
+        </property>
+        <property name="style:focused:text_align_h">
+          <![CDATA[center]]>
+        </property>
+        <property name="style:focused:text_align_v">
+          <![CDATA[middle]]>
+        </property>
+        <property name="style:focused:border">
+          <![CDATA[bottom]]>
+        </property>
+        <property name="style:normal:border">
+          <![CDATA[bottom]]>
+        </property>
+        <property name="style:normal:text_color">
+          <![CDATA[#8484848c]]>
+        </property>
+        <property name="style:empty_over:text_color">
+          <![CDATA[#0000005a]]>
+        </property>
+        <property name="style:over:text_color">
+          <![CDATA[#000000]]>
+        </property>
+        <property name="style:focused:text_color">
+          <![CDATA[#000000]]>
+        </property>
+        <property name="style:focused:border_color">
+          <![CDATA[#FFC000]]>
+        </property>
+      </edit>
+    </view>
+    <view name="inner_container7" x="0" y="124" w="320" h="76">
+      <label name="h7" x="87" y="10" w="161" h="45" line_wrap="true" word_wrap="true" style:normal:font_size="18" style:normal:text_color="#233344" auto_adjust_size="true" text="Enter Child’s Admission Number"/>
+    </view>
+  </view>
+  <view v-if="{isLoading}" name="loading" x="0" y="0" w="320" h="210" style:normal:bg_color="#000000cf" disg:hide="true">
+    <image name="image5" x="145" y="90" w="30" h="30" draw_type="default" image="pixpay_icon2"/>
+  </view>
+  <label v-if="{isError}" name="label1" x="48" y="172" w="230" h="28" style:normal:text_color="#FF0000" v-data:text="{error}" disg:hide="true"/>
+</window>

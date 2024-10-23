@@ -10,7 +10,7 @@
 #endif /*APP_BOTTOM_SYSTEM_BAR*/
 
 #ifndef APP_START_PAGE
-#define APP_START_PAGE "home_page"
+#define APP_START_PAGE "getStarted"
 #endif /*APP_START_PAGE*/
 
 /**

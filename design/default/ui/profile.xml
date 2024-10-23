@@ -1,57 +1,27 @@
-<window v-model="profile" name="profile" v-on:key_down:cancel="{onKeyDown, Args=cancel}">
-  <view name="view" x="0" y="0" w="320" h="210">
-    <view name="view3" x="10" y="10" w="71" h="74" style:normal:round_radius="360" style:normal:bg_color="#FFC002">
-      <label name="label1" x="16" y="17" w="38" h="38" v-data:text="{nameSummary}"/>
+<window v-model="profile" name="profile" v-on:key_down:NETEVENT="{initHTTPCB}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" style:normal:bg_color="#EFF5FF">
+  <view name="inner_container1" x="0" y="0" w="320" h="38">
+    <image name="image" x="10" y="0" w="36" h="38" draw_type="scale_auto" image="pixpay_icon1"/>
+    <view name="view2" x="226" y="4" w="84" h="31" style:normal:bg_color="#FFFFFF" style:normal:round_radius="16">
+      <label name="label3" x="21" y="0" w="43" h="28" style:normal:bg_color="#00000000" style:normal:round_radius="16" style:normal:font_size="16" style:normal:text_align_h="center" text="Logout"/>
     </view>
-    <label name="name" x="91" y="26" w="65" h="18" v-data:text="{fullName}" style:normal:text_align_h="left"/>
-    <label name="email" x="91" y="54" w="102" h="18" style:normal:font_size="14" v-data:text="{user.customerEmail}" style:normal:text_align_h="left"/>
-    <view name="view1" x="0" y="103" w="320" h="107">
-      <button name="button" v-on:click="{navigate, Args=support}" x="0" y="0" w="320" h="45" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="top|bottom" style:over:text_align_h="left" style:over:border="top|bottom" style:over:margin="12" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:margin="12" style:pressed:border_color="#00000000" style:pressed:bg_color="#ACB8C9" style:over:bg_color="#ACB8C9" style:focused:bg_color="#ACB8C9" text="Support"/>
-      <button name="button" v-on:click="{navigate, Args=password}" x="0" y="54" w="320" h="45" style:normal:text_align_h="left" style:normal:margin="12" style:normal:bg_color="#00000000" style:normal:border="bottom" style:over:text_align_h="left" style:over:border="top|bottom" style:over:margin="12" style:pressed:border="top|bottom" style:pressed:text_align_h="left" style:pressed:margin="12" style:pressed:bg_color="#ACB8C9" style:over:bg_color="#ACB8C9" style:focused:bg_color="#ACB8C9" text="Change Password"/>
-    </view>
-    <view v-if="{isSupport}" name="support" x="0" y="-1" w="320" h="211" style:normal:bg_color="#FFFFFF" style:normal:round_radius="2" disg:hide="true">
-      <view name="view4" x="67" y="10" w="243" h="30">
-        <label name="label" x="0" y="2" w="203" h="28" style:normal:font_size="24" text="Support"/>
-      </view>
-      <view name="support_view" x="0" y="57" w="320" h="115">
-<!--        <label name="label2" x="10" y="7" w="300" h="26" style:normal:text_align_h="center" style:normal:font_name="default" style:normal:spacer="2" style:normal:x_offset="0" style:normal:bg_color="#00000000" style:normal:text_color="#000000" style:normal:round_radius="5" text="Call us on 09049929256"/>-->
-<!--        <label name="label2" x="10" y="43" w="300" h="26" style:normal:text_align_h="center" style:normal:font_name="default" style:normal:spacer="2" style:normal:x_offset="0" style:normal:bg_color="#00000000" style:normal:text_color="#000000" style:normal:round_radius="5"  text="Email us at support@corestep.com"/>-->
-      </view>
-      <button name="button" x="0" y="0" w="57" h="40" style:normal:icon="icon_back" style:normal:border="none" style:normal:bg_color="#00000000" style:pressed:border="none" style:pressed:icon="icon_back" style:pressed:bg_color="#00000000" style:normal:text_color="#000000" style:pressed:text_color="#000000" style:over:border="none" style:over:bg_color="#00000000" style:over:text_color="#000000" style:over:icon="icon_back" v-on:click="{onKeyDown, Args=cancel}"/>
-    </view>
-    <list_view v-if="{isChangePassword}" name="list_view" x="0" y="0" w="320" h="210" default_item_height="60" disg:hide="true">
-      <scroll_view name="scroll_view" x="0" y="0" w="-10" h="100%">
-        <view  name="change_password" h="243" style:normal:bg_color="#FFFFFF">
-          <view name="view5" x="0" y="0" w="320" h="27">
-            <label name="label3" x="0" y="0" w="320" h="28" style:normal:font_size="24" text="Change Password"/>
-          </view>
-          <view name="view6" x="0" y="37" w="320" h="173">
-            <label name="label4" x="38" y="0" w="142" h="19" style:normal:text_align_h="left" text="Old Password"/>
-            <edit min="0" max="1024" step="1" name="username" x="34" y="24" w="263" h="40" auto_fix="true" style:empty:round_radius="5" v-data:text="{changePassword.customerOldPassword}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="password" style:normal:margin_left="12" style:focused:margin_left="5" style:empty_over:margin_left="5" style:over:margin_left="5" style:changed:margin_left="5"/>
-            <button v-on:click="{passwordNext}" name="act_button" x="34" y="131" w="265" h="32" style="default" style:pressed:border_color="#00000000" style:pressed:bg_color="#8F9294" style:normal:bg_color="#596B6D" style:normal:round_radius="6" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" text="Next"/>
-            <view v-if="{isNext}" name="view7" x="0" y="0" w="320" h="173" style:normal:bg_color="#FFFFFF">
-              <label name="label4" x="34" y="0" w="142" h="19" style:normal:text_align_h="left" text="New Password"/>
-              <edit min="0" max="1024" step="1" name="username" x="31" y="101" w="263" h="38" tips="Confirm Password" auto_fix="true" style:empty:round_radius="5" v-data:text="{changePassword.customerPassword}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="password" style:normal:margin_left="12" style:focused:margin_left="5" style:empty_over:margin_left="5" style:over:margin_left="5" style:changed:margin_left="5" password_visible="false" select_none_when_focused="false" feedback="true"/>
-              <label name="label4" x="31" y="72" w="195" h="19" style:normal:text_align_h="left" text="Confirm New Password"/>
-              <edit min="0" max="1024" step="1" name="username" x="30" y="22" w="263" h="38" tips="new password" auto_fix="true" style:empty:round_radius="5" v-data:text="{changePassword.customerPasswordConfirmation}" style:normal:round_radius="6" style:normal:bg_color="#FFFFFF" input_type="password" style:normal:margin_left="12" style:focused:margin_left="5" style:empty_over:margin_left="5" style:over:margin_left="5" style:changed:margin_left="5"/>
-              <button name="act_button" x="30" y="157" w="261" h="32" style="default" style:pressed:border_color="#00000000" style:pressed:bg_color="#8F9294" style:normal:bg_color="#596B6D" style:normal:round_radius="6" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:text_color="#FFFFFF" text="Save"/>
-            </view>
-          </view>
-        </view>
-      </scroll_view>
-      <scroll_bar_m name="scroll_bar1" x="310" y="0" w="10" h="191" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
-    </list_view>
   </view>
-  <view v-if="{loading}" x="0" y="0" w="320" h="210" style:normal:bg_color="#00000078" disg:hide="true">
-    <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
-      <view w="120" h="60" x="42" y="24">
-        <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-        <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-        <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-        <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-        <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-      </view>
-    </view>
-    <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
+  <view name="view1" x="10" y="38" w="294" h="79">
+    <image name="image2" x="0" y="10" w="68" h="65" draw_type="scale_auto" image="pixpay_profile"/>
+    <label name="label1" x="78" y="9" w="206" h="21" style:normal:text_align_h="left" style:normal:font_size="16" line_wrap="true" word_wrap="true" v-data:text="{studentFullName}"/>
+    <label name="label2" x="78" y="30" w="80" h="18" style:normal:text_align_h="left" style:normal:font_size="14" style:normal:text_color="#A5A5A5" text="Pending Fees"/>
+    <label name="label1" x="78" y="54" w="206" h="21" style:normal:text_align_h="left" style:normal:font_size="16" line_wrap="true" word_wrap="true" v-data:text="{studentTotalBillAmount}"/>
+  </view>
+  <view name="view" x="0" y="127" w="320" h="83">
+    <button v-on:click="{handleGetNewStudentBills}" name="new_payment" x="10" y="10" w="139" h="63" style:normal:bg_color="#F79E1B" style:normal:round_radius="10">
+      <label name="label" x="10" y="31" w="86" h="22" style:normal:text_color="#FFFFFF" style:normal:font_size="16" style:normal:text_align_h="left" text="New Payment"/>
+      <image name="image1" x="10" y="10" w="18" h="18" draw_type="scale_auto" image="pixpay_card"/>
+    </button>
+    <button v-on:click="{navigateToTransaction}" name="transactions_history" x="171" y="10" w="139" h="63" style:normal:round_radius="10" style:normal:bg_color="#FFFFFF">
+      <label name="label" x="10" y="30" w="119" h="22" style:normal:text_color="#000000" style:normal:font_size="16" style:normal:text_align_h="left" text="Transaction History"/>
+      <image name="image1" x="10" y="10" w="18" h="18" draw_type="scale_auto" image="pixpay_trans"/>
+    </button>
+  </view>
+  <view v-if="{isLoading}" name="loading" x="0" y="0" w="320" h="210" style:normal:bg_color="#000000cf" disg:hide="true">
+    <image name="image5" x="142" y="90" w="30" h="30" draw_type="default" image="pixpay_icon2"/>
   </view>
 </window>

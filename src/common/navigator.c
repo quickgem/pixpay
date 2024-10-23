@@ -1,6 +1,8 @@
 ﻿#include "awtk.h"
 #include "navigator.h"
 extern ret_t login_init(widget_t* win, void* ctx);
+extern ret_t payment_init(widget_t* win, void* ctx);
+extern ret_t getStarted_init(widget_t* win, void* ctx);
 extern ret_t searchCard_init(widget_t* win, void* ctx);
 extern ret_t result_init(widget_t* win, void* ctx);
 extern ret_t moreApps_init(widget_t* win, void* ctx);
@@ -20,7 +22,6 @@ extern ret_t authMenu_init(widget_t* win, void* ctx);
 extern ret_t account_init(widget_t* win, void* ctx);
 extern ret_t online_init(widget_t* win, void* ctx);
 extern ret_t eSign_init(widget_t* win, void* ctx);
-extern ret_t pay_init(widget_t* win, void* ctx);
 extern ret_t sample_ui_init(widget_t* win, void* ctx);
 
 #ifndef WITH_MVVM
@@ -30,6 +31,10 @@ extern ret_t home_page_init(widget_t* win, void* ctx);
 static ret_t navigator_window_init(const char* name, widget_t* win, void* ctx) {
     if (tk_str_eq(name, "login")) {
       return login_init(win, ctx);
+    } else if (tk_str_eq(name, "payment")) {
+      return payment_init(win, ctx);
+    } else if (tk_str_eq(name, "getStarted")) {
+      return getStarted_init(win, ctx);
     } else if (tk_str_eq(name, "searchCard")) {
       return searchCard_init(win, ctx);
     } else if (tk_str_eq(name, "result")) {
@@ -68,8 +73,6 @@ static ret_t navigator_window_init(const char* name, widget_t* win, void* ctx) {
       return online_init(win, ctx);
     } else if (tk_str_eq(name, "eSign")) {
       return eSign_init(win, ctx);
-    } else if (tk_str_eq(name, "pay")) {
-      return pay_init(win, ctx);
     } else if (tk_str_eq(name, "sample_ui")) {
       return sample_ui_init(win, ctx);
     } else if (tk_str_eq(name, "home_page")) {

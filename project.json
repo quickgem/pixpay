@@ -1,6 +1,6 @@
 {
   "name": "pixpay",
-  "entry": "login",
+  "entry": "getStarted",
   "awtkRoot": "${AWTK_SDK_PATH}/awtk",
   "awtkMvvmRoot": "${AWTK_SDK_PATH}/awtk-mvvm",
   "type": "PROJECT_WIDGETS_APPLICATION",
@@ -28,7 +28,7 @@
         "fonts": {},
         "lcd": {
           "width": "320",
-          "height": "240",
+          "height": "210",
           "colorDepth": "16bit",
           "colorFormat": "BGR(A)"
         }

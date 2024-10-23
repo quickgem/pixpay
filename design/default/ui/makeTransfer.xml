@@ -1,267 +1,58 @@
-<window v-model="makeTransfer" v-on:key_down:NETEVENT="{initHTTPCB}" name="makeTransfer" v-on:key_down:cancel="{onKeyDown, Args=cancel}" v-on:key_down:return="onKeyDown, Args=return" style:normal:bg_color="#00000000">
-  <view name="view1" x="0" y="0" w="320" h="216" style:normal:border_color="#FFFFFF" style:normal:bg_color="#FFFFFF">
-    <label name="label" x="0" y="0" w="320" h="40" style:normal:font_size="24" style:normal:border="none" style:normal:border_color="#00000000" style:normal:bg_color="#00000000" style:normal:text_color="#000000" text="Transfer To:"/>
-    <button v-on:click="{handleClick, Args=Transfer to Other Banks}" name="button" x="44" y="121" w="232" h="45" style:normal:icon_at="auto" style:normal:bg_color="#596B6D" style:normal:round_radius="10" style:normal:border_color="#596B6D" floating="false" style:normal:text_color="#FFFFFF" style:normal:font_size="24" style:normal:text_align_h="left" style:normal:margin="20" style:pressed:icon_at="auto" style:pressed:icon="" style:pressed:margin="20" style:pressed:font_size="18" style:pressed:round_radius="10" style:pressed:border_color="#00000000" style:pressed:text_color="#FFFFFF" style:pressed:bg_color="#ED7D30" style:over:border_color="#F4B284">
-      <property name="style:over:round_radius">
-        <![CDATA[4]]>
-      </property>
-      <property name="style:over:text_color">
-        <![CDATA[#000000]]>
-      </property>
-      <property name="style:over:font_size">
-        <![CDATA[18]]>
-      </property>
-      <property name="style:over:bg_color">
-        <![CDATA[#00000000]]>
-      </property>
-      <property name="style:over:icon_at">
-        <![CDATA[auto]]>
-      </property>
-      <property name="style:over:margin">
-        <![CDATA[20]]>
-      </property>
-      <property name="style:over:text_align_h">
-        <![CDATA[left]]>
-      </property>
-      <property name="style:focused:border_color">
-        <![CDATA[#F4B284]]>
-      </property>
-      <property name="style:focused:text_align_h">
-        <![CDATA[left]]>
-      </property>
-      <property name="style:focused:bg_color">
-        <![CDATA[#00000000]]>
-      </property>
-      <property name="style:pressed:text_align_h">
-        <![CDATA[left]]>
-      </property>
-      <property name="text">
-        <![CDATA[ Other Banks]]>
-      </property>
-    </button>
-    <button v-on:click="{handleClick, Args=Transfer to CoreBank}" name="button1" x="44" y="50" w="232" h="45" style:normal:icon_at="auto" style:normal:bg_color="#FFFFFF" style:normal:round_radius="10" style:normal:border_color="#596B6D" floating="false" style:normal:text_color="#000000" style:normal:font_size="24" style:normal:text_align_h="left" style:normal:margin="20" style:pressed:icon_at="auto" style:pressed:icon="" style:pressed:margin="20" style:pressed:font_size="18" style:pressed:round_radius="10" style:pressed:border_color="#ebebeb00" style:pressed:text_color="#FFFFFF" style:pressed:bg_color="#F4B284" style:over:border_color="#F4B284">
-      <property name="style:over:round_radius">
-        <![CDATA[4]]>
-      </property>
-      <property name="style:over:text_color">
-        <![CDATA[#000000]]>
-      </property>
-      <property name="style:over:font_size">
-        <![CDATA[24]]>
-      </property>
-      <property name="style:over:bg_color">
-        <![CDATA[#F4B284]]>
-      </property>
-      <property name="style:over:icon_at">
-        <![CDATA[auto]]>
-      </property>
-      <property name="style:over:margin">
-        <![CDATA[20]]>
-      </property>
-      <property name="style:over:text_align_h">
-        <![CDATA[left]]>
-      </property>
-      <property name="style:pressed:text_align_v">
-        <![CDATA[middle]]>
-      </property>
-      <property name="style:pressed:text_align_h">
-        <![CDATA[left]]>
-      </property>
-      <property name="text">
-        <![CDATA[ CoreBank]]>
-      </property>
-    </button>
-  </view>
-  <view v-if="{transferType}" name="view13" h="210" w="320" x="0" y="0" style:normal:bg_color="#FFFFFF">
-    <edit min="0" max="10" step="1" focused="true" v-data:text="{accountNumberStr}" name="edit3" h="45" tips="Account Number" auto_fix="false" style:empty:margin="0" style:empty_focus:margin="0" style:changed:margin="12" input_type="custom" style:over:margin="12" style:empty_over:margin="0" style:changed:text_align_h="none" x="22" y="61" w="265" style:normal:round_radius="10" style:normal:bg_color="#D6DCE4" style:empty:round_radius="10" style:over:round_radius="6" style:changed:round_radius="6">
-      <property name="style:empty_focus:round_radius">
-        <![CDATA[10]]>
-      </property>
-      <property name="style:normal:margin_left">
-        <![CDATA[12]]>
-      </property>
-      <property name="style:focused:margin_left">
-        <![CDATA[12]]>
-      </property>
-      <property name="style">
-        <![CDATA[default]]>
-      </property>
-      <property name="style:focused:round_radius">
-        <![CDATA[10]]>
-      </property>
-      <property name="style:focused:bg_color">
-        <![CDATA[#D6DCE4]]>
-      </property>
-      <property name="style:focused:border_color">
-        <![CDATA[#00000000]]>
-      </property>
-      <property name="style:focused:text_color">
-        <![CDATA[#000000]]>
-      </property>
-      <property name="style:focused:font_size">
-        <![CDATA[24]]>
-      </property>
-      <property name="style:normal:border_color">
-        <![CDATA[#00000000]]>
-      </property>
-      <property name="style:normal:font_size">
-        <![CDATA[24]]>
-      </property>
-      <property name="style:over:border_color">
-        <![CDATA[#00000000]]>
-      </property>
-      <property name="style:empty:border_color">
-        <![CDATA[#00000000]]>
-      </property>
-      <property name="style:empty:text_color">
-        <![CDATA[#000000]]>
-      </property>
-      <property name="style:empty:bg_color">
-        <![CDATA[#D6DCE4]]>
-      </property>
-      <property name="style:empty:font_size">
-        <![CDATA[24]]>
-      </property>
-      <property name="style:empty:margin_left">
-        <![CDATA[12]]>
-      </property>
-      <property name="style:empty_over:border_color">
-        <![CDATA[#00000000]]>
-      </property>
-      <property name="style:empty_over:round_radius">
-        <![CDATA[10]]>
-      </property>
-      <property name="style:empty_over:font_size">
-        <![CDATA[24]]>
-      </property>
-      <property name="style:empty_over:bg_color">
-        <![CDATA[#D6DCE4]]>
-      </property>
-      <property name="style:empty_over:margin_left">
-        <![CDATA[12]]>
-      </property>
-      <property name="open_im_when_focused">
-        <![CDATA[false]]>
-      </property>
-      <property name="style:empty_focus:border_color">
-        <![CDATA[#00000000]]>
-      </property>
-      <property name="style:empty_focus:text_color">
-        <![CDATA[#000000]]>
-      </property>
-      <property name="style:empty_focus:font_size">
-        <![CDATA[24]]>
-      </property>
-      <property name="style:empty_focus:bg_color">
-        <![CDATA[#D6DCE4]]>
-      </property>
-      <property name="style:empty_focus:margin_left">
-        <![CDATA[12]]>
-      </property>
-    </edit>
-    <button v-if="{otherBanks}" v-on:click="{openBankList}" name="view12" x="22" y="133" w="265" h="45" style:normal:round_radius="10" style:normal:border_color="#3F3F3F" style:normal:bg_color="#00000000" style:pressed:round_radius="10" style:pressed:font_size="16" style:pressed:text_align_h="left" style:pressed:bg_color="#ACB8C9" style:pressed:margin="20" style:normal:margin="20" style:normal:text_align_h="left" auto_adjust_size="true">
-      <label name="label11" x="10" y="3" w="245" h="38" style:normal:text_align_h="left" v-data:text="{selectedBank.bankName}" line_wrap="true" auto_adjust_size="true"/>
-    </button>
-    <view v-if="{nameEnquiry}" name="name_enquiry_container" x="0" y="121" w="320" h="95" style:normal:bg_color="#BFBFBF" disg:hide="true">
-      <label name="label3" x="10" y="10" w="228" h="28" style:normal:text_align_h="left" v-data:text="{nameEnquiryResponse.accountName}"/>
-      <button v-on:click="{navigatorTransactionSummary}" name="button3" x="10" y="48" w="300" h="36" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>
-      <button v-on:click="{notMe}" name="label4" x="274" y="10" w="36" h="28" style:normal:font_size="18" style:normal:text_color="#002060" style:normal:font_name="" style:normal:bg_color="#C00000" style:normal:border_color="#00000000" style:normal:icon="end_" style:normal:round_radius="5" style:normal:bg_image=""/>
-    </view>
-    <label name="label5" h="39" style:normal:font_size="20" v-data:text="{transferTypeValue}" style:normal:border_color="#848484" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:border="bottom" style:normal:border_width="1" x="0" y="0" w="320" text="Transfer to {transferTypeValue}"/>
-  </view>
-  <view v-if="{searchBank}" name="selectbank_view" x="0" y="1" w="320" h="210" style:normal:border_color="#000000" style:normal:bg_color="#FFFFFF" style:normal:border_width="0" style:normal:border="none">
-    <label name="label7" x="10" y="10" w="108" h="24" style:normal:font_size="24" style:normal:text_align_h="left" text="Select A Bank"/>
-    <button v-if="{!loadingBanks}" v-on:click="{showFilterView}" name="button2" x="210" y="10" w="100" h="36" style:normal:round_radius="10" style:normal:bg_color="#3F3F3F" style:normal:border_color="#00000000" style:normal:text_color="#FFFFFF" style:pressed:round_radius="10" style:pressed:text_color="#FFFFFF" style:pressed:font_size="16" style:pressed:bg_color="#ED7D30" style:pressed:border_color="#00000000" style:over:border_color="#FFFFFF" style:over:round_radius="10" style:over:text_color="#FFFFFF" style:over:bg_color="#3F3F3F" text="Filter banks"/>
-    <list_view v-if="{!loadingBanks}" x="0" y="56" w="320" h="154" style:normal:bg_color="#FFFFFF">
-      <scroll_view v-if="{!isFiltering}" x="0" y="0" w="100%" h="154" with_focus_state="true">
-        <list_item v-for="{filteredBanks}" h="39" focusable="true" with_focus_state="true" v-on:click="{selectBank,Args=fscript?bankCode=item.bankCode&amp;&amp;bankName=item.bankName&amp;}" style:normal:font_size="16" style:pressed:bg_color="#ACB8C9" style:over:bg_color="#ACB8C9" style:focused:bg_color="#ACB8C9" auto_adjust_size="true">
-          <label v-data:text="{item.bankName}" w="300" h="39" style:normal:text_align_h="left" x="10" line_wrap="true" auto_adjust_size="true"/>
-        </list_item>
-      </scroll_view>
-      <scroll_bar_m name="scroll_bar1" x="r" y="-52" w="6" h="258" style:normal:round_radius="30" style:normal:fg_color="#00000000" style:normal:bg_color="#848484"/>
-    </list_view>
-    <list_view v-if="{isFiltering}" name="filter_view" x="0" y="0" w="320" h="210" default_item_height="60" disg:hide="true">
-      <scroll_view name="scroll_view" x="0" y="0" w="190" h="210">
-        <view name="view7" x="0" y="0" w="320" h="244" style:normal:bg_color="#FFFFFF">
-          <!-- refactor this @hint loop. -->
-          <button name="a" v-on:click="{filter, Args=a}" x="10" y="10" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="18" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="A"/>
-          <button name="j" v-on:click="{filter, Args=j}" x="160" y="55" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="J"/>
-          <button name="v" v-on:click="{filter, Args=v}" x="160" y="145" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="V"/>
-          <button name="n" v-on:click="{filter, Args=n}" x="60" y="100" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="N"/>
-          <button name="w" v-on:click="{filter, Args=w}" x="210" y="145" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="W"/>
-          <button name="o" v-on:click="{filter, Args=o}" x="110" y="100" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="O"/>
-          <button name="s" v-on:click="{filter, Args=s}" x="10" y="145" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="S"/>
-          <button name="m" v-on:click="{filter, Args=m}" x="10" y="100" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="M"/>
-          <button name="i" v-on:click="{filter, Args=i}" x="110" y="55" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="I"/>
-          <button name="u" v-on:click="{filter, Args=u}" x="110" y="145" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="U"/>
-          <button name="k" v-on:click="{filter, Args=k}" x="210" y="55" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="K"/>
-          <button name="q" v-on:click="{filter, Args=q}" x="210" y="100" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="Q"/>
-          <button name="r" v-on:click="{filter, Args=r}" x="260" y="100" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="R"/>
-          <button name="t" v-on:click="{filter, Args=t}" x="60" y="145" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="T"/>
-          <button name="y" v-on:click="{filter, Args=y}" x="10" y="190" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="Y"/>
-          <button name="p" v-on:click="{filter, Args=p}" x="160" y="100" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="P"/>
-          <button name="x" v-on:click="{filter, Args=x}" x="260" y="145" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="X"/>
-          <button name="l" v-on:click="{filter, Args=l}" x="260" y="55" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="L"/>
-          <button name="h" v-on:click="{filter, Args=h}" x="60" y="55" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="H"/>
-          <button name="g" v-on:click="{filter, Args=g}" x="10" y="55" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="G"/>
-          <button name="f" v-on:click="{filter, Args=f}" x="260" y="10" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="F"/>
-          <button name="e" v-on:click="{filter, Args=e}" x="210" y="10" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="E"/>
-          <button name="d" v-on:click="{filter, Args=d}" x="160" y="10" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="D"/>
-          <button name="c" v-on:click="{filter, Args=c}" x="110" y="10" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="C"/>
-          <button name="b" v-on:click="{filter, Args=b}" x="60" y="10" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="B"/>
-          <button name="z" v-on:click="{filter, Args=z}" x="60" y="190" w="40" h="35" style:normal:round_radius="6" v-data:style:normal:bg_color="{activeBankIndicator}" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:normal:font_size="16" style:pressed:round_radius="6" style:pressed:border_color="#00000000" style:pressed:bg_color="#7E7E7E" style:over:border_color="#00000000" style:over:round_radius="6" style:over:text_color="#FFFFFF" style:over:bg_color="#7E7E7E" style:pressed:text_color="#FFFFFF" text="Z"/>
-        </view>
-      </scroll_view>
-      <scroll_bar_m name="scroll_bar" x="310" y="0" w="10" h="170" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
-    </list_view>
-    <view v-if="{loadingBanks}" w="121" h="51" x="100" y="109" disg:hide="true">
-      <view name="view1" x="0" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-      <view name="view1" x="25" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-      <view name="view1" x="50" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-      <view name="view1" x="75" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-      <view name="view1" x="100" y="20" w="15" h="15" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-    </view>
-    <label v-if="{loadingBanks}" name="label8" x="80" y="101" w="160" h="28" disg:hide="true" text="Loading Banks..."/>
-  </view>
+<window v-model="makeTransfer" v-on:key_down:NETEVENT="{initHTTPCB}" name="makeTransfer" v-on:key_down:cancel="{onKeyDown, Args=cancel}" v-on:key_down:return="onKeyDown, Args=return" style:normal:bg_color="#EFF5FF">
   <!--  <button  name="button2" x="0" y="-4" w="40" h="40" style:normal:icon="icon_back" style:normal:border="none" style:normal:bg_color="#00000000" style:pressed:border="none" style:pressed:icon="icon_back" style:pressed:bg_color="#00000000" style:normal:text_color="#000000" style:pressed:text_color="#000000" style:over:border="none" style:over:bg_color="#00000000" style:over:text_color="#000000" style:over:icon="icon_back" floating="true"/>-->
-  <list_view v-if="{transactionSummary}" name="list_view10" x="0" y="0" w="320" h="210" default_item_height="60" disg:hide="true">
-    <scroll_view name="scroll_view" x="0" y="0" w="-10" h="100%">
-      <view name="transaction_summary" h="273" style:normal:bg_color="#FFFFFF">
-        <view name="view8" x="10" y="1" w="300" h="62" style:normal:bg_color="#FFFFFF">
-          <label name="amount_label" x="10" y="0" w="280" h="28" text="Transfer Summary"/>
-          <label name="tansaction_amount" x="10" y="28" w="280" h="34" style:normal:font_size="24" v-data:text="{fundTransferAmount}" style:normal:text_color="#596B6D"/>
-        </view>
-        <view name="view9" x="10" y="70" w="300" h="144" style:normal:border_color="#00000000">
-          <label name="from" x="0" y="2" w="33" h="28" style:normal:text_align_h="left" text="From:"/>
-          <label name="fromValue" x="62" y="2" w="235" h="28" v-data:text="{fundTransferRequest.debitAccountName}" style:normal:text_align_h="right"/>
-          <label name="to" x="0" y="30" w="17" h="28" style:normal:text_align_h="left" text="To:"/>
-          <label name="toValue" x="65" y="30" w="235" h="28" v-data:text="{fundTransferRequest.creditAccountName}" style:normal:text_align_h="right"/>
-          <label name="to1" x="478" y="387" w="37" h="28" text="from:"/>
-          <label name="bankName" x="0" y="68" w="71" h="28" style:normal:text_align_h="left" text="Bank Name:"/>
-          <label name="bankNameValue" x="100" y="68" w="197" h="28" v-data:text="{fundTransferRequest.bankName}" style:normal:text_align_h="right"/>
-          <label name="narration1" x="0" y="106" w="59" h="28" style:normal:text_align_h="left" text="Narration:"/>
-          <label name="narrationValue" x="88" y="106" w="209" h="28" v-data:text="{fundTransferRequest.narration}" style:normal:text_align_h="right"/>
-        </view>
-        <button v-on:click="{enterPin}" name="button4" x="32" y="224" w="256" h="36" style:normal:round_radius="6" style:normal:bg_color="#596B6D" style:normal:text_color="#FFFFFF" text="Continue"/>
-      </view>
-    </scroll_view>
-    <scroll_bar_m name="scroll_bar" x="310" y="0" w="10" h="170" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
-  </list_view>
-  <view v-if="{nameEnquiryLoading}" x="0" y="-8" w="320" h="218" style:normal:bg_color="#00000078" disg:hide="true">
-    <view name="view6" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0"/>
-    <label name="label6" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
-    <view w="120" h="60" x="102" y="59">
-      <view name="view" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-      <view name="view2" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-      <view name="view3" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-      <view name="view4" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-      <view name="view5" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+  <view name="inner_container1" x="0" y="0" w="320" h="28">
+    <label name="h" x="78" y="0" w="160" h="28" text="Payment Options"/>
+    <image name="image" x="10" y="1" w="27" h="27" draw_type="scale_auto" image="pixpay_icon1"/>
+  </view>
+  <view name="view" x="10" y="28" w="300" h="58" style:normal:round_radius="10" style:normal:bg_color="#FFFFFF">
+    <label name="label1" x="10" y="3" w="84" h="28" text="Total Amount"/>
+    <label name="label1" x="104" y="3" w="130" h="28" style:normal:text_align_h="left" style:normal:font_size="24" v-data:text="{studentTotalBillAmount}"/>
+    <label name="label1" x="234" y="3" w="40" h="28" style:normal:text_color="#FFC000" text="NGN"/>
+    <view name="view" x="10" y="31" w="280" h="27" style:normal:round_radius="10" style:normal:bg_color="#00000000" style:normal:border_color="#FFC000">
+      <button v-if="{!isCompusoryBtn}" v-on:click="{compusory}" name="label" x="0" y="-1" w="151" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Compulsory Fees"/>
+      <button v-if="{isCompusoryBtn}" v-on:click="{compusory}" name="label" x="-4" y="-1" w="158" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFC000" style:normal:text_color="#FFFFFF" style:normal:text_align_h="left" style:normal:round_radius_top_left="41" style:normal:round_radius_bottom_left="41" style:normal:margin="10" style:normal:border_color="#00000000" text="Compulsory Fees"/>
+      <button v-if="{isOtherBtn}" v-on:click="{other}" name="label" x="151" y="0" w="129" h="28" style:normal:round_radius_top_right="10" style:normal:round_radius_bottom_right="10" style:normal:bg_color="#FFC000" style:normal:text_color="#FFFFFF" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Other Fees"/>
+      <button v-if="{!isOtherBtn}" v-on:click="{other}" name="label" x="151" y="0" w="129" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Other Fees"/>
     </view>
   </view>
-  <view v-if="{isError}" x="0" y="0" w="320" h="216" style:normal:bg_color="#00000078" disg:hide="true">
-    <view name="view11" x="10" y="10" w="87.5%" h="41" style:normal:bg_color="#FFFFFF" style:normal:round_radius="10" style:normal:border_width="0" style:normal:bg_image="" style:normal:border_color="#ACB8C9" animation="move(name=slide_in,delay=1,easing=circular_in,x_from=310,x_to=20,y_from=41,y_to=41)" auto_adjust_size="true">
-      <view name="view10" x="10" y="0" w="26" h="41" style:normal:bg_image="Failed" style:normal:bg_image_draw_type="scale_auto" style:normal:border_color="#00000000"/>
-      <label name="label9" x="46" y="2" w="220" h="36" style:normal:text_color="#C00000" v-data:text="{error}" style:normal:text_align_h="left" style:normal:font_size="16" line_wrap="true" word_wrap="false" auto_adjust_size="true"/>
-    </view>
+  <!-- <list_view  name="list_view" x="10" y="96" w="300" h="114" default_item_height="60" style:normal:bg_color="#00000000">
+   
+    <scroll_bar_m name="scroll_bar1" x="310" y="0" w="10" h="191" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
+  </list_view> -->
+  <list_view name="list_view" x="10" y="96" w="300" h="114" default_item_height="60" style:normal:bg_color="#00000000">
+    <scroll_view v-if="{isCompusoryBtn}" name="scroll_view1" x="0" y="0" w="320" h="100%">
+      <!-- v-on:click="{selectBill, Args=fscript?reference=item.InvoiceReference&amp;&amp;amount=item.Amount}" -->
+      <list_item v-for="{compulsoryFees}" name="list_item" h="58" style:normal:bg_color="#00000000" style:normal:round_radius="5" x="0" y="0" w="300">
+        <view name="view" h="57" style:normal:bg_color="#FFFFFF" w="300" x="0" y="1">
+          <label name="label1" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}" style:normal:font_size="16"/>
+          <label name="label1" x="10" y="27" w="113" h="20" style:normal:text_color="#0000005a" style:normal:font_size="14" style:normal:text_align_h="left" v-data:text="{item.Fee}"/>
+          <label name="label1" x="197" y="5" w="93" h="20" style:normal:text_color="#0070C0" style:normal:font_size="14" style:normal:text_align_h="right" v-data:text="{item.Session}"/>
+          <label name="label1" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" text="NGN"/>
+          <check_button name="check_button" h="24" x="266" y="25" w="24" style:normal:border_width="2" style:normal:round_radius="5" style:normal:border_color="#FFC000" style:pressed_of_checked:border_color="#FFC000" style:pressed_of_checked:border_width="2" style:pressed_of_checked:round_radius="5" style:pressed_of_checked:bg_color="#00B050" style:pressed:round_radius="5" style:pressed:border_width="2" style:normal_of_checked:border_color="#FFC000" style:normal_of_checked:border_width="2" style:normal_of_checked:round_radius="5" style:normal_of_checked:bg_color="#00B050" style:over:round_radius="5" style:over:border_color="#FFC000" style:over_of_checked:round_radius="5" style:over_of_checked:bg_color="#00B050" style:over_of_checked:border_color="#FFC000" style:over_of_checked:border_width="2"/>
+        </view>
+      </list_item>
+    </scroll_view>
+    <scroll_view v-if="{isOtherBtn}" name="scroll_view1" x="0" y="0" w="320" h="100%">
+      <list_item v-for="{otherFees}" name="list_item" h="68" style:normal:bg_color="#00000000" style:normal:round_radius="5" x="0" y="0" w="300" auto_adjust_size="true" sensitive="false">
+        <view name="view" h="67" style:normal:bg_color="#FFFFFF" w="300" x="0" y="1" auto_adjust_size="true">
+          <label name="label1" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}"/>
+          <label name="label1" x="10" y="33" w="113" h="20" style:normal:text_color="#000000" style:normal:text_align_h="left" v-data:text="{item.Fee}" auto_adjust_size="true" line_wrap="true" word_wrap="true"/>
+          <label name="label1" x="197" y="33" w="93" h="20" style:normal:text_color="#0070C0" style:normal:font_size="14" style:normal:text_align_h="right" v-data:text="{item.Session}"/>
+          <label name="label1" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" text="NGN"/>
+          <check_button v-on:click="{selectBill, Args=fscript?reference=item.InvoiceReference&amp;&amp;amount=item.Amount}" name="check_button" h="24" x="266" y="5" w="24" style:normal:border_width="2" style:normal:round_radius="5" style:normal:border_color="#FFC000" style:pressed_of_checked:border_color="#FFC000" style:pressed_of_checked:border_width="2" style:pressed_of_checked:round_radius="5" style:pressed_of_checked:bg_color="#00B050" style:pressed:round_radius="5" style:pressed:border_width="2" style:normal_of_checked:border_color="#FFC000" style:normal_of_checked:border_width="2" style:normal_of_checked:round_radius="5" style:normal_of_checked:bg_color="#00B050" style:over:round_radius="5" style:over:border_color="#FFC000" style:over_of_checked:round_radius="5" style:over_of_checked:bg_color="#00B050" style:over_of_checked:border_color="#FFC000">
+            <property name="style:over_of_checked:border_width">
+              <![CDATA[2]]>
+            </property>
+            <property name="style:pressed:border_color">
+              <![CDATA[#00B050]]>
+            </property>
+          </check_button>
+        </view>
+      </list_item>
+    </scroll_view>
+    <scroll_bar_m name="scroll_bar1" x="310" y="0" w="10" h="191" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
+  </list_view>
+  <view v-if="{isLoading}" name="loading" x="0" y="0" w="320" h="210" style:normal:bg_color="#000000c8" disg:hide="true">
+    <image name="image1" x="146" y="95" w="29" h="28" draw_type="default" image="pixpay_icon2"/>
   </view>
 </window>

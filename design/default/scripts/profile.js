@@ -1,87 +1,34 @@
+var GLOBAL_JUMP = require("mod_global_trans").GLOBAL_JUMP;
+
 ViewModel("profile", {
     data: {
-        showModel: false,
-        nameSummary:"",
-        user:null,
-        fullName:"",
-        isSupport:false,
-        isChangePassword:false,
-        isCloseBusiness:false,
-        loading:false,
-        isError:false,
-        error:"",
-        showTip:"",
-        isNext:false,
-        changePassword:{
-            customerPassword:"",
-            customerPasswordConfirmation:"",
-            customerOldPassword:"",
-            customerEmail:"",
-        }
+        student:"",
+        studentFullName:"",
+        trans:{},
+        getStudentBillsRequest:{
+            admissionNo:"",
+            schoolId:""
+        },
+        isLoading:false,
+        studentTotalBillAmount:""
     },
 
     methods:{
 
-        navigate(args){
-            if(args==='support') {this.isSupport = true}
-            if(args==='password'){this.isChangePassword = true}
-            if(args==='close'){this.isCloseBusiness = true}
+        initHTTPCB: function () {
+            console.log("HttpclientCbEvent start 0000000===========");
+            Tos.HttpclientCbEvent();
+      
+        },
+
+        _formatInput: function (num) {
+            if(!num) return "₦ 0.00";
+            // parseFloat(this.fundTransferRequest.amount).toFixed(2);
+            return num.replace(/,/g, '');
+            // const parts  = this.fundTransferRequest.amount.toString().split(".");
+            // parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            // this.fundTransferAmount = parts.join(".")
             this.notifyPropsChanged();
-        },
-
-        passwordNext(){
-            if(this.isChangePassword){
-                this.isNext=true
-                this.notifyPropsChanged();
-            }
-        },
-
-        closePopUp(){
-            this.isCloseBusiness = false;
-            this.notifyPropsChanged();
-        },
-
-        onFail: function () {
-            if (this.showModel) {
-                this.hideModel();
-                return;
-            }
-            navigateReplace({
-                target: "pay",
-                type: "cancel",
-                //data:this.user
-            });
-        },
-
-        hideModel: function () {
-            this.showModel = false;
-            this.notifyPropsChanged();
-        },
-
-        handleCancel: function () {
-            if (this.showModel) {
-                this.hideModel();
-                return;
-            }
-            if(this.isChangePassword && this.isNext){
-                this.isNext = false
-                this.notifyPropsChanged();
-            }else{
-                if(this.isSupport || this.isChangePassword){
-                    this.isSupport = false;
-                    this.isChangePassword = false;
-                    this.notifyPropsChanged();
-                }
-                else{
-                    navigateReplace({
-                        target: "pay",
-                        close_current:true
-                        //data:this.user
-                    });
-                }
-            }
-
-
         },
 
         onKeyDown(args) {
@@ -99,14 +46,80 @@ ViewModel("profile", {
                     break;
             }
         },
+
+        handleCancel:function(){
+            if(this.isLoading){
+                this.isLoading = false;
+                this.notifyPropsChanged()
+                return;
+            }
+            else{
+                navigateReplace({
+                    close_current:true,
+                    target: "payment",
+                })
+            }
+        },
+
+        navigateToTransaction:function(){
+            navigateReplace({
+                    close_current: true,
+                    target: "transactionPage",
+                    data:this.studentTotalBillAmount 
+            })
+        },
+
+       handleGetNewStudentBills:function(){
+        this.trans.amount = parseInt(this.student.totalPendingFees);
+        // console.log('global_jump', JSON.stringify(this.student))
+        // GLOBAL_JUMP("", this.student);
+       
+        const that = this
+        that.isLoading = true
+        that.notifyPropsChanged()
+
+        function onSuccess(data){
+            that.isLoading = false
+            that.notifyPropsChanged()
+            // console.log('DATA:===>', JSON.stringify(data))
+            // let student = {
+            //     s:that.student,
+            //     res:data.Data
+            // }
+
+            // console.log('student ===>', JSON.stringify(student))
+            GLOBAL_JUMP("",data.Data)
+
+            // navigateReplace({
+            //     close_current: true,
+            //     target: "makeTransfer",
+            //     data:student 
+            // })
+            // navigateReplace({
+            //     close_current: true,
+            //     target: "makeTransfer",
+            //     data:data.Data 
+            // })
+        }
+        function onError(data){
+            that.isLoading = false
+            that.notifyPropsChanged()
+            console.log('DATA:===>', JSON.stringify(data))
+        }
+
+        Tos.GLOBAL_API.callApi(Tos.GLOBAL_API.GET_STUDENT_BILLS, that.getStudentBillsRequest, onSuccess, onError)
+
+       }
     },
 
     onWillMount: function (req) {
         if(req){
-            this.user = Tos.GLOBAL_CONFIG.userInfo
-            this.nameSummary = Tos.GLOBAL_CONFIG.userInfo.organisation.organisationName[0]
-            this.fullName = Tos.GLOBAL_CONFIG.userInfo.organisation.organisationName
-
+            this.student = req.data
+            this.studentFullName = Tos.GLOBAL_CONFIG.studentInfo.Surname + ' ' + Tos.GLOBAL_CONFIG.studentInfo.MiddleName || null + ' ' + Tos.GLOBAL_CONFIG.studentInfo.FirstName
+            this.getStudentBillsRequest.admissionNo = Tos.GLOBAL_CONFIG.studentInfo.AdmissionNo;
+            const billAmount = parseFloat(req.data).toFixed(2)
+            this.studentTotalBillAmount = this._formatInput(billAmount)
+            this.getStudentBillsRequest.schoolId = parseFloat(Tos.GLOBAL_CONFIG.studentInfo.SchoolId);
             this.notifyPropsChanged()
         }
 

@@ -1,0 +1,9 @@
+<window v-model="getStarted" v-on:key_down:NETEVENT="{initHTTPCB}" name="getStarted" v-on:key_down:cancel="{onKeyDown, Args=cancel}" v-on:key_down:return="onKeyDown, Args=return" style:normal:bg_color="#FF9800">
+  <view name="view" x="0" y="0" w="320" h="210">
+    <view name="inner_view" x="35" y="11" w="245" h="189" floating="false" style:normal:round_radius="10" style:normal:bg_color="#1A5AFF" auto_adjust_size="false">
+      <image name="image" x="108" y="10" w="27" h="27" draw_type="scale_auto" image="pixpay_icon2"/>
+      <label name="label" x="19" y="47" w="204" h="63" auto_adjust_size="true" word_wrap="true" line_wrap="true" style:normal:font_size="28" style:normal:text_color="#FFFFFF" text="The easiest way to make payments"/>
+      <button v-for="{appList}" v-on:click="{appClick, Args=fscript?name=item.appName&amp;entry=item.entry&amp;transParam=item.transParam" name="get_started" x="11" y="137" w="221" h="42" style:normal:round_radius="33" style:normal:border_color="#00000000" style:normal:bg_color="#FFFFFF" style:pressed:round_radius="30" style:pressed:border="right|top|bottom" style:pressed:border_color="#00000000" style:pressed:font_size="16" style:over:border_color="#00000000" style:over:border="right|top|bottom" style:over:round_radius="30" v-data:tr_text="{item.appName}"/>
+    </view>
+  </view>
+</window>
