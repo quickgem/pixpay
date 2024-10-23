@@ -88,31 +88,46 @@ ViewModel("makeTransfer", {
           selectBill:function(args){
             console.log("selectedBill ===>", JSON.stringify(this.selectedBill))
             const isAlreadyAdded = this.selectedBill.find(bill => bill.InvoiceReference === args.reference);
-            
-            if (!isAlreadyAdded) {
-                // Add the amount to the total and push the new item to selectedBill
-                let newAmount = this.studentTotalBillAmount + args.amount;
-                this.studentTotalBillAmount = parseFloat(newAmount).toFixed(2);
-    
-                // Add the payment component to the bill
+            if(!isAlreadyAdded) {
                 const paymentComponent = {"InvoiceReference": args.reference};
                 this.selectedBill.push(paymentComponent);
-    
+                this.studentTotalBillAmount = parseFloat(this.studentTotalBillAmount).toFixed(2)+ parseFloat(args.amount).toFixed(2);
                 this.notifyPropsChanged();
-                console.log("selectedBill ===>", JSON.stringify(this.selectedBill));
-            }else{
-                // Subtract the amount from the total
-                let newAmount = this.studentTotalBillAmount - args.amount;
-                this.studentTotalBillAmount = parseFloat(newAmount).toFixed(2);
-                this.selectedBill = this.selectedBill.filter(item => {
-                    console.log("ref ==>", item.InvoiceReference, args.reference);
-                    return item.InvoiceReference !== args.reference;
-                });
-                console.log("selectedBill ===>", JSON.stringify(this.selectedBill));
 
+            } else{
+                this.selectedBill = this.selectedBill.filter(item => {
+                             console.log("ref ==>", item.InvoiceReference, args.reference);
+                             return item.InvoiceReference !== args.reference;
+                });
+                this.studentTotalBillAmount = parseFloat(this.studentTotalBillAmount).toFixed(2) - parseFloat(args.amount).toFixed(2);
                 this.notifyPropsChanged();
             }
-          
+
+            
+            // if (!isAlreadyAdded) {
+            //     // Add the amount to the total and push the new item to selectedBill
+            //     let newAmount = this.studentTotalBillAmount + args.amount;
+            //     this.studentTotalBillAmount = parseFloat(newAmount).toFixed(2);
+            //
+            //     // Add the payment component to the bill
+            //     const paymentComponent = {"InvoiceReference": args.reference};
+            //     this.selectedBill.push(paymentComponent);
+            //
+            //     this.notifyPropsChanged();
+            //     console.log("selectedBill ===>", JSON.stringify(this.selectedBill));
+            // }else{
+            //     // Subtract the amount from the total
+            //     let newAmount = this.studentTotalBillAmount - args.amount;
+            //     this.studentTotalBillAmount = parseFloat(newAmount).toFixed(2);
+            //     this.selectedBill = this.selectedBill.filter(item => {
+            //         console.log("ref ==>", item.InvoiceReference, args.reference);
+            //         return item.InvoiceReference !== args.reference;
+            //     });
+            //     console.log("selectedBill ===>", JSON.stringify(this.selectedBill));
+            //
+            //     this.notifyPropsChanged();
+            // }
+            //
           
           },
 
@@ -151,22 +166,23 @@ ViewModel("makeTransfer", {
             this.studentBills = req.data.fees
             this.trans = Tos.GLOBAL_TRANSACTION.trans
             const compulsoryFees =  req.data.fees.filter(fee => fee.FeeType !== "Non Compulsory Fee");
-            const compulsoryFeesObjFormat = {}
             for(let i =0; i < compulsoryFees.length; i++){
-                this.compulsoryFees.push(
-                    compulsoryFeesObjFormat.Amount =  parseFloat(i.Amount).toFixed(2),
-                    compulsoryFeesObjFormat.Fee = i.Fee,
-                    compulsoryFeesObjFormat.Session = i.Session
-                )
+                const item = compulsoryFees[i]
+                this.compulsoryFees.push({
+                    Amount:parseFloat(item.Amount).toFixed(2),
+                    Fee: item.Fee,
+                    Session:item.Session
+                })
             }
             const otherFees =  req.data.fees.filter(fee => fee.FeeType === "Non Compulsory Fee");
             const otherFeesObjFormat = {}
             for(let i =0; i < otherFees.length; i++){
-                this.otherFees.push(
-                    otherFeesObjFormat.Amount =  parseFloat(i.Amount).toFixed(2),
-                    otherFeesObjFormat.Fee = i.Fee,
-                    otherFeesObjFormat.Session = i.Session
-                )
+                const item = otherFees[i]
+                this.otherFees.push({
+                    Amount :  parseFloat(item.Amount).toFixed(2),
+                    Fee : item.Fee,
+                    Session : item.Session
+                })
             }
             // const billAmount = parseFloat(req.data.totalFees).toFixed(2)
             this.studentTotalBillAmount = parseFloat(0).toFixed(2),
