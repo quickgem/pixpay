@@ -21,6 +21,16 @@ ViewModel("profile", {
       
         },
 
+        _formatInput: function (num) {
+            if(!num) return "₦ 0.00";
+            // parseFloat(this.fundTransferRequest.amount).toFixed(2);
+            return num.replace(/,/g, '');
+            // const parts  = this.fundTransferRequest.amount.toString().split(".");
+            // parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            // this.fundTransferAmount = parts.join(".")
+            this.notifyPropsChanged();
+        },
+
         onKeyDown(args) {
             console.log("key down----->>>>:", args);
             var key = args;
@@ -56,7 +66,7 @@ ViewModel("profile", {
                     close_current: true,
                     target: "transactionPage",
                     data:this.studentTotalBillAmount 
-                }) 
+            })
         },
 
        handleGetNewStudentBills:function(){
@@ -105,9 +115,10 @@ ViewModel("profile", {
     onWillMount: function (req) {
         if(req){
             this.student = req.data
-            this.studentFullName = Tos.GLOBAL_CONFIG.studentInfo.FirstName + ' ' + Tos.GLOBAL_CONFIG.studentInfo.MiddleName + ' ' + Tos.GLOBAL_CONFIG.studentInfo.Surname
+            this.studentFullName = Tos.GLOBAL_CONFIG.studentInfo.Surname + ' ' + Tos.GLOBAL_CONFIG.studentInfo.MiddleName || null + ' ' + Tos.GLOBAL_CONFIG.studentInfo.FirstName
             this.getStudentBillsRequest.admissionNo = Tos.GLOBAL_CONFIG.studentInfo.AdmissionNo;
-            this.studentTotalBillAmount = parseFloat(req.data).toFixed(2)
+            const billAmount = parseFloat(req.data).toFixed(2)
+            this.studentTotalBillAmount = parseFloat(this._formatInput(billAmount)).toFixed(2)
             this.getStudentBillsRequest.schoolId = parseFloat(Tos.GLOBAL_CONFIG.studentInfo.SchoolId);
             this.notifyPropsChanged()
         }

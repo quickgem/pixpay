@@ -96,8 +96,8 @@ ViewModel("makeTransfer", {
 
             } else{
                 this.selectedBill = this.selectedBill.filter(item => {
-                             console.log("ref ==>", item.InvoiceReference, args.reference);
-                             return item.InvoiceReference !== args.reference;
+                     console.log("ref ==>", item.InvoiceReference, args.reference);
+                     return item.InvoiceReference !== args.reference;
                 });
                 this.studentTotalBillAmount = parseFloat(this.studentTotalBillAmount).toFixed(2) - parseFloat(args.amount).toFixed(2);
                 this.notifyPropsChanged();
@@ -171,7 +171,9 @@ ViewModel("makeTransfer", {
                 this.compulsoryFees.push({
                     Amount:parseFloat(item.Amount).toFixed(2),
                     Fee: item.Fee,
-                    Session:item.Session
+                    Session:item.Session,
+                    InvoiceReference:item.InvoiceReference,
+                    checked:false
                 })
             }
             const otherFees =  req.data.fees.filter(fee => fee.FeeType === "Non Compulsory Fee");
@@ -181,7 +183,9 @@ ViewModel("makeTransfer", {
                 this.otherFees.push({
                     Amount :  parseFloat(item.Amount).toFixed(2),
                     Fee : item.Fee,
-                    Session : item.Session
+                    Session : item.Session,
+                    InvoiceReference: item.InvoiceReference,
+                    checked:false
                 })
             }
             // const billAmount = parseFloat(req.data.totalFees).toFixed(2)

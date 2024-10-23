@@ -4,49 +4,44 @@
     <label name="h" x="78" y="0" w="160" h="28" text="Payment Options"/>
     <image name="image" x="10" y="1" w="27" h="27" draw_type="scale_auto" image="pixpay_icon1"/>
   </view>
-  <view name="view" x="10" y="28" w="300" h="58" style:normal:round_radius="10" style:normal:bg_color="#FFFFFF">
+  <view name="view1" x="10" y="28" w="300" h="68" style:normal:round_radius="10" style:normal:bg_color="#FFFFFF">
     <label name="label1" x="10" y="3" w="84" h="28" text="Total Amount"/>
-    <label name="label1" x="104" y="3" w="130" h="28" style:normal:text_align_h="left" style:normal:font_size="24" v-data:text="{studentTotalBillAmount}"/>
-    <label name="label1" x="234" y="3" w="40" h="28" style:normal:text_color="#FFC000" text="NGN"/>
+    <label name="label" x="104" y="3" w="130" h="28" style:normal:text_align_h="left" style:normal:font_size="24" v-data:text="{studentTotalBillAmount}"/>
+    <label name="label2" x="234" y="3" w="40" h="28" style:normal:text_color="#FFC000" text="NGN"/>
     <view name="view" x="10" y="31" w="280" h="27" style:normal:round_radius="10" style:normal:bg_color="#00000000" style:normal:border_color="#FFC000">
-      <button v-if="{!isCompusoryBtn}" v-on:click="{compusory}" name="label" x="0" y="-1" w="151" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Compulsory Fees"/>
-      <button v-if="{isCompusoryBtn}" v-on:click="{compusory}" name="label" x="-4" y="-1" w="158" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFC000" style:normal:text_color="#FFFFFF" style:normal:text_align_h="left" style:normal:round_radius_top_left="41" style:normal:round_radius_bottom_left="41" style:normal:margin="10" style:normal:border_color="#00000000" text="Compulsory Fees"/>
-      <button v-if="{isOtherBtn}" v-on:click="{other}" name="label" x="151" y="0" w="129" h="28" style:normal:round_radius_top_right="10" style:normal:round_radius_bottom_right="10" style:normal:bg_color="#FFC000" style:normal:text_color="#FFFFFF" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Other Fees"/>
-      <button v-if="{!isOtherBtn}" v-on:click="{other}" name="label" x="151" y="0" w="129" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Other Fees"/>
+      <button v-if="{!isCompusoryBtn}" v-on:click="{compusory}" name="label3" x="0" y="-1" w="151" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Compulsory Fees"/>
+      <button v-if="{isCompusoryBtn}" v-on:click="{compusory}" name="label4" x="-4" y="-1" w="158" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFC000" style:normal:text_color="#FFFFFF" style:normal:text_align_h="left" style:normal:round_radius_top_left="41" style:normal:round_radius_bottom_left="41" style:normal:margin="10" style:normal:border_color="#00000000" text="Compulsory Fees"/>
+      <button v-if="{isOtherBtn}" v-on:click="{other}" name="label5" x="151" y="0" w="129" h="28" style:normal:round_radius_top_right="10" style:normal:round_radius_bottom_right="10" style:normal:bg_color="#FFC000" style:normal:text_color="#FFFFFF" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Other Fees"/>
+      <button v-if="{!isOtherBtn}" v-on:click="{other}" name="label6" x="151" y="0" w="129" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Other Fees"/>
     </view>
   </view>
   <!-- <list_view  name="list_view" x="10" y="96" w="300" h="114" default_item_height="60" style:normal:bg_color="#00000000">
    
     <scroll_bar_m name="scroll_bar1" x="310" y="0" w="10" h="191" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_color="#F4F5F8"/>
   </list_view> -->
-  <list_view name="list_view" x="10" y="96" w="300" h="114" default_item_height="60" style:normal:bg_color="#00000000">
-    <scroll_view v-if="{isCompusoryBtn}" name="scroll_view1" x="0" y="0" w="320" h="100%">
+  <list_view name="list_view" x="10" y="106" w="300" h="114" default_item_height="60" style:normal:bg_color="#00000000" focusable="true">
+    <scroll_view v-if="{isCompusoryBtn}" name="scroll_view1" x="0" y="0" w="320" h="100%" disg:hide="true">
       <!-- v-on:click="{selectBill, Args=fscript?reference=item.InvoiceReference&amp;&amp;amount=item.Amount}" -->
-      <list_item v-for="{compulsoryFees}" name="list_item" h="58" style:normal:bg_color="#00000000" style:normal:round_radius="5" x="0" y="0" w="300">
-        <view name="view" h="57" style:normal:bg_color="#FFFFFF" w="300" x="0" y="1">
-          <label name="label1" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}" style:normal:font_size="16"/>
-          <label name="label1" x="10" y="27" w="113" h="20" style:normal:text_color="#0000005a" style:normal:font_size="14" style:normal:text_align_h="left" v-data:text="{item.Fee}"/>
-          <label name="label1" x="197" y="5" w="93" h="20" style:normal:text_color="#0070C0" style:normal:font_size="14" style:normal:text_align_h="right" v-data:text="{item.Session}"/>
-          <label name="label1" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" text="NGN"/>
-          <check_button name="check_button" h="24" x="266" y="25" w="24" style:normal:border_width="2" style:normal:round_radius="5" style:normal:border_color="#FFC000" style:pressed_of_checked:border_color="#FFC000" style:pressed_of_checked:border_width="2" style:pressed_of_checked:round_radius="5" style:pressed_of_checked:bg_color="#00B050" style:pressed:round_radius="5" style:pressed:border_width="2" style:normal_of_checked:border_color="#FFC000" style:normal_of_checked:border_width="2" style:normal_of_checked:round_radius="5" style:normal_of_checked:bg_color="#00B050" style:over:round_radius="5" style:over:border_color="#FFC000" style:over_of_checked:round_radius="5" style:over_of_checked:bg_color="#00B050" style:over_of_checked:border_color="#FFC000" style:over_of_checked:border_width="2"/>
+      <list_item v-for="{compulsoryFees}" name="list_item" h="75" style:normal:bg_color="#00000000" style:normal:round_radius="5" x="0" y="0" w="300">
+        <view name="view2" h="72" style:normal:bg_color="#FFFFFF" w="300" x="0" y="3">
+          <label name="label7" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" style:normal:font_size="16" text="NGN"/>
+          <label name="label8" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}" style:normal:font_size="18"/>
+          <label name="label9" x="10" y="42" w="113" h="20" style:normal:text_color="#000000" style:normal:font_size="18" style:normal:text_align_h="left" v-data:text="{item.Fee}"/>
+          <label name="label10" x="223" y="42" w="67" h="20" style:normal:text_color="#0070C0" style:normal:font_size="14" style:normal:text_align_h="left" v-data:text="{item.Session}"/>
+          <button name="rm_item1" x="238" y="6" w="52" h="26" style:normal:bg_color="#C00000" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" style:normal:border_color="#00000000" style:pressed:round_radius="5" style:pressed:bg_color="#7E0000" style:pressed:text_color="#FFFFFF" style:pressed:border_color="#00000000" style:over:border_color="#00000000" style:over:text_color="#FFFFFF" style:over:round_radius="5" style:over:bg_color="#C00000" text="remove"/>
+          <button name="ad_item1" x="238" y="6" w="52" h="26" style:normal:bg_color="#00B050" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" style:normal:border_color="#00000000" style:pressed:round_radius="5" style:pressed:bg_color="#00B050" style:pressed:text_color="#FFFFFF" style:pressed:border_color="#00000000" style:over:border_color="#00000000" style:over:text_color="#FFFFFF" style:over:round_radius="5" style:over:bg_color="#00B050" text="add"/>
         </view>
       </list_item>
     </scroll_view>
-    <scroll_view v-if="{isOtherBtn}" name="scroll_view1" x="0" y="0" w="320" h="100%">
-      <list_item v-for="{otherFees}" name="list_item" h="68" style:normal:bg_color="#00000000" style:normal:round_radius="5" x="0" y="0" w="300" auto_adjust_size="true" sensitive="false">
-        <view name="view" h="67" style:normal:bg_color="#FFFFFF" w="300" x="0" y="1" auto_adjust_size="true">
-          <label name="label1" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}"/>
-          <label name="label1" x="10" y="33" w="113" h="20" style:normal:text_color="#000000" style:normal:text_align_h="left" v-data:text="{item.Fee}" auto_adjust_size="true" line_wrap="true" word_wrap="true"/>
-          <label name="label1" x="197" y="33" w="93" h="20" style:normal:text_color="#0070C0" style:normal:font_size="14" style:normal:text_align_h="right" v-data:text="{item.Session}"/>
-          <label name="label1" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" text="NGN"/>
-          <check_button v-on:click="{selectBill, Args=fscript?reference=item.InvoiceReference&amp;&amp;amount=item.Amount}" name="check_button" h="24" x="266" y="5" w="24" style:normal:border_width="2" style:normal:round_radius="5" style:normal:border_color="#FFC000" style:pressed_of_checked:border_color="#FFC000" style:pressed_of_checked:border_width="2" style:pressed_of_checked:round_radius="5" style:pressed_of_checked:bg_color="#00B050" style:pressed:round_radius="5" style:pressed:border_width="2" style:normal_of_checked:border_color="#FFC000" style:normal_of_checked:border_width="2" style:normal_of_checked:round_radius="5" style:normal_of_checked:bg_color="#00B050" style:over:round_radius="5" style:over:border_color="#FFC000" style:over_of_checked:round_radius="5" style:over_of_checked:bg_color="#00B050" style:over_of_checked:border_color="#FFC000">
-            <property name="style:over_of_checked:border_width">
-              <![CDATA[2]]>
-            </property>
-            <property name="style:pressed:border_color">
-              <![CDATA[#00B050]]>
-            </property>
-          </check_button>
+    <scroll_view v-if="{isOtherBtn}" name="scroll_view" x="0" y="0" w="320" h="100%">
+      <list_item v-for="{otherFees}" name="list_item1" h="73" style:normal:bg_color="#00000000" style:normal:round_radius="5" x="0" y="0" w="300" auto_adjust_size="true" sensitive="false">
+        <view name="view3" h="72" style:normal:bg_color="#FFFFFF" w="300" x="0" y="1" auto_adjust_size="true">
+          <label name="label11" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" style:normal:font_size="16" text="NGN"/>
+          <label name="label12" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}" style:normal:font_size="18"/>
+          <label name="label13" x="10" y="42" w="113" h="20" style:normal:text_color="#000000" style:normal:text_align_h="left" v-data:text="{item.Fee}" auto_adjust_size="true" line_wrap="true" word_wrap="true"/>
+          <label name="label14" x="225" y="42" w="65" h="20" style:normal:text_color="#0070C0" style:normal:font_size="14" style:normal:text_align_h="left" v-data:text="{item.Session}"/>
+          <button name="rm_item1" h="26" style:normal:bg_color="#C00000" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" style:normal:border_color="#00000000" style:pressed:round_radius="5" style:pressed:bg_color="#7E0000" style:pressed:text_color="#FFFFFF" style:pressed:border_color="#00000000" style:over:border_color="#00000000" style:over:text_color="#FFFFFF" style:over:round_radius="5" style:over:bg_color="#C00000" x="232" y="6" w="58" text="remove"/>
+          <button name="ad_item1" h="27" style:normal:bg_color="#00B050" style:normal:text_color="#FFFFFF" style:normal:round_radius="5" style:normal:border_color="#00000000" style:pressed:round_radius="5" style:pressed:bg_color="#00B050" style:pressed:text_color="#FFFFFF" style:pressed:border_color="#00000000" style:over:border_color="#00000000" style:over:text_color="#FFFFFF" style:over:round_radius="5" style:over:bg_color="#00B050" x="232" y="5" w="58" text="add"/>
         </view>
       </list_item>
     </scroll_view>
