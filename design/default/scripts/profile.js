@@ -118,7 +118,7 @@ ViewModel("profile", {
             this.studentFullName = Tos.GLOBAL_CONFIG.studentInfo.Surname + ' ' + Tos.GLOBAL_CONFIG.studentInfo.MiddleName || null + ' ' + Tos.GLOBAL_CONFIG.studentInfo.FirstName
             this.getStudentBillsRequest.admissionNo = Tos.GLOBAL_CONFIG.studentInfo.AdmissionNo;
             const billAmount = parseFloat(req.data).toFixed(2)
-            this.studentTotalBillAmount = this._formatInput(billAmount)
+            this.studentTotalBillAmount = parseFloat(this._formatInput(billAmount)).toFixed(2)
             this.getStudentBillsRequest.schoolId = parseFloat(Tos.GLOBAL_CONFIG.studentInfo.SchoolId);
             this.notifyPropsChanged()
         }

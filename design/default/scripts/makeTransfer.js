@@ -25,7 +25,6 @@ ViewModel("makeTransfer", {
         initHTTPCB: function () {
             console.log("HttpclientCbEvent start 0000000===========");
             Tos.HttpclientCbEvent();
-      
         },
 
         _formatInput: function (num) {
@@ -145,9 +144,6 @@ ViewModel("makeTransfer", {
       
     },
 
-
-
-
     onWillMount: function (req) {
         console.log('req ===> RES:', JSON.stringify(req.data))
 
@@ -173,7 +169,7 @@ ViewModel("makeTransfer", {
                 )
             }
             // const billAmount = parseFloat(req.data.totalFees).toFixed(2)
-            this.studentTotalBillAmount = 0
+            this.studentTotalBillAmount = parseFloat(0).toFixed(2),
             this.notifyPropsChanged()
 
             console.log('compulsory ===> ', JSON.stringify(this.compulsoryFees))
@@ -182,10 +178,7 @@ ViewModel("makeTransfer", {
        
     },
 
-    onMount: function (req) {
-    
-      
-    },
+    onMount: function (req) {},
 
     onWillUnmount: function () {
        
