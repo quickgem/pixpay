@@ -117,11 +117,12 @@ ViewModel("makeTransfer", {
         startPosPayment:function (){
             const that = this
             that.isLoading = true
-            this.trans.amount = this.studentTotalBillAmount
-            that.notifyPropsChanged()
+            that.trans.amount = parseFloat(this.studentTotalBillAmount).toFixed(2)
             that.posPaymentRequest.AdmissionNumber = Tos.GLOBAL_CONFIG.studentInfo.AdmissionNo
             that.posPaymentRequest.SchoolId = parseFloat(Tos.GLOBAL_CONFIG.studentInfo.SchoolId)
             that.posPaymentRequest.PaymentComponents = this.selectedBill
+            that.notifyPropsChanged()
+
             function onSuccess(data){
                 that.isLoading = false
                 that.notifyPropsChanged()
