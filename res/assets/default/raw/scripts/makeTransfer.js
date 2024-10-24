@@ -87,57 +87,33 @@ ViewModel("makeTransfer", {
               })
           },
 
-          selectBill:function(args){
-            console.log("selectedBill ===>", JSON.stringify(this.selectedBill))
-            this.activeAtion = args.InvoiceReference
-            const isAlreadyAdded = this.selectedBill.find(bill => bill.InvoiceReference === args.reference);
-            if(!isAlreadyAdded) {
-                const paymentComponent = {"InvoiceReference": args.reference};
-                this.selectedBill.push(paymentComponent);
-                this.actionActionArray.push(args.reference);
-                this.studentTotalBillAmount = parseFloat(this.studentTotalBillAmount).toFixed(2)+ parseFloat(args.amount).toFixed(2);
-                this.notifyPropsChanged();
+        selectBill: function(args) {
+            const { reference, amount } = args;
+            console.log("selectedBill ===>", JSON.stringify(this.selectedBill));
 
-            } else{
-                this.selectedBill = this.selectedBill.filter(item => {
-                     console.log("ref ==>", item.InvoiceReference, args.reference);
-                     return item.InvoiceReference !== args.reference;
-                });
-                this.actionActionArray = this.actionActionArray.filter(item => {
-                    return item !== args.reference;
-                });
-                this.studentTotalBillAmount = parseFloat(this.studentTotalBillAmount).toFixed(2) - parseFloat(args.amount).toFixed(2);
-                this.notifyPropsChanged();
+            const isAlreadyAdded = this.selectedBill.some(bill => bill.InvoiceReference === reference);
+
+            if (!isAlreadyAdded) {
+                this.addBill(reference, amount);
+            } else {
+                this.removeBill(reference, amount);
             }
+        },
 
-            
-            // if (!isAlreadyAdded) {
-            //     // Add the amount to the total and push the new item to selectedBill
-            //     let newAmount = this.studentTotalBillAmount + args.amount;
-            //     this.studentTotalBillAmount = parseFloat(newAmount).toFixed(2);
-            //
-            //     // Add the payment component to the bill
-            //     const paymentComponent = {"InvoiceReference": args.reference};
-            //     this.selectedBill.push(paymentComponent);
-            //
-            //     this.notifyPropsChanged();
-            //     console.log("selectedBill ===>", JSON.stringify(this.selectedBill));
-            // }else{
-            //     // Subtract the amount from the total
-            //     let newAmount = this.studentTotalBillAmount - args.amount;
-            //     this.studentTotalBillAmount = parseFloat(newAmount).toFixed(2);
-            //     this.selectedBill = this.selectedBill.filter(item => {
-            //         console.log("ref ==>", item.InvoiceReference, args.reference);
-            //         return item.InvoiceReference !== args.reference;
-            //     });
-            //     console.log("selectedBill ===>", JSON.stringify(this.selectedBill));
-            //
-            //     this.notifyPropsChanged();
-            // }
-            //
-          
-          },
+        addBill: function(reference, amount) {
+            const paymentComponent = { "InvoiceReference": reference };
+            this.selectedBill.push(paymentComponent);
 
+            this.studentTotalBillAmount = (parseFloat(this.studentTotalBillAmount) + parseFloat(amount)).toFixed(2);
+            this.notifyPropsChanged();
+        },
+
+        removeBill: function(reference, amount) {
+            this.selectedBill = this.selectedBill.filter(item => item.InvoiceReference !== reference);
+
+            this.studentTotalBillAmount = (parseFloat(this.studentTotalBillAmount) - parseFloat(amount)).toFixed(2);
+            this.notifyPropsChanged();
+        },
         startPosPayment:function (){
             const that = this
             that.isLoading = true

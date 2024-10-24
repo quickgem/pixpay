@@ -1,3 +1,4 @@
+<?xml ruler_x="356"?>
 <window v-model="login" v-on:key_down:NETEVENT="{initHTTPCB}" name="login" v-on:key_down:0="{onKeyDown, Args=0}" v-on:key_down:1="{onKeyDown, Args=1}" v-on:key_down:2="{onKeyDown, Args=2}" v-on:key_down:3="{onKeyDown, Args=3}" v-on:key_down:4="{onKeyDown, Args=4}" v-on:key_down:5="{onKeyDown, Args=5}" v-on:key_down:6="{onKeyDown, Args=6}" v-on:key_down:7="{onKeyDown, Args=7}" v-on:key_down:8="{onKeyDown, Args=8}" v-on:key_down:9="{onKeyDown, Args=9}" v-on:key_down:backspace="{onKeyDown, Args=backspace}" v-on:key_down:return="{onKeyDown, Args=return}" v-on:key_down:escape="{onKeyDown, Args=escape}" v-on:key_down:delete="{onKeyDown, Args=delete}" v-on:key_down:cancel="{onKeyDown, Args=cancel}" anim_hint="slide_up(duration=2,easing=cubic_out)">
   <!--  <view v-if="{type}" w="100%" h="100%">-->
   <!--    <label name="pay_num" x="0" y="70" w="320" h="60" tips="" style:normal:font_size="32" style:normal:border="none" style:normal:bg_color="#00000000" v-data:text="{valueStr}" style:normal:border_width="2"/>-->
@@ -21,21 +22,7 @@
       </view>
     </scroll_view>
   </view>
-  <view v-if="{loading}" x="0" y="0" w="320" h="210" disg:custom="container" disg:hide="true">
-    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
-      <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
-        <view w="120" h="60" x="42" y="24">
-          <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-          <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
-        </view>
-      </view>
-      <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
-    </view>
-  </view>
-  <view v-if="{isShowExit}" text="view" x="0" y="0" w="100%" h="100%" disg:custom="container" disg:hide="true">
+  <view v-if="{isShowExit}" text="view" x="0" y="0" w="100%" h="100%" disg:custom="container">
     <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078" disg:hide="true">
       <view style:normal:bg_color="#FFFFFF" style:round_radius="10" w="240" h="150" x="40" y="30">
         <label x="0" y="0" w="240" h="40" style:normal:font_size="24" v-data:text="{Notice}"/>
@@ -57,6 +44,20 @@
     <view name="view11" x="30" y="10" w="87.5%" h="41" style:normal:bg_color="#FFFFFF" style:normal:round_radius="5" style:normal:border_width="0" style:normal:bg_image="" animation="opacity(delay=1,easing=linear,from=0,to=255)" auto_adjust_size="true">
       <view name="view10" x="10" y="0" w="30" h="42" style:normal:bg_image="Faile" style:normal:bg_image_draw_type="scale_auto"/>
       <label name="label9" x="50" y="3" w="220" h="36" style:normal:text_color="#C00000" v-data:text="{error}" style:normal:text_align_h="left" style:normal:font_size="16" style:normal:text_align_v="none" line_wrap="true" word_wrap="false" auto_adjust_size="true" text="the username and password is a required feiled"/>
+    </view>
+  </view>
+  <view v-if="{loading}" x="0" y="0" w="320" h="210" disg:custom="container" disg:hide="true">
+    <view x="0" y="0" w="100%" h="100%" style:normal:bg_color="#00000078">
+      <view name="view" x="60" y="35" w="200" h="140" style:normal:bg_color="#FFFFFF" style:normal:round_radius="20" style:normal:border_width="0">
+        <view w="120" h="60" x="42" y="24">
+          <view name="view1" x="0" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=0)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="25" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=200)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="50" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=400)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="75" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=600)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+          <view name="view1" x="100" y="20" w="20" h="20" animation="opacity(from=255, to=30, yoyo_times=0, duration=1000, delay=800)" style:normal:bg_color="#00B050" style:normal:round_radius="10" style:normal:border_width="0"/>
+        </view>
+      </view>
+      <label name="label" x="80" y="124" w="160" h="28" style:normal:text_color="#00B050" v-data:text="{showTip}"/>
     </view>
   </view>
 </window>

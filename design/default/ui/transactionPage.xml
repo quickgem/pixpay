@@ -146,7 +146,7 @@
   <view v-if="{loading}" name="view1" x="0" y="0" w="320" h="208" style:normal:bg_color="#000000c8" disg:hide="true">
     <image name="image2" x="142" y="91" w="30" h="29" draw_type="default" image="pixpay_icon2"/>
   </view>
-  <view v-if="{showPrintReceipt}" name="view3" x="0" y="0" w="320" h="210" style:normal:bg_color="#000000c8">
+  <view v-if="{showPrintReceipt}" name="view3" x="0" y="0" w="320" h="210" style:normal:bg_color="#000000c8" disg:hide="true">
     <view name="view4" x="66" y="52" w="174" h="111" style:normal:bg_color="#FFFFFF" style:normal:round_radius="10">
       <label name="label" x="0" y="18" w="170" h="28" text="Print Reciept"/>
       <button v-on:click="{printBill}" name="button" x="10" y="56" w="154" h="36" style:normal:round_radius="10" style:normal:bg_color="#FFC000" style:normal:text_color="#FFFFFF" style:normal:border_color="#00000000" style:pressed:border_color="#00000000" style:pressed:round_radius="10" style:over:round_radius="10" text="Print"/>
