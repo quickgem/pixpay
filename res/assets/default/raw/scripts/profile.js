@@ -101,6 +101,7 @@ ViewModel("profile", {
             //     data:data.Data 
             // })
         }
+
         function onError(data){
             that.isLoading = false
             that.notifyPropsChanged()

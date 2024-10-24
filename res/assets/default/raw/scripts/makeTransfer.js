@@ -4,6 +4,8 @@ ViewModel("makeTransfer", {
     data: {
         studentBills:"",
         studentTotalBillAmount:"",
+        activeAction:false,
+        actionActionArray:[],
         isLoading:false,
         student:"",
         trans:{},
@@ -87,10 +89,12 @@ ViewModel("makeTransfer", {
 
           selectBill:function(args){
             console.log("selectedBill ===>", JSON.stringify(this.selectedBill))
+            this.activeAtion = args.InvoiceReference
             const isAlreadyAdded = this.selectedBill.find(bill => bill.InvoiceReference === args.reference);
             if(!isAlreadyAdded) {
                 const paymentComponent = {"InvoiceReference": args.reference};
                 this.selectedBill.push(paymentComponent);
+                this.actionActionArray.push(args.reference);
                 this.studentTotalBillAmount = parseFloat(this.studentTotalBillAmount).toFixed(2)+ parseFloat(args.amount).toFixed(2);
                 this.notifyPropsChanged();
 
@@ -98,6 +102,9 @@ ViewModel("makeTransfer", {
                 this.selectedBill = this.selectedBill.filter(item => {
                      console.log("ref ==>", item.InvoiceReference, args.reference);
                      return item.InvoiceReference !== args.reference;
+                });
+                this.actionActionArray = this.actionActionArray.filter(item => {
+                    return item !== args.reference;
                 });
                 this.studentTotalBillAmount = parseFloat(this.studentTotalBillAmount).toFixed(2) - parseFloat(args.amount).toFixed(2);
                 this.notifyPropsChanged();
@@ -172,7 +179,7 @@ ViewModel("makeTransfer", {
                     Amount:parseFloat(item.Amount).toFixed(2),
                     Fee: item.Fee,
                     Session:item.Session,
-                    InvoiceReference:item.InvoiceReference
+                    InvoiceReference:item.InvoiceReference,
                 })
             }
             const otherFees =  req.data.fees.filter(fee => fee.FeeType === "Non Compulsory Fee");
@@ -183,7 +190,8 @@ ViewModel("makeTransfer", {
                     Amount :  parseFloat(item.Amount).toFixed(2),
                     Fee : item.Fee,
                     Session : item.Session,
-                    InvoiceReference: item.InvoiceReference
+                    InvoiceReference: item.InvoiceReference,
+                    checked:false
                 })
             }
             // const billAmount = parseFloat(req.data.totalFees).toFixed(2)
