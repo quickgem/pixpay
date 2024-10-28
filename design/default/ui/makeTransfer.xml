@@ -31,7 +31,7 @@
     <!--    </scroll_view>-->
     <!--    -->
     <scroll_view v-if="{isCompusoryBtn}" name="scroll_view" x="0" y="0" w="300" h="100">
-      <view v-for="{compulsoryFees}" name="view3" h="72" style:normal:bg_color="#FFFFFF" auto_adjust_size="true" style:normal:border_color="#FFC002" style:normal:round_radius="10" w="300">
+      <view v-for="{compulsoryFees}" name="view3" h="72" style:normal:bg_color="#FFFFFF" auto_adjust_size="true" style:normal:border_color="#FFC002" style:normal:round_radius="10" w="300" sensitive="true">
         <label name="label11" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" style:normal:font_size="16" text="NGN"/>
         <label name="label12" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}" style:normal:font_size="18"/>
         <label name="label13" x="10" y="42" w="119" h="20" style:normal:text_color="#000000" style:normal:text_align_h="left" v-data:text="{item.Fee}" auto_adjust_size="true" line_wrap="true" word_wrap="true"/>
@@ -60,12 +60,21 @@
           </property>
           <property name="style:over:bg_color">
             <![CDATA[#00000000]]>
+          </property>
+          <property name="feedback">
+            <![CDATA[true]]>
+          </property>
+          <property name="focusable">
+            <![CDATA[true]]>
+          </property>
+          <property name="with_focus_state">
+            <![CDATA[true]]>
           </property>
         </check_button>
       </view>
     </scroll_view>
-    <scroll_view v-if="{isOtherBtn}" name="scroll_view" x="0" y="0" w="320" h="100" disg:hide="true">
-      <view v-for="{otherFees}" name="view3" h="72" style:normal:bg_color="#FFFFFF" auto_adjust_size="true" style:normal:border_color="#FFC002" style:normal:round_radius="10">
+    <scroll_view v-if="{isOtherBtn}" name="scroll_view" x="0" y="0" w="320" h="100">
+      <view v-for="{otherFees}" name="view3" h="72" style:normal:bg_color="#FFFFFF" auto_adjust_size="true" style:normal:border_color="#FFC002" style:normal:round_radius="10" sensitive="true">
         <label name="label11" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" style:normal:font_size="16" text="NGN"/>
         <label name="label12" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}" style:normal:font_size="18"/>
         <label name="label13" x="10" y="42" w="119" h="20" style:normal:text_color="#000000" style:normal:text_align_h="left" v-data:text="{item.Fee}" auto_adjust_size="true" line_wrap="true" word_wrap="true"/>
@@ -94,6 +103,15 @@
           </property>
           <property name="style:over:bg_color">
             <![CDATA[#00000000]]>
+          </property>
+          <property name="feedback">
+            <![CDATA[true]]>
+          </property>
+          <property name="focusable">
+            <![CDATA[true]]>
+          </property>
+          <property name="with_focus_state">
+            <![CDATA[true]]>
           </property>
         </check_button>
       </view>
