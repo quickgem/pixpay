@@ -130,7 +130,7 @@
     <scroll_view name="scroll_view1" x="0" y="0" w="320" h="100%">
       <list_item v-for="{transactions}" v-on:click="{onPrint, Args=fscript?reference=item.RefCode&amp;&amp;amount=item.Amount&amp;&amp;status=item.Status&amp;&amp;createdAt=item.CreatedAt}" name="list_item" h="64" style:normal:bg_color="#00000000" style:normal:round_radius="5" style:normal:border="none">
         <view name="view" x="0" y="0" w="300" h="67" style:normal:round_radius="10" style:normal:bg_color="#FFFFFF" style:normal:border_color="#FFC000" auto_adjust_size="true">
-          <image v-if="{item.Status == 'completed'}" name="image1" x="9" y="12" w="30" h="30" draw_type="scale_auto" image="success_icon"/>
+          <image v-if="{item.= == 'completed'}" name="image1" x="9" y="12" w="30" h="30" draw_type="scale_auto" image="success_icon"/>
           <image v-if="{item.Status == 'pending'}" name="image1" x="9" y="12" w="30" h="30" draw_type="scale_auto" image="debit_icon"/>
           <label name="label1" x="49" y="10" w="126" h="31" style:normal:text_align_h="left" style:normal:font_size="14" v-data:text="{item.RefCode}" line_wrap="true" word_wrap="false" auto_adjust_size="true" style:normal:text_align_v="top"/>
           <label name="label1" x="49" y="41" w="126" h="16" style:normal:text_color="#A5A5A5" style:normal:font_size="14" style:normal:text_align_h="left" v-data:text="{item.CreatedAt}" line_wrap="true" word_wrap="false" auto_adjust_size="true"/>

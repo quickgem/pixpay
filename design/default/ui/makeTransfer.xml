@@ -15,7 +15,7 @@
       <button v-if="{!isOtherBtn}" v-on:click="{other}" name="label6" x="151" y="0" w="129" h="28" style:normal:round_radius_top_right="0" style:normal:round_radius_bottom_right="0" style:normal:bg_color="#FFFFFF" style:normal:text_color="#000000" style:normal:text_align_h="left" style:normal:round_radius_top_left="0" style:normal:round_radius_bottom_left="0" style:normal:margin="10" style:normal:round_radius="10" style:normal:border_color="#00000000" text="Other Fees"/>
     </view>
   </view>
-  <list_view name="list_view" x="10" y="106" w="300" h="130" default_item_height="60" style:normal:bg_color="#00000000" focusable="true" feedback="true">
+  <list_view name="list_view" x="10" y="106" w="300" h="104" default_item_height="60" style:normal:bg_color="#00000000" focusable="true" feedback="true">
     <!--    <scroll_view v-if="{isCompusoryBtn}" name="scroll_view1" x="0" y="0" w="320" h="100%" disg:hide="true">-->
     <!--      &lt;!&ndash; v-on:click="{selectBill, Args=fscript?reference=item.InvoiceReference&amp;&amp;amount=item.Amount}" &ndash;&gt;-->
     <!--      <list_item v-for="{compulsoryFees}" name="list_item" h="75" style:normal:bg_color="#00000000" style:normal:round_radius="5" x="0" y="0" w="300">-->
@@ -30,8 +30,8 @@
     <!--      </list_item>-->
     <!--    </scroll_view>-->
     <!--    -->
-    <scroll_view v-if="{isCompusoryBtn}" name="scroll_view" x="0" y="0" w="300" h="140">
-      <view v-for="{compulsoryFees}" name="view3" h="72" style:normal:bg_color="#FFFFFF" auto_adjust_size="true" style:normal:border_color="#FFC002" style:normal:round_radius="10" w="300">
+    <scroll_view v-if="{isCompusoryBtn}" name="scroll_view" x="0" y="0" w="300" h="100">
+      <view v-for="{compulsoryFees}" name="view3" h="72" style:normal:bg_color="#FFFFFF" auto_adjust_size="true" style:normal:border_color="#FFC002" style:normal:round_radius="10" w="300" sensitive="true">
         <label name="label11" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" style:normal:font_size="16" text="NGN"/>
         <label name="label12" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}" style:normal:font_size="18"/>
         <label name="label13" x="10" y="42" w="119" h="20" style:normal:text_color="#000000" style:normal:text_align_h="left" v-data:text="{item.Fee}" auto_adjust_size="true" line_wrap="true" word_wrap="true"/>
@@ -60,12 +60,21 @@
           </property>
           <property name="style:over:bg_color">
             <![CDATA[#00000000]]>
+          </property>
+          <property name="feedback">
+            <![CDATA[true]]>
+          </property>
+          <property name="focusable">
+            <![CDATA[true]]>
+          </property>
+          <property name="with_focus_state">
+            <![CDATA[true]]>
           </property>
         </check_button>
       </view>
     </scroll_view>
-    <scroll_view v-if="{isOtherBtn}" name="scroll_view" x="0" y="0" w="320" h="140">
-      <view v-for="{otherFees}" name="view3" h="72" style:normal:bg_color="#FFFFFF" auto_adjust_size="true" style:normal:border_color="#FFC002" style:normal:round_radius="10">
+    <scroll_view v-if="{isOtherBtn}" name="scroll_view" x="0" y="0" w="320" h="100">
+      <view v-for="{otherFees}" name="view3" h="72" style:normal:bg_color="#FFFFFF" auto_adjust_size="true" style:normal:border_color="#FFC002" style:normal:round_radius="10" sensitive="true">
         <label name="label11" x="10" y="5" w="30" h="18" style:normal:text_color="#000000" style:normal:font_size="16" text="NGN"/>
         <label name="label12" x="50" y="1" w="112" h="28" style:normal:text_align_h="left" v-data:text="{item.Amount}" style:normal:font_size="18"/>
         <label name="label13" x="10" y="42" w="119" h="20" style:normal:text_color="#000000" style:normal:text_align_h="left" v-data:text="{item.Fee}" auto_adjust_size="true" line_wrap="true" word_wrap="true"/>
@@ -94,6 +103,15 @@
           </property>
           <property name="style:over:bg_color">
             <![CDATA[#00000000]]>
+          </property>
+          <property name="feedback">
+            <![CDATA[true]]>
+          </property>
+          <property name="focusable">
+            <![CDATA[true]]>
+          </property>
+          <property name="with_focus_state">
+            <![CDATA[true]]>
           </property>
         </check_button>
       </view>

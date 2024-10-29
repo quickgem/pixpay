@@ -75,29 +75,8 @@ function PRINT_TICKET(trans,cb,rePrint,currIndex,arg) {
     // addTextSpace(`RESPONSE CODE: ${arg.transactionResponseCode === ""?"999":arg.transactionResponseCode}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`MESSAGE: ${arg.status === "completed"?"APPROVED":"DECLINED"}`,ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace(`DATE: ${arg.createdAt}`,ALIGN_LEFT,fontSize.MIDDLE);
-    // if(arg.trnService === 'CARD_COLLECTION'){
-    //     addTextSpace(`TID.: ${arg.extraData.tid}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`MID.: ${arg.extraData.mid}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`CARD.: ${arg.extraData.card}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`Name.: ${arg.extraData.name}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`AID: ${arg.extraData.aid}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`STAN: ${arg.extraData.stan}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`RRN: ${arg.extraData.rrn}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`APPLAB: ${arg.extraData.appLab}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
-    // }
-    // else{
-    //     // addTextSpace(`TYPE: ${arg.type === 'DR' ? 'Debit' : arg.creditAccount !== Tos.GLOBAL_CONFIG.userInfo.customerOrganisationWallet ? 'Debit' : 'Credit'}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`BUSINESS ACC.: ${arg.transactionFromAccountType}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`NAME: ${arg.transactionToAccountType}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`ACCOUNT NO.: ${arg.transactionToAccountIdentification}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`REF MSG.: ${arg.narration ? arg.narration : 'NA'}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace(`REF NO.: ${arg.transactionRetrievalReferenceNumber}`,ALIGN_LEFT,fontSize.MIDDLE);
-    //     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
-    // }
     addText(`AMOUNT:`,ALIGN_LEFT,fontSize.MIDDLE);
-    addTextSpace(`₦${arg.amount}`,ALIGN_RIGHT,fontSize.LARGE);
+    addTextSpace(`₦${parseFloat(arg.amount).toFixed(2)}`, ALIGN_RIGHT, fontSize.LARGE);
     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
     addTextSpace( `powered by ${Tos.GLOBAL_CONFIG.partner}`,ALIGN_CENTER,fontSize.SMALL);
     addTextSpace( '-----------------------------------------------------',ALIGN_LEFT,fontSize.MIDDLE);
