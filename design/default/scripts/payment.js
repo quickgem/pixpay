@@ -17,7 +17,6 @@ ViewModel("payment", {
       admissionNo:"",
       schoolId:""
     }
-    
   },
 
   methods: {
