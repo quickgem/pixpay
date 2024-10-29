@@ -9,7 +9,7 @@
     <image name="image2" x="0" y="10" w="68" h="65" draw_type="scale_auto" image="pixpay_profile"/>
     <label name="label1" x="78" y="9" w="206" h="21" style:normal:text_align_h="left" style:normal:font_size="16" line_wrap="true" word_wrap="true" v-data:text="{studentFullName}"/>
     <label name="label2" x="78" y="30" w="80" h="18" style:normal:text_align_h="left" style:normal:font_size="14" style:normal:text_color="#A5A5A5" text="Pending Fees"/>
-    <label name="label1" x="78" y="54" w="206" h="21" style:normal:text_align_h="left" style:normal:font_size="16" line_wrap="true" word_wrap="true" v-data:text="{totalBillAmount}"/>
+    <label name="label1" x="78" y="54" w="206" h="21" style:normal:text_align_h="left" style:normal:font_size="16" line_wrap="true" word_wrap="true" v-data:text="{studentTotalBillAmount}"/>
   </view>
   <view name="view" x="0" y="127" w="320" h="83">
     <button v-on:click="{handleGetNewStudentBills}" name="new_payment" x="10" y="10" w="139" h="63" style:normal:bg_color="#F79E1B" style:normal:round_radius="10">
