@@ -10,7 +10,7 @@ ViewModel("profile", {
             schoolId:""
         },
         isLoading:false,
-        studentTotalBillAmount:""
+        totalBillAmount:""
     },
 
     methods:{
@@ -88,7 +88,12 @@ ViewModel("profile", {
             // }
 
             // console.log('student ===>', JSON.stringify(student))
-            GLOBAL_JUMP("",data.Data)
+            navigateReplace({
+                close_current: true,
+                target: "makeTransfer",
+                data:data.Data
+            })
+            // GLOBAL_JUMP("",)
 
             // navigateReplace({
             //     close_current: true,
@@ -119,7 +124,7 @@ ViewModel("profile", {
             this.studentFullName = Tos.GLOBAL_CONFIG.studentInfo.Surname + ' ' + Tos.GLOBAL_CONFIG.studentInfo.MiddleName || null + ' ' + Tos.GLOBAL_CONFIG.studentInfo.FirstName
             this.getStudentBillsRequest.admissionNo = Tos.GLOBAL_CONFIG.studentInfo.AdmissionNo;
             const billAmount = parseFloat(req.data).toFixed(2)
-            this.studentTotalBillAmount = parseFloat(this._formatInput(billAmount)).toFixed(2)
+            this.totalBillAmount = parseFloat(this._formatInput(billAmount)).toFixed(2)
             this.getStudentBillsRequest.schoolId = parseFloat(Tos.GLOBAL_CONFIG.studentInfo.SchoolId);
             this.notifyPropsChanged()
         }

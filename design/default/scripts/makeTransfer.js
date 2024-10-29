@@ -116,6 +116,9 @@ ViewModel("makeTransfer", {
         },
         startPosPayment:function (){
             const that = this
+            if(that.selectedBill.length === 0){
+                return;
+            }
             that.isLoading = true
             that.trans.amount = parseFloat(this.studentTotalBillAmount).toFixed(2)
             that.posPaymentRequest.AdmissionNumber = Tos.GLOBAL_CONFIG.studentInfo.AdmissionNo
